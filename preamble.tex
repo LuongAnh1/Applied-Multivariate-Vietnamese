@@ -1,71 +1,152 @@
-% --- GÓI NGÔN NGỮ VÀ FONT TIẾNG VIỆT ---
+% Typography and language-safe font setup
 \usepackage{fontspec}
-% Sử dụng font Times chuẩn sách xuất bản, Sans-serif cho tiêu đề
-\setmainfont{Times New Roman}
-\setsansfont{Arial}
+\defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
 
-% --- TOÁN HỌC ---
+\IfFontExistsTF{Times New Roman}{
+  \setmainfont{Times New Roman}
+}{
+  \setmainfont{TeX Gyre Termes}
+}
+\IfFontExistsTF{Arial}{
+  \setsansfont{Arial}
+}{
+  \setsansfont{TeX Gyre Heros}
+}
+\IfFontExistsTF{Consolas}{
+  \setmonofont{Consolas}
+}{
+  \setmonofont{Latin Modern Mono}
+}
+
+% Core math packages
 \usepackage{amsmath, amsfonts, amssymb}
 \usepackage{mathtools}
 
-% --- KÍCH THƯỚC TRANG & CANH LỀ (Chuẩn sách giáo trình) ---
+% Page geometry for a compact textbook format
 \usepackage[
-    paperwidth=7in, paperheight=10in, % Tỉ lệ chuẩn sách Prentice Hall
-    top=22mm, bottom=22mm,
-    inner=24mm, outer=20mm,
-    headheight=14pt, headsep=6mm,
-    footskip=10mm
+  paperwidth=7in,
+  paperheight=10in,
+  top=23mm,
+  bottom=24mm,
+  inner=25mm,
+  outer=20mm,
+  headheight=15pt,
+  headsep=7mm,
+  footskip=11mm
 ]{geometry}
 
-% --- HEADER VÀ FOOTER (Giống hệt sách gốc) ---
+% Colors and subtle visual hierarchy
+\usepackage{xcolor}
+\definecolor{TextBlack}{HTML}{1F2933}
+\definecolor{HeadingBlue}{HTML}{1D4F72}
+\definecolor{RuleGray}{HTML}{BAC4CF}
+\definecolor{SoftGray}{HTML}{6B7280}
+\definecolor{LinkBlue}{HTML}{0B5CAD}
+\AtBeginDocument{\color{TextBlack}}
+
+% Better paragraph rhythm
+\usepackage[final]{microtype}
+\linespread{1.06}
+\setlength{\parindent}{1.25em}
+\setlength{\parskip}{0pt plus 1pt}
+\emergencystretch=1.5em
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\raggedbottom
+
+% Header and footer
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhf{} % Xoá trắng mặc định
-\renewcommand{\headrulewidth}{0pt} % Không có vạch kẻ header
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter\quad #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{RuleGray}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[LE]{\small\sffamily\textcolor{SoftGray}{\thepage}\quad\textcolor{RuleGray}{|}\quad\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\sffamily\nouppercase{\rightmark}\quad\textcolor{RuleGray}{|}\quad\textcolor{SoftGray}{\thepage}}
 
-% Trang chẵn (Even): Tên chương bên trái | Trang lẻ (Odd): Tên mục bên phải
-\fancyhead[LE]{\small\itshape Chương \thechapter\quad Aspects of Multivariate Analysis}
-\fancyhead[RO]{\small\itshape \nouppercase{\rightmark}}
-
-% Số trang ở góc ngoài cùng đáy trang
-\fancyfoot[LE]{\thepage}
-\fancyfoot[RO]{\thepage}
-
-% Thiết lập cho các trang bắt đầu chương
-\fancypagestyle{plain}{
+\fancypagestyle{plain}{%
   \fancyhf{}
-  \fancyfoot[RO,LE]{\thepage}
+  \fancyfoot[C]{\small\sffamily\textcolor{SoftGray}{\thepage}}
   \renewcommand{\headrulewidth}{0pt}
 }
 
-% --- ĐỊNH DẠNG TIÊU ĐỀ MỤC (1.5 Distance) ---
-\usepackage{titlesec}
-\titleformat{\section}
-  {\normalfont\huge\bfseries\sffamily}
-  {\thesection}{0.6em}{}
-\titlespacing*{\section}{0pt}{2.5ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+% Chapter and section titles
+\usepackage[explicit]{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\sffamily\bfseries\color{TextBlack}}
+  {\Large\textcolor{HeadingBlue}{Chapter \thechapter}}
+  {0.65ex}
+  {\Huge\raggedright #1}
+  [\vspace{0.8ex}{\color{RuleGray}\titlerule[0.7pt]}]
+\titlespacing*{\chapter}{0pt}{-1.2ex}{3.2ex}
 
-% --- ĐÁNH SỐ CÔNG THỨC DẠNG (1-9), (1-10) ---
+\titleformat{\section}[hang]
+  {\normalfont\Large\bfseries\sffamily\color{HeadingBlue}\raggedright}
+  {\thesection}
+  {0.75em}
+  {#1}
+\titlespacing*{\section}{0pt}{2.6ex plus 0.8ex minus 0.2ex}{1.1ex plus 0.2ex}
+
+\titleformat{\subsection}[hang]
+  {\normalfont\large\bfseries\sffamily\color{TextBlack}\raggedright}
+  {\thesubsection}
+  {0.65em}
+  {#1}
+\titlespacing*{\subsection}{0pt}{2.0ex plus 0.6ex minus 0.2ex}{0.8ex plus 0.2ex}
+
+% Equation numbering: (5-1), (5-2), ...
 \numberwithin{equation}{chapter}
 \renewcommand{\theequation}{\thechapter-\arabic{equation}}
 
-% --- ĐỊNH DẠNG HÌNH VẼ & BẢNG (Caption) ---
+% Figures, tables, and captions
+\usepackage{graphicx}
+\graphicspath{{figures/}}
 \usepackage{caption}
 \captionsetup{
-    labelfont={bf,sf},
-    textfont={small},
-    labelsep=space,
-    justification=raggedright,
-    singlelinecheck=false
+  font=small,
+  labelfont={bf,sf,color=HeadingBlue},
+  textfont={small},
+  labelsep=period,
+  justification=raggedright,
+  singlelinecheck=false,
+  margin=0.6cm
 }
 
-% --- BẢNG BIỂU & TIKZ VẼ HÌNH ---
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta, positioning}
+\usepackage{tabularx}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{6pt}
 
-% --- ĐỊNH NGHĨA MÔI TRƯỜNG BÀI TẬP (Exercises) ---
+% Lists
+\usepackage{enumitem}
+\setlist{topsep=0.35em, itemsep=0.15em, parsep=0pt, leftmargin=2em}
+
+% TikZ figures
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, calc}
+
+% Common math helpers
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diag}{diag}
+\newcommand{\trans}{^{\mathsf T}}
+\newcommand{\inv}{^{-1}}
+
+% Exercise label helper
 \newcommand{\exercise}[1]{%
-  \vspace{1.5em}\noindent\textbf{\sffamily #1}\quad
+  \par\vspace{1.25em}\noindent{\sffamily\bfseries\color{HeadingBlue}#1}\quad
+}
+
+% PDF links and metadata
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=HeadingBlue,
+  citecolor=HeadingBlue,
+  urlcolor=LinkBlue,
+  pdfauthor={Applied Multivariate Vietnamese},
+  pdftitle={Inferences About a Mean Vector}
 }
