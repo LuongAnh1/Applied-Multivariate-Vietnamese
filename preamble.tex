@@ -1,71 +1,176 @@
-% --- GÓI NGÔN NGỮ VÀ FONT TIẾNG VIỆT ---
+% Vietnamese-friendly textbook typography for XeLaTeX
 \usepackage{fontspec}
-% Sử dụng font Times chuẩn sách xuất bản, Sans-serif cho tiêu đề
-\setmainfont{Times New Roman}
-\setsansfont{Arial}
+\defaultfontfeatures{Ligatures=TeX}
 
-% --- TOÁN HỌC ---
+\IfFontExistsTF{Times New Roman}{
+  \setmainfont{Times New Roman}
+}{
+  \IfFontExistsTF{Cambria}{
+    \setmainfont{Cambria}
+  }{
+    \setmainfont{TeX Gyre Termes}
+  }
+}
+\IfFontExistsTF{Arial}{
+  \setsansfont{Arial}
+}{
+  \setsansfont{TeX Gyre Heros}
+}
+\IfFontExistsTF{Consolas}{
+  \setmonofont{Consolas}
+}{
+  \setmonofont{Latin Modern Mono}
+}
+
+% Core math packages
 \usepackage{amsmath, amsfonts, amssymb}
 \usepackage{mathtools}
 
-% --- KÍCH THƯỚC TRANG & CANH LỀ (Chuẩn sách giáo trình) ---
+% Page geometry close to the reference textbook page
 \usepackage[
-    paperwidth=7in, paperheight=10in, % Tỉ lệ chuẩn sách Prentice Hall
-    top=22mm, bottom=22mm,
-    inner=24mm, outer=20mm,
-    headheight=14pt, headsep=6mm,
-    footskip=10mm
+  paperwidth=7in,
+  paperheight=10in,
+  top=20mm,
+  bottom=22mm,
+  inner=24mm,
+  outer=19mm,
+  headheight=13pt,
+  headsep=5mm,
+  footskip=10mm
 ]{geometry}
 
-% --- HEADER VÀ FOOTER (Giống hệt sách gốc) ---
+% Neutral print palette
+\usepackage{xcolor}
+\definecolor{TextBlack}{HTML}{111111}
+\definecolor{BookGray}{HTML}{D8D8D8}
+\definecolor{BookGrayDark}{HTML}{9B9B9B}
+\definecolor{HeaderGray}{HTML}{555555}
+\definecolor{LinkBlack}{HTML}{111111}
+\AtBeginDocument{\color{TextBlack}}
+
+% Better paragraph rhythm for dense textbook prose
+\usepackage[final]{microtype}
+\linespread{1.0}
+\setlength{\parindent}{1.4em}
+\setlength{\parskip}{0pt}
+\emergencystretch=1.2em
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\raggedbottom
+
+% Figures and drawing helpers
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, calc, patterns}
+
+% Header and footer: quiet book-style running heads
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhf{} % Xoá trắng mặc định
-\renewcommand{\headrulewidth}{0pt} % Không có vạch kẻ header
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter\quad #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[LE]{\small\itshape\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\itshape\nouppercase{\rightmark}}
+\fancyfoot[LE,RO]{\small\thepage}
 
-% Trang chẵn (Even): Tên chương bên trái | Trang lẻ (Odd): Tên mục bên phải
-\fancyhead[LE]{\small\itshape Chương \thechapter\quad Aspects of Multivariate Analysis}
-\fancyhead[RO]{\small\itshape \nouppercase{\rightmark}}
-
-% Số trang ở góc ngoài cùng đáy trang
-\fancyfoot[LE]{\thepage}
-\fancyfoot[RO]{\thepage}
-
-% Thiết lập cho các trang bắt đầu chương
-\fancypagestyle{plain}{
+\fancypagestyle{plain}{%
   \fancyhf{}
-  \fancyfoot[RO,LE]{\thepage}
+  \fancyfoot[LE,RO]{\small\thepage}
   \renewcommand{\headrulewidth}{0pt}
 }
 
-% --- ĐỊNH DẠNG TIÊU ĐỀ MỤC (1.5 Distance) ---
-\usepackage{titlesec}
-\titleformat{\section}
-  {\normalfont\huge\bfseries\sffamily}
-  {\thesection}{0.6em}{}
-\titlespacing*{\section}{0pt}{2.5ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+% Chapter and section titles
+\usepackage[explicit]{titlesec}
 
-% --- ĐÁNH SỐ CÔNG THỨC DẠNG (1-9), (1-10) ---
+\newcommand{\BookChapterTitle}[1]{%
+  \vspace*{-1.0em}%
+  \noindent\begin{tikzpicture}
+    \path[use as bounding box] (0,-0.46in) rectangle (\textwidth,1.38in);
+    \begin{scope}[overlay]
+      \fill[BookGray] (-0.55in,0) rectangle (\textwidth,1.02in);
+      \foreach \x in {-0.45,-0.20,...,4.6} {
+        \draw[BookGrayDark!32, line width=0.3pt] (\x,0.08) -- ++(1.1,0.86);
+      }
+      \node[anchor=west, inner sep=0pt] at (0.30in,1.22in)
+        {\fontsize{17}{19}\selectfont\itshape\addfontfeatures{LetterSpace=10}Chapter};
+      \node[anchor=west, inner sep=0pt] at (0.58in,0.28in)
+        {\fontsize{84}{84}\selectfont\thechapter};
+      \node[anchor=west, text width=\textwidth, inner sep=0pt] at (0,-0.34in)
+        {\fontsize{22}{26}\selectfont\scshape\MakeLowercase{#1}};
+    \end{scope}
+  \end{tikzpicture}%
+  \par\vspace{0.8em}%
+}
+
+\titleformat{\chapter}[block]
+  {\normalfont\rmfamily\color{TextBlack}}
+  {}
+  {0pt}
+  {\BookChapterTitle{#1}}
+\titlespacing*{\chapter}{0pt}{0pt}{0pt}
+
+\titleformat{\section}[hang]
+  {\normalfont\rmfamily\large}
+  {\bfseries\thesection}
+  {0.52em}
+  {#1}
+\titlespacing*{\section}{0pt}{1.55ex plus 0.45ex minus 0.2ex}{0.72ex plus 0.15ex}
+
+\titleformat{\subsection}[hang]
+  {\normalfont\rmfamily\normalsize}
+  {\bfseries\thesubsection}
+  {0.52em}
+  {#1}
+\titlespacing*{\subsection}{0pt}{1.6ex plus 0.4ex minus 0.2ex}{0.6ex plus 0.15ex}
+
+% Equation numbering: (5-1), (5-2), ...
 \numberwithin{equation}{chapter}
 \renewcommand{\theequation}{\thechapter-\arabic{equation}}
 
-% --- ĐỊNH DẠNG HÌNH VẼ & BẢNG (Caption) ---
+% Figures, tables, and captions
 \usepackage{caption}
 \captionsetup{
-    labelfont={bf,sf},
-    textfont={small},
-    labelsep=space,
-    justification=raggedright,
-    singlelinecheck=false
+  font=small,
+  labelfont={bf},
+  textfont={it},
+  labelsep=period,
+  justification=raggedright,
+  singlelinecheck=false,
+  margin=0.45cm
 }
 
-% --- BẢNG BIỂU & TIKZ VẼ HÌNH ---
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta, positioning}
+\usepackage{tabularx}
+\renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{5.5pt}
 
-% --- ĐỊNH NGHĨA MÔI TRƯỜNG BÀI TẬP (Exercises) ---
+% Lists
+\usepackage{enumitem}
+\setlist{topsep=0.25em, itemsep=0.1em, parsep=0pt, leftmargin=1.8em}
+
+% Common math helpers
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diag}{diag}
+\newcommand{\trans}{^{\mathsf T}}
+\newcommand{\inv}{^{-1}}
+
+% Exercise label helper
 \newcommand{\exercise}[1]{%
-  \vspace{1.5em}\noindent\textbf{\sffamily #1}\quad
+  \par\vspace{1.15em}\noindent{\bfseries #1}\quad
+}
+
+% PDF links and metadata
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=LinkBlack,
+  citecolor=LinkBlack,
+  urlcolor=LinkBlack,
+  pdfauthor={Applied Multivariate Vietnamese},
+  pdftitle={Inferences About a Mean Vector}
 }
