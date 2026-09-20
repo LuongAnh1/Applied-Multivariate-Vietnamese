@@ -4,7 +4,175 @@
 % - Trần Long Vũ (MSSV: 20237409) - trang 249-251
 % - Mục: 5.6 Multivariate Quality Control Charts
 % Vị trí viết nội dung: mỗi người thêm comment BEGIN/END phần của mình dưới dòng TODO.
-
-\section{Multivariate Quality Control Charts}
+\newpage
+\section{Biểu đồ kiểm soát chất lượng đa biến}
 
 % TODO: Add content for Section 5.6.
+
+% BEGIN: 249 - 251  Trần Long Vũ - 20237409
+% ===== Dán từ dòng này vào giữa BEGIN và END trong ch05_06_quality_control_charts.tex =====
+% Lưu ý: nên thêm vào preamble.tex dòng sau để chú thích hình hiện "Hình" thay vì "Figure":
+%   \renewcommand{\figurename}{Hình}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/figure5_12.png}
+    \caption{Elip kiểm soát 95\% cho giờ làm thêm tham gia tố tụng (\textit{legal appearances}) và giờ làm thêm do sự kiện bất thường (\textit{extraordinary event}) trong tương lai.}
+    \label{fig:5.12}
+\end{figure}
+
+\noindent theo thứ tự thời gian. Đặt $\mathrm{LCL}=0$ và lấy
+\begin{equation*}
+    \mathrm{UCL} = \frac{(n-1)p}{(n-p)}F_{p,n-p}(0{,}05).
+\end{equation*}
+Các điểm nằm trên giới hạn kiểm soát trên (UCL) biểu thị khả năng có biến động do nguyên nhân đặc biệt, và cho thấy quá trình đang xét cần được kiểm tra để xác định có cần thực hiện ngay hành động khắc phục hay không. Xem [9] để biết thêm về các thủ tục khác.
+
+\subsection*{\textbf{Biểu đồ kiểm soát dựa trên trung bình mẫu con}}
+
+Giả sử mỗi vectơ quan sát ngẫu nhiên lấy từ quá trình được phân phối độc lập theo $N_{p}(\mathbf{0},\Sigma)$. Ta xử lý khác đi khi quy trình lấy mẫu quy định chọn đồng thời $m>1$ đơn vị từ quá trình. Từ mẫu đầu tiên, ta xác định vectơ trung bình mẫu $\overline{X}_{1}$ và ma trận hiệp phương sai mẫu $S_{1}$. Khi tổng thể có phân phối chuẩn, hai đại lượng ngẫu nhiên này độc lập với nhau.
+
+Với một trung bình mẫu con tổng quát $\overline{X}_{j}$, vectơ $\overline{X}_{j} - \overline{\overline{X}}$ có phân phối chuẩn với vectơ trung bình $\mathbf{0}$ và
+\begin{equation*}
+    \operatorname{Cov}(\overline{X}_{j}-\overline{\overline{X}}) = \left(1-\frac{1}{n}\right)^{2}\operatorname{Cov}(\overline{X}_{j}) + \frac{n-1}{n^{2}}\operatorname{Cov}(\overline{X}_{1}) = \frac{(n-1)}{nm}\Sigma,
+\end{equation*}
+trong đó
+\begin{equation*}
+    \overline{\overline{X}} = \frac{1}{n}\sum_{j=1}^{n}\overline{X}_{j}.
+\end{equation*}
+
+Như sẽ được trình bày trong Mục 6.4, các ma trận hiệp phương sai mẫu của $n$ mẫu con có thể được kết hợp để cho một ước lượng duy nhất (gọi là ước lượng gộp $S_{\mathrm{pooled}}$ trong Chương 6) của ma trận hiệp phương sai chung $\Sigma$. Ước lượng gộp này là
+\begin{equation*}
+    S = \frac{1}{n}(S_{1} + S_{2} + \dots + S_{n}).
+\end{equation*}
+
+Ở đây, $(nm-n)S$ độc lập với mỗi $\overline{X}_{j}$ và do đó độc lập với trung bình $\overline{\overline{X}}$ của chúng. Hơn nữa, $(nm-n)S$ có phân phối Wishart với $nm-n$ bậc tự do. Lưu ý rằng ta ước lượng $\Sigma$ ngay từ dữ liệu thu thập được trong từng giai đoạn. Các ước lượng này được kết hợp thành một ước lượng duy nhất với số bậc tự do lớn. Do đó,
+\begin{equation*}
+    T^{2} = \frac{nm}{n-1}(\overline{X}_{j}-\overline{\overline{X}})\trans S\inv(\overline{X}_{j}-\overline{\overline{X}})
+\end{equation*}
+có phân phối
+\begin{equation}
+    \frac{(nm-n)p}{(nm-n-p+1)}F_{p, nm-n-p+1}.
+    \tag{5-35}
+    \label{eq:5-35}
+\end{equation}
+
+\paragraph{Biểu đồ dạng elip.} Tương tự phần thảo luận về các quan sát đa biến riêng lẻ, biểu đồ dạng elip cho các cặp trung bình mẫu con là
+\begin{equation}
+    (\overline{x}_{j}-\overline{\overline{x}})\trans S\inv(\overline{x}_{j}-\overline{\overline{x}}) \le \frac{(n-1)(m-1)2}{m(nm-n-1)}F_{2, nm-n-1}(0{,}05),
+    \tag{5-36}
+    \label{eq:5-36}
+\end{equation}
+mặc dù vế phải thường được xấp xỉ bằng $\chi_{2}^{2}(0{,}05)/m$.
+
+Các mẫu con ứng với những điểm nằm ngoài elip kiểm soát cần được kiểm tra cẩn thận để phát hiện sự thay đổi trong đặc tính của các đặc trưng chất lượng đang được đo. Bạn đọc quan tâm có thể tham khảo [10] để biết thêm.
+
+\paragraph{Biểu đồ $T^{2}$.} Để xây dựng biểu đồ $T^{2}$ với dữ liệu mẫu con và $p$ đặc trưng, ta vẽ đại lượng
+\begin{equation*}
+    T_{j}^{2} = m(\overline{X}_{j}-\overline{\overline{X}})\trans S\inv(\overline{X}_{j}-\overline{\overline{X}})
+\end{equation*}
+với $j=1,2,\dots,n$, trong đó giới hạn kiểm soát trên là
+\begin{equation*}
+    \mathrm{UCL} = \frac{(n-1)(m-1)p}{(nm-n-p+1)}F_{p, nm-n-p+1}(0{,}05).
+\end{equation*}
+Giới hạn $\mathrm{UCL}$ thường được xấp xỉ bằng $\chi_{p}^{2}(0{,}05)$ khi $n$ lớn.
+
+Các giá trị $T_{j}^{2}$ vượt quá $\mathrm{UCL}$ ứng với biến động do nguyên nhân đặc biệt hoặc khả năng mất kiểm soát, và cần được kiểm tra. (Xem [10].)
+
+\subsection*{\textbf{Miền kiểm soát cho các quan sát mẫu con trong tương lai}}
+
+Khi đã thu thập dữ liệu từ quá trình vận hành ổn định, ta có thể dùng chúng để thiết lập các giới hạn kiểm soát cho các trung bình mẫu con quan sát được trong tương lai.
+
+Nếu $\overline{X}$ là một trung bình mẫu con trong tương lai thì $\overline{X}-\overline{\overline{X}}$ có phân phối chuẩn đa biến với vectơ trung bình $\mathbf{0}$ và
+\begin{equation*}
+    \operatorname{Cov}(\overline{X}-\overline{\overline{X}}) = \operatorname{Cov}(\overline{X}) + \frac{1}{n}\operatorname{Cov}(\overline{X}_{1}) = \frac{(n+1)}{nm}\Sigma.
+\end{equation*}
+Do đó,
+\begin{equation*}
+    \frac{nm}{n+1}(\overline{X}-\overline{\overline{X}})\trans S\inv(\overline{X}-\overline{\overline{X}})
+\end{equation*}
+có phân phối
+\begin{equation*}
+    \frac{(nm-n)p}{(nm-n-p+1)}F_{p, nm-n-p+1}.
+\end{equation*}
+
+\paragraph{Elip kiểm soát cho các trung bình mẫu con trong tương lai.} Elip dự báo cho một trung bình mẫu con trong tương lai với $p=2$ đặc trưng được xác định bởi tập hợp mọi $\overline{x}$ thỏa mãn
+\begin{equation}
+    (\overline{x}-\overline{\overline{x}})\trans S\inv(\overline{x}-\overline{\overline{x}}) \le \frac{(n+1)(m-1)2}{m(nm-n-1)}F_{2, nm-n-1}(0{,}05),
+    \tag{5-37}
+    \label{eq:5-37}
+\end{equation}
+trong đó, một lần nữa, vế phải thường được xấp xỉ bằng $\chi_{2}^{2}(0{,}05)/m$.
+
+\paragraph{Biểu đồ $T^{2}$ cho các trung bình mẫu con trong tương lai.} Như trước, ta đưa hệ số $n/(n+1)$ vào giới hạn kiểm soát và vẽ đại lượng
+\begin{equation*}
+    T^{2} = m(\overline{X}-\overline{\overline{X}})\trans S\inv(\overline{X}-\overline{\overline{X}})
+\end{equation*}
+cho các trung bình mẫu trong tương lai theo thứ tự thời gian. Khi đó giới hạn kiểm soát trên là
+\begin{equation*}
+    \mathrm{UCL} = \frac{(n+1)(m-1)p}{(nm-n-p+1)}F_{p, nm-n-p+1}(0{,}05).
+\end{equation*}
+Giới hạn $\mathrm{UCL}$ thường được xấp xỉ bằng $\chi_{p}^{2}(0{,}05)$ khi $n$ lớn.
+
+Các điểm nằm ngoài elip dự báo hoặc nằm trên $\mathrm{UCL}$ cho thấy giá trị hiện tại của các đặc trưng chất lượng đã khác đi ở một mức độ nào đó so với quá trình ổn định trước đó. Điều này có thể tốt hoặc xấu, nhưng hầu như chắc chắn cần tìm kiếm cẩn thận nguyên nhân của sự thay đổi.
+
+% END: 249 - 251 Trần Long Vũ - 20237409
+
+% BEGIN: Exercises (5.1 -> 5.5) Trần Long Vũ - 20237409
+\section*{Bài tập}
+
+\begin{enumerate}[label=\textbf{5.\arabic*.}, leftmargin=2.8em]
+    \item
+    \begin{enumerate}[label=(\alph*)]
+        \item Tính giá trị của thống kê $T^2$ để kiểm định $H_0: \boldsymbol{\mu}\trans = [7,\; 11]$, sử dụng ma trận dữ liệu
+        \[
+            \mathbf{X} =
+            \begin{bmatrix}
+                2 & 12 \\
+                8 & 9 \\
+                6 & 9 \\
+                8 & 10
+            \end{bmatrix}
+        \]
+        \item Xác định phân phối của $T^2$ trong trường hợp ở câu (a).
+        \item Sử dụng kết quả ở câu (a) và (b), hãy kiểm định $H_0$ ở mức ý nghĩa $\alpha = 0{,}05$. Nêu kết luận của bạn.
+    \end{enumerate}
+
+    \item Sử dụng dữ liệu trong Ví dụ~5.1, hãy kiểm tra rằng giá trị $T^2$ không thay đổi khi mỗi quan sát $\mathbf{x}_j$ ($j = 1, 2, 3$) được thay bằng $\mathbf{C}\mathbf{x}_j$, với
+    \[
+        \mathbf{C} =
+        \begin{bmatrix}
+            1 & -1 \\
+            1 & 1
+        \end{bmatrix}
+    \]
+    Lưu ý rằng các quan sát
+    \[
+        \mathbf{C}\mathbf{x}_j =
+        \begin{bmatrix}
+            x_{j1} - x_{j2} \\
+            x_{j1} + x_{j2}
+        \end{bmatrix}
+    \]
+    cho ma trận dữ liệu
+    \[
+        \begin{bmatrix}
+            (6 - 9) & (10 - 6) & (8 - 3) \\
+            (6 + 9) & (10 + 6) & (8 + 3)
+        \end{bmatrix}\trans
+    \]
+
+    \item
+    \begin{enumerate}[label=(\alph*)]
+        \item Sử dụng biểu thức (5-15) để tính $T^2$ cho dữ liệu trong Bài tập~5.1.
+        \item Sử dụng dữ liệu trong Bài tập~5.1 để tính tỉ số hợp lý $\Lambda$ trong (5-13). Đồng thời tính lambda Wilks ($\Lambda^{2/n}$).
+    \end{enumerate}
+
+    \item Sử dụng dữ liệu mồ hôi (sweat data) trong Bảng~5.1 (xem Ví dụ~5.2).
+    \begin{enumerate}[label=(\alph*)]
+        \item Xác định các trục của ellipsoid tin cậy 90\% cho vectơ trung bình $\boldsymbol{\mu}$ và độ dài của các trục này.
+        \item Vẽ biểu đồ Q--Q lần lượt cho các quan sát về tốc độ tiết mồ hôi, hàm lượng natri và hàm lượng kali. Vẽ ba biểu đồ phân tán khả dĩ cho từng cặp quan sát. Giả thiết phân phối chuẩn đa biến có hợp lý trong trường hợp này không? Hãy nhận xét.
+    \end{enumerate}
+
+    \item Các đại lượng $\overline{\mathbf{x}}$, $\mathbf{S}$ và $\mathbf{S}\inv$ được cho trong Ví dụ~5.3 đối với dữ liệu bức xạ lò vi sóng sau khi biến đổi. Hãy kiểm định giả thuyết không $H_0: \boldsymbol{\mu}\trans = [0{,}55,\; 0{,}60]$ ở mức ý nghĩa $\alpha = 0{,}05$. Kết quả của bạn có nhất quán với elip tin cậy 95\% cho $\boldsymbol{\mu}$ được vẽ trong Hình~5.1 hay không? Hãy giải thích.
+\end{enumerate}
+% END: Exercises (5.1 -> 5.5) Trần Long Vũ - 20237409
