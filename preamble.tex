@@ -1,0 +1,71 @@
+% --- GÓI NGÔN NGỮ VÀ FONT TIẾNG VIỆT ---
+\usepackage{fontspec}
+% Sử dụng font Times chuẩn sách xuất bản, Sans-serif cho tiêu đề
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+
+% --- TOÁN HỌC ---
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{mathtools}
+
+% --- KÍCH THƯỚC TRANG & CANH LỀ (Chuẩn sách giáo trình) ---
+\usepackage[
+    paperwidth=7in, paperheight=10in, % Tỉ lệ chuẩn sách Prentice Hall
+    top=22mm, bottom=22mm,
+    inner=24mm, outer=20mm,
+    headheight=14pt, headsep=6mm,
+    footskip=10mm
+]{geometry}
+
+% --- HEADER VÀ FOOTER (Giống hệt sách gốc) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % Xoá trắng mặc định
+\renewcommand{\headrulewidth}{0pt} % Không có vạch kẻ header
+
+% Trang chẵn (Even): Tên chương bên trái | Trang lẻ (Odd): Tên mục bên phải
+\fancyhead[LE]{\small\itshape Chương \thechapter\quad Aspects of Multivariate Analysis}
+\fancyhead[RO]{\small\itshape \nouppercase{\rightmark}}
+
+% Số trang ở góc ngoài cùng đáy trang
+\fancyfoot[LE]{\thepage}
+\fancyfoot[RO]{\thepage}
+
+% Thiết lập cho các trang bắt đầu chương
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[RO,LE]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% --- ĐỊNH DẠNG TIÊU ĐỀ MỤC (1.5 Distance) ---
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\huge\bfseries\sffamily}
+  {\thesection}{0.6em}{}
+\titlespacing*{\section}{0pt}{2.5ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% --- ĐÁNH SỐ CÔNG THỨC DẠNG (1-9), (1-10) ---
+\numberwithin{equation}{chapter}
+\renewcommand{\theequation}{\thechapter-\arabic{equation}}
+
+% --- ĐỊNH DẠNG HÌNH VẼ & BẢNG (Caption) ---
+\usepackage{caption}
+\captionsetup{
+    labelfont={bf,sf},
+    textfont={small},
+    labelsep=space,
+    justification=raggedright,
+    singlelinecheck=false
+}
+
+% --- BẢNG BIỂU & TIKZ VẼ HÌNH ---
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+% --- ĐỊNH NGHĨA MÔI TRƯỜNG BÀI TẬP (Exercises) ---
+\newcommand{\exercise}[1]{%
+  \vspace{1.5em}\noindent\textbf{\sffamily #1}\quad
+}
