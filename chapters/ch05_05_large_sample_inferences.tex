@@ -4,7 +4,7 @@
 % - Trang tham chiếu: 234-238
 % Vị trí viết nội dung: thêm nội dung ngay dưới dòng TODO của mục này.
 
-\section{Large Sample Inferences about a Population Mean Vector}
+\section{Suy luận mẫu lớn về vectơ trung bình tổng thể}
 
 % TODO: Add content for Section 5.5.
 % Tên bảng tiếng Việt (có thể chuyển dòng này sang preamble.tex)
@@ -14,7 +14,11 @@ Khi cỡ mẫu lớn, các kiểm định giả thuyết và miền tin cậy ch
 
 Những ưu điểm của mẫu lớn có thể bị bù trừ một phần bởi sự mất mát thông tin mẫu do chỉ sử dụng các thống kê tóm tắt $\bar{\mathbf{x}}$ và $\mathbf{S}$. Mặt khác, vì $(\bar{\mathbf{x}}, \mathbf{S})$ là một tóm tắt đủ đối với các tổng thể \emph{chuẩn} [xem (4-21)], nên tổng thể nền càng gần với chuẩn đa biến thì thông tin mẫu càng được sử dụng hiệu quả hơn khi suy luận.
 
-Mọi suy luận mẫu lớn về $\boldsymbol{\mu}$ đều dựa trên phân phối $\chi^2$. Từ (4-28), ta biết rằng $(\bar{\mathbf{X}}-\boldsymbol{\mu})'(n^{-1}\mathbf{S})^{-1}(\bar{\mathbf{X}}-\boldsymbol{\mu}) = n(\bar{\mathbf{X}}-\boldsymbol{\mu})'\mathbf{S}^{-1}(\bar{\mathbf{X}}-\boldsymbol{\mu})$ xấp xỉ có phân phối $\chi^2$ với $p$ bậc tự do, và do đó
+Mọi suy luận mẫu lớn về $\boldsymbol{\mu}$ đều dựa trên phân phối $\chi^2$. Từ (4-28), ta biết rằng
+\[
+    (\bar{\mathbf{X}}-\boldsymbol{\mu})'(n^{-1}\mathbf{S})^{-1}(\bar{\mathbf{X}}-\boldsymbol{\mu}) = n(\bar{\mathbf{X}}-\boldsymbol{\mu})'\mathbf{S}^{-1}(\bar{\mathbf{X}}-\boldsymbol{\mu})
+\]
+xấp xỉ có phân phối $\chi^2$ với $p$ bậc tự do, và do đó
 \setcounter{equation}{30}
 \begin{equation}\label{eq:5-31}
     P\bigl[n(\bar{\mathbf{X}}-\boldsymbol{\mu})'\mathbf{S}^{-1}(\bar{\mathbf{X}}-\boldsymbol{\mu}) \le \chi_p^2(\alpha)\bigr] \doteq 1-\alpha
@@ -125,9 +129,10 @@ trong đó $z(\alpha/2)$ là phân vị trên mức $100(\alpha/2)$ của phân 
 
 Bảng 5.6 cho các khoảng riêng lẻ, Bonferroni và dựa trên chi bình phương (hay bóng của ellipsoid tin cậy) đối với dữ liệu năng khiếu âm nhạc trong Ví dụ 5.7.
 
-\begin{table}[!htbp]
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
 \centering
-\caption{Các khoảng tin cậy $95\%$ mẫu lớn riêng lẻ, Bonferroni và $T^2$ cho dữ liệu năng khiếu âm nhạc}
+\captionof{table}{Các khoảng tin cậy $95\%$ mẫu lớn riêng lẻ, Bonferroni và $T^2$ cho dữ liệu năng khiếu âm nhạc}
 \label{tab:5-6}
 \small
 \setlength{\tabcolsep}{4pt}
@@ -150,7 +155,8 @@ $X_6$ = cân bằng   & 21.21 & 22.79 & 20.92 & 23.08 & 20.50 & 23.50 \\
 $X_7$ = phong cách & 21.89 & 23.51 & 21.59 & 23.81 & 21.16 & 24.24 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{minipage}
+\par\medskip
 
 Mặc dù cỡ mẫu có thể lớn, một số nhà thống kê vẫn thích giữ lại các phân vị dựa trên $F$ và $t$ hơn là dùng các phân vị dựa trên chi bình phương hoặc chuẩn tắc. Các hằng số sau là giới hạn khi cỡ mẫu tiến tới vô hạn của các hằng số trước. Các phân vị $F$ và $t$ cho các khoảng lớn hơn và do đó thận trọng hơn. Bảng 5.7 cho các khoảng riêng lẻ, Bonferroni và dựa trên $F$, hay bóng của ellipsoid tin cậy, đối với dữ liệu năng khiếu âm nhạc. So sánh Bảng 5.7 với Bảng 5.6, ta thấy tất cả các khoảng trong Bảng 5.7 đều lớn hơn. Tuy nhiên, với cỡ mẫu tương đối lớn $n=96$, sự khác biệt thường nằm ở chữ số thứ ba (hàng phần trăm) hoặc hàng phần mười.
 
