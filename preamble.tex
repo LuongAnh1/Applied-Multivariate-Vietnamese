@@ -1,11 +1,15 @@
-% Typography and language-safe font setup
+% Vietnamese-friendly textbook typography for XeLaTeX
 \usepackage{fontspec}
-\defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
+\defaultfontfeatures{Ligatures=TeX}
 
 \IfFontExistsTF{Times New Roman}{
   \setmainfont{Times New Roman}
 }{
-  \setmainfont{TeX Gyre Termes}
+  \IfFontExistsTF{Cambria}{
+    \setmainfont{Cambria}
+  }{
+    \setmainfont{TeX Gyre Termes}
+  }
 }
 \IfFontExistsTF{Arial}{
   \setsansfont{Arial}
@@ -22,111 +26,131 @@
 \usepackage{amsmath, amsfonts, amssymb}
 \usepackage{mathtools}
 
-% Page geometry for a compact textbook format
+% Page geometry close to the reference textbook page
 \usepackage[
   paperwidth=7in,
   paperheight=10in,
-  top=23mm,
-  bottom=24mm,
-  inner=25mm,
-  outer=20mm,
-  headheight=15pt,
-  headsep=7mm,
-  footskip=11mm
+  top=20mm,
+  bottom=22mm,
+  inner=24mm,
+  outer=19mm,
+  headheight=13pt,
+  headsep=5mm,
+  footskip=10mm
 ]{geometry}
 
-% Colors and subtle visual hierarchy
+% Neutral print palette
 \usepackage{xcolor}
-\definecolor{TextBlack}{HTML}{1F2933}
-\definecolor{HeadingBlue}{HTML}{1D4F72}
-\definecolor{RuleGray}{HTML}{BAC4CF}
-\definecolor{SoftGray}{HTML}{6B7280}
-\definecolor{LinkBlue}{HTML}{0B5CAD}
+\definecolor{TextBlack}{HTML}{111111}
+\definecolor{BookGray}{HTML}{D8D8D8}
+\definecolor{BookGrayDark}{HTML}{9B9B9B}
+\definecolor{HeaderGray}{HTML}{555555}
+\definecolor{LinkBlack}{HTML}{111111}
 \AtBeginDocument{\color{TextBlack}}
 
-% Better paragraph rhythm
+% Better paragraph rhythm for dense textbook prose
 \usepackage[final]{microtype}
-\linespread{1.06}
-\setlength{\parindent}{1.25em}
-\setlength{\parskip}{0pt plus 1pt}
-\emergencystretch=1.5em
+\linespread{1.0}
+\setlength{\parindent}{1.4em}
+\setlength{\parskip}{0pt}
+\emergencystretch=1.2em
 \clubpenalty=10000
 \widowpenalty=10000
 \displaywidowpenalty=10000
 \raggedbottom
 
-% Header and footer
+% Figures and drawing helpers
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, calc, patterns}
+
+% Header and footer: quiet book-style running heads
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter\quad #1}{}}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter\quad #1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}}
-\renewcommand{\headrulewidth}{0.35pt}
-\renewcommand{\headrule}{\hbox to\headwidth{\color{RuleGray}\leaders\hrule height \headrulewidth\hfill}}
-\fancyhead[LE]{\small\sffamily\textcolor{SoftGray}{\thepage}\quad\textcolor{RuleGray}{|}\quad\nouppercase{\leftmark}}
-\fancyhead[RO]{\small\sffamily\nouppercase{\rightmark}\quad\textcolor{RuleGray}{|}\quad\textcolor{SoftGray}{\thepage}}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[LE]{\small\itshape\nouppercase{\leftmark}}
+\fancyhead[RO]{\small\itshape\nouppercase{\rightmark}}
+\fancyfoot[LE,RO]{\small\thepage}
 
 \fancypagestyle{plain}{%
   \fancyhf{}
-  \fancyfoot[C]{\small\sffamily\textcolor{SoftGray}{\thepage}}
+  \fancyfoot[LE,RO]{\small\thepage}
   \renewcommand{\headrulewidth}{0pt}
 }
 
 % Chapter and section titles
 \usepackage[explicit]{titlesec}
-\titleformat{\chapter}[display]
-  {\normalfont\sffamily\bfseries\color{TextBlack}}
-  {\Large\textcolor{HeadingBlue}{Chapter \thechapter}}
-  {0.65ex}
-  {\Huge\raggedright #1}
-  [\vspace{0.8ex}{\color{RuleGray}\titlerule[0.7pt]}]
-\titlespacing*{\chapter}{0pt}{-1.2ex}{3.2ex}
+
+\newcommand{\BookChapterTitle}[1]{%
+  \vspace*{-1.0em}%
+  \noindent\begin{tikzpicture}
+    \path[use as bounding box] (0,-0.46in) rectangle (\textwidth,1.38in);
+    \begin{scope}[overlay]
+      \fill[BookGray] (-0.55in,0) rectangle (\textwidth,1.02in);
+      \foreach \x in {-0.45,-0.20,...,4.6} {
+        \draw[BookGrayDark!32, line width=0.3pt] (\x,0.08) -- ++(1.1,0.86);
+      }
+      \node[anchor=west, inner sep=0pt] at (0.30in,1.22in)
+        {\fontsize{17}{19}\selectfont\itshape\addfontfeatures{LetterSpace=10}Chapter};
+      \node[anchor=west, inner sep=0pt] at (0.58in,0.28in)
+        {\fontsize{84}{84}\selectfont\thechapter};
+      \node[anchor=west, text width=\textwidth, inner sep=0pt] at (0,-0.34in)
+        {\fontsize{22}{26}\selectfont\scshape\MakeLowercase{#1}};
+    \end{scope}
+  \end{tikzpicture}%
+  \par\vspace{0.8em}%
+}
+
+\titleformat{\chapter}[block]
+  {\normalfont\rmfamily\color{TextBlack}}
+  {}
+  {0pt}
+  {\BookChapterTitle{#1}}
+\titlespacing*{\chapter}{0pt}{0pt}{0pt}
 
 \titleformat{\section}[hang]
-  {\normalfont\Large\bfseries\sffamily\color{HeadingBlue}\raggedright}
-  {\thesection}
-  {0.75em}
+  {\normalfont\rmfamily\large}
+  {\bfseries\thesection}
+  {0.52em}
   {#1}
-\titlespacing*{\section}{0pt}{2.6ex plus 0.8ex minus 0.2ex}{1.1ex plus 0.2ex}
+\titlespacing*{\section}{0pt}{1.55ex plus 0.45ex minus 0.2ex}{0.72ex plus 0.15ex}
 
 \titleformat{\subsection}[hang]
-  {\normalfont\large\bfseries\sffamily\color{TextBlack}\raggedright}
-  {\thesubsection}
-  {0.65em}
+  {\normalfont\rmfamily\normalsize}
+  {\bfseries\thesubsection}
+  {0.52em}
   {#1}
-\titlespacing*{\subsection}{0pt}{2.0ex plus 0.6ex minus 0.2ex}{0.8ex plus 0.2ex}
+\titlespacing*{\subsection}{0pt}{1.6ex plus 0.4ex minus 0.2ex}{0.6ex plus 0.15ex}
 
 % Equation numbering: (5-1), (5-2), ...
 \numberwithin{equation}{chapter}
 \renewcommand{\theequation}{\thechapter-\arabic{equation}}
 
 % Figures, tables, and captions
-\usepackage{graphicx}
-\graphicspath{{figures/}}
 \usepackage{caption}
 \captionsetup{
   font=small,
-  labelfont={bf,sf,color=HeadingBlue},
-  textfont={small},
+  labelfont={bf},
+  textfont={it},
   labelsep=period,
   justification=raggedright,
   singlelinecheck=false,
-  margin=0.6cm
+  margin=0.45cm
 }
 
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{tabularx}
-\renewcommand{\arraystretch}{1.15}
-\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{5.5pt}
 
 % Lists
 \usepackage{enumitem}
-\setlist{topsep=0.35em, itemsep=0.15em, parsep=0pt, leftmargin=2em}
-
-% TikZ figures
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta, positioning, calc}
+\setlist{topsep=0.25em, itemsep=0.1em, parsep=0pt, leftmargin=1.8em}
 
 % Common math helpers
 \DeclareMathOperator{\tr}{tr}
@@ -137,16 +161,16 @@
 
 % Exercise label helper
 \newcommand{\exercise}[1]{%
-  \par\vspace{1.25em}\noindent{\sffamily\bfseries\color{HeadingBlue}#1}\quad
+  \par\vspace{1.15em}\noindent{\bfseries #1}\quad
 }
 
 % PDF links and metadata
 \usepackage{hyperref}
 \hypersetup{
   colorlinks=true,
-  linkcolor=HeadingBlue,
-  citecolor=HeadingBlue,
-  urlcolor=LinkBlue,
+  linkcolor=LinkBlack,
+  citecolor=LinkBlack,
+  urlcolor=LinkBlack,
   pdfauthor={Applied Multivariate Vietnamese},
   pdftitle={Inferences About a Mean Vector}
 }
