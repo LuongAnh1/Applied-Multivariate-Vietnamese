@@ -7,3 +7,176 @@
 \section{Large Sample Inferences about a Population Mean Vector}
 
 % TODO: Add content for Section 5.5.
+% Tên bảng tiếng Việt (có thể chuyển dòng này sang preamble.tex)
+\renewcommand{\tablename}{Bảng}
+
+Khi cỡ mẫu lớn, các kiểm định giả thuyết và miền tin cậy cho $\boldsymbol{\mu}$ có thể được xây dựng mà không cần giả định tổng thể có phân phối chuẩn. Như được minh họa trong các Bài tập 5.15, 5.16 và 5.17, với $n$ lớn, ta có thể suy luận về trung bình tổng thể ngay cả khi phân phối gốc là rời rạc. Thực tế, những sai lệch nghiêm trọng khỏi tổng thể chuẩn có thể được khắc phục nhờ cỡ mẫu lớn. Khi đó, cả kiểm định giả thuyết lẫn các phát biểu tin cậy đồng thời đều (xấp xỉ) đạt mức danh nghĩa của chúng.
+
+Những ưu điểm của mẫu lớn có thể bị bù trừ một phần bởi sự mất mát thông tin mẫu do chỉ sử dụng các thống kê tóm tắt $\bar{\mathbf{x}}$ và $\mathbf{S}$. Mặt khác, vì $(\bar{\mathbf{x}}, \mathbf{S})$ là một tóm tắt đủ đối với các tổng thể \emph{chuẩn} [xem (4-21)], nên tổng thể nền càng gần với chuẩn đa biến thì thông tin mẫu càng được sử dụng hiệu quả hơn khi suy luận.
+
+Mọi suy luận mẫu lớn về $\boldsymbol{\mu}$ đều dựa trên phân phối $\chi^2$. Từ (4-28), ta biết rằng $(\bar{\mathbf{X}}-\boldsymbol{\mu})'(n^{-1}\mathbf{S})^{-1}(\bar{\mathbf{X}}-\boldsymbol{\mu}) = n(\bar{\mathbf{X}}-\boldsymbol{\mu})'\mathbf{S}^{-1}(\bar{\mathbf{X}}-\boldsymbol{\mu})$ xấp xỉ có phân phối $\chi^2$ với $p$ bậc tự do, và do đó
+\setcounter{equation}{30}
+\begin{equation}\label{eq:5-31}
+    P\bigl[n(\bar{\mathbf{X}}-\boldsymbol{\mu})'\mathbf{S}^{-1}(\bar{\mathbf{X}}-\boldsymbol{\mu}) \le \chi_p^2(\alpha)\bigr] \doteq 1-\alpha
+\end{equation}
+trong đó $\chi_p^2(\alpha)$ là phân vị trên mức $(100\alpha)$ của phân phối $\chi_p^2$.
+
+Phương trình (5-31) dẫn trực tiếp đến các kiểm định giả thuyết mẫu lớn và các miền tin cậy đồng thời. Các thủ tục này được tóm tắt trong Kết quả 5.4 và 5.5.
+
+\medskip
+\noindent\textbf{Kết quả 5.4.} Cho $\mathbf{X}_1, \mathbf{X}_2, \dots, \mathbf{X}_n$ là một mẫu ngẫu nhiên từ một tổng thể có trung bình $\boldsymbol{\mu}$ và ma trận hiệp phương sai xác định dương $\boldsymbol{\Sigma}$. Khi $n-p$ lớn, giả thuyết $H_0\colon \boldsymbol{\mu}=\boldsymbol{\mu}_0$ bị bác bỏ để chấp nhận $H_1\colon \boldsymbol{\mu}\neq\boldsymbol{\mu}_0$ ở mức ý nghĩa xấp xỉ $\alpha$ nếu giá trị quan sát được
+\[
+    n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'\mathbf{S}^{-1}(\bar{\mathbf{x}}-\boldsymbol{\mu}_0) > \chi_p^2(\alpha)
+\]
+Ở đây $\chi_p^2(\alpha)$ là phân vị trên mức $(100\alpha)$ của phân phối chi bình phương với $p$ bậc tự do. \hfill$\blacksquare$
+
+\medskip
+So sánh phép kiểm định trong Kết quả 5.4 với phép kiểm định tương ứng của \emph{lý thuyết chuẩn} trong (5-7), ta thấy các thống kê kiểm định có cùng cấu trúc nhưng giá trị tới hạn khác nhau. Tuy nhiên, xem xét kỹ hơn cho thấy cả hai phép kiểm định về cơ bản cho cùng một kết quả trong những tình huống mà phép kiểm định $\chi^2$ của Kết quả 5.4 là phù hợp. Điều này suy ra trực tiếp từ việc $(n-1)pF_{p,n-p}(\alpha)/(n-p)$ và $\chi_p^2(\alpha)$ xấp xỉ bằng nhau khi $n$ lớn so với $p$. (Xem Bảng 3 và 4 trong phụ lục.)
+
+\medskip
+\noindent\textbf{Kết quả 5.5.} Cho $\mathbf{X}_1, \mathbf{X}_2, \dots, \mathbf{X}_n$ là một mẫu ngẫu nhiên từ một tổng thể có trung bình $\boldsymbol{\mu}$ và ma trận hiệp phương sai xác định dương $\boldsymbol{\Sigma}$. Nếu $n-p$ lớn, thì
+\[
+    \mathbf{a}'\bar{\mathbf{X}} \pm \sqrt{\chi_p^2(\alpha)}\sqrt{\frac{\mathbf{a}'\mathbf{S}\mathbf{a}}{n}}
+\]
+sẽ chứa $\mathbf{a}'\boldsymbol{\mu}$, với mọi $\mathbf{a}$, với xác suất xấp xỉ $1-\alpha$. Do đó, ta có thể đưa ra các phát biểu tin cậy đồng thời $100(1-\alpha)\%$
+\begin{align*}
+    \bar{x}_1 \pm \sqrt{\chi_p^2(\alpha)}\sqrt{\frac{s_{11}}{n}} \quad &\text{chứa } \mu_1 \\
+    \bar{x}_2 \pm \sqrt{\chi_p^2(\alpha)}\sqrt{\frac{s_{22}}{n}} \quad &\text{chứa } \mu_2 \\
+    &\ \ \vdots \\
+    \bar{x}_p \pm \sqrt{\chi_p^2(\alpha)}\sqrt{\frac{s_{pp}}{n}} \quad &\text{chứa } \mu_p
+\end{align*}
+và ngoài ra, với mọi cặp $(\mu_i, \mu_k)$, $i,k=1,2,\dots,p$, các ellipse tâm tại trung bình mẫu
+\[
+    n\,\bigl[\bar{x}_i-\mu_i,\ \bar{x}_k-\mu_k\bigr]
+    \begin{bmatrix} s_{ii} & s_{ik} \\ s_{ik} & s_{kk} \end{bmatrix}^{-1}
+    \begin{bmatrix}\bar{x}_i-\mu_i \\ \bar{x}_k-\mu_k\end{bmatrix}
+    \le \chi_p^2(\alpha) \quad \text{chứa } (\mu_i, \mu_k)
+\]
+
+\medskip
+\noindent\textit{Chứng minh.} Phần đầu suy ra từ Kết quả 5A.1, với $c^2=\chi_p^2(\alpha)$. Mức xác suất là hệ quả của (5-31). Các phát biểu cho $\mu_i$ nhận được bằng cách chọn đặc biệt $\mathbf{a}'=[0,\dots,0,a_i,0,\dots,0]$, trong đó $a_i=1$, $i=1,2,\dots,p$. Các ellipsoid cho các cặp trung bình suy ra từ Kết quả 5A.2 với $c^2=\chi_p^2(\alpha)$. Mức tin cậy chung xấp xỉ $1-\alpha$ cho tất cả các phát biểu, một lần nữa, là kết quả của lý thuyết phân phối mẫu lớn được tóm tắt trong (5-31). \hfill$\blacksquare$
+
+\medskip
+Câu hỏi thế nào là một cỡ mẫu lớn không dễ trả lời. Trong một hoặc hai chiều, cỡ mẫu trong khoảng từ 30 đến 50 thường có thể được coi là lớn. Khi số đặc trưng (số biến) tăng lên, chắc chắn cần các cỡ mẫu lớn hơn để các phân phối tiệm cận cho xấp xỉ tốt đối với phân phối đúng của các thống kê kiểm định khác nhau. Do thiếu các nghiên cứu mang tính quyết định, ta chỉ phát biểu rằng $n-p$ phải lớn và cần nhận thức rằng trường hợp thực tế phức tạp hơn. Một ứng dụng với $p=2$ và cỡ mẫu 50 rất khác với một ứng dụng với $p=52$ và cỡ mẫu 100, mặc dù cả hai đều có $n-p=48$.
+
+Thực hành thống kê tốt là áp dụng cho các thủ tục suy luận mẫu lớn này những kiểm tra giống như đối với các phương pháp của lý thuyết chuẩn. Mặc dù các sai lệch nhỏ đến vừa khỏi tính chuẩn không gây khó khăn nào khi $n$ lớn, nhưng những sai lệch \emph{cực đoan} có thể gây ra vấn đề. Cụ thể, tỷ lệ sai lầm thực tế có thể khác xa mức danh nghĩa $\alpha$. Nếu dựa trên các biểu đồ $Q$--$Q$ và các công cụ khảo sát khác mà phát hiện được các điểm ngoại lai và những dạng sai lệch cực đoan khác (xem, chẳng hạn, [2]), thì các biện pháp khắc phục thích hợp, bao gồm cả các phép biến đổi, là điều nên làm. Các phương pháp kiểm định vectơ trung bình của các phân phối đa biến đối xứng tương đối ít nhạy với các sai lệch khỏi tính chuẩn được thảo luận trong [11]. Trong một số trường hợp, Kết quả 5.4 và 5.5 chỉ hữu ích với các mẫu \emph{rất} lớn.
+
+Ví dụ tiếp theo cho phép ta minh họa việc xây dựng các phát biểu đồng thời mẫu lớn cho tất cả các thành phần trung bình đơn lẻ.
+
+\medskip
+\noindent\textbf{Ví dụ 5.7 (Xây dựng khoảng tin cậy đồng thời mẫu lớn).} Một nhà giáo dục âm nhạc đã kiểm tra hàng nghìn học sinh Phần Lan về năng khiếu âm nhạc bẩm sinh của các em nhằm thiết lập các chuẩn quốc gia ở Phần Lan. Các thống kê tóm tắt cho một phần của tập dữ liệu được cho trong Bảng 5.5. Các thống kê này dựa trên một mẫu gồm $n=96$ học sinh lớp 12 Phần Lan.
+
+\setcounter{table}{4}
+\begin{table}[!htbp]
+\centering
+\caption{Trung bình và độ lệch chuẩn của Hồ sơ Năng khiếu Âm nhạc (Musical Aptitude Profile) của 96 học sinh lớp 12 Phần Lan tham gia một chương trình chuẩn hóa}
+\label{tab:5-5}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & \multicolumn{2}{c}{Điểm thô} \\
+\cmidrule(lr){2-3}
+Biến & Trung bình $(\bar{x}_i)$ & Độ lệch chuẩn $(\sqrt{s_{ii}})$ \\
+\midrule
+$X_1$ = giai điệu (melody)  & 28.1 & 5.76 \\
+$X_2$ = hòa âm (harmony)    & 26.6 & 5.85 \\
+$X_3$ = nhịp độ (tempo)     & 35.4 & 3.82 \\
+$X_4$ = nhịp (meter)        & 34.2 & 5.12 \\
+$X_5$ = ngắt câu (phrasing) & 23.6 & 3.76 \\
+$X_6$ = cân bằng (balance)  & 22.0 & 3.93 \\
+$X_7$ = phong cách (style)  & 22.7 & 4.03 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+{\footnotesize Nguồn: Dữ liệu do V. Sell cung cấp.\par}
+\end{table}
+
+Ta hãy xây dựng các khoảng tin cậy đồng thời $90\%$ cho các thành phần trung bình riêng lẻ $\mu_i$, $i=1,2,\dots,7$.
+
+Từ Kết quả 5.5, các giới hạn tin cậy đồng thời $90\%$ được cho bởi $\bar{x}_i \pm \sqrt{\chi_7^2(.10)}\sqrt{\dfrac{s_{ii}}{n}}$, $i=1,2,\dots,7$, trong đó $\chi_7^2(.10)=12.02$. Như vậy, với độ tin cậy xấp xỉ $90\%$,
+\begin{align*}
+    28.1 \pm \sqrt{12.02}\,\frac{5.76}{\sqrt{96}} &\quad \text{chứa } \mu_1 \quad \text{hay} \quad 26.06 \le \mu_1 \le 30.14 \\
+    26.6 \pm \sqrt{12.02}\,\frac{5.85}{\sqrt{96}} &\quad \text{chứa } \mu_2 \quad \text{hay} \quad 24.53 \le \mu_2 \le 28.67 \\
+    35.4 \pm \sqrt{12.02}\,\frac{3.82}{\sqrt{96}} &\quad \text{chứa } \mu_3 \quad \text{hay} \quad 34.05 \le \mu_3 \le 36.75 \\
+    34.2 \pm \sqrt{12.02}\,\frac{5.12}{\sqrt{96}} &\quad \text{chứa } \mu_4 \quad \text{hay} \quad 32.39 \le \mu_4 \le 36.01 \\
+    23.6 \pm \sqrt{12.02}\,\frac{3.76}{\sqrt{96}} &\quad \text{chứa } \mu_5 \quad \text{hay} \quad 22.27 \le \mu_5 \le 24.93 \\
+    22.0 \pm \sqrt{12.02}\,\frac{3.93}{\sqrt{96}} &\quad \text{chứa } \mu_6 \quad \text{hay} \quad 20.61 \le \mu_6 \le 23.39 \\
+    22.7 \pm \sqrt{12.02}\,\frac{4.03}{\sqrt{96}} &\quad \text{chứa } \mu_7 \quad \text{hay} \quad 21.27 \le \mu_7 \le 24.13
+\end{align*}
+
+Dựa trên, chẳng hạn, dữ liệu của hàng nghìn học sinh Mỹ, nhà nghiên cứu có thể đưa ra giả thuyết rằng hồ sơ năng khiếu âm nhạc là
+\[
+    \boldsymbol{\mu}_0' = [31,\ 27,\ 34,\ 31,\ 23,\ 22,\ 22]
+\]
+Từ các phát biểu đồng thời ở trên, ta thấy rằng các thành phần giai điệu, nhịp độ và nhịp của $\boldsymbol{\mu}_0$ không phải là những giá trị hợp lý cho các trung bình tương ứng của điểm số học sinh Phần Lan. \hfill$\blacksquare$
+
+\medskip
+Khi cỡ mẫu lớn, các khoảng tin cậy từng biến (one-at-a-time) cho các trung bình riêng lẻ là
+\[
+    \bar{x}_i - z\!\left(\frac{\alpha}{2}\right)\sqrt{\frac{s_{ii}}{n}} \le \mu_i \le \bar{x}_i + z\!\left(\frac{\alpha}{2}\right)\sqrt{\frac{s_{ii}}{n}}
+    \qquad i=1,2,\dots,p
+\]
+trong đó $z(\alpha/2)$ là phân vị trên mức $100(\alpha/2)$ của phân phối chuẩn tắc. Các khoảng tin cậy đồng thời Bonferroni cho $m=p$ phát biểu về các trung bình riêng lẻ có cùng dạng, nhưng dùng phân vị đã hiệu chỉnh $z(\alpha/2p)$, cho ta
+\[
+    \bar{x}_i - z\!\left(\frac{\alpha}{2p}\right)\sqrt{\frac{s_{ii}}{n}} \le \mu_i \le \bar{x}_i + z\!\left(\frac{\alpha}{2p}\right)\sqrt{\frac{s_{ii}}{n}}
+    \qquad i=1,2,\dots,p
+\]
+
+Bảng 5.6 cho các khoảng riêng lẻ, Bonferroni và dựa trên chi bình phương (hay bóng của ellipsoid tin cậy) đối với dữ liệu năng khiếu âm nhạc trong Ví dụ 5.7.
+
+\begin{table}[!htbp]
+\centering
+\caption{Các khoảng tin cậy $95\%$ mẫu lớn riêng lẻ, Bonferroni và $T^2$ cho dữ liệu năng khiếu âm nhạc}
+\label{tab:5-6}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}l cc cc cc@{}}
+\toprule
+\multicolumn{7}{@{}l@{}}{Các khoảng tin cậy từng biến dùng $z(.025)=1.96$.} \\
+\multicolumn{7}{@{}l@{}}{Các khoảng Bonferroni đồng thời dùng $z(.025/7)=2.69$.} \\
+\multicolumn{7}{@{}l@{}}{Các khoảng $T^2$ đồng thời, hay bóng của ellipsoid, dùng $\chi_7^2(.05)=14.07$.} \\
+\midrule
+ & \multicolumn{2}{c}{Từng biến} & \multicolumn{2}{c}{Bonferroni} & \multicolumn{2}{c}{Bóng của ellipsoid} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Biến & Dưới & Trên & Dưới & Trên & Dưới & Trên \\
+\midrule
+$X_1$ = giai điệu  & 26.95 & 29.25 & 26.52 & 29.68 & 25.90 & 30.30 \\
+$X_2$ = hòa âm     & 25.43 & 27.77 & 24.99 & 28.21 & 24.36 & 28.84 \\
+$X_3$ = nhịp độ    & 34.64 & 36.16 & 34.35 & 36.45 & 33.94 & 36.86 \\
+$X_4$ = nhịp       & 33.18 & 35.22 & 32.79 & 35.61 & 32.24 & 36.16 \\
+$X_5$ = ngắt câu   & 22.85 & 24.35 & 22.57 & 24.63 & 22.16 & 25.04 \\
+$X_6$ = cân bằng   & 21.21 & 22.79 & 20.92 & 23.08 & 20.50 & 23.50 \\
+$X_7$ = phong cách & 21.89 & 23.51 & 21.59 & 23.81 & 21.16 & 24.24 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Mặc dù cỡ mẫu có thể lớn, một số nhà thống kê vẫn thích giữ lại các phân vị dựa trên $F$ và $t$ hơn là dùng các phân vị dựa trên chi bình phương hoặc chuẩn tắc. Các hằng số sau là giới hạn khi cỡ mẫu tiến tới vô hạn của các hằng số trước. Các phân vị $F$ và $t$ cho các khoảng lớn hơn và do đó thận trọng hơn. Bảng 5.7 cho các khoảng riêng lẻ, Bonferroni và dựa trên $F$, hay bóng của ellipsoid tin cậy, đối với dữ liệu năng khiếu âm nhạc. So sánh Bảng 5.7 với Bảng 5.6, ta thấy tất cả các khoảng trong Bảng 5.7 đều lớn hơn. Tuy nhiên, với cỡ mẫu tương đối lớn $n=96$, sự khác biệt thường nằm ở chữ số thứ ba (hàng phần trăm) hoặc hàng phần mười.
+
+\begin{table}[!htbp]
+\centering
+\caption{Các khoảng tin cậy $95\%$ riêng lẻ, Bonferroni và $T^2$ cho dữ liệu năng khiếu âm nhạc}
+\label{tab:5-7}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}l cc cc cc@{}}
+\toprule
+\multicolumn{7}{@{}l@{}}{Các khoảng tin cậy từng biến dùng $t_{95}(.025)=1.99$.} \\
+\multicolumn{7}{@{}l@{}}{Các khoảng Bonferroni đồng thời dùng $t_{95}(.025/7)=2.75$.} \\
+\multicolumn{7}{@{}l@{}}{Các khoảng $T^2$ đồng thời, hay bóng của ellipsoid, dùng $F_{7,89}(.05)=2.11$.} \\
+\midrule
+ & \multicolumn{2}{c}{Từng biến} & \multicolumn{2}{c}{Bonferroni} & \multicolumn{2}{c}{Bóng của ellipsoid} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Biến & Dưới & Trên & Dưới & Trên & Dưới & Trên \\
+\midrule
+$X_1$ = giai điệu  & 26.93 & 29.27 & 26.48 & 29.72 & 25.76 & 30.44 \\
+$X_2$ = hòa âm     & 25.41 & 27.79 & 24.96 & 28.24 & 24.23 & 28.97 \\
+$X_3$ = nhịp độ    & 34.63 & 36.17 & 34.33 & 36.47 & 33.85 & 36.95 \\
+$X_4$ = nhịp       & 33.16 & 35.24 & 32.76 & 35.64 & 32.12 & 36.28 \\
+$X_5$ = ngắt câu   & 22.84 & 24.36 & 22.54 & 24.66 & 22.07 & 25.13 \\
+$X_6$ = cân bằng   & 21.20 & 22.80 & 20.90 & 23.10 & 20.41 & 23.59 \\
+$X_7$ = phong cách & 21.88 & 23.52 & 21.57 & 23.83 & 21.07 & 24.33 \\
+\bottomrule
+\end{tabular}
+\end{table}
