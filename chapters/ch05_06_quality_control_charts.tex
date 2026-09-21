@@ -43,6 +43,7 @@ Chúng ta xem xét tính ổn định của giờ làm thêm ra tòa theo yêu c
 % --- BẢNG 5.8 ---
 \begin{center}
 \small
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{|ccccc|}
 \hline
 \multicolumn{5}{|p{13.5cm}|}{\textbf{Bảng 5.8} \ Năm kiểu giờ làm thêm của Sở Cảnh sát thành phố Madison, bang Wisconsin} \\
@@ -190,8 +191,9 @@ Chúng ta minh họa biểu đồ dạng elip chất lượng bằng cách sử 
 Ở đây $p = 2$, do đó $\chi_2^2(.01) = 9.21$, và phương trình elip trở thành:
 \begin{align*}
 &\frac{s_{11}s_{22}}{s_{11}s_{22} - s_{12}^2}\left( \frac{(x_1 - \bar{x}_1)^2}{s_{11}} - 2s_{12}\frac{(x_1 - \bar{x}_1)(x_2 - \bar{x}_2)}{s_{11}s_{22}} + \frac{(x_2 - \bar{x}_2)^2}{s_{22}} \right) \\
-&= \frac{(367844.7 \times 1399053.1)}{367844.7 \times 1399053.1 - (-72093.8)^2} \\
-&\quad \times \left( \frac{(x_1 - 3558)^2}{367844.7} - 2(-72093.8)\frac{(x_1 - 3558)(x_2 - 1478)}{367844.7 \times 1399053.1} + \frac{(x_2 - 1478)^2}{1399053.1} \right) \le 9.21
+&= \frac{367844.7 \times 1399053.1}{367844.7 \times 1399053.1 - (-72093.8)^2} \\
+&\quad \times \Biggl( \frac{(x_1 - 3558)^2}{367844.7} - 2(-72093.8)\frac{(x_1 - 3558)(x_2 - 1478)}{367844.7 \times 1399053.1} \\
+&\qquad\quad + \frac{(x_2 - 1478)^2}{1399053.1} \Biggr) \le 9.21
 \end{align*}
 
 Biểu đồ dạng elip này được vẽ, cùng với các cặp dữ liệu, trong Hình 5.6.
