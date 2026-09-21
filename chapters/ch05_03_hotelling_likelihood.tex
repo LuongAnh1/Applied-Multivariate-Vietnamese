@@ -5,6 +5,7 @@
 % Vị trí viết nội dung: thêm nội dung ngay dưới dòng TODO của mục này.
 
 \section{Kiểm định Hotelling \texorpdfstring{\(T^2\)}{T2} và kiểm định tỷ số hợp lý}
+\label{sec:ch05-03}
 
 % TODO: Add content for Section 5.3.
 
@@ -88,7 +89,9 @@ Xét ma trận $(p+1)\times(p+1)$
 Theo Bài tập 4.11, $|\mathbf{A}| = |\mathbf{A}_{22}|\,|\mathbf{A}_{11}-\mathbf{A}_{12}\mathbf{A}_{22}^{-1}\mathbf{A}_{21}| = |\mathbf{A}_{11}|\,|\mathbf{A}_{22}-\mathbf{A}_{21}\mathbf{A}_{11}^{-1}\mathbf{A}_{12}|$, từ đó ta thu được
 \begin{align*}
 (-1)&\left|\sum_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})' + n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'\right| \\
-&= \left|\sum_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})'\right| \left|-1-n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'\left[\sum_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})'\right]^{-1}(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)\right|
+&= \left|\sum_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})'\right| \\
+&\quad {}\times
+\left|-1-n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'\left[\sum_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})'\right]^{-1}(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)\right|
 \end{align*}
 Vì, theo (4-14),
 \begin{align*}
