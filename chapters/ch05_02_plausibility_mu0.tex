@@ -1,9 +1,448 @@
 % Phân công:
 % - Trần Lương Anh (MSSV: 20237298)
-% - Mục: 5.2 The Plausibility of mu0 as a Value for a Normal Population Mean
+% - Mục: 5.2 Tính hợp lý của mu0 với vai trò là giá trị của trung bình tổng thể chuẩn
 % - Trang tham chiếu: 210-216
-% Vị trí viết nội dung: thêm nội dung ngay dưới dòng TODO của mục này.
+% Vị trí viết nội dung: mục 5.2.
 
-\section{The Plausibility of \texorpdfstring{\(\mu_0\)}{mu0} as a Value for a Normal Population Mean}
+\section{Tính hợp lý của \texorpdfstring{\(\mu_0\)}{mu0} với vai trò là giá trị của trung bình tổng thể chuẩn}
+\label{sec:ch05-02}
 
-% TODO: Add content for Section 5.2.
+Trước hết, ta nhắc lại lý thuyết một biến (univariate theory) dùng để xác định
+liệu một giá trị cụ thể \(\mu_0\) có phải là một giá trị hợp lý cho trung bình tổng
+thể \(\mu\) hay không. Dưới góc nhìn kiểm định giả thuyết (hypothesis testing),
+vấn đề này có thể được phát biểu như một kiểm định giữa hai giả thuyết cạnh tranh
+(competing hypotheses)
+\[
+  H_0: \mu = \mu_0
+  \qquad\text{và}\qquad
+  H_1: \mu \ne \mu_0.
+\]
+Ở đây, \(H_0\) là giả thuyết không (null hypothesis), còn \(H_1\) là giả thuyết đối
+(alternative hypothesis) hai phía. Nếu \(X_1, X_2, \ldots, X_n\) là một mẫu ngẫu
+nhiên lấy từ một tổng thể chuẩn, thống kê kiểm định thích hợp là
+\[
+  t = \frac{\bar{X} - \mu_0}{s/\sqrt{n}},
+  \qquad
+  \bar{X} = \frac{1}{n}\sum_{j=1}^{n} X_j,
+  \qquad
+  s^2 = \frac{1}{n-1}\sum_{j=1}^{n}(X_j - \bar{X})^2.
+\]
+Thống kê kiểm định này có phân phối Student \(t\) với \(n-1\) bậc tự do (degrees
+of freedom, d.f.). Ta bác bỏ \(H_0\), tức bác bỏ nhận định rằng \(\mu_0\) là một
+giá trị hợp lý của \(\mu\), nếu giá trị quan sát được của \(|t|\) vượt quá một điểm
+phần trăm được chỉ định của phân phối \(t\) với \(n-1\) bậc tự do.
+
+Việc bác bỏ \(H_0\) khi \(|t|\) lớn tương đương với việc bác bỏ \(H_0\) khi bình
+phương của nó lớn, tức là
+\begin{equation}
+  t^2
+  = \frac{(\bar{X}-\mu_0)^2}{s^2/n}
+  = n(\bar{X}-\mu_0)(s^2)^{-1}(\bar{X}-\mu_0).
+\end{equation}
+Biến \(t^2\) trong (5-1) chính là bình phương khoảng cách từ trung bình mẫu
+\(\bar{X}\) đến giá trị kiểm định \(\mu_0\). Đơn vị đo khoảng cách được biểu diễn
+thông qua \(s/\sqrt{n}\), tức các độ lệch chuẩn ước lượng của \(\bar{X}\). Khi
+\(\bar{X}\) và \(s^2\) đã được quan sát, kiểm định trở thành: bác bỏ \(H_0\) để
+chấp nhận \(H_1\), ở mức ý nghĩa \(\alpha\), nếu
+\begin{equation}
+  n(\bar{x}-\mu_0)(s^2)^{-1}(\bar{x}-\mu_0)
+  > t^2_{n-1}(\alpha/2),
+\end{equation}
+trong đó \(t_{n-1}(\alpha/2)\) là phân vị trên mức \(100(\alpha/2)\%\) của phân phối
+\(t\) với \(n-1\) bậc tự do.
+
+Nếu \(H_0\) không bị bác bỏ, ta kết luận rằng \(\mu_0\) là một giá trị hợp lý cho
+trung bình của tổng thể chuẩn. Liệu còn những giá trị nào khác của \(\mu\) cũng
+phù hợp với dữ liệu hay không? Câu trả lời là có. Thực tế, luôn tồn tại một tập
+các giá trị hợp lý cho trung bình của một tổng thể chuẩn. Từ mối liên hệ quen thuộc
+giữa miền chấp nhận (acceptance region) của kiểm định
+\(H_0: \mu = \mu_0\) so với \(H_1: \mu \ne \mu_0\) và khoảng tin cậy cho \(\mu\), ta có
+\[
+  \{\text{không bác bỏ } H_0: \mu = \mu_0 \text{ ở mức } \alpha\}
+  \quad\text{hoặc}\quad
+  \left|\frac{\bar{x}-\mu_0}{s/\sqrt{n}}\right|
+  \le t_{n-1}(\alpha/2)
+\]
+tương đương với
+\[
+  \mu_0 \text{ nằm trong khoảng tin cậy } 100(1-\alpha)\%
+  \text{ là }
+  \bar{x} \pm t_{n-1}(\alpha/2)\frac{s}{\sqrt{n}},
+\]
+hay
+\begin{equation}
+  \bar{x} - t_{n-1}(\alpha/2)\frac{s}{\sqrt{n}}
+  \le \mu_0 \le
+  \bar{x} + t_{n-1}(\alpha/2)\frac{s}{\sqrt{n}}.
+\end{equation}
+Khoảng tin cậy này gồm tất cả các giá trị \(\mu_0\) không bị bác bỏ bởi kiểm định
+mức \(\alpha\) của \(H_0: \mu = \mu_0\).
+
+Trước khi mẫu được chọn, khoảng tin cậy \(100(1-\alpha)\%\) trong (5-3) là một
+khoảng ngẫu nhiên, vì hai đầu mút của nó phụ thuộc vào các biến ngẫu nhiên
+\(\bar{X}\) và \(s\). Xác suất để khoảng này chứa \(\mu\) là \(1-\alpha\); trong một
+số lượng lớn các khoảng độc lập như vậy, xấp xỉ \(100(1-\alpha)\%\) trong số đó
+sẽ chứa \(\mu\).
+
+Bây giờ xét bài toán xác định liệu một vectơ \(p \times 1\), ký hiệu
+\(\boldsymbol{\mu}_0\), có phải là một giá trị hợp lý cho trung bình của một phân
+phối chuẩn đa biến (multivariate normal distribution) hay không. Ta sẽ tiến hành
+bằng cách tương tự với lập luận một biến vừa trình bày.
+
+Một tổng quát hóa tự nhiên của bình phương khoảng cách trong (5-1) là dạng đa
+biến tương ứng
+\begin{equation}
+  T^2
+  = (\bar{\mathbf{X}}-\boldsymbol{\mu}_0)'
+    \left(\frac{1}{n}\mathbf{S}\right)^{-1}
+    (\bar{\mathbf{X}}-\boldsymbol{\mu}_0)
+  = n(\bar{\mathbf{X}}-\boldsymbol{\mu}_0)'
+    \mathbf{S}^{-1}
+    (\bar{\mathbf{X}}-\boldsymbol{\mu}_0),
+\end{equation}
+trong đó
+\[
+  \bar{\mathbf{X}} = \frac{1}{n}\sum_{j=1}^{n}\mathbf{X}_j,
+  \qquad
+  \mathbf{S}
+  = \frac{1}{n-1}\sum_{j=1}^{n}
+    (\mathbf{X}_j-\bar{\mathbf{X}})(\mathbf{X}_j-\bar{\mathbf{X}})',
+  \qquad
+  \boldsymbol{\mu}_0 =
+  \begin{bmatrix}
+    \mu_{10} \\ \mu_{20} \\ \vdots \\ \mu_{p0}
+  \end{bmatrix}.
+\]
+Thống kê \(T^2\) được gọi là \(T^2\) của Hotelling (Hotelling's \(T^2\)), đặt theo
+tên Harold Hotelling, một người tiên phong trong phân tích đa biến, người đầu tiên
+thu được phân phối lấy mẫu của thống kê này. Ở đây \((1/n)\mathbf{S}\) là ma trận
+hiệp phương sai ước lượng của \(\bar{\mathbf{X}}\). (Xem Kết quả 3.1.)
+
+Nếu khoảng cách thống kê quan sát được \(T^2\) quá lớn, nghĩa là nếu
+\(\bar{\mathbf{x}}\) ở quá xa \(\boldsymbol{\mu}_0\), thì giả thuyết
+\(H_0: \boldsymbol{\mu}=\boldsymbol{\mu}_0\) bị bác bỏ. Hóa ra ta không cần các
+bảng riêng cho các điểm phần trăm của \(T^2\) khi thực hiện kiểm định giả thuyết
+một cách hình thức. Lý do là
+\begin{equation}
+  T^2 \text{ có phân phối như }
+  \frac{(n-1)p}{n-p}F_{p,n-p},
+\end{equation}
+trong đó \(F_{p,n-p}\) là một biến ngẫu nhiên có phân phối \(F\) với \(p\) và
+\(n-p\) bậc tự do. Tóm lại, ta có kết quả sau.
+
+Cho \(\mathbf{X}_1,\mathbf{X}_2,\ldots,\mathbf{X}_n\) là một mẫu ngẫu nhiên từ
+tổng thể \(N_p(\boldsymbol{\mu},\boldsymbol{\Sigma})\). Khi đó, với
+\[
+  \bar{\mathbf{X}} = \frac{1}{n}\sum_{j=1}^{n}\mathbf{X}_j,
+  \qquad
+  \mathbf{S}
+  = \frac{1}{n-1}\sum_{j=1}^{n}
+    (\mathbf{X}_j-\bar{\mathbf{X}})(\mathbf{X}_j-\bar{\mathbf{X}})',
+\]
+ta có
+\begin{equation}
+\begin{aligned}
+  \alpha
+  &= P\left[
+    T^2 > \frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)
+  \right] \\
+  &= P\left[
+    n(\bar{\mathbf{X}}-\boldsymbol{\mu})'
+    \mathbf{S}^{-1}
+    (\bar{\mathbf{X}}-\boldsymbol{\mu})
+    > \frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)
+  \right],
+\end{aligned}
+\end{equation}
+bất kể giá trị thực của \(\boldsymbol{\mu}\) và \(\boldsymbol{\Sigma}\) là gì. Ở đây
+\(F_{p,n-p}(\alpha)\) là phân vị trên mức \(100\alpha\%\) của phân phối
+\(F_{p,n-p}\).
+
+Phát biểu (5-6) dẫn ngay đến kiểm định giả thuyết
+\(H_0: \boldsymbol{\mu}=\boldsymbol{\mu}_0\) so với
+\(H_1: \boldsymbol{\mu}\ne\boldsymbol{\mu}_0\). Ở mức ý nghĩa \(\alpha\), ta bác bỏ
+\(H_0\) để chấp nhận \(H_1\) nếu giá trị quan sát được thỏa
+\begin{equation}
+  T^2
+  = n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'
+    \mathbf{S}^{-1}
+    (\bar{\mathbf{x}}-\boldsymbol{\mu}_0)
+  > \frac{(n-1)p}{n-p}F_{p,n-p}(\alpha).
+\end{equation}
+
+Sẽ hữu ích nếu ta bàn ngắn gọn về bản chất của phân phối \(T^2\) và sự tương ứng
+của nó với thống kê kiểm định một biến. Trong Mục 4.4, ta đã mô tả cách phân phối
+Wishart tổng quát hóa phân phối chi-bình phương (chi-square distribution). Ta có
+thể viết
+\[
+  T^2
+  = \bigl(\sqrt{n}(\bar{\mathbf{X}}-\boldsymbol{\mu}_0)\bigr)'
+  \left[
+    \frac{1}{n-1}\sum_{j=1}^{n}
+    (\mathbf{X}_j-\bar{\mathbf{X}})(\mathbf{X}_j-\bar{\mathbf{X}})'
+  \right]^{-1}
+  \bigl(\sqrt{n}(\bar{\mathbf{X}}-\boldsymbol{\mu}_0)\bigr),
+\]
+trong đó một vectơ ngẫu nhiên chuẩn đa biến \(N_p(\mathbf{0},\boldsymbol{\Sigma})\)
+được kết hợp với một ma trận ngẫu nhiên Wishart
+\(W_{p,n-1}(\boldsymbol{\Sigma})\) dưới dạng
+\begin{equation}
+  T^2_{p,n-1}
+  = N_p(\mathbf{0},\boldsymbol{\Sigma})'
+    \left[\frac{1}{n-1}W_{p,n-1}(\boldsymbol{\Sigma})\right]^{-1}
+    N_p(\mathbf{0},\boldsymbol{\Sigma}).
+\end{equation}
+Điều này tương tự với
+\[
+  t^2 = \bigl(\sqrt{n}(\bar{X}-\mu_0)\bigr)(s^2)^{-1}
+        \bigl(\sqrt{n}(\bar{X}-\mu_0)\bigr),
+\]
+hay với dạng một biến, \(t^2_{n-1}\) là tích của một biến ngẫu nhiên chuẩn, nghịch đảo của một biến ngẫu nhiên chi-bình phương đã được co giãn theo bậc tự do, và lại một biến ngẫu nhiên chuẩn.
+Vì các biến ngẫu nhiên chuẩn đa biến và Wishart có phân phối độc lập với nhau
+[xem (4-23)], hàm mật độ đồng thời của chúng là tích của các hàm mật độ biên chuẩn
+và Wishart. Bằng phép tính giải tích, phân phối (5-5) của \(T^2\) như đã nêu ở trên
+có thể được suy ra từ phân phối đồng thời này và biểu diễn (5-8).
+
+Trong các tình huống đa biến, hiếm khi ta chỉ thỏa mãn với một kiểm định
+\(H_0: \boldsymbol{\mu}=\boldsymbol{\mu}_0\), trong đó tất cả các thành phần của vectơ
+trung bình đều được chỉ định dưới giả thuyết không. Thông thường, tốt hơn là tìm
+các miền giá trị của \(\boldsymbol{\mu}\) còn hợp lý dưới ánh sáng của dữ liệu đã
+quan sát. Ta sẽ quay lại vấn đề này trong Mục 5.4.
+
+\exercise{Ví dụ 5.1 (Tính \(T^2\))}
+Cho ma trận dữ liệu của một mẫu ngẫu nhiên cỡ \(n=3\) từ một tổng thể chuẩn hai
+biến là
+\[
+  \mathbf{X} =
+  \begin{bmatrix}
+    6 & 9 \\
+    10 & 6 \\
+    8 & 3
+  \end{bmatrix}.
+\]
+Hãy tính giá trị quan sát được của \(T^2\) đối với
+\(\boldsymbol{\mu}_0' = [9,5]\). Trong trường hợp này, phân phối lấy mẫu của
+\(T^2\) là gì? Ta có
+\[
+  \bar{\mathbf{x}}
+  = \begin{bmatrix} \bar{x}_1 \\ \bar{x}_2 \end{bmatrix}
+  = \begin{bmatrix}
+      (6+10+8)/3 \\
+      (9+6+3)/3
+    \end{bmatrix}
+  = \begin{bmatrix} 8 \\ 6 \end{bmatrix}
+\]
+và
+\[
+  s_{11}=\frac{(6-8)^2+(10-8)^2+(8-8)^2}{2}=4,
+\]
+\[
+  s_{12}=\frac{(6-8)(9-6)+(10-8)(6-6)+(8-8)(3-6)}{2}=-3,
+\]
+\[
+  s_{22}=\frac{(9-6)^2+(6-6)^2+(3-6)^2}{2}=9.
+\]
+Do đó
+\[
+  \mathbf{S}=
+  \begin{bmatrix}
+    4 & -3 \\
+    -3 & 9
+  \end{bmatrix},
+  \qquad
+  \mathbf{S}^{-1}
+  = \frac{1}{27}
+  \begin{bmatrix}
+    9 & 3 \\
+    3 & 4
+  \end{bmatrix}.
+\]
+Từ (5-4),
+\[
+\begin{aligned}
+  T^2
+  &= 3[8-9,\,6-5]
+    \frac{1}{27}
+    \begin{bmatrix} 9 & 3 \\ 3 & 4 \end{bmatrix}
+    \begin{bmatrix} 8-9 \\ 6-5 \end{bmatrix} \\
+  &= 3[-1,\,1]\frac{1}{27}
+    \begin{bmatrix} 9 & 3 \\ 3 & 4 \end{bmatrix}
+    \begin{bmatrix} -1 \\ 1 \end{bmatrix}
+  = \frac{7}{9}.
+\end{aligned}
+\]
+Trước khi mẫu được chọn, \(T^2\) có phân phối của biến ngẫu nhiên
+\[
+  \frac{(3-1)2}{(3-2)}F_{2,3-2} = 4F_{2,1}.
+\]
+
+\exercise{Ví dụ 5.2 (Kiểm định vectơ trung bình đa biến bằng \(T^2\))}
+Mồ hôi của 20 phụ nữ khỏe mạnh được phân tích. Ba thành phần được đo là
+\(X_1\) = tốc độ tiết mồ hôi (sweat rate), \(X_2\) = hàm lượng natri (sodium
+content), và \(X_3\) = hàm lượng kali (potassium content). Các kết quả, gọi là dữ
+liệu mồ hôi, được trình bày trong Bảng 5.1.
+
+Hãy kiểm định giả thuyết
+\(H_0: \boldsymbol{\mu}'=[4,50,10]\) so với
+\(H_1: \boldsymbol{\mu}'\ne[4,50,10]\) ở mức ý nghĩa \(\alpha=.10\).
+
+\begin{table}[htbp]
+\centering
+\caption{Dữ liệu mồ hôi}
+\label{tab:sweat-data}
+\small
+\begin{tabular}{rrrr}
+\toprule
+Cá thể & \(X_1\) (Tốc độ tiết mồ hôi) & \(X_2\) (Natri) & \(X_3\) (Kali) \\
+\midrule
+1  & 3.7 & 48.5 &  9.3 \\
+2  & 5.7 & 65.1 &  8.0 \\
+3  & 3.8 & 47.2 & 10.9 \\
+4  & 3.2 & 53.2 & 12.0 \\
+5  & 3.1 & 55.5 &  9.7 \\
+6  & 4.6 & 36.1 &  7.9 \\
+7  & 2.4 & 24.8 & 14.0 \\
+8  & 7.2 & 33.1 &  7.6 \\
+9  & 6.7 & 47.4 &  8.5 \\
+10 & 5.4 & 54.1 & 11.3 \\
+11 & 3.9 & 36.9 & 12.7 \\
+12 & 4.5 & 58.8 & 12.3 \\
+13 & 3.5 & 27.8 &  9.8 \\
+14 & 4.5 & 40.2 &  8.4 \\
+15 & 1.5 & 13.5 & 10.1 \\
+16 & 8.5 & 56.4 &  7.1 \\
+17 & 4.5 & 71.6 &  8.2 \\
+18 & 6.5 & 52.8 & 10.9 \\
+19 & 4.1 & 44.1 & 11.2 \\
+20 & 5.5 & 40.9 &  9.4 \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.4em}
+{\footnotesize Nguồn: do Dr. Gerald Bargman cung cấp.}
+\end{table}
+
+Các tính toán bằng máy tính cho ta
+\[
+  \bar{\mathbf{x}} =
+  \begin{bmatrix}
+    4.640 \\
+    45.400 \\
+    9.965
+  \end{bmatrix},
+  \qquad
+  \mathbf{S}=
+  \begin{bmatrix}
+    2.879 & 10.010 & -1.810 \\
+    10.010 & 199.788 & -5.640 \\
+    -1.810 & -5.640 & 3.628
+  \end{bmatrix},
+\]
+và
+\[
+  \mathbf{S}^{-1}=
+  \begin{bmatrix}
+    .586 & -.022 & .258 \\
+    -.022 & .006 & -.002 \\
+    .258 & -.002 & .402
+  \end{bmatrix}.
+\]
+Đặt
+\[
+  \mathbf{d}
+  = \bar{\mathbf{x}}-\boldsymbol{\mu}_0
+  = \begin{bmatrix} .640 \\ -4.600 \\ -.035 \end{bmatrix}.
+\]
+Khi đó
+\[
+\begin{aligned}
+  T^2
+  &= 20\mathbf{d}'\mathbf{S}^{-1}\mathbf{d} \\
+  &= 20[.640,\,-4.600,\,-.035]
+  \begin{bmatrix}
+    .467 \\
+    -.042 \\
+    .160
+  \end{bmatrix}
+  = 9.74.
+\end{aligned}
+\]
+So sánh giá trị quan sát được \(T^2=9.74\) với giá trị tới hạn
+\[
+  \frac{(n-1)p}{n-p}F_{p,n-p}(.10)
+  = \frac{19(3)}{17}F_{3,17}(.10)
+  = 3.353(2.442)
+  = 8.18,
+\]
+ta thấy \(T^2=9.74>8.18\). Do đó, ta bác bỏ \(H_0\) ở mức ý nghĩa 10\%.
+
+Lưu ý rằng \(H_0\) sẽ bị bác bỏ nếu một hoặc nhiều trung bình thành phần, hoặc một
+tổ hợp nào đó của các trung bình, khác quá nhiều so với các giá trị giả thuyết
+\([4,50,10]\). Ở thời điểm này, ta chưa biết giá trị giả thuyết nào có thể không
+được dữ liệu ủng hộ.
+
+Ta đã giả định rằng dữ liệu mồ hôi có phân phối chuẩn đa biến. Các đồ thị Q-Q
+được xây dựng từ các phân phối biên (marginal distributions) của \(X_1\), \(X_2\),
+và \(X_3\) đều xấp xỉ đường thẳng. Hơn nữa, các đồ thị phân tán cho từng cặp quan
+sát có dạng gần elip, nên ta kết luận rằng giả định chuẩn là hợp lý trong trường hợp
+này. (Xem Bài tập 5.4.)
+
+Một đặc điểm của thống kê \(T^2\) là nó bất biến (invariant), tức không thay đổi,
+dưới các phép đổi đơn vị đo của \(\mathbf{X}\) có dạng
+\begin{equation}
+  \underset{(p\times1)}{\mathbf{Y}}
+  = \underset{(p\times p)}{\mathbf{C}}
+    \underset{(p\times1)}{\mathbf{X}}
+  + \underset{(p\times1)}{\mathbf{d}},
+  \qquad \mathbf{C} \text{ không suy biến.}
+\end{equation}
+Một phép biến đổi các quan sát kiểu này xuất hiện khi ta trừ một hằng số \(b_i\)
+khỏi biến thứ \(i\) để tạo thành \(X_i-b_i\), rồi nhân kết quả với một hằng số
+\(a_i>0\) để được \(a_i(X_i-b_i)\). Nếu nhân trước các đại lượng đã được định tâm
+và co giãn \(a_i(X_i-b_i)\) bởi bất kỳ ma trận không suy biến nào, ta sẽ thu được
+phương trình (5-9). Chẳng hạn, các thao tác biến đổi \(X_i\) thành
+\(a_i(X_i-b_i)\) tương ứng chính xác với quá trình đổi nhiệt độ từ thang Fahrenheit
+sang thang Celsius.
+
+Với các quan sát \(\mathbf{x}_1,\mathbf{x}_2,\ldots,\mathbf{x}_n\) và phép biến đổi
+trong (5-9), từ Kết quả 3.6 suy ra ngay rằng
+\[
+  \bar{\mathbf{y}} = \mathbf{C}\bar{\mathbf{x}} + \mathbf{d},
+  \qquad
+  \mathbf{S}_y
+  = \frac{1}{n-1}\sum_{j=1}^{n}
+    (\mathbf{y}_j-\bar{\mathbf{y}})(\mathbf{y}_j-\bar{\mathbf{y}})'
+  = \mathbf{C}\mathbf{S}\mathbf{C}'.
+\]
+Hơn nữa, theo (2-24) và (2-45),
+\[
+  \boldsymbol{\mu}_Y
+  = E(\mathbf{Y})
+  = E(\mathbf{C}\mathbf{X}+\mathbf{d})
+  = E(\mathbf{C}\mathbf{X})+E(\mathbf{d})
+  = \mathbf{C}\boldsymbol{\mu}+\mathbf{d}.
+\]
+Do đó, \(T^2\) được tính với các \(\mathbf{y}\) và giá trị giả thuyết
+\(\boldsymbol{\mu}_{Y,0}=\mathbf{C}\boldsymbol{\mu}_0+\mathbf{d}\) là
+\[
+\begin{aligned}
+  T^2
+  &= n(\bar{\mathbf{y}}-\boldsymbol{\mu}_{Y,0})'
+     \mathbf{S}_y^{-1}
+     (\bar{\mathbf{y}}-\boldsymbol{\mu}_{Y,0}) \\
+  &= n\{\mathbf{C}(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)\}'
+     (\mathbf{C}\mathbf{S}\mathbf{C}')^{-1}
+     \{\mathbf{C}(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)\} \\
+  &= n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'
+     \mathbf{C}'(\mathbf{C}\mathbf{S}\mathbf{C}')^{-1}
+     \mathbf{C}(\bar{\mathbf{x}}-\boldsymbol{\mu}_0) \\
+  &= n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'
+     \mathbf{C}'(\mathbf{C}')^{-1}\mathbf{S}^{-1}\mathbf{C}^{-1}\mathbf{C}
+     (\bar{\mathbf{x}}-\boldsymbol{\mu}_0) \\
+  &= n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'
+     \mathbf{S}^{-1}
+     (\bar{\mathbf{x}}-\boldsymbol{\mu}_0).
+\end{aligned}
+\]
+Biểu thức cuối cùng chính là giá trị của \(T^2\) được tính từ các quan sát
+\(\mathbf{x}\).
