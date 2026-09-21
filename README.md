@@ -55,6 +55,19 @@ xelatex -interaction=nonstopmode -file-line-error main.tex
 
 Nếu sau này có mục lục, citation hoặc cross-reference, hãy chạy lệnh build từ 2 lần trở lên để LaTeX cập nhật số trang và tham chiếu.
 
+## CI/CD kiểm tra biên dịch
+
+Repo có GitHub Actions tại `.github/workflows/latex-build.yml`.
+
+CI tự chạy khi có Pull Request vào `main`, khi push lên `main` các file `.tex`/`figures`, hoặc khi chạy thủ công bằng `workflow_dispatch`. Workflow sẽ:
+
+- Build `main.tex` bằng XeLaTeX thông qua `latexmk`.
+- Kiểm tra chắc chắn `main.pdf` được tạo.
+- Quét `main.log` và fail nếu có lỗi LaTeX nghiêm trọng, lỗi công thức, undefined reference hoặc `Overfull \hbox`.
+- Upload file PDF đã biên dịch thành artifact `main-pdf` để tải về kiểm tra.
+
+Nếu CI fail, hãy mở log của job `Compile main.tex` trên GitHub Actions để xem dòng lỗi cụ thể.
+
 ## Quy trình làm việc với Git
 
 - Không commit trực tiếp vào `main`.
