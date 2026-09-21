@@ -1,0 +1,58 @@
+name: Build LaTeX PDF
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "**/*.tex"
+      - "figures/**"
+      - ".github/workflows/latex-build.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.tex"
+      - "figures/**"
+      - ".github/workflows/latex-build.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    name: Compile main.tex
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile with XeLaTeX
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: main.tex
+          latexmk_use_xelatex: true
+          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
+
+      - name: Check PDF output exists
+        run: |
+          test -s main.pdf
+
+      - name: Fail on serious LaTeX log issues
+        run: |
+          test -s main.log
+
+          patterns='(^!|LaTeX Error|Package .* Error|Undefined control sequence|Missing \$ inserted|Extra }, or forgotten \$|Misplaced alignment tab character|Double subscript|Double superscript|Display math should end with|Overfull \\hbox|There were undefined references|Rerun to get cross-references right)'
+
+          if grep -nE "$patterns" main.log; then
+            echo "::error::LaTeX log contains errors or serious warnings. Fix them before merging."
+            exit 1
+          fi
+
+      - name: Upload compiled PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-pdf
+          path: main.pdf

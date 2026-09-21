@@ -39,7 +39,7 @@
   bottom=22mm,
   inner=24mm,
   outer=19mm,
-  headheight=13pt,
+  headheight=25pt,
   headsep=5mm,
   footskip=10mm
 ]{geometry}
@@ -118,11 +118,12 @@
 \titlespacing*{\chapter}{0pt}{0pt}{0pt}
 
 \titleformat{\section}[hang]
-  {\normalfont\rmfamily\large}
-  {\bfseries\thesection}
+  {\normalfont\rmfamily\Large\bfseries}
+  {\thesection}
   {0.52em}
   {#1}
-\titlespacing*{\section}{0pt}{1.55ex plus 0.45ex minus 0.2ex}{0.72ex plus 0.15ex}
+  [\vspace{-0.25ex}{\color{BookGrayDark}\titlerule[0.45pt]}]
+\titlespacing*{\section}{0pt}{2.0ex plus 0.45ex minus 0.2ex}{1.0ex plus 0.15ex}
 
 \titleformat{\subsection}[hang]
   {\normalfont\rmfamily\normalsize}
@@ -171,6 +172,34 @@
   \par\vspace{1.15em}\noindent{\bfseries #1}\quad
 }
 
+% Clickable local contents for Chapter 5
+\newcommand{\ChapterTocItem}[3]{%
+  \par\noindent
+  \hangindent=3.2em\hangafter=1
+  \hyperref[#1]{%
+    {\sffamily\bfseries #2}\hspace{0.65em}#3%
+  }%
+}
+
+\newcommand{\ChapterLocalToc}{%
+  \par\vspace{0.35em}%
+  \noindent\begingroup
+  \setlength{\fboxsep}{0.72em}%
+  \colorbox{BookGray!42}{%
+    \begin{minipage}{\dimexpr\linewidth-1.44em\relax}
+      {\sffamily\bfseries\small Mục lục chương}\par\vspace{0.25em}
+      \ChapterTocItem{sec:ch05-01}{5.1}{Giới thiệu}
+      \ChapterTocItem{sec:ch05-02}{5.2}{Tính hợp lý của \(\mu_0\) với vai trò là giá trị của trung bình tổng thể chuẩn}
+      \ChapterTocItem{sec:ch05-03}{5.3}{Kiểm định Hotelling \(T^2\) và kiểm định tỷ số hợp lý}
+      \ChapterTocItem{sec:ch05-04}{5.4}{Miền tin cậy và so sánh đồng thời các giá trị trung bình thành phần}
+      \ChapterTocItem{sec:ch05-05}{5.5}{Suy luận mẫu lớn về vectơ trung bình tổng thể}
+      \ChapterTocItem{sec:ch05-06}{5.6}{Biểu đồ kiểm soát chất lượng đa biến}
+    \end{minipage}%
+  }%
+  \endgroup
+  \par\vspace{1.05em}%
+}
+
 % PDF links and metadata
 \usepackage{hyperref}
 \hypersetup{
@@ -178,6 +207,8 @@
   linkcolor=LinkBlack,
   citecolor=LinkBlack,
   urlcolor=LinkBlack,
+  bookmarksopen=true,
+  bookmarksnumbered=true,
   pdfauthor={Applied Multivariate Vietnamese},
   pdftitle={Inferences About a Mean Vector}
 }
