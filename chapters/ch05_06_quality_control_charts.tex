@@ -9,6 +9,344 @@
 \label{sec:ch05-06}
 
 % TODO: Add content for Section 5.6.
+% BEGIN: 239 - 243  Nguyễn Bá Đức Huy - 20237345
+Để cải thiện chất lượng hàng hóa và dịch vụ, dữ liệu cần được xem xét để tìm ra các nguyên nhân gây biến động. Khi một quy trình sản xuất liên tục tạo ra sản phẩm hoặc khi chúng ta theo dõi các hoạt động của một dịch vụ, dữ liệu cần được thu thập để đánh giá năng lực và tính ổn định của quy trình. Khi một quy trình ổn định, sự biến động sinh ra luôn là do các nguyên nhân phổ biến (\textit{common causes}) thường trực gây ra, và không có nguyên nhân đơn lẻ nào là nguồn gây biến động chủ yếu.
+
+Mục đích của mọi biểu đồ kiểm soát là để nhận diện sự xuất hiện của các \textit{nguyên nhân đặc biệt} (\textit{special causes}) gây biến động đến từ bên ngoài quy trình thông thường. Những nguyên nhân này thường cho thấy cần phải khắc phục kịp thời, nhưng chúng cũng có thể gợi ý những cải tiến cho quy trình. Biểu đồ kiểm soát làm cho sự biến động trở nên trực quan và cho phép phân biệt giữa nguyên nhân phổ biến với các nguyên nhân đặc biệt.
+
+Một biểu đồ kiểm soát thường bao gồm dữ liệu được vẽ theo thứ tự thời gian và các đường ngang, được gọi là các giới hạn kiểm soát, thể hiện mức độ biến động do các nguyên nhân phổ biến gây ra. Một biểu đồ kiểm soát hữu ích là biểu đồ $\bar{X}$ (đọc là biểu đồ $X$-bar). Để tạo một biểu đồ $\bar{X}$:
+
+\begin{enumerate}
+    \item[\textbf{1.}] Vẽ các quan sát riêng lẻ hoặc trung bình mẫu theo thứ tự thời gian.
+    \item[\textbf{2.}] Tạo và vẽ đường trung tâm $\bar{\bar{x}}$, là giá trị trung bình mẫu của tất cả các quan sát.
+    \item[\textbf{3.}] Tính toán và vẽ các giới hạn kiểm soát theo công thức:
+    \begin{align*}
+        \text{Giới hạn kiểm soát trên (UCL)} &= \bar{\bar{x}} + 3(\text{độ lệch chuẩn}) \\
+        \text{Giới hạn kiểm soát dưới (LCL)} &= \bar{\bar{x}} - 3(\text{độ lệch chuẩn})
+    \end{align*}
+\end{enumerate}
+
+Độ lệch chuẩn trong các giới hạn kiểm soát là độ lệch chuẩn ước lượng của các quan sát được vẽ. Đối với các quan sát đơn lẻ, đó thường là độ lệch chuẩn mẫu. Nếu giá trị trung bình của các mẫu con có kích thước $m$ được vẽ, thì độ lệch chuẩn sẽ là độ lệch chuẩn mẫu chia cho $\sqrt{m}$. Các giới hạn kiểm soát cộng trừ ba độ lệch chuẩn được chọn để có rất ít khả năng xảy ra cảnh báo sai—với giả định dữ liệu có phân phối chuẩn—về một quan sát nằm ngoài tầm kiểm soát; tức là một quan sát gợi ý có nguyên nhân đặc biệt gây biến động.
+
+\vspace{0.8em}
+\hrule height 0.8pt
+\vspace{0.8em}
+
+\noindent\textbf{Ví dụ 5.8 (Tạo một biểu đồ kiểm soát đơn biến)} Sở Cảnh sát thành phố Madison, bang Wisconsin, thường xuyên theo dõi nhiều hoạt động của mình như một phần của chương trình cải tiến chất lượng đang diễn ra. Bảng 5.8 cung cấp dữ liệu về năm loại giờ làm thêm khác nhau. Mỗi quan sát đại diện cho tổng của 12 kỳ trả lương, tương đương khoảng nửa năm.
+
+Chúng ta xem xét tính ổn định của giờ làm thêm ra tòa theo yêu cầu pháp lý (\textit{legal appearances overtime hours}). Một phép tính bằng máy tính cho ra $\bar{x}_1 = 3558$. Vì các giá trị riêng lẻ sẽ được vẽ, nên $\bar{x}_1$ cũng chính là $\bar{\bar{x}}_1$. Ngoài ra, độ lệch chuẩn mẫu là $\sqrt{s_{11}} = 607$, và các giới hạn kiểm soát là:
+\begin{align*}
+    \text{UCL} &= \bar{\bar{x}}_1 + 3(\sqrt{s_{11}}) = 3558 + 3(607) = 5379 \\
+    \text{LCL} &= \bar{\bar{x}}_1 - 3(\sqrt{s_{11}}) = 3558 - 3(607) = 1737
+\end{align*}
+
+% --- BẢNG 5.8 ---
+\begin{center}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{|ccccc|}
+\hline
+\multicolumn{5}{|p{13.5cm}|}{\textbf{Bảng 5.8} \ Năm kiểu giờ làm thêm của Sở Cảnh sát thành phố Madison, bang Wisconsin} \\
+\hline
+$x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ \\
+Giờ ra tòa & Sự kiện đặc biệt & Trực lưu lại & Giờ $\text{COA}^1$ & Giờ họp \\
+\textit{(Legal App.)} & \textit{(Extraordinary)} & \textit{(Holdover)} & & \textit{(Meeting)} \\
+\hline
+3387 & 2200 & 1181 & 14,861 & 236 \\
+3109 &  875 & 3532 & 11,367 & 310 \\
+2670 &  957 & 2502 & 13,329 & 1182 \\
+3125 & 1758 & 4510 & 12,328 & 1208 \\
+3469 &  868 & 3032 & 12,847 & 1385 \\
+3120 &  398 & 2130 & 13,979 & 1053 \\
+3671 & 1603 & 1982 & 13,528 & 1046 \\
+4531 &  523 & 4675 & 12,699 & 1100 \\
+3678 & 2034 & 2354 & 13,534 & 1349 \\
+3238 & 1136 & 4606 & 11,609 & 1150 \\
+3135 & 5326 & 3044 & 14,189 & 1216 \\
+5217 & 1658 & 3340 & 15,052 &  660 \\
+3728 & 1945 & 2111 & 12,236 &  299 \\
+3506 &  344 & 1291 & 15,482 &  206 \\
+3824 &  807 & 1365 & 14,900 &  239 \\
+3516 & 1223 & 1175 & 15,078 &  161 \\
+\hline
+\multicolumn{5}{|l|}{$^1$\footnotesize Được phép nghỉ bù giờ làm thêm (\textit{Compensatory overtime allowed}).} \\
+\hline
+\end{tabular}
+}
+\end{center}
+
+\vspace{0.3em}
+\noindent Dữ liệu, cùng với đường trung tâm và các giới hạn kiểm soát, được vẽ thành một biểu đồ $\bar{X}$ trong Hình 5.5.
+
+% --- HÌNH 5.5: BIỂU ĐỒ X-BAR CHO x1 ---
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    title={\small \textbf{Legal Appearances Overtime Hours}},
+    width=11.5cm,
+    height=6.8cm,
+    xmin=0, xmax=17,
+    ymin=1400, ymax=5600,
+    xtick={0, 5, 10, 15},
+    ytick={1500, 2500, 3500, 4500, 5500},
+    xlabel={\small Số thứ tự quan sát (\textit{Observation Number})},
+    ylabel={\small Giá trị riêng (\textit{Individual Value})},
+    tick pos=left,
+    clip=false
+]
+
+% 1. Đường giới hạn trên UCL = 5379
+\addplot[thick, color=black, domain=0:16] {5379};
+\node[anchor=west] at (axis cs:16, 5379) {\footnotesize $\text{UCL} = 5379$};
+
+% 2. Đường trung tâm X-double-bar = 3558
+\addplot[thick, color=black, domain=0:16] {3558};
+\node[anchor=west] at (axis cs:16, 3558) {\footnotesize $\bar{\bar{x}}_1 = 3558$};
+
+% 3. Đường giới hạn dưới LCL = 1737
+\addplot[thick, color=black, domain=0:16] {1737};
+\node[anchor=west] at (axis cs:16, 1737) {\footnotesize $\text{LCL} = 1737$};
+
+% 4. Dữ liệu các quan sát nối với nhau (dấu chéo x)
+\addplot[
+    color=black,
+    mark=x,
+    mark size=2.5pt,
+    thick
+] coordinates {
+    (1, 3387)
+    (2, 3109)
+    (3, 2670)
+    (4, 3125)
+    (5, 3469)
+    (6, 3120)
+    (7, 3671)
+    (8, 4531)
+    (9, 3678)
+    (10, 3238)
+    (11, 3135)
+    (12, 5217)
+    (13, 3728)
+    (14, 3506)
+    (15, 3824)
+    (16, 3516)
+};
+
+\end{axis}
+\end{tikzpicture}
+
+\vspace{-0.5em}
+{\textbf{Hình 5.5} \ Biểu đồ $\bar{X}$ với $x_1 =$ giờ làm thêm theo yêu cầu pháp lý (\textit{legal appearances overtime hours}).}
+\end{figure}
+
+Số giờ làm thêm ra tòa theo yêu cầu pháp lý (\textit{legal appearances overtime hours}) là ổn định trong suốt giai đoạn thu thập dữ liệu. Sự biến động trong số giờ làm thêm dường như là do các nguyên nhân phổ biến gây ra, vì vậy không có dấu hiệu của biến động do nguyên nhân đặc biệt. \hfill $\blacksquare$
+
+Với nhiều hơn một đặc tính quan trọng, một phương pháp đa biến cần được sử dụng để giám sát tính ổn định của quy trình. Phương pháp như vậy có thể tính đến mối tương quan giữa các đặc tính và sẽ kiểm soát được xác suất tổng thể của việc báo động sai một nguyên nhân đặc biệt khi thực tế không có. Mối tương quan cao giữa các biến có thể khiến việc đánh giá tỷ lệ sai số tổng thể—được ngụ ý bởi một số lượng lớn các biểu đồ đơn biến trở nên bất khả thi.
+
+Hai loại biểu đồ đa biến phổ biến nhất là (i) biểu đồ dạng elip (\textit{ellipse format chart}) và (ii) biểu đồ $T^2$ (\textit{$T^2$-chart}).
+
+Có hai trường hợp thường gặp trong thực tế cần được xử lý khác nhau:
+\begin{enumerate}
+    \item[\textbf{1.}] Theo dõi tính ổn định của một mẫu các quan sát đa biến cho trước
+    \item[\textbf{2.}] Thiết lập một vùng kiểm soát cho các quan sát trong tương lai
+\end{enumerate}
+
+Trước tiên, chúng ta xem xét việc sử dụng các phương pháp kiểm soát đa biến cho một mẫu các quan sát đa biến $\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n$. Sau đó, chúng ta sẽ thảo luận về các phương pháp này khi các quan sát là trung bình của các nhóm con (\textit{subgroup means}).
+
+\vspace{1.2em}
+\noindent{\large\textbf{Biểu đồ theo dõi một mẫu các quan sát đa biến riêng lẻ để đánh giá tính ổn định}}
+\vspace{0.8em}
+
+Chúng ta giả định rằng $\mathbf{X}_1, \mathbf{X}_2, \ldots, \mathbf{X}_n$ có phân phối độc lập theo $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$. Theo Kết quả 4.8,
+\[
+\mathbf{X}_j - \bar{\mathbf{X}} = \left( 1 - \frac{1}{n} \right) \mathbf{X}_j - \frac{1}{n}\mathbf{X}_1 - \cdots - \frac{1}{n}\mathbf{X}_{j-1} - \frac{1}{n}\mathbf{X}_{j+1} - \cdots - \frac{1}{n}\mathbf{X}_n
+\]
+có
+\[
+E(\mathbf{X}_j - \bar{\mathbf{X}}) = \mathbf{0} = (1 - n^{-1})\boldsymbol{\mu} - (n - 1)n^{-1}\boldsymbol{\mu}
+\]
+và
+\[
+\operatorname{Cov}(\mathbf{X}_j - \bar{\mathbf{X}}) = \left( 1 - \frac{1}{n} \right)^2 \boldsymbol{\Sigma} + (n - 1)n^{-2}\boldsymbol{\Sigma} = \frac{(n - 1)}{n}\boldsymbol{\Sigma}
+\]
+Mỗi $\mathbf{X}_j - \bar{\mathbf{X}}$ có phân phối chuẩn, nhưng $\mathbf{X}_j - \bar{\mathbf{X}}$ không độc lập với ma trận hiệp phương sai mẫu $\mathbf{S}$. Tuy nhiên, để thiết lập các giới hạn kiểm soát, ta xấp xỉ rằng $(\mathbf{X}_j - \bar{\mathbf{X}})'\mathbf{S}^{-1}(\mathbf{X}_j - \bar{\mathbf{X}})$ có phân phối chi bình phương (\textit{chi-square}).
+
+\vspace{0.5em}
+\noindent\textbf{Biểu đồ dạng elip (Ellipse Format Chart).} Biểu đồ dạng elip cho một vùng kiểm soát hai biến là loại biểu đồ trực quan hơn, nhưng cách tiếp cận này bị giới hạn ở hai biến. Hai đặc tính trên đơn vị thứ $j$ được biểu diễn thành một cặp $(x_{j1}, x_{j2})$. Elip chất lượng 95\% bao gồm tất cả các giá trị $\mathbf{x}$ thỏa mãn:
+\begin{equation}
+(\mathbf{x} - \bar{\mathbf{x}})'\mathbf{S}^{-1}(\mathbf{x} - \bar{\mathbf{x}}) \le \chi^2_2(.05) \tag{5-32}
+\end{equation}
+
+\hrule height 0.8pt
+\vspace{0.8em}
+
+\noindent\textbf{Ví dụ 5.9 (Biểu đồ dạng elip cho số giờ làm thêm)} Chúng ta tiếp tục xét Ví dụ 5.8 và tạo một elip chất lượng cho cặp đặc tính giờ làm thêm (giờ ra tòa theo yêu cầu pháp lý, giờ sự kiện đặc biệt). Một phép tính bằng máy tính cho ra:
+\[
+\bar{\mathbf{x}} = \begin{bmatrix} 3558 \\ 1478 \end{bmatrix} \quad \text{và} \quad \mathbf{S} = \begin{bmatrix} 367{,}884.7 & -72{,}093.8 \\ -72{,}093.8 & 1{,}399{,}053.1 \end{bmatrix}
+\]
+Chúng ta minh họa biểu đồ dạng elip chất lượng bằng cách sử dụng elip 99\%, bao gồm tất cả các giá trị $\mathbf{x}$ thỏa mãn:
+\[
+(\mathbf{x} - \bar{\mathbf{x}})'\mathbf{S}^{-1}(\mathbf{x} - \bar{\mathbf{x}}) \le \chi_2^2(.01)
+\]
+Ở đây $p = 2$, do đó $\chi_2^2(.01) = 9.21$, và phương trình elip trở thành:
+\begin{align*}
+&\frac{s_{11}s_{22}}{s_{11}s_{22} - s_{12}^2}\left( \frac{(x_1 - \bar{x}_1)^2}{s_{11}} - 2s_{12}\frac{(x_1 - \bar{x}_1)(x_2 - \bar{x}_2)}{s_{11}s_{22}} + \frac{(x_2 - \bar{x}_2)^2}{s_{22}} \right) \\
+&= \frac{367844.7 \times 1399053.1}{367844.7 \times 1399053.1 - (-72093.8)^2} \\
+&\quad \times \Biggl( \frac{(x_1 - 3558)^2}{367844.7} - 2(-72093.8)\frac{(x_1 - 3558)(x_2 - 1478)}{367844.7 \times 1399053.1} \\
+&\qquad\quad + \frac{(x_2 - 1478)^2}{1399053.1} \Biggr) \le 9.21
+\end{align*}
+
+Biểu đồ dạng elip này được vẽ, cùng với các cặp dữ liệu, trong Hình 5.6.
+
+\vspace{0.8em}
+
+% --- HÌNH 5.6: ĐỒ THỊ ELIP VÀ CHÚ THÍCH BÊN CẠNH ---
+\noindent
+\begin{minipage}[c]{0.68\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+    width=7.8cm,
+    height=8.5cm,
+    xmin=1000, xmax=5800,
+    ymin=-2500, ymax=5600,
+    xtick={1500, 2500, 3500, 4500, 5500},
+    ytick={-2000, 0, 1000, 3000, 5000},
+    xlabel={\footnotesize Giờ làm thêm ra tòa theo yêu cầu pháp lý},
+    ylabel={\footnotesize Giờ làm thêm sự kiện đặc biệt},
+    ticklabel style={font=\footnotesize},
+    tick pos=left,
+    clip=false
+]
+
+% 1. Đường elip 99% (Phương trình tham số từ phân tích Cholesky của 9.21 * S)
+\addplot[thick, domain=0:360, samples=120, smooth] 
+    ({3558 + 1840.7*cos(x)}, {1478 - 360.7*cos(x) + 3571.4*sin(x)});
+
+% 2. Điểm tâm trung bình (+)
+\addplot[only marks, mark=+, mark size=3.5pt, thick, color=black] coordinates {
+    (3558, 1478)
+};
+
+% 3. 16 điểm dữ liệu (x1, x2)
+\addplot[only marks, mark=*, mark size=1.7pt, color=black] coordinates {
+    (3387, 2200)
+    (3109,  875)
+    (2670,  957)
+    (3125, 1758)
+    (3469,  868)
+    (3120,  398)
+    (3671, 1603)
+    (4531,  523)
+    (3678, 2034)
+    (3238, 1136)
+    (3135, 5326) % Điểm ngoại lai
+    (5217, 1658)
+    (3728, 1945)
+    (3506,  344)
+    (3824,  807)
+    (3516, 1223)
+};
+
+% 4. Mũi tên chỉ vào điểm ngoại lai (3135, 5326)
+\draw[<-, thick] (axis cs:3230, 5326) -- (axis cs:3800, 5326);
+
+\end{axis}
+\end{tikzpicture}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.29\textwidth}
+\small
+\textbf{Hình 5.6} \ Elip kiểm soát chất lượng 99\% cho giờ làm thêm ra tòa theo yêu cầu pháp lý và giờ làm thêm sự kiện đặc biệt (\textit{legal appearances and extraordinary event overtime}).
+\end{minipage}
+
+% --- HÌNH 5.7: BIỂU ĐỒ X-BAR CHO x2 ---
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    title={\small \textbf{Extraordinary Event Hours}},
+    width=11.2cm,
+    height=5.6cm,
+    xmin=0, xmax=17,
+    ymin=-3200, ymax=6200,
+    xtick={0, 5, 10, 15},
+    ytick={-3000, -2000, -1000, 0, 1000, 2000, 3000, 4000, 5000, 6000},
+    xlabel={\footnotesize Số thứ tự quan sát (\textit{Observation Number})},
+    ylabel={\footnotesize Giá trị riêng (\textit{Individual Value})},
+    ticklabel style={font=\footnotesize},
+    tick pos=left,
+    clip=false
+]
+
+% 1. Giới hạn trên UCL = 5027
+\addplot[thick, color=black, domain=0:16] {5027};
+\node[anchor=west] at (axis cs:16, 5027) {\footnotesize $\text{UCL} = 5027$};
+
+% 2. Đường trung tâm x_double_bar_2 = 1478
+\addplot[thick, color=black, domain=0:16] {1478};
+\node[anchor=west] at (axis cs:16, 1478) {\footnotesize $\bar{\bar{x}}_2 = 1478$};
+
+% 3. Đường nét đứt tại y = 0
+\addplot[dashed, thick, color=black, domain=0:16] {0};
+
+% 4. Giới hạn dưới LCL = -2071
+\addplot[thick, color=black, domain=0:16] {-2071};
+\node[anchor=west] at (axis cs:16, -2071) {\footnotesize $\text{LCL} = -2071$};
+
+% 5. Các điểm dữ liệu x2 nối với nhau bằng dấu gạch chéo x
+\addplot[
+    color=black,
+    mark=x,
+    mark size=2.5pt,
+    thick
+] coordinates {
+    (1, 2200)
+    (2,  875)
+    (3,  957)
+    (4, 1758)
+    (5,  868)
+    (6,  398)
+    (7, 1603)
+    (8,  523)
+    (9, 2034)
+    (10, 1136)
+    (11, 5326) % Điểm vượt ngưỡng UCL
+    (12, 1658)
+    (13, 1945)
+    (14,  344)
+    (15,  807)
+    (16, 1223)
+};
+
+\end{axis}
+\end{tikzpicture}
+
+\vspace{-0.5em}
+\caption*{\textbf{Hình 5.7} \ Biểu đồ $\bar{X}$ với $x_2 =$ giờ làm thêm sự kiện đặc biệt (\textit{extraordinary event hours}).}
+\end{figure}
+
+Lưu ý rằng có một điểm, được chỉ ra bằng mũi tên, chắc chắn nằm bên ngoài elip. Khi một điểm nằm ngoài vùng kiểm soát, các biểu đồ $\bar{X}$ riêng lẻ sẽ được xây dựng. Biểu đồ $\bar{X}$ cho $x_1$ đã được trình bày trong Hình 5.5; biểu đồ cho $x_2$ được trình bày trong Hình 5.7.
+
+Khi giới hạn kiểm soát dưới nhỏ hơn 0 đối với các dữ liệu vốn không thể mang giá trị âm, nó thường được quy ước đặt bằng 0. Giới hạn $\text{LCL} = 0$ được thể hiện bằng đường nét đứt trong Hình 5.7.
+
+Liệu có nguyên nhân đặc biệt nào gây ra điểm duy nhất đối với giờ làm thêm sự kiện đặc biệt nằm ngoài giới hạn kiểm soát trên trong Hình 5.7 hay không? Trong giai đoạn này, Hoa Kỳ đã ném bom một thủ đô nước ngoài, và sinh viên tại Madison đã biểu tình phản đối. Phần lớn số giờ làm thêm đặc biệt đã được sử dụng trong giai đoạn 4 tuần đó. Mặc dù, theo chính định nghĩa của nó, giờ làm thêm đặc biệt chỉ xảy ra khi có các sự kiện đặc biệt và do đó không thể dự đoán trước, nó vẫn có một mức độ ổn định nhất định. \hfill $\blacksquare$
+
+\vspace{0.4em}
+\noindent\textbf{Biểu đồ} $\boldsymbol{T}^2$ \textbf{(\textit{$T^2$-Chart}).} Một biểu đồ $T^2$ có thể được áp dụng cho một số lượng lớn các đặc tính. Không giống như biểu đồ dạng elip, nó không bị giới hạn ở hai biến. Hơn nữa, các điểm được hiển thị theo thứ tự thời gian thay vì dưới dạng biểu đồ phân tán, điều này giúp các quy luật và xu hướng trở nên rõ ràng.
+
+Đối với điểm thứ $j$, chúng ta tính thống kê $T^2$:
+\begin{equation}
+T_j^2 = (\mathbf{x}_j - \bar{\mathbf{x}})'\mathbf{S}^{-1}(\mathbf{x}_j - \bar{\mathbf{x}}) \tag{5-33}
+\end{equation}
+Sau đó, chúng ta vẽ các giá trị $T^2$ theo trục thời gian. Giới hạn kiểm soát dưới là 0, và ta sử dụng giới hạn kiểm soát trên:
+\[
+\text{UCL} = \chi_p^2(.05)
+\]
+hoặc, đôi khi là $\chi_p^2(.01)$.
+
+Biểu đồ $T^2$ không có đường trung tâm. Lưu ý rằng thống kê $T^2$ giống hệt với đại lượng $d_j^2$ đã được sử dụng để kiểm định tính chuẩn trong Mục 4.6.
+% END: 239 - 243  Nguyễn Bá Đức Huy - 20237345
 
 % BEGIN: 249 - 251  Trần Long Vũ - 20237409
 % ===== Dán từ dòng này vào giữa BEGIN và END trong ch05_06_quality_control_charts.tex =====
