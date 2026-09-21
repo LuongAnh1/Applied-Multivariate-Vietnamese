@@ -469,11 +469,11 @@ Mặc dù trước khi lấy mẫu, khoảng tin cậy thứ $i$ có xác suất
 Vì các quan sát trên biến thứ nhất độc lập với các quan sát trên biến thứ hai, và cứ như vậy, nên quy tắc nhân xác suất cho các biến cố độc lập có thể được áp dụng. Trước khi mẫu được chọn, ta có
  
 \[
+\begin{aligned}
 P[\text{tất cả các khoảng $t$ trong (5-27) đều chứa các } \mu_i]
-=
-(1-\alpha)(1-\alpha)\cdots(1-\alpha)
-=
-(1-\alpha)^p.
+&= (1-\alpha)(1-\alpha)\cdots(1-\alpha)\\
+&= (1-\alpha)^p.
+\end{aligned}
 \]
  
 Nếu $1-\alpha=0{,}95$ và $p=6$, xác suất này là
@@ -502,7 +502,13 @@ và
 t_{n-1}(0{,}025)=2{,}145.
 \]
  
-Do đó, trong trường hợp này, các khoảng đồng thời rộng hơn $100(4{,}14-2{,}145)/2{,}145 \approx 93\%$ so với các khoảng suy ra từ phương pháp $t$ từng biến một (\emph{one-at-a-time}).
+Do đó, trong trường hợp này, các khoảng đồng thời rộng hơn
+\[
+100\left(\frac{4{,}14-2{,}145}{2{,}145}\right)
+\approx 93\%
+\]
+so với các khoảng suy ra từ phương pháp $t$ từng biến một
+(\emph{one-at-a-time}).
  
 Bảng 5.3 đưa ra các hệ số nhân khoảng cách tới hạn cho các khoảng $t$ từng biến một được tính theo (5-21), cũng như các khoảng $T^2$ đồng thời tương ứng. Nói chung, độ rộng của các khoảng $T^2$ so với các khoảng $t$ tăng lên khi $p$ tăng (với $n$ cố định) và giảm đi khi $n$ tăng (với $p$ cố định).
  
