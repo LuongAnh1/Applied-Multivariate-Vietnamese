@@ -4,6 +4,146 @@
 % - Trang tham chiếu: 216-220
 % Vị trí viết nội dung: thêm nội dung ngay dưới dòng TODO của mục này.
 
-\section{Hotelling's \texorpdfstring{\(T^2\)}{T2} and Likelihood Ratio Tests}
+\section{Kiểm định Hotelling \texorpdfstring{\(T^2\)}{T2} và kiểm định tỷ số hợp lý}
 
 % TODO: Add content for Section 5.3.
+
+Chúng tôi đã giới thiệu thống kê $T^2$ bằng cách tương tự hóa với bình phương khoảng cách một chiều $t^2$. Tồn tại một nguyên lý tổng quát để xây dựng các thủ tục kiểm định được gọi là \emph{phương pháp tỷ số hợp lý} (likelihood ratio method), và thống kê $T^2$ có thể được suy ra như kiểm định tỷ số hợp lý của $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$. Lý thuyết tổng quát về các kiểm định tỷ số hợp lý nằm ngoài phạm vi của cuốn sách này. (Xem [3] để tìm hiểu chi tiết về chủ đề này.) Các kiểm định tỷ số hợp lý có nhiều tính chất tối ưu đối với các mẫu đủ lớn, và đặc biệt thuận tiện cho các giả thuyết được phát biểu theo các tham số của phân phối chuẩn nhiều chiều.
+
+Từ (4-18) ta biết rằng giá trị cực đại của hàm hợp lý chuẩn nhiều chiều khi $\boldsymbol{\mu}$ và $\boldsymbol{\Sigma}$ biến thiên trên tập các giá trị khả dĩ của chúng được cho bởi
+\begin{equation}
+\max_{\boldsymbol{\mu},\boldsymbol{\Sigma}} L(\boldsymbol{\mu},\boldsymbol{\Sigma}) = \frac{1}{(2\pi)^{np/2}\,|\hat{\boldsymbol{\Sigma}}|^{n/2}}\, e^{-np/2}
+\tag{5-10}
+\end{equation}
+trong đó
+\[
+\hat{\boldsymbol{\Sigma}} = \frac{1}{n}\sum_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})'
+\quad\text{và}\quad
+\hat{\boldsymbol{\mu}} = \bar{\mathbf{x}} = \frac{1}{n}\sum_{j=1}^{n}\mathbf{x}_j
+\]
+là các ước lượng hợp lý cực đại. Hãy nhớ rằng $\hat{\boldsymbol{\mu}}$ và $\hat{\boldsymbol{\Sigma}}$ là những giá trị của $\boldsymbol{\mu}$ và $\boldsymbol{\Sigma}$ giải thích tốt nhất các giá trị quan sát được của mẫu ngẫu nhiên.
+
+Dưới giả thuyết $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$, hàm hợp lý chuẩn trở thành
+\[
+L(\boldsymbol{\mu}_0,\boldsymbol{\Sigma}) = \frac{1}{(2\pi)^{np/2}\,|\boldsymbol{\Sigma}|^{n/2}}
+\exp\!\left(-\frac{1}{2}\sum_{j=1}^{n}(\mathbf{x}_j-\boldsymbol{\mu}_0)'\boldsymbol{\Sigma}^{-1}(\mathbf{x}_j-\boldsymbol{\mu}_0)\right)
+\]
+Vectơ kỳ vọng $\boldsymbol{\mu}_0$ lúc này đã cố định, nhưng $\boldsymbol{\Sigma}$ có thể thay đổi để tìm giá trị ``hợp lý nhất'' dẫn đến mẫu quan sát được ứng với $\boldsymbol{\mu}_0$ cố định đó. Giá trị này thu được bằng cách cực đại hóa $L(\boldsymbol{\mu}_0,\boldsymbol{\Sigma})$ theo $\boldsymbol{\Sigma}$.
+
+Theo các bước trong (4-13), số mũ trong $L(\boldsymbol{\mu}_0,\boldsymbol{\Sigma})$ có thể viết lại thành
+\begin{align*}
+-\frac{1}{2}\sum_{j=1}^{n}(\mathbf{x}_j-\boldsymbol{\mu}_0)'\boldsymbol{\Sigma}^{-1}(\mathbf{x}_j-\boldsymbol{\mu}_0)
+&= -\frac{1}{2}\sum_{j=1}^{n}\operatorname{tr}\!\left[\boldsymbol{\Sigma}^{-1}(\mathbf{x}_j-\boldsymbol{\mu}_0)(\mathbf{x}_j-\boldsymbol{\mu}_0)'\right]\\
+&= -\frac{1}{2}\operatorname{tr}\!\left[\boldsymbol{\Sigma}^{-1}\left(\sum_{j=1}^{n}(\mathbf{x}_j-\boldsymbol{\mu}_0)(\mathbf{x}_j-\boldsymbol{\mu}_0)'\right)\right]
+\end{align*}
+Áp dụng Kết quả 4.10 với $\mathbf{B}=\sum_{j=1}^{n}(\mathbf{x}_j-\boldsymbol{\mu}_0)(\mathbf{x}_j-\boldsymbol{\mu}_0)'$ và $b=n/2$, ta có
+\begin{equation}
+\max_{\boldsymbol{\Sigma}} L(\boldsymbol{\mu}_0,\boldsymbol{\Sigma}) = \frac{1}{(2\pi)^{np/2}\,|\hat{\boldsymbol{\Sigma}}_0|^{n/2}}\, e^{-np/2}
+\tag{5-11}
+\end{equation}
+với
+\[
+\hat{\boldsymbol{\Sigma}}_0 = \frac{1}{n}\sum_{j=1}^{n}(\mathbf{x}_j-\boldsymbol{\mu}_0)(\mathbf{x}_j-\boldsymbol{\mu}_0)'
+\]
+
+Để xác định xem $\boldsymbol{\mu}_0$ có phải là giá trị chấp nhận được của $\boldsymbol{\mu}$ hay không, giá trị cực đại của $L(\boldsymbol{\mu}_0,\boldsymbol{\Sigma})$ được so sánh với giá trị cực đại không ràng buộc của $L(\boldsymbol{\mu},\boldsymbol{\Sigma})$. Tỷ số thu được gọi là \emph{thống kê tỷ số hợp lý} (likelihood ratio statistic). Sử dụng các phương trình (5-10) và (5-11), ta được
+\begin{equation}
+\text{Tỷ số hợp lý} = \Lambda = \frac{\max\limits_{\boldsymbol{\Sigma}} L(\boldsymbol{\mu}_0,\boldsymbol{\Sigma})}{\max\limits_{\boldsymbol{\mu},\boldsymbol{\Sigma}} L(\boldsymbol{\mu},\boldsymbol{\Sigma})}
+= \left(\frac{|\hat{\boldsymbol{\Sigma}}|}{|\hat{\boldsymbol{\Sigma}}_0|}\right)^{n/2}
+\tag{5-12}
+\end{equation}
+
+Thống kê tương đương $\Lambda^{2/n}=|\hat{\boldsymbol{\Sigma}}|/|\hat{\boldsymbol{\Sigma}}_0|$ được gọi là tiêu chuẩn \emph{Lambda} của \emph{Wilks} (Wilks' lambda). Nếu giá trị quan sát được của tỷ số hợp lý quá nhỏ thì giả thuyết $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$ khó có khả năng đúng và do đó bị bác bỏ. Cụ thể, kiểm định tỷ số hợp lý của $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$ so với $H_1: \boldsymbol{\mu} \neq \boldsymbol{\mu}_0$ bác bỏ $H_0$ nếu
+\begin{equation}
+\Lambda = \left(\frac{|\hat{\boldsymbol{\Sigma}}|}{|\hat{\boldsymbol{\Sigma}}_0|}\right)^{n/2}
+= \left(
+\frac{\left|\sum\limits_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})'\right|}
+     {\left|\sum\limits_{j=1}^{n}(\mathbf{x}_j-\boldsymbol{\mu}_0)(\mathbf{x}_j-\boldsymbol{\mu}_0)'\right|}
+\right)^{n/2} < c_\alpha
+\tag{5-13}
+\end{equation}
+trong đó $c_\alpha$ là phân vị mức $(100\alpha)\%$ phía dưới của phân phối của $\Lambda$. (Lưu ý rằng thống kê kiểm định tỷ số hợp lý là một lũy thừa của tỷ số các phương sai tổng quát.) May mắn là, nhờ mối quan hệ sau đây giữa $T^2$ và $\Lambda$, ta không cần phân phối của $\Lambda$ để thực hiện kiểm định.
+
+\par\medskip\noindent\textbf{Kết quả 5.1.}\ \itshape
+Cho $\mathbf{X}_1,\mathbf{X}_2,\dots,\mathbf{X}_n$ là một mẫu ngẫu nhiên từ tổng thể $N_p(\boldsymbol{\mu},\boldsymbol{\Sigma})$. Khi đó kiểm định (5-7) dựa trên $T^2$ tương đương với kiểm định tỷ số hợp lý của $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$ so với $H_1: \boldsymbol{\mu} \neq \boldsymbol{\mu}_0$, vì
+\[
+\Lambda^{2/n} = \left(1+\frac{T^2}{n-1}\right)^{-1}
+\]
+\upshape\par\medskip
+
+\par\noindent\textit{Chứng minh.}\ 
+Xét ma trận $(p+1)\times(p+1)$
+\[
+\mathbf{A} =
+\begin{bmatrix}
+\sum\limits_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})' & \sqrt{n}\,(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)\\[6pt]
+\sqrt{n}\,(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)' & -1
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mathbf{A}_{11} & \mathbf{A}_{12}\\
+\mathbf{A}_{21} & \mathbf{A}_{22}
+\end{bmatrix}
+\]
+Theo Bài tập 4.11, $|\mathbf{A}| = |\mathbf{A}_{22}|\,|\mathbf{A}_{11}-\mathbf{A}_{12}\mathbf{A}_{22}^{-1}\mathbf{A}_{21}| = |\mathbf{A}_{11}|\,|\mathbf{A}_{22}-\mathbf{A}_{21}\mathbf{A}_{11}^{-1}\mathbf{A}_{12}|$, từ đó ta thu được
+\begin{align*}
+(-1)&\left|\sum_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})' + n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'\right| \\
+&= \left|\sum_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})'\right| \left|-1-n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'\left[\sum_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})'\right]^{-1}(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)\right|
+\end{align*}
+Vì, theo (4-14),
+\begin{align*}
+\sum_{j=1}^{n}(\mathbf{x}_j-\boldsymbol{\mu}_0)(\mathbf{x}_j-\boldsymbol{\mu}_0)'
+&= \sum_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}}+\bar{\mathbf{x}}-\boldsymbol{\mu}_0)(\mathbf{x}_j-\bar{\mathbf{x}}+\bar{\mathbf{x}}-\boldsymbol{\mu}_0)' \\
+&= \sum_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})' + n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'
+\end{align*}
+nên đẳng thức định thức ở trên có thể viết lại thành
+\[
+(-1)\left|\sum_{j=1}^{n}(\mathbf{x}_j-\boldsymbol{\mu}_0)(\mathbf{x}_j-\boldsymbol{\mu}_0)'\right|
+= \left|\sum_{j=1}^{n}(\mathbf{x}_j-\bar{\mathbf{x}})(\mathbf{x}_j-\bar{\mathbf{x}})'\right|(-1)\left(1+\frac{T^2}{n-1}\right)
+\]
+hay
+\[
+|n\hat{\boldsymbol{\Sigma}}_0| = |n\hat{\boldsymbol{\Sigma}}|\left(1+\frac{T^2}{n-1}\right)
+\]
+Do đó,
+\begin{equation}
+\Lambda^{2/n} = \frac{|\hat{\boldsymbol{\Sigma}}|}{|\hat{\boldsymbol{\Sigma}}_0|} = \left(1+\frac{T^2}{n-1}\right)^{-1}
+\tag{5-14}
+\end{equation}
+Ở đây $H_0$ bị bác bỏ khi $\Lambda^{2/n}$ nhỏ, hay tương đương, khi $T^2$ lớn. Các giá trị tới hạn của $T^2$ được xác định bởi (5-6). \hfill$\blacksquare$\par\medskip
+
+Nhân tiện, quan hệ (5-14) cho thấy $T^2$ có thể được tính từ hai định thức, nhờ đó tránh phải tính $\mathbf{S}^{-1}$. Giải (5-14) theo $T^2$, ta có
+\begin{equation}
+\begin{aligned}
+T^2 &= \frac{(n-1)|\hat{\boldsymbol{\Sigma}}_0|}{|\hat{\boldsymbol{\Sigma}}|} - (n-1) \\
+&= \frac{(n-1)\left|\sum\limits_{j=1}^{n}(\mathbf{x}_j - \boldsymbol{\mu}_0)(\mathbf{x}_j - \boldsymbol{\mu}_0)'\right|}{\left|\sum\limits_{j=1}^{n}(\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})'\right|} - (n-1)
+\end{aligned}
+\tag{5-15}
+\end{equation}
+
+Các kiểm định tỷ số hợp lý rất phổ biến trong phân tích đa biến. Các tính chất tối ưu đối với mẫu lớn của chúng đúng trong những bối cảnh rất tổng quát, như ta sẽ chỉ ra ngay sau đây. Chúng rất phù hợp với các tình huống kiểm định được xét trong cuốn sách này. Các phương pháp tỷ số hợp lý cho ra những thống kê kiểm định rút gọn về các thống kê $F$ và $t$ quen thuộc trong trường hợp một biến.
+
+\subsubsection*{Phương pháp tỷ số hợp lý tổng quát}
+
+Bây giờ ta xét phương pháp tỷ số hợp lý tổng quát. Gọi $\boldsymbol{\theta}$ là vectơ gồm tất cả các tham số chưa biết của tổng thể, và $L(\boldsymbol{\theta})$ là hàm hợp lý thu được bằng cách tính hàm mật độ đồng thời của $\mathbf{X}_1,\mathbf{X}_2,\dots,\mathbf{X}_n$ tại các giá trị quan sát $\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_n$. Vectơ tham số $\boldsymbol{\theta}$ nhận giá trị trong tập tham số $\boldsymbol{\Theta}$. Chẳng hạn, trong trường hợp chuẩn nhiều chiều $p$ chiều, $\boldsymbol{\theta}'=[\mu_1,\dots,\mu_p,\sigma_{11},\dots,\sigma_{1p},\sigma_{22},\dots,\sigma_{2p},\dots,\sigma_{p-1,p},\sigma_{pp}]$ và $\boldsymbol{\Theta}$ gồm không gian $p$ chiều, trong đó $-\infty<\mu_1<\infty,\dots,-\infty<\mu_p<\infty$, kết hợp với không gian $p(p+1)/2$ chiều của các phương sai và hiệp phương sai sao cho $\boldsymbol{\Sigma}$ xác định dương. Do đó $\boldsymbol{\Theta}$ có số chiều $\nu = p + p(p+1)/2$. Dưới giả thuyết $H_0: \boldsymbol{\theta} \in \boldsymbol{\Theta}_0$, $\boldsymbol{\theta}$ bị giới hạn nằm trong một tập con $\boldsymbol{\Theta}_0$ của $\boldsymbol{\Theta}$. Đối với trường hợp chuẩn nhiều chiều với $\boldsymbol{\mu}=\boldsymbol{\mu}_0$ và $\boldsymbol{\Sigma}$ không xác định, $\boldsymbol{\Theta}_0=\{\mu_1=\mu_{10},\mu_2=\mu_{20},\dots,\mu_p=\mu_{p0};\ \sigma_{11},\dots,\sigma_{1p},\sigma_{22},\dots,\sigma_{2p},\dots,\sigma_{p-1,p},\sigma_{pp}\ \text{với } \boldsymbol{\Sigma} \text{ xác định dương}\}$, nên $\boldsymbol{\Theta}_0$ có số chiều $\nu_0 = 0 + p(p+1)/2 = p(p+1)/2$.
+
+Kiểm định tỷ số hợp lý của $H_0: \boldsymbol{\theta} \in \boldsymbol{\Theta}_0$ so với $H_1: \boldsymbol{\theta} \notin \boldsymbol{\Theta}_0$ bác bỏ $H_0$ nếu
+\begin{equation}
+\Lambda = \frac{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}_0} L(\boldsymbol{\theta})}{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}} L(\boldsymbol{\theta})} < c
+\tag{5-16}
+\end{equation}
+trong đó $c$ là một hằng số được chọn thích hợp. Một cách trực giác, ta bác bỏ $H_0$ nếu giá trị cực đại của hàm hợp lý thu được khi cho $\boldsymbol{\theta}$ biến thiên trong tập $\boldsymbol{\Theta}_0$ nhỏ hơn nhiều so với giá trị cực đại thu được khi cho $\boldsymbol{\theta}$ biến thiên trên mọi giá trị trong $\boldsymbol{\Theta}$. Khi cực đại ở tử số của biểu thức (5-16) nhỏ hơn nhiều so với cực đại ở mẫu số, $\boldsymbol{\Theta}_0$ không chứa các giá trị chấp nhận được của $\boldsymbol{\theta}$.
+
+Trong mỗi ứng dụng của phương pháp tỷ số hợp lý, ta phải tìm phân phối mẫu của thống kê kiểm định tỷ số hợp lý $\Lambda$. Khi đó có thể chọn $c$ để tạo ra một kiểm định với mức ý nghĩa $\alpha$ cho trước. Tuy nhiên, khi cỡ mẫu lớn và một số điều kiện chính quy được thỏa mãn, phân phối mẫu của $-2\ln\Lambda$ được xấp xỉ tốt bởi phân phối khi bình phương ($\chi^2$). Đặc điểm hấp dẫn này phần nào giải thích sự phổ biến của các thủ tục tỷ số hợp lý.
+
+\par\medskip\noindent\textbf{Kết quả 5.2.}\ \itshape
+Khi cỡ mẫu $n$ lớn, dưới giả thuyết không $H_0$, đại lượng
+\begin{equation*}
+-2 \ln \Lambda = -2 \ln \left( \frac{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}_0} L(\boldsymbol{\theta})}{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}} L(\boldsymbol{\theta})} \right)
+\end{equation*}
+xấp xỉ là một biến ngẫu nhiên có phân phối $\chi^2_{\nu-\nu_0}$. Ở đây số bậc tự do là $\nu-\nu_0=(\text{số chiều của }\boldsymbol{\Theta})-(\text{số chiều của }\boldsymbol{\Theta}_0)$.
+\upshape\par\medskip
+
+Các kiểm định thống kê được so sánh dựa trên \emph{lực kiểm định} (power), được định nghĩa là đường cong hoặc mặt cong có độ cao là $\mathrm{P}[\text{kiểm định bác bỏ } H_0 \mid \boldsymbol{\theta}]$, được tính tại mỗi vectơ tham số $\boldsymbol{\theta}$. Lực kiểm định đo lường khả năng của một kiểm định trong việc bác bỏ $H_0$ khi $H_0$ không đúng. Trong trường hợp hiếm gặp khi $\boldsymbol{\theta}=\boldsymbol{\theta}_0$ được xác định hoàn toàn dưới $H_0$ và đối thuyết $H_1$ chỉ gồm một giá trị đơn lẻ được xác định $\boldsymbol{\theta}=\boldsymbol{\theta}_1$, kiểm định tỷ số hợp lý có lực kiểm định cao nhất trong số mọi kiểm định có cùng mức ý nghĩa $\alpha=\mathrm{P}[\text{kiểm định bác bỏ } H_0\mid\boldsymbol{\theta}=\boldsymbol{\theta}_0]$. Trong nhiều trường hợp một tham số ($\boldsymbol{\theta}$ chỉ có một thành phần), kiểm định tỷ số hợp lý là kiểm định mạnh nhất đồng đều (uniformly most powerful) đối với mọi đối thuyết nằm về một phía của $H_0: \theta = \theta_0$. Trong các trường hợp khác, tính chất này nghiệm đúng xấp xỉ đối với các mẫu lớn.
+
+Chúng tôi sẽ không đưa ra các chi tiết kỹ thuật cần thiết để thảo luận về các tính chất tối ưu của kiểm định tỷ số hợp lý trong bối cảnh nhiều chiều. Ý nghĩa tổng quát của các tính chất này đối với mục tiêu của chúng ta là chúng có lực kiểm định (trung bình) cao nhất có thể khi cỡ mẫu lớn.
