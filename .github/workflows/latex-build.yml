@@ -9,6 +9,8 @@ on:
       - "figures/**"
       - ".github/workflows/latex-build.yml"
   push:
+    branches:
+      - main
     paths:
       - "**/*.tex"
       - "figures/**"

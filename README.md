@@ -59,7 +59,7 @@ Nếu sau này có mục lục, citation hoặc cross-reference, hãy chạy l�
 
 Repo có GitHub Actions tại `.github/workflows/latex-build.yml`.
 
-CI tự chạy khi có Pull Request vào `main`, khi push các file `.tex`/`figures`, hoặc khi chạy thủ công bằng `workflow_dispatch`. Workflow sẽ:
+CI tự chạy khi có Pull Request vào `main`, khi push lên `main` các file `.tex`/`figures`, hoặc khi chạy thủ công bằng `workflow_dispatch`. Workflow sẽ:
 
 - Build `main.tex` bằng XeLaTeX thông qua `latexmk`.
 - Kiểm tra chắc chắn `main.pdf` được tạo.
