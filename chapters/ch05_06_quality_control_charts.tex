@@ -256,8 +256,8 @@ Biểu đồ dạng elip này được vẽ, cùng với các cặp dữ liệu,
 \end{minipage}%
 \hfill
 \begin{minipage}[c]{0.29\textwidth}
-\small
-\textbf{Hình 5.6} \ Elip kiểm soát chất lượng 99\% cho giờ làm thêm ra tòa theo yêu cầu pháp lý và giờ làm thêm sự kiện đặc biệt (\textit{legal appearances and extraordinary event overtime}).
+\small \raggedright
+\textbf{Hình 5.6} \ Elip kiểm soát chất lượng 99\% cho giờ làm thêm ra tòa theo yêu cầu pháp lý và giờ làm thêm sự kiện đặc biệt.
 \end{minipage}
 
 % --- HÌNH 5.7: BIỂU ĐỒ X-BAR CHO x2 ---
@@ -384,7 +384,7 @@ Bảng 5.9 trình bày giá trị của những biến này theo từng khoảng
 \footnotesize
 \begin{tabular}{|ccccc|}
 \hline
-\multicolumn{5}{|p{13.5cm}|}{\textbf{Bảng 5.9} \ Dữ liệu hàn} \\
+\multicolumn{5}{|p{13cm}|}{\textbf{Bảng 5.9} \ Dữ liệu hàn} \\
 \hline
 Trường hợp & Điện áp ($X_1$) & Dòng điện ($X_2$) & Tốc độ cấp dây ($X_3$) & Lưu lượng khí ($X_4$) \\
 \hline
@@ -486,17 +486,19 @@ T^2 = \frac{n}{n+1} (\mathbf{X} - \bar{\mathbf{X}})' S^{-1} (\mathbf{X} - \bar{\
 \]
 và theo Kết quả 4.8, $\sqrt{\frac{n}{n+1}}(\mathbf{X} - \bar{\mathbf{X}})$ có phân phối $N_p(\mathbf{0}, \boldsymbol{\Sigma})$. Bây giờ,
 \[
-\frac{n}{n+1} (\mathbf{X} - \bar{\mathbf{X}})' S^{-1} \frac{n}{n+1} (\mathbf{X} - \bar{\mathbf{X}})
+\sqrt{\frac{n}{n+1}} (\mathbf{X} - \bar{\mathbf{X}})' S^{-1} \sqrt{\frac{n}{n+1}} (\mathbf{X} - \bar{\mathbf{X}})
 \]
 biểu thức này kết hợp một vectơ ngẫu nhiên chuẩn đa biến $N_p(\mathbf{0}, \boldsymbol{\Sigma})$ với một ma trận ngẫu nhiên Wishart độc lập $W_{p,\,n-1}(\boldsymbol{\Sigma})$ theo dạng
 \[
 \left(\begin{array}{c}\text{vectơ ngẫu nhiên}\\ \text{chuẩn đa biến}\end{array}\right)'
-\left(\begin{array}{c}\text{ma trận ngẫu nhiên Wishart}\\ \text{bậc tự do}\end{array}\right)^{-1}
+\left(\frac{\text{ma trận ngẫu nhiên Wishart}}{\text{bậc tự do}}\right)^{-1}
 \left(\begin{array}{c}\text{vectơ ngẫu nhiên}\\ \text{chuẩn đa biến}\end{array}\right)
 \]
-và có phân phối $F$ được nhân với hệ số tỉ lệ theo (5-8) và phần thảo luận ở trang 213. Hằng số của ellipsoid suy ra từ (5-6).
+và có phân phối $F$ được nhân với hệ số tỉ lệ theo (5-8) và phần thảo luận ở trang 213. 
 
-Lưu ý rằng miền dự báo trong Kết quả 5.6 cho một giá trị quan sát trong tương lai $\mathbf{x}$ là một ellipsoid. Nó có tâm tại vectơ trung bình mẫu ban đầu $\bar{\mathbf{x}}$, và các trục của nó được xác định bởi các vectơ riêng của $S$. Vì
+Hằng số của ellipsoid suy ra từ (5-6).
+
+Lưu ý rằng miền dự báo trong Kết quả 5.6 cho một giá trị quan sát trong tương lai $\mathbf{x}$ là một ellipsoid. Nó có tâm tại vectơ trung bình mẫu ban đầu $\bar{\mathbf{x}}$, và các trục của nó được xác định bởi các vectơ riêng của $\mathbf{S}$. Vì
 \[
 P\left((\mathbf{X} - \bar{\mathbf{X}})' S^{-1} (\mathbf{X} - \bar{\mathbf{X}}) \le \frac{n^2-1}{n(n-p)} p F_{p, n-p}(\alpha)\right) = 1 - \alpha
 \]
@@ -504,7 +506,7 @@ nên trước khi có bất kỳ quan sát mới nào được thực hiện, x�
 
 Cần nhớ rằng các quan sát hiện có phải ổn định thì mới có thể dùng để thiết lập các miền kiểm soát cho các quan sát trong tương lai.
 
-Dựa trên Kết quả 5.6, ta thu được hai biểu đồ cho các quan sát trong tương lai.\\
+Dựa trên Kết quả 5.6, ta thu được hai biểu đồ cho các quan sát trong tương lai.
 
 \section*{Elip kiểm soát cho các quan sát trong tương lai}
 
@@ -522,7 +524,7 @@ Từ Ví dụ 5.9 và Hình 5.6, ta thấy cặp giá trị của giai đoạn 1
 Bất kỳ quan sát trong tương lai nào rơi vào trong elip đều được coi là ổn định, hay trong tầm kiểm soát. Một quan sát nằm ngoài elip là một quan sát có thể ngoài tầm kiểm soát, hay biến động do nguyên nhân đặc biệt.
 
 \vspace{0.3cm}
-\subsection*{Biểu đồ $T^2$ cho các quan sát trong tương lai}
+\section*{Biểu đồ $T^2$ cho các quan sát trong tương lai}
 
 Với mỗi quan sát mới $\mathbf{x}$, đồ thị
 \[
