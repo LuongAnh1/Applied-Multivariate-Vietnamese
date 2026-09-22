@@ -348,6 +348,188 @@ hoặc, đôi khi là $\chi_p^2(.01)$.
 Biểu đồ $T^2$ không có đường trung tâm. Lưu ý rằng thống kê $T^2$ giống hệt với đại lượng $d_j^2$ đã được sử dụng để kiểm định tính chuẩn trong Mục 4.6.
 % END: 239 - 243  Nguyễn Bá Đức Huy - 20237345
 
+
+% BEGIN: 244-248 Nguyễn Thị Thảo - 202419101
+\vspace{0.3cm}
+\noindent\textbf{Ví dụ 5.10 (Biểu đồ $T^2$ cho số giờ làm thêm)} Sử dụng dữ liệu của sở cảnh sát trong Ví dụ 5.8, ta xây dựng đồ thị $T^2$ dựa trên hai biến $X_1 = \text{số giờ tham gia tố tụng tại tòa án}$ và $X_2 = \text{số giờ xử lý sự kiện bất thường}$.
+
+Biểu đồ $T^2$ trong Hình 5.8 cho thấy cặp giờ (tham gia tố tụng tại tòa án, xử lý sự kiện bất thường) của giai đoạn 11 nằm ngoài tầm kiểm soát. Việc khảo sát sâu hơn, tương tự như trong Ví dụ 5.9, xác nhận rằng nguyên nhân là do số giờ làm thêm cho sự kiện bất thường trong giai đoạn đó có giá trị lớn.
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/PTSL_Figure 5.8.pdf}
+    \vspace{0.1cm}
+
+    \noindent\small \textbf{Hình 5.8} Biểu đồ $T^2$ cho số giờ  tham gia tố tụng tại tòa và số giờ xử lý sự kiện bất thường, $\alpha = .01$.
+\end{center}
+\vspace{0.3cm}
+
+Khi biểu đồ đa biến $T^2$ báo hiệu rằng đơn vị thứ $j$ nằm ngoài tầm kiểm soát, cần xác định biến nào là nguyên nhân. Một miền hiệu chỉnh dựa trên các khoảng Bonferroni thường được chọn cho mục đích này. Biến thứ $k$ nằm ngoài tầm kiểm soát nếu $x_{jk}$ không thuộc khoảng
+\[
+\left( \bar{x}_k - t_{n-1}\left(\frac{.005}{p}\right)\sqrt{S_{kk}}, \quad \bar{x}_k + t_{n-1}\left(\frac{.005}{p}\right)\sqrt{S_{kk}} \right)
+\]
+trong đó $p$ là tổng số biến được đo lường.
+
+\vspace{0.3cm}
+\noindent\textbf{Ví dụ 5.11 (Kiểm soát các robot hàn - biểu đồ $T^2$ là chưa đủ)} Quá trình lắp ráp trục truyền động của ô tô đòi hỏi hàn vòng các chạc đầu trục vào một ống trục. Các đầu vào của máy hàn tự động phải được kiểm soát trong những giới hạn vận hành nhất định, tại đó máy tạo ra các mối hàn có chất lượng tốt. Để kiểm soát quy trình, một kỹ sư quy trình đã đo bốn biến quan trọng:
+\begin{itemize}
+    \item $X_1 = \text{Điện áp (vôn)}$
+    \item $X_2 = \text{Dòng điện (ampe)}$
+    \item $X_3 = \text{Tốc độ cấp dây (in/min)}$
+    \item $X_4 = \text{Lưu lượng khí (trơ) (cfm)}$
+\end{itemize}
+Bảng 5.9 trình bày giá trị của những biến này theo từng khoảng 5 giây.
+
+% --- BẢNG 5.9 ---
+\begin{center}
+\footnotesize
+\begin{tabular}{|ccccc|}
+\hline
+\multicolumn{5}{|p{13.5cm}|}{\textbf{Bảng 5.9} \ Dữ liệu hàn} \\
+\hline
+Trường hợp & Điện áp ($X_1$) & Dòng điện ($X_2$) & Tốc độ cấp dây ($X_3$) & Lưu lượng khí ($X_4$) \\
+\hline
+1 & 23.0 & 276 & 289.6 & 51.0 \\
+2 & 22.0 & 281 & 289.0 & 51.7 \\
+3 & 22.8 & 270 & 288.2 & 51.3 \\
+4 & 22.1 & 278 & 288.0 & 52.3 \\
+5 & 22.5 & 275 & 288.0 & 53.0 \\
+6 & 22.2 & 273 & 288.0 & 51.0 \\
+7 & 22.0 & 275 & 290.0 & 53.0 \\
+8 & 22.1 & 268 & 289.0 & 54.0 \\
+9 & 22.5 & 277 & 289.0 & 52.0 \\
+10 & 22.5 & 278 & 289.0 & 52.0 \\
+11 & 22.3 & 269 & 287.0 & 54.0 \\
+12 & 21.8 & 274 & 287.6 & 52.0 \\
+13 & 22.3 & 270 & 288.4 & 51.0 \\
+14 & 22.2 & 273 & 290.2 & 51.3 \\
+15 & 22.1 & 274 & 286.0 & 51.0 \\
+16 & 22.1 & 277 & 287.0 & 52.0 \\
+17 & 21.8 & 277 & 287.0 & 51.0 \\
+18 & 22.6 & 276 & 290.0 & 51.0 \\
+19 & 22.3 & 278 & 287.0 & 51.7 \\
+20 & 23.0 & 266 & 289.1 & 51.0 \\
+21 & 22.9 & 271 & 288.3 & 51.0 \\
+22 & 21.3 & 274 & 289.0 & 52.0 \\
+23 & 21.8 & 280 & 290.0 & 52.0 \\
+24 & 22.0 & 268 & 288.3 & 51.0 \\
+25 & 22.8 & 269 & 288.7 & 52.0 \\
+26 & 22.0 & 264 & 290.0 & 51.0 \\
+27 & 22.5 & 273 & 288.6 & 52.0 \\
+28 & 22.2 & 269 & 288.2 & 52.0 \\
+29 & 22.6 & 273 & 286.0 & 52.0 \\
+30 & 21.7 & 283 & 290.0 & 52.7 \\
+31 & 21.9 & 273 & 288.7 & 55.3 \\
+32 & 22.3 & 264 & 287.0 & 52.0 \\
+33 & 22.2 & 263 & 288.0 & 52.0 \\
+34 & 22.3 & 266 & 288.6 & 51.7 \\
+35 & 22.0 & 263 & 288.0 & 51.7 \\
+36 & 22.8 & 272 & 289.0 & 52.3 \\
+37 & 22.0 & 277 & 287.7 & 53.3 \\
+38 & 22.7 & 272 & 289.0 & 52.0 \\
+39 & 22.6 & 274 & 287.2 & 52.7 \\
+40 & 22.7 & 270 & 290.0 & 51.0 \\
+\hline
+\multicolumn{5}{|l|}{\small \textit{Nguồn:} Dữ liệu do Mark Abbotoy cung cấp.} \\
+\hline
+\end{tabular}
+\end{center}
+
+Giả định chuẩn là hợp lý đối với hầu hết các biến, nhưng ta lấy logarit cơ số $e$ của lưu lượng khí. Thêm vào đó, các quan sát liên tiếp của mỗi biến không tự tương quan đáng kể.
+
+Biểu đồ $T^2$ cho bốn biến hàn được cho trong Hình 5.9. Đường chấm là giới hạn 95\% và đường liền là giới hạn 99\%. Với giới hạn 99\%, không có điểm nào nằm ngoài tầm kiểm soát, nhưng trường hợp 31 nằm ngoài giới hạn 95\%.
+
+Các elip kiểm soát chất lượng (biểu đồ dạng elip) cho thấy điều gì đối với hai biến? Hầu hết các biến đều nằm trong tầm kiểm soát. Tuy nhiên, elip chất lượng 99\% cho lưu lượng khí và điện áp, được trình bày trong Hình 5.10, cho thấy trường hợp 31 nằm ngoài tầm kiểm soát do lưu lượng khí lớn bất thường. Biểu đồ $\bar{X}$ đơn biến của $\ln(\text{lưu lượng khí})$ trong Hình 5.11 cho thấy điểm này nằm ngoài các giới hạn 3 Sigma. Có vẻ lưu lượng khí đã được đặt lại về giá trị mục tiêu ở trường hợp 32. Tất cả các biểu đồ $\bar{X}$ đơn biến còn lại đều có mọi điểm nằm trong giới hạn kiểm soát 3 Sigma.
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/PTSL_Figure 5.9.pdf}
+    \vspace{0.1cm}
+
+    \noindent\small \textbf{Hình 5.9} Biểu đồ $T^2$ cho dữ liệu hàn với giới hạn 95\% và 99\%.
+\end{center}
+\vspace{0.3cm}
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/PTSL_Figure 5.10.pdf}
+    \vspace{0.1cm}
+
+    \noindent\small \textbf{Hình 5.10} Elip kiểm soát chất lượng 99\% cho $\ln(\text{lưu lượng khí})$ và điện áp.
+\end{center}
+\vspace{0.3cm}
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/PTSL_Figure 5.11.png}
+    \vspace{0.1cm}
+
+    \noindent\small \textbf{Hình 5.11} Biểu đồ $\bar{X}$ đơn biến cho $\ln(\text{lưu lượng khí})$.
+\end{center}
+\vspace{0.3cm}
+
+Trong ví dụ này, sự dịch chuyển của một biến đơn lẻ đã bị che khuất bởi giới hạn 99\%, hoặc gần như bị che khuất (bởi giới hạn 95\%), do được gộp vào một giá trị $T^2$ duy nhất.
+
+\section*{Các miền kiểm soát cho các quan sát riêng lẻ trong tương lai}
+
+Mục tiêu bây giờ là dùng dữ liệu $\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n$ được thu thập khi quy trình ổn định, để thiết lập một miền kiểm soát cho một quan sát $\mathbf{x}$ trong tương lai hoặc cho nhiều quan sát trong tương lai. Miền mà một quan sát tương lai được kỳ vọng sẽ nằm trong đó được gọi là miền dự báo, hay miền tiên đoán. Nếu quy trình ổn định, ta coi các quan sát là độc lập và có phân phối $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$. Vì các miền này có tầm quan trọng tổng quát hơn việc chỉ dùng để giám sát chất lượng, ta trình bày lý thuyết phân phối cơ bản dưới dạng Kết quả 5.6.
+
+\vspace{0.2cm}
+\noindent\textbf{Kết quả 5.6.} \textit{Giả sử $\mathbf{X}_1, \mathbf{X}_2, \ldots, \mathbf{X}_n$ độc lập và có phân phối $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, và giả sử $\mathbf{X}$ là một quan sát tương lai từ cùng phân phối đó. Khi đó}
+\[
+T^2 = \frac{n}{n+1} (\mathbf{X} - \bar{\mathbf{X}})' S^{-1} (\mathbf{X} - \bar{\mathbf{X}}) \quad \text{có phân phối} \quad \frac{(n-1)p}{n-p} F_{p, n-p}
+\]
+\textit{và ellipsoid dự báo $p$ chiều mức $100(1-\alpha)\%$ là tập hợp tất cả các $\mathbf{x}$ thỏa mãn}
+\[
+(\mathbf{x} - \bar{\mathbf{x}})' S^{-1} (\mathbf{x} - \bar{\mathbf{x}}) \le \frac{n^2-1}{n(n-p)} p F_{p, n-p}(\alpha)
+\]
+
+\noindent\textit{Chứng minh.} Trước hết ta lưu ý rằng $\mathbf{X} - \bar{\mathbf{X}}$ có kỳ vọng $\mathbf{0}$. Vì $\mathbf{X}$ là một quan sát tương lai, $\mathbf{X}$ và $\bar{\mathbf{X}}$ độc lập, nên
+\[
+\text{Cov}(\mathbf{X} - \bar{\mathbf{X}}) = \text{Cov}(\mathbf{X}) + \text{Cov}(\bar{\mathbf{X}}) = \boldsymbol{\Sigma} + \frac{1}{n}\boldsymbol{\Sigma} = \frac{n+1}{n}\boldsymbol{\Sigma}
+\]
+và theo Kết quả 4.8, $\sqrt{\frac{n}{n+1}}(\mathbf{X} - \bar{\mathbf{X}})$ có phân phối $N_p(\mathbf{0}, \boldsymbol{\Sigma})$. Bây giờ,
+\[
+\frac{n}{n+1} (\mathbf{X} - \bar{\mathbf{X}})' S^{-1} \frac{n}{n+1} (\mathbf{X} - \bar{\mathbf{X}})
+\]
+biểu thức này kết hợp một vectơ ngẫu nhiên chuẩn đa biến $N_p(\mathbf{0}, \boldsymbol{\Sigma})$ với một ma trận ngẫu nhiên Wishart độc lập $W_{p,\,n-1}(\boldsymbol{\Sigma})$ theo dạng
+\[
+\left(\begin{array}{c}\text{vectơ ngẫu nhiên}\\ \text{chuẩn đa biến}\end{array}\right)'
+\left(\begin{array}{c}\text{ma trận ngẫu nhiên Wishart}\\ \text{bậc tự do}\end{array}\right)^{-1}
+\left(\begin{array}{c}\text{vectơ ngẫu nhiên}\\ \text{chuẩn đa biến}\end{array}\right)
+\]
+và có phân phối $F$ được nhân với hệ số tỉ lệ theo (5-8) và phần thảo luận ở trang 213. Hằng số của ellipsoid suy ra từ (5-6).
+
+Lưu ý rằng miền dự báo trong Kết quả 5.6 cho một giá trị quan sát trong tương lai $\mathbf{x}$ là một ellipsoid. Nó có tâm tại vectơ trung bình mẫu ban đầu $\bar{\mathbf{x}}$, và các trục của nó được xác định bởi các vectơ riêng của $S$. Vì
+\[
+P\left((\mathbf{X} - \bar{\mathbf{X}})' S^{-1} (\mathbf{X} - \bar{\mathbf{X}}) \le \frac{n^2-1}{n(n-p)} p F_{p, n-p}(\alpha)\right) = 1 - \alpha
+\]
+nên trước khi có bất kỳ quan sát mới nào được thực hiện, xác suất để $\mathbf{X}$ rơi vào elip dự báo là $1-\alpha$.
+
+Cần nhớ rằng các quan sát hiện có phải ổn định thì mới có thể dùng để thiết lập các miền kiểm soát cho các quan sát trong tương lai.
+
+Dựa trên Kết quả 5.6, ta thu được hai biểu đồ cho các quan sát trong tương lai.\\
+
+\section*{Elip kiểm soát cho các quan sát trong tương lai}
+
+Với $p=2$, elip dự báo mức 95\% trong Kết quả 5.6 trở thành
+\[
+(\mathbf{x} - \bar{\mathbf{x}})' S^{-1} (\mathbf{x} - \bar{\mathbf{x}}) \le \frac{(n^2-1)2}{n(n-2)} F_{2, n-2}(.05) \quad (5-34)
+\]
+Bất kỳ quan sát trong tương lai nào $\mathbf{x}$ nằm ngoài elip kiểm soát đều được coi là nằm ngoài tầm kiểm soát.
+
+\vspace{0.3cm}
+\noindent\textbf{Ví dụ 5.12 (Elip kiểm soát cho số giờ làm thêm trong tương lai)} Trong Ví dụ 5.9, ta đã kiểm tra tính ổn định của số giờ làm thêm cho việc tham gia tố tụng tại tòa án và cho sự kiện bất thường. Ta dùng các dữ liệu này để xác định một miền kiểm soát cho các cặp giá trị trong tương lai.
+
+Từ Ví dụ 5.9 và Hình 5.6, ta thấy cặp giá trị của giai đoạn 11 nằm ngoài tầm kiểm soát. Ta loại điểm này và xác định lại elip 99\% mới. Khi đó mọi điểm đều nằm trong tầm kiểm soát, nên chúng có thể dùng để xác định miền dự báo 95\% vừa nêu cho $p=2$. Elip kiểm soát này được biểu diễn trong Hình 5.12 cùng với 15 quan sát ổn định ban đầu.
+
+Bất kỳ quan sát trong tương lai nào rơi vào trong elip đều được coi là ổn định, hay trong tầm kiểm soát. Một quan sát nằm ngoài elip là một quan sát có thể ngoài tầm kiểm soát, hay biến động do nguyên nhân đặc biệt.
+
+\vspace{0.3cm}
+\subsection*{Biểu đồ $T^2$ cho các quan sát trong tương lai}
+
+Với mỗi quan sát mới $\mathbf{x}$, đồ thị
+\[
+T^2 = \frac{n}{n+1} (\mathbf{x} - \bar{\mathbf{x}})' S^{-1} (\mathbf{x} - \bar{\mathbf{x}})
+\]
+% END: 244-248 Nguyễn Thị Thảo - 202419101
+
 % BEGIN: 249 - 251  Trần Long Vũ - 20237409
 % ===== Dán từ dòng này vào giữa BEGIN và END trong ch05_06_quality_control_charts.tex =====
 % Lưu ý: nên thêm vào preamble.tex dòng sau để chú thích hình hiện "Hình" thay vì "Figure":
