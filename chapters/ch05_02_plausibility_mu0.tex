@@ -181,8 +181,24 @@ Phát biểu (5-6) dẫn ngay đến kiểm định giả thuyết
 
 Sẽ hữu ích nếu ta bàn ngắn gọn về bản chất của phân phối \(T^2\) và sự tương ứng
 của nó với thống kê kiểm định một biến. Trong Mục 4.4, ta đã mô tả cách phân phối
-Wishart tổng quát hóa phân phối chi-bình phương (chi-square distribution). Ta có
-thể viết
+Wishart tổng quát hóa phân phối chi-bình phương (chi-square distribution).
+
+\begin{quote}
+\small
+\textbf{Giải thích thêm (không thuộc nguyên văn sách).} Trong trường hợp một biến,
+đại lượng \((n-1)s^2=\sum_{j=1}^{n}(X_j-\bar{X})^2\) có phân phối như
+\(\sigma^2\chi^2_{n-1}\). Khi chuyển sang trường hợp đa biến, phương sai mẫu
+\(s^2\) được thay bằng ma trận hiệp phương sai mẫu \(\mathbf{S}\), và kết quả
+tương ứng là \((n-1)\mathbf{S}\) có phân phối Wishart. Vì vậy, có thể xem
+Wishart là phiên bản ma trận, hay phiên bản đa biến, của phân phối chi-bình
+phương. Nếu \(p=1\), tổng \(\sum \mathbf{Z}_j\mathbf{Z}_j'\) trong định nghĩa
+Wishart trở thành \(\sum Z_j^2\), tức dạng chi-bình phương quen thuộc. Đây là lý
+do ở phần dưới, thống kê \(T^2\) được viết như bản đa biến của \(t^2\): thay
+biến chi-bình phương bằng ma trận Wishart và thay phương sai mẫu vô hướng
+\(s^2\) bằng ma trận hiệp phương sai mẫu \(\mathbf{S}\).
+\end{quote}
+
+Ta có thể viết
 \[
   T^2
   = \bigl(\sqrt{n}(\bar{\mathbf{X}}-\boldsymbol{\mu}_0)\bigr)'
