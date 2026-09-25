@@ -185,8 +185,23 @@ Wishart tổng quát hóa phân phối khi bình phương (ký hiệu \(\chi^2\)
 
 \begin{quote}
 \small
-\textbf{Giải thích thêm (không thuộc nguyên văn sách).} Trong trường hợp một biến,
-đại lượng \((n-1)s^2=\sum_{j=1}^{n}(X_j-\bar{X})^2\) có phân phối như
+\textbf{Giải thích thêm (không thuộc nguyên văn sách).} Phân phối Wishart là
+phân phối của một ma trận ngẫu nhiên được tạo từ tổng các tích ngoài
+(\textit{outer product}) của các vectơ chuẩn đa biến độc lập. Cụ thể, nếu
+\(\mathbf{Z}_1,\ldots,\mathbf{Z}_m\) độc lập và
+\(\mathbf{Z}_j\sim N_p(\mathbf{0},\boldsymbol{\Sigma})\), thì
+\[
+  \mathbf{W}=\sum_{j=1}^{m}\mathbf{Z}_j\mathbf{Z}_j'
+\]
+có phân phối Wishart, ký hiệu
+\(\mathbf{W}\sim W_p(m,\boldsymbol{\Sigma})\). Ở đây, \(p\) là số biến,
+\(m\) là số bậc tự do, và \(\boldsymbol{\Sigma}\) là ma trận hiệp phương sai
+của tổng thể. Trong mẫu chuẩn đa biến, \((n-1)\mathbf{S}\) có phân phối
+Wishart \(W_p(n-1,\boldsymbol{\Sigma})\), nên Wishart mô tả sự dao động
+ngẫu nhiên của ma trận hiệp phương sai mẫu.
+
+Trong trường hợp một biến, đại lượng
+\((n-1)s^2=\sum_{j=1}^{n}(X_j-\bar{X})^2\) có phân phối như
 \(\sigma^2\chi^2_{n-1}\). Khi chuyển sang trường hợp đa biến, phương sai mẫu
 \(s^2\) được thay bằng ma trận hiệp phương sai mẫu \(\mathbf{S}\), và kết quả
 tương ứng là \((n-1)\mathbf{S}\) có phân phối Wishart. Vì vậy, có thể xem
