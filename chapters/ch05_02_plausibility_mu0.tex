@@ -19,7 +19,7 @@ vấn đề này có thể được phát biểu như một kiểm định giữ
 \]
 Ở đây, \(H_0\) là giả thuyết không (null hypothesis) hay còn gọi là giả thuyết đảo, còn \(H_1\) là giả thuyết đối
 (alternative hypothesis) hai phía. Nếu \(X_1, X_2, \ldots, X_n\) là một mẫu ngẫu
-nhiên lấy từ một tổng thể chuẩn, thống kê kiểm định thích hợp là
+nhiên lấy từ một tổng thể chuẩn (tức tuân theo phân phối chuẩn), thống kê kiểm định thích hợp là
 \[
   t = \frac{\bar{X} - \mu_0}{s/\sqrt{n}},
   \qquad
@@ -51,14 +51,14 @@ chấp nhận \(H_1\), ở mức ý nghĩa \(\alpha\), nếu
 trong đó \(t_{n-1}(\alpha/2)\) là phân vị trên mức \(100(\alpha/2)\%\) của phân phối
 \(t\) với \(n-1\) bậc tự do.
 
-Nếu \(H_0\) không bị bác bỏ, ta kết luận rằng \(\mu_0\) là một giá trị hợp lý cho
+Nếu \(H_0\) không bị bác bỏ (Không nằm trong miền bác bỏ => chưa có cơ sở để bác bỏ \(H_0\)), ta kết luận rằng \(\mu_0\) là một giá trị hợp lý cho
 trung bình của tổng thể chuẩn. Liệu còn những giá trị nào khác của \(\mu\) cũng
 phù hợp với dữ liệu hay không? Câu trả lời là có. Thực tế, luôn tồn tại một tập
 các giá trị hợp lý cho trung bình của một tổng thể chuẩn. Từ mối liên hệ quen thuộc
 giữa miền chấp nhận (acceptance region) của kiểm định
 \(H_0: \mu = \mu_0\) so với \(H_1: \mu \ne \mu_0\) và khoảng tin cậy cho \(\mu\), ta có
 \[
-  \{\text{không bác bỏ } H_0: \mu = \mu_0 \text{ ở mức } \alpha\}
+  \{\text{không bác bỏ } H_0: \mu = \mu_0 \text{ ở mức ý nghĩa } \alpha\}
   \quad\text{hoặc}\quad
   \left|\frac{\bar{x}-\mu_0}{s/\sqrt{n}}\right|
   \le t_{n-1}(\alpha/2)
@@ -75,8 +75,8 @@ hay
   \le \mu_0 \le
   \bar{x} + t_{n-1}(\alpha/2)\frac{s}{\sqrt{n}}.
 \end{equation}
-Khoảng tin cậy này gồm tất cả các giá trị \(\mu_0\) không bị bác bỏ bởi kiểm định
-mức \(\alpha\) của \(H_0: \mu = \mu_0\).
+Khoảng tin cậy này gồm tất cả các giá trị \(\mu_0\) không bị bác bỏ bởi kiểm định có
+mức ý nghĩa \(\alpha\) của \(H_0: \mu = \mu_0\).
 
 Trước khi mẫu được chọn, khoảng tin cậy \(100(1-\alpha)\%\) trong (5-3) là một
 khoảng ngẫu nhiên, vì hai đầu mút của nó phụ thuộc vào các biến ngẫu nhiên
@@ -116,7 +116,16 @@ trong đó
 Thống kê \(T^2\) được gọi là \(T^2\) của Hotelling (Hotelling's \(T^2\)), đặt theo
 tên Harold Hotelling, một người tiên phong trong phân tích đa biến, người đầu tiên
 thu được phân phối lấy mẫu của thống kê này. Ở đây \((1/n)\mathbf{S}\) là ma trận
-hiệp phương sai ước lượng của \(\bar{\mathbf{X}}\). (Xem Kết quả 3.1.)
+hiệp phương sai ước lượng của \(\bar{\mathbf{X}}\). (Xem Kết quả 3.1.)\footnote{Trong
+sách gốc, Kết quả 3.1 nằm ở Chương 3, mục 3.6, phần \textit{The Mean Vector and
+Covariance Matrix for Linear Combinations of Random Variables}, quanh công thức
+(3-45). Kết quả này nói rằng nếu \(\mathbf{Z}=\mathbf{C}\mathbf{X}\) thì
+\(E(\mathbf{Z})=\mathbf{C}\boldsymbol{\mu}_{\mathbf{X}}\) và
+\(\operatorname{Cov}(\mathbf{Z})=\mathbf{C}\boldsymbol{\Sigma}_{\mathbf{X}}\mathbf{C}'\).
+Áp dụng cho \(\bar{\mathbf{X}}\) ta có
+\(\operatorname{Cov}(\bar{\mathbf{X}})=\boldsymbol{\Sigma}/n\), nên
+\((1/n)\mathbf{S}\) là ma trận hiệp phương sai ước lượng của
+\(\bar{\mathbf{X}}\).}
 
 Nếu khoảng cách thống kê quan sát được \(T^2\) quá lớn, nghĩa là nếu
 \(\bar{\mathbf{x}}\) ở quá xa \(\boldsymbol{\mu}_0\), thì giả thuyết
