@@ -1,86 +1,66 @@
 # Applied Multivariate Vietnamese
 
-Repo này dùng để soạn thảo tài liệu LaTeX cho Chapter 5: Inferences About a Mean Vector.
+Repo này dùng để quản lý bản dịch Chapter 5 và source LaTeX cho slide thuyết trình.
 
 ## Cấu trúc thư mục
 
 ```text
 .
-├── main.tex
-├── preamble.tex
-├── chapters/
-│   ├── ch05_01_introduction.tex
-│   ├── ch05_02_plausibility_mu0.tex
-│   ├── ch05_03_hotelling_likelihood.tex
-│   ├── ch05_04_confidence_regions.tex
-│   ├── ch05_05_large_sample_inferences.tex
-│   └── ch05_06_quality_control_charts.tex
-└── figures/
+├── translation/          # Bản dịch Chapter 5 dạng LaTeX
+│   ├── main.tex
+│   ├── preamble.tex
+│   ├── chapters/
+│   └── figures/
+├── slides/               # Slide thuyết trình dạng Beamer/LaTeX
+│   ├── main.tex
+│   ├── beamerthemeHUST.sty
+│   ├── images/           # Ảnh nền/logo blue của HUST theme
+│   ├── figures/          # Hình minh họa riêng của nhóm
+│   └── sections/         # Chia slide theo mục gốc của Chapter 5 và bài tập
+├── .github/workflows/    # CI kiểm tra build LaTeX
+└── README.md
 ```
 
 ## Sửa ở đâu
 
-- `main.tex`: file chính để build PDF. File này quyết định thứ tự chương, mục và các file được nạp vào tài liệu.
-- `preamble.tex`: cấu hình chung của tài liệu, gồm font, kích thước trang, header/footer, định dạng tiêu đề, bảng, hình và lệnh toán.
-- `chapters/*.tex`: nội dung từng mục. Khi sửa nội dung, ưu tiên sửa trong file tương ứng với mục đang làm.
-- `figures/`: lưu hình ảnh bên ngoài, ví dụ `.png`, `.jpg`, `.pdf` hoặc `.eps` nếu tài liệu cần chèn hình.
+- Sửa nội dung bản dịch trong `translation/chapters/*.tex`.
+- Sửa cấu hình bản dịch trong `translation/preamble.tex`.
+- Sửa nội dung slide trong `slides/sections/*.tex`.
+- Sửa cấu hình/tựa đề/thứ tự slide trong `slides/main.tex`.
+- Thêm hình cho bản dịch vào `translation/figures/`.
+- Thêm hình riêng cho slide vào `slides/figures/`.
 
-## Mapping nội dung Chapter 5
-
-- `chapters/ch05_01_introduction.tex`: mục 5.1 Introduction.
-- `chapters/ch05_02_plausibility_mu0.tex`: mục 5.2 The Plausibility of mu0 as a Value for a Normal Population Mean.
-- `chapters/ch05_03_hotelling_likelihood.tex`: mục 5.3 Hotelling's T2 and Likelihood Ratio Tests.
-- `chapters/ch05_04_confidence_regions.tex`: mục 5.4 Confidence Regions and Simultaneous Comparisons of Component Means.
-- `chapters/ch05_05_large_sample_inferences.tex`: mục 5.5 Large Sample Inferences about a Population Mean Vector.
-- `chapters/ch05_06_quality_control_charts.tex`: mục 5.6 Multivariate Quality Control Charts.
-
-## Cách build PDF
+## Build bản dịch
 
 Project dùng `fontspec`, vì vậy phải build bằng XeLaTeX hoặc LuaLaTeX. Không dùng `pdflatex`.
 
-### Build bằng VS Code
-
-1. Cài MiKTeX hoặc TeX Live.
-2. Cài extension VS Code `LaTeX Workshop`.
-3. Mở thư mục repo trong VS Code.
-4. Mở `main.tex`.
-5. Build bằng `Ctrl + Alt + B`.
-6. Xem PDF bằng `Ctrl + Alt + V`.
-
-### Build bằng terminal
-
 ```powershell
+cd translation
 xelatex -interaction=nonstopmode -file-line-error main.tex
 ```
 
-Nếu sau này có mục lục, citation hoặc cross-reference, hãy chạy lệnh build từ 2 lần trở lên để LaTeX cập nhật số trang và tham chiếu.
+Nếu có mục lục, citation hoặc cross-reference, chạy lệnh build từ 2 lần trở lên để LaTeX cập nhật số trang và tham chiếu.
+
+## Build slide
+
+```powershell
+cd slides
+xelatex -interaction=nonstopmode -file-line-error main.tex
+```
 
 ## CI/CD kiểm tra biên dịch
 
-Repo có GitHub Actions tại `.github/workflows/latex-build.yml`.
+GitHub Actions tại `.github/workflows/latex-build.yml` sẽ build cả hai project:
 
-CI tự chạy khi có Pull Request vào `main`, khi push lên `main` các file `.tex`/`figures`, hoặc khi chạy thủ công bằng `workflow_dispatch`. Workflow sẽ:
+- `translation/main.tex` cho bản dịch.
+- `slides/main.tex` cho slide.
 
-- Build `main.tex` bằng XeLaTeX thông qua `latexmk`.
-- Kiểm tra chắc chắn `main.pdf` được tạo.
-- Quét `main.log` và fail nếu có lỗi LaTeX nghiêm trọng, lỗi công thức, undefined reference hoặc `Overfull \hbox`.
-- Upload file PDF đã biên dịch thành artifact `main-pdf` để tải về kiểm tra.
-
-Nếu CI fail, hãy mở log của job `Compile main.tex` trên GitHub Actions để xem dòng lỗi cụ thể.
+Workflow chạy khi có Pull Request vào `main`, khi push lên `main` các file LaTeX/hình ảnh, hoặc khi chạy thủ công bằng `workflow_dispatch`.
 
 ## Quy trình làm việc với Git
 
 - Không commit trực tiếp vào `main`.
-- Mỗi thay đổi nên tạo một nhánh riêng, ví dụ `feature/ch05-02-content`.
+- Mỗi thay đổi nên tạo một nhánh riêng, ví dụ `feature/ch05-02-content` hoặc `feature/slides-outline`.
 - Sau khi sửa xong, push nhánh lên GitHub và tạo Pull Request vào `main`.
 - Chủ repo review Pull Request trước khi merge.
 - Không commit các file build tự sinh như `.aux`, `.log`, `.synctex.gz`, `.pdf`; các file này đã được cấu hình trong `.gitignore`.
-
-Ví dụ workflow:
-
-```powershell
-git checkout -b feature/ch05-02-content
-git add chapters/ch05_02_plausibility_mu0.tex
-git commit -m "Add section 5.2 draft"
-git push -u origin feature/ch05-02-content
-```

@@ -1,0 +1,99 @@
+% !TeX program = xelatex
+% !TeX root = main.tex
+
+\documentclass[t,aspectratio=169,11pt]{beamer}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\IfFontExistsTF{Times New Roman}{
+  \setmainfont{Times New Roman}
+  \setsansfont{Times New Roman}
+}{
+  \setmainfont{TeX Gyre Termes}
+  \setsansfont{TeX Gyre Termes}
+}
+\usefonttheme{serif}
+
+\usepackage{amsmath,amssymb,mathtools,booktabs}
+\usepackage{graphicx}
+\usepackage{ragged2e}
+
+% Cau hinh le cho HUST theme.
+\def\slideContentLeftMargin{0.85cm}
+\def\slideContentRightMargin{0.95cm}
+\def\hustHeaderHeight{1.05cm}
+\def\slideContentBotMargin{2.0cm}
+
+% Template dang dung bo nen blue cua HUST.
+\usepackage[blue,169]{beamerthemeHUST}
+\graphicspath{{figures/}{images/}}
+
+\renewcommand{\titlePageTitleX}{-0.45cm}
+\renewcommand{\titlePageTitleY}{-0.35cm}
+\renewcommand{\hustTitleAlign}{\alignLeft}
+\renewcommand{\hustSubtitleAlign}{\alignLeft}
+\renewcommand{\hustAuthorAlign}{\alignLeft}
+\renewcommand{\hustInstAlign}{\alignLeft}
+
+\newcommand{\trans}{^{\mathsf T}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\newcommand{\sectionframe}[1]{%
+  {%
+    \setbeamertemplate{background}{%
+      \includegraphics[width=\paperwidth,height=\paperheight]{\hustbg{section}}%
+    }%
+    \begin{frame}[plain,c]
+      \centering
+      \vfill
+      \begin{minipage}{0.86\paperwidth}
+        \centering
+        {\Huge\bfseries\color{white}\thesection.\hspace{0.25em}#1\par}
+      \end{minipage}
+      \vfill
+    \end{frame}%
+  }%
+  \useStyleHustFull%
+  \useThinBar%
+}
+
+\title[Suy luận về vectơ trung bình]{Suy luận về vectơ trung bình}
+\subtitle{Chapter 5 - Applied Multivariate Statistical Analysis}
+\author{Nhóm thuyết trình}
+\institute{Đại học Bách khoa Hà Nội}
+\date{\today}
+
+\begin{document}
+
+\hidePageNumber
+\hustintropage{Chapter 5}
+\husttitlepage
+
+\begin{frame}{Mục lục}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\resetPageCount
+\showPageNumber
+\useStyleHustFull
+\useThinBar
+
+\input{sections/section_5_1_introduction}
+\input{sections/section_5_2_plausibility_mu0}
+\input{sections/section_5_3_hotelling_likelihood}
+\input{sections/section_5_4_confidence_regions}
+\input{sections/section_5_5_large_sample}
+\input{sections/section_5_6_quality_control}
+\input{sections/section_exercises}
+
+\hustcontactpage{Trao đổi}{
+  \textbf{Chủ đề:} Suy luận về vectơ trung bình trong phân tích số liệu đa biến\\
+  \vspace{0.4cm}
+  \textit{Các phần slide được chia theo mục trong thư mục \texttt{sections/}.}
+}
+
+\hustthankyou
+
+\end{document}

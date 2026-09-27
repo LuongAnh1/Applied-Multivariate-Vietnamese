@@ -26,3 +26,10 @@ Thumbs.db
 
 # Generated PDF output
 *.pdf
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# Local source copy of the external HUST Beamer template.
+HUST_THEME_BEAMER___LATEX_BY_FRC/
