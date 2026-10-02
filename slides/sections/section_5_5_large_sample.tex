@@ -27,10 +27,10 @@
 
 % ---------------------------------------------------------------
 \begin{frame}{Nền tảng: xấp xỉ \texorpdfstring{\(\chi^2\)}{chi-square}}
-  Theo (4-28), khi \(n\) lớn thì
+  Theo (4-28), khi \(n-p\) lớn thì
   \[
     n(\bar{\mat{X}}-\vect{\mu})\trans\mat{S}\inv(\bar{\mat{X}}-\vect{\mu})
-    \;\approx\; \chi^2_p ,
+    \;\overset{\text{xấp xỉ}}{\sim}\; \chi^2_p ,
   \]
   do đó
   \begin{equation*}
@@ -103,7 +103,7 @@
 \begin{frame}{Thế nào là ``mẫu lớn''?}
   \begin{itemize}
     \item Không có câu trả lời dứt khoát. Với 1--2 biến, \(n\approx 30\)--\(50\) thường được coi là lớn.
-    \item Số biến \(p\) càng tăng thì cần \(n\) càng lớn. Điều kiện đúng là \textbf{\(n-p\) phải lớn}.
+    \item Số biến \(p\) càng tăng thì cần \(n\) càng lớn. Sách chỉ yêu cầu \textbf{\(n-p\) phải lớn}, nhưng thực tế phức tạp hơn.
   \end{itemize}
   \vspace{0.1cm}
   \begin{exampleblock}{Cùng \(n-p=48\) nhưng khác hẳn nhau (\(\alpha=0{,}05\))}
@@ -221,7 +221,7 @@
   \begin{center}
     \begin{tabular}{@{}llc@{}}
       \toprule
-      Loại khoảng & Hằng số & Ví dụ 5.7 (\(p=7,\ \alpha=0{,}05\)) \\
+      Loại khoảng & Hằng số & Dữ liệu Ví dụ 5.7 (\(p=7,\ \alpha=0{,}05\)) \\
       \midrule
       Từng biến (one-at-a-time) & \(z(\alpha/2)\) & \(z(0{,}025)=1{,}96\) \\
       Bonferroni (\(m=p\))      & \(z(\alpha/2p)\) & \(z(0{,}025/7)=2{,}69\) \\
@@ -244,9 +244,9 @@
     \setlength{\tabcolsep}{5pt}
     \begin{tabular}{@{}l cc cc cc@{}}
       \toprule
-      & \multicolumn{2}{c}{Từng biến \(z(.025)\)}
-      & \multicolumn{2}{c}{Bonferroni \(z(.025/7)\)}
-      & \multicolumn{2}{c}{Bóng ellipsoid \(\chi^2_7(.05)\)} \\
+      & \multicolumn{2}{c}{Từng biến \(z(0{,}025)\)}
+      & \multicolumn{2}{c}{Bonferroni \(z(0{,}025/7)\)}
+      & \multicolumn{2}{c}{Bóng ellipsoid \(\chi^2_7(0{,}05)\)} \\
       \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
       Biến & Dưới & Trên & Dưới & Trên & Dưới & Trên \\
       \midrule
@@ -276,9 +276,9 @@
       & \multicolumn{2}{c}{Từng biến}
       & \multicolumn{2}{c}{Bonferroni}
       & \multicolumn{2}{c}{Bóng ellipsoid} \\
-      & \multicolumn{2}{c}{\(t_{95}(.025)=1{,}99\)}
-      & \multicolumn{2}{c}{\(t_{95}(.025/7)=2{,}75\)}
-      & \multicolumn{2}{c}{\(F_{7,89}(.05)=2{,}11\)} \\
+      & \multicolumn{2}{c}{\(t_{95}(0{,}025)=1{,}99\)}
+      & \multicolumn{2}{c}{\(t_{95}(0{,}025/7)=2{,}75\)}
+      & \multicolumn{2}{c}{\(F_{7,89}(0{,}05)=2{,}11\)} \\
       \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
       Biến & Dưới & Trên & Dưới & Trên & Dưới & Trên \\
       \midrule
@@ -293,7 +293,8 @@
     \end{tabular}
   \end{center}
   \vspace{-0.2cm}
-  {\small Phân vị \(z,\chi^2\) là giới hạn của \(t,F\) khi \(n\to\infty\), nên khoảng dựa trên
+  {\small \(z(\alpha/2)\) và \(\chi^2_p(\alpha)\) là giới hạn khi \(n\to\infty\) của
+  \(t_{n-1}(\alpha/2)\) và \(\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)\), nên khoảng dựa trên
   \(t,F\) rộng hơn, tức \textbf{thận trọng hơn}. Với \(n=96\), chênh lệch so với Bảng 5.6 chỉ
   ở hàng phần mười hoặc phần trăm.\par}
 \end{frame}
@@ -306,12 +307,12 @@
       \toprule
       & Lý thuyết chuẩn & Mẫu lớn (\(n-p\) lớn) \\
       \midrule
-      Giả định & \(N_p(\vect{\mu},\vect{\Sigma})\) & Chỉ cần \(\vect{\Sigma}\) xác định dương \\
+      Giả định & \(N_p(\vect{\mu},\vect{\Sigma})\) & Phân phối bất kỳ, \(\vect{\Sigma}\) xác định dương \\
       Thống kê & \multicolumn{2}{c}{\(n(\bar{\vect{x}}-\vect{\mu}_0)\trans\mat{S}\inv(\bar{\vect{x}}-\vect{\mu}_0)\)} \\
       Giá trị tới hạn & \(\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)\) & \(\chi^2_p(\alpha)\) \\
       Khoảng từng biến & \(t_{n-1}(\alpha/2)\) & \(z(\alpha/2)\) \\
       Bonferroni & \(t_{n-1}(\alpha/2p)\) & \(z(\alpha/2p)\) \\
-      Mức tin cậy & Chính xác & Xấp xỉ \\
+      Mức ý nghĩa kiểm định & Đúng bằng \(\alpha\) & Xấp xỉ \(\alpha\) \\
       \bottomrule
     \end{tabular}
   \end{center}
