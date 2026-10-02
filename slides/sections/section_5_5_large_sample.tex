@@ -1,15 +1,323 @@
-% Pham vi goc: Muc 5.5 - Suy luan mau lon.
-% File nay chi chia khuc noi dung, chua gan ten thanh vien phu trach.
+% Pham vi goc: Muc 5.5 - Suy luan mau lon (trang 234-238).
+% Phu trach: Pham Minh Hieu (MSSV: 20237331).
 \section{Suy luận mẫu lớn về vectơ trung bình tổng thể}
 \sectionframe{Suy luận mẫu lớn về vectơ trung bình tổng thể}
 
-\begin{frame}{Suy luận mẫu lớn về vectơ trung bình tổng thể}
-  \begin{block}{Phạm vi nội dung}
-    Trình bày cách xấp xỉ mẫu lớn khi giả định chuẩn đa biến không còn là trọng tâm chính.
-  \end{block}
+% ---------------------------------------------------------------
+\begin{frame}{Vì sao cần suy luận mẫu lớn?}
   \begin{itemize}
-    \item Vai trò của định lý giới hạn trung tâm đa biến.
-    \item Dạng thống kê kiểm định và miền tin cậy khi \(n\) lớn.
-    \item Điểm cần nhấn mạnh khi so sánh với trường hợp chuẩn đa biến.
+    \item Các mục 5.2--5.4 đều giả định tổng thể \textbf{chuẩn đa biến} \(N_p(\vect{\mu},\vect{\Sigma})\).
+    \item Khi \(n\) lớn, có thể kiểm định và dựng miền tin cậy cho \(\vect{\mu}\)
+          \textbf{mà không cần giả định chuẩn}, kể cả khi phân phối gốc là rời rạc.
+    \item Kiểm định và các phát biểu tin cậy đồng thời đều \emph{xấp xỉ} đạt mức danh nghĩa.
+  \end{itemize}
+  \vspace{0.3cm}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \begin{block}{Ưu điểm}
+      Cỡ mẫu lớn bù lại cho những sai lệch nghiêm trọng khỏi tính chuẩn.
+    \end{block}
+    \column{0.48\textwidth}
+    \begin{alertblock}{Cái giá phải trả}
+      Chỉ dùng \((\bar{\vect{x}},\mat{S})\), đây là thống kê đủ khi tổng thể chuẩn.
+      Tổng thể càng xa chuẩn thì thông tin mẫu bị bỏ phí càng nhiều.
+    \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Nền tảng: xấp xỉ \texorpdfstring{\(\chi^2\)}{chi-square}}
+  Theo (4-28), khi \(n\) lớn thì
+  \[
+    n(\bar{\mat{X}}-\vect{\mu})\trans\mat{S}\inv(\bar{\mat{X}}-\vect{\mu})
+    \;\approx\; \chi^2_p ,
+  \]
+  do đó
+  \begin{equation*}
+    \boxed{\;P\Bigl[n(\bar{\mat{X}}-\vect{\mu})\trans\mat{S}\inv(\bar{\mat{X}}-\vect{\mu})
+    \le \chi^2_p(\alpha)\Bigr] \doteq 1-\alpha\;}
+    \tag{5-31}
+  \end{equation*}
+  \begin{itemize}
+    \item \(\chi^2_p(\alpha)\): phân vị trên mức \(100\alpha\%\) của phân phối \(\chi^2\) với \(p\) bậc tự do.
+    \item Mọi thủ tục mẫu lớn trong mục này đều suy ra trực tiếp từ (5-31).
+    \item So với lý thuyết chuẩn: \textbf{cùng thống kê}, chỉ thay giá trị tới hạn
+          \(\dfrac{(n-1)p}{n-p}F_{p,n-p}(\alpha)\) bằng \(\chi^2_p(\alpha)\).
+  \end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Kết quả 5.4: kiểm định mẫu lớn cho \texorpdfstring{\(\vect{\mu}\)}{mu}}
+  \begin{block}{Kết quả 5.4}
+    Cho \(\mat{X}_1,\dots,\mat{X}_n\) là mẫu ngẫu nhiên từ tổng thể có trung bình \(\vect{\mu}\)
+    và ma trận hiệp phương sai xác định dương \(\vect{\Sigma}\). Khi \(n-p\) lớn, bác bỏ
+    \(H_0\colon\vect{\mu}=\vect{\mu}_0\) để chấp nhận \(H_1\colon\vect{\mu}\neq\vect{\mu}_0\)
+    ở mức ý nghĩa xấp xỉ \(\alpha\) nếu
+    \[
+      n(\bar{\vect{x}}-\vect{\mu}_0)\trans\mat{S}\inv(\bar{\vect{x}}-\vect{\mu}_0) > \chi^2_p(\alpha).
+    \]
+  \end{block}
+  \vspace{0.1cm}
+  Hai giá trị tới hạn gần nhau khi \(n\) lớn so với \(p\) (ví dụ \(p=7,\ \alpha=0{,}05\)):
+  \begin{center}
+    \small
+    \begin{tabular}{@{}lcccccc@{}}
+      \toprule
+      \(n\) & 15 & 30 & 50 & 96 & 200 & 1000 \\
+      \midrule
+      \(\frac{(n-1)p}{n-p}F_{p,n-p}(0{,}05)\) & 42{,}88 & 21{,}56 & 17{,}80 & 15{,}80 & 14{,}85 & 14{,}22 \\
+      \(\chi^2_7(0{,}05)\) & \multicolumn{6}{c}{14{,}07} \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Kết quả 5.5: khoảng tin cậy đồng thời mẫu lớn}
+  \begin{block}{Kết quả 5.5}
+    Với cùng giả thiết như trên, nếu \(n-p\) lớn thì
+    \[
+      \vect{a}\trans\bar{\mat{X}} \pm \sqrt{\chi^2_p(\alpha)}\sqrt{\frac{\vect{a}\trans\mat{S}\vect{a}}{n}}
+    \]
+    chứa \(\vect{a}\trans\vect{\mu}\) \textbf{đồng thời với mọi} \(\vect{a}\), với xác suất xấp xỉ \(1-\alpha\).
+  \end{block}
+  \begin{columns}[T]
+    \column{0.44\textwidth}
+    \textbf{Chọn \(\vect{a}=\vect{e}_i\):} các khoảng cho từng thành phần
+    \[
+      \bar{x}_i \pm \sqrt{\chi^2_p(\alpha)}\sqrt{\frac{s_{ii}}{n}},
+      \quad i=1,\dots,p
+    \]
+    \column{0.54\textwidth}
+    \textbf{Với mọi cặp \((\mu_i,\mu_k)\):} ellipse tin cậy
+    \[
+      n\begin{bmatrix}\bar{x}_i-\mu_i\\ \bar{x}_k-\mu_k\end{bmatrix}\trans
+      \begin{bmatrix} s_{ii} & s_{ik}\\ s_{ik} & s_{kk}\end{bmatrix}\inv
+      \begin{bmatrix}\bar{x}_i-\mu_i\\ \bar{x}_k-\mu_k\end{bmatrix}
+      \le \chi^2_p(\alpha)
+    \]
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Thế nào là ``mẫu lớn''?}
+  \begin{itemize}
+    \item Không có câu trả lời dứt khoát. Với 1--2 biến, \(n\approx 30\)--\(50\) thường được coi là lớn.
+    \item Số biến \(p\) càng tăng thì cần \(n\) càng lớn. Điều kiện đúng là \textbf{\(n-p\) phải lớn}.
+  \end{itemize}
+  \vspace{0.1cm}
+  \begin{exampleblock}{Cùng \(n-p=48\) nhưng khác hẳn nhau (\(\alpha=0{,}05\))}
+    \centering
+    \begin{tabular}{@{}lcc@{}}
+      \toprule
+      & \(\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)\) & \(\chi^2_p(\alpha)\) \\
+      \midrule
+      \(p=2,\ n=50\)   & 6{,}51   & 5{,}99 \\
+      \(p=52,\ n=100\) & 172{,}05 & 69{,}83 \\
+      \bottomrule
+    \end{tabular}
+  \end{exampleblock}
+  \begin{alertblock}{Thực hành tốt}
+    Vẫn kiểm tra dữ liệu như với lý thuyết chuẩn (biểu đồ \(Q\)--\(Q\), điểm ngoại lai, phép biến đổi).
+    Sai lệch \emph{cực đoan} khỏi tính chuẩn có thể làm mức sai lầm thực tế khác xa \(\alpha\).
+  \end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Ví dụ 5.7: năng khiếu âm nhạc của học sinh Phần Lan}
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+    {\small Bảng 5.5: Musical Aptitude Profile, \(n=96\) học sinh lớp 12.}
+    \vspace{0.1cm}
+    \begin{center}
+      \small
+      \begin{tabular}{@{}lcc@{}}
+        \toprule
+        Biến & \(\bar{x}_i\) & \(\sqrt{s_{ii}}\) \\
+        \midrule
+        \(X_1\) giai điệu   & 28{,}1 & 5{,}76 \\
+        \(X_2\) hòa âm      & 26{,}6 & 5{,}85 \\
+        \(X_3\) nhịp độ     & 35{,}4 & 3{,}82 \\
+        \(X_4\) nhịp        & 34{,}2 & 5{,}12 \\
+        \(X_5\) ngắt câu    & 23{,}6 & 3{,}76 \\
+        \(X_6\) cân bằng    & 22{,}0 & 3{,}93 \\
+        \(X_7\) phong cách  & 22{,}7 & 4{,}03 \\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+    \column{0.45\textwidth}
+    \begin{block}{Yêu cầu}
+      Dựng các khoảng tin cậy đồng thời \(90\%\) cho \(\mu_1,\dots,\mu_7\).
+    \end{block}
+    \begin{block}{Công thức (Kết quả 5.5)}
+      \[
+        \bar{x}_i \pm \sqrt{\chi^2_7(0{,}10)}\,\frac{\sqrt{s_{ii}}}{\sqrt{96}},
+      \]
+      với \(\chi^2_7(0{,}10)=12{,}02\), tức \(\sqrt{12{,}02}\approx 3{,}47\).
+    \end{block}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Ví dụ 5.7: so sánh với hồ sơ chuẩn của học sinh Mỹ}
+  Giả thuyết dựa trên dữ liệu học sinh Mỹ:
+  \(\vect{\mu}_0\trans=[31,\ 27,\ 34,\ 31,\ 23,\ 22,\ 22]\).
+  \vspace{0.1cm}
+  \begin{columns}[T]
+    \column{0.50\textwidth}
+    \begin{center}
+      \small
+      \begin{tabular}{@{}lccc@{}}
+        \toprule
+        & Khoảng \(90\%\) & \(\mu_{0i}\) & \\
+        \midrule
+        \(\mu_1\) & \([26{,}06;\ 30{,}14]\) & 31 & \textcolor{red}{\(\times\)} \\
+        \(\mu_2\) & \([24{,}53;\ 28{,}67]\) & 27 & \(\checkmark\) \\
+        \(\mu_3\) & \([34{,}05;\ 36{,}75]\) & 34 & \textcolor{red}{\(\times\)} \\
+        \(\mu_4\) & \([32{,}39;\ 36{,}01]\) & 31 & \textcolor{red}{\(\times\)} \\
+        \(\mu_5\) & \([22{,}27;\ 24{,}93]\) & 23 & \(\checkmark\) \\
+        \(\mu_6\) & \([20{,}61;\ 23{,}39]\) & 22 & \(\checkmark\) \\
+        \(\mu_7\) & \([21{,}27;\ 24{,}13]\) & 22 & \(\checkmark\) \\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+    \column{0.47\textwidth}
+    \centering
+    \begin{tikzpicture}[x=0.28cm,y=0.42cm,font=\scriptsize]
+      \draw[->] (19,0.3) -- (38.5,0.3);
+      \foreach \t in {20,25,30,35} {
+        \draw (\t,0.3) -- (\t,0.15) node[below] {\t};
+      }
+      \foreach \i/\lo/\hi/\m/\out in {
+          1/26.06/30.14/31/1, 2/24.53/28.67/27/0, 3/34.05/36.75/34/1,
+          4/32.39/36.01/31/1, 5/22.27/24.93/23/0, 6/20.61/23.39/22/0,
+          7/21.27/24.13/22/0} {
+        \pgfmathsetmacro{\y}{8-\i}
+        \node[left] at (19,\y) {\(\mu_{\i}\)};
+        \draw[hustprimary, line width=1.6pt] (\lo,\y) -- (\hi,\y);
+        \ifnum\out=1
+          \fill[red] (\m,\y) circle (2.6pt);
+        \else
+          \fill[black!60] (\m,\y) circle (2.2pt);
+        \fi
+      }
+    \end{tikzpicture}\\[0.1cm]
+    {\scriptsize \textcolor{hustprimary}{\rule[0.5ex]{0.5cm}{1.6pt}} khoảng \(90\%\)
+    \quad \textcolor{red}{\(\bullet\)} \(\mu_{0i}\) nằm ngoài}
+    \begin{alertblock}{Kết luận}
+      \small\justifying
+      \textbf{Giai điệu}, \textbf{nhịp độ} và \textbf{nhịp} của \(\vect{\mu}_0\)
+      không hợp lý cho học sinh Phần Lan.
+    \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Ba loại khoảng tin cậy mẫu lớn}
+  Cả ba loại đều có dạng chung
+  \(\displaystyle \bar{x}_i \pm (\text{hằng số})\sqrt{\frac{s_{ii}}{n}}\),
+  chỉ khác nhau ở hằng số:
+  \vspace{0.15cm}
+  \begin{center}
+    \begin{tabular}{@{}llc@{}}
+      \toprule
+      Loại khoảng & Hằng số & Ví dụ 5.7 (\(p=7,\ \alpha=0{,}05\)) \\
+      \midrule
+      Từng biến (one-at-a-time) & \(z(\alpha/2)\) & \(z(0{,}025)=1{,}96\) \\
+      Bonferroni (\(m=p\))      & \(z(\alpha/2p)\) & \(z(0{,}025/7)=2{,}69\) \\
+      Bóng ellipsoid (\(\chi^2\)) & \(\sqrt{\chi^2_p(\alpha)}\) & \(\sqrt{14{,}07}=3{,}75\) \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \vspace{0.15cm}
+  \begin{itemize}
+    \item Khoảng từng biến \textbf{không} đảm bảo độ tin cậy chung \(1-\alpha\) cho cả \(p\) phát biểu.
+    \item Bonferroni hẹp hơn khoảng \(\chi^2\) khi chỉ quan tâm một số ít phát biểu định trước.
+    \item Khoảng \(\chi^2\) đúng đồng thời cho \emph{mọi} tổ hợp tuyến tính \(\vect{a}\trans\vect{\mu}\).
+  \end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Bảng 5.6: khoảng \texorpdfstring{\(95\%\)}{95\%} mẫu lớn (\texorpdfstring{\(z\)}{z} và \texorpdfstring{\(\chi^2\)}{chi-square})}
+  \begin{center}
+    \small
+    \setlength{\tabcolsep}{5pt}
+    \begin{tabular}{@{}l cc cc cc@{}}
+      \toprule
+      & \multicolumn{2}{c}{Từng biến \(z(.025)\)}
+      & \multicolumn{2}{c}{Bonferroni \(z(.025/7)\)}
+      & \multicolumn{2}{c}{Bóng ellipsoid \(\chi^2_7(.05)\)} \\
+      \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+      Biến & Dưới & Trên & Dưới & Trên & Dưới & Trên \\
+      \midrule
+      \(X_1\) giai điệu   & 26{,}95 & 29{,}25 & 26{,}52 & 29{,}68 & 25{,}90 & 30{,}30 \\
+      \(X_2\) hòa âm      & 25{,}43 & 27{,}77 & 24{,}99 & 28{,}21 & 24{,}36 & 28{,}84 \\
+      \(X_3\) nhịp độ     & 34{,}64 & 36{,}16 & 34{,}35 & 36{,}45 & 33{,}94 & 36{,}86 \\
+      \(X_4\) nhịp        & 33{,}18 & 35{,}22 & 32{,}79 & 35{,}61 & 32{,}24 & 36{,}16 \\
+      \(X_5\) ngắt câu    & 22{,}85 & 24{,}35 & 22{,}57 & 24{,}63 & 22{,}16 & 25{,}04 \\
+      \(X_6\) cân bằng    & 21{,}21 & 22{,}79 & 20{,}92 & 23{,}08 & 20{,}50 & 23{,}50 \\
+      \(X_7\) phong cách  & 21{,}89 & 23{,}51 & 21{,}59 & 23{,}81 & 21{,}16 & 24{,}24 \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \vspace{0.1cm}
+  Độ rộng tăng dần: \textbf{từng biến \(<\) Bonferroni \(<\) bóng ellipsoid}, theo đúng thứ tự
+  của hằng số \(1{,}96 < 2{,}69 < 3{,}75\).
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Bảng 5.7: giữ lại phân vị \texorpdfstring{\(t\)}{t} và \texorpdfstring{\(F\)}{F}}
+  \begin{center}
+    \footnotesize
+    \renewcommand{\arraystretch}{0.95}
+    \setlength{\tabcolsep}{5pt}
+    \begin{tabular}{@{}l cc cc cc@{}}
+      \toprule
+      & \multicolumn{2}{c}{Từng biến}
+      & \multicolumn{2}{c}{Bonferroni}
+      & \multicolumn{2}{c}{Bóng ellipsoid} \\
+      & \multicolumn{2}{c}{\(t_{95}(.025)=1{,}99\)}
+      & \multicolumn{2}{c}{\(t_{95}(.025/7)=2{,}75\)}
+      & \multicolumn{2}{c}{\(F_{7,89}(.05)=2{,}11\)} \\
+      \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+      Biến & Dưới & Trên & Dưới & Trên & Dưới & Trên \\
+      \midrule
+      \(X_1\) giai điệu   & 26{,}93 & 29{,}27 & 26{,}48 & 29{,}72 & 25{,}76 & 30{,}44 \\
+      \(X_2\) hòa âm      & 25{,}41 & 27{,}79 & 24{,}96 & 28{,}24 & 24{,}23 & 28{,}97 \\
+      \(X_3\) nhịp độ     & 34{,}63 & 36{,}17 & 34{,}33 & 36{,}47 & 33{,}85 & 36{,}95 \\
+      \(X_4\) nhịp        & 33{,}16 & 35{,}24 & 32{,}76 & 35{,}64 & 32{,}12 & 36{,}28 \\
+      \(X_5\) ngắt câu    & 22{,}84 & 24{,}36 & 22{,}54 & 24{,}66 & 22{,}07 & 25{,}13 \\
+      \(X_6\) cân bằng    & 21{,}20 & 22{,}80 & 20{,}90 & 23{,}10 & 20{,}41 & 23{,}59 \\
+      \(X_7\) phong cách  & 21{,}88 & 23{,}52 & 21{,}57 & 23{,}83 & 21{,}07 & 24{,}33 \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \vspace{-0.2cm}
+  {\small Phân vị \(z,\chi^2\) là giới hạn của \(t,F\) khi \(n\to\infty\), nên khoảng dựa trên
+  \(t,F\) rộng hơn, tức \textbf{thận trọng hơn}. Với \(n=96\), chênh lệch so với Bảng 5.6 chỉ
+  ở hàng phần mười hoặc phần trăm.\par}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Tóm tắt mục 5.5}
+  \begin{center}
+    \small
+    \begin{tabular}{@{}lll@{}}
+      \toprule
+      & Lý thuyết chuẩn & Mẫu lớn (\(n-p\) lớn) \\
+      \midrule
+      Giả định & \(N_p(\vect{\mu},\vect{\Sigma})\) & Chỉ cần \(\vect{\Sigma}\) xác định dương \\
+      Thống kê & \multicolumn{2}{c}{\(n(\bar{\vect{x}}-\vect{\mu}_0)\trans\mat{S}\inv(\bar{\vect{x}}-\vect{\mu}_0)\)} \\
+      Giá trị tới hạn & \(\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)\) & \(\chi^2_p(\alpha)\) \\
+      Khoảng từng biến & \(t_{n-1}(\alpha/2)\) & \(z(\alpha/2)\) \\
+      Bonferroni & \(t_{n-1}(\alpha/2p)\) & \(z(\alpha/2p)\) \\
+      Mức tin cậy & Chính xác & Xấp xỉ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \vspace{0.1cm}
+  \begin{itemize}
+    \item Hai cách cho kết luận gần như nhau khi \(n\) lớn so với \(p\).
+    \item ``Lớn'' phụ thuộc vào \(n-p\) \emph{và} vào \(p\). Vẫn phải kiểm tra ngoại lai và sai lệch cực đoan.
   \end{itemize}
 \end{frame}
