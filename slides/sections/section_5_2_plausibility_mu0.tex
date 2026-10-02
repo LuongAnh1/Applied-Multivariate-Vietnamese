@@ -1,15 +1,721 @@
 % Pham vi goc: Muc 5.2 - Tinh hop ly cua mu_0.
-% File nay chi chia khuc noi dung, chua gan ten thanh vien phu trach.
+% Noi dung bam theo ban dich translation/chapters/ch05_02_plausibility_mu0.tex.
+% So hieu cong thuc (5-1)...(5-9) giu dung nhu sach goc de tien doi chieu.
+
+% Thu vien TikZ cho cac hinh trong muc nay.
+\usetikzlibrary{arrows.meta,positioning,decorations.pathreplacing}
+
+% Style rieng cua muc nay. Dat trong group nen khong anh huong cac muc khac
+% va khong can sua main.tex.
+\begingroup
+\definecolor{hustnavy}{HTML}{003366}
+\definecolor{hustred}{HTML}{C8102E}
+\definecolor{hustgray}{HTML}{5F6B7A}
+\definecolor{hustteal}{HTML}{1B7F79}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamercolor{block title}{bg=hustnavy,fg=white}
+\setbeamercolor{block body}{bg=hustnavy!6,fg=black}
+\setbeamercolor{block title alerted}{bg=hustred,fg=white}
+\setbeamercolor{block body alerted}{bg=hustred!6,fg=black}
+\setbeamercolor{block title example}{bg=hustteal,fg=white}
+\setbeamercolor{block body example}{bg=hustteal!7,fg=black}
+\setbeamercolor{itemize item}{fg=hustred}
+\setbeamercolor{alerted text}{fg=hustred}
+\newcommand{\keyterm}[1]{\textcolor{hustnavy}{\textbf{#1}}}
+\newcommand{\slidenote}[1]{{\footnotesize\color{hustgray}#1\par}}
+% Mat do cua T^2 = (57/17) F_{3,17} trong Vi du 5.2:
+% f(t) = 19^{-3/2} t^{1/2} (1 + t/19)^{-10} / B(3/2, 17/2).
+\newcommand{\sweatdensity}[1]{0.352287*sqrt(#1)*(1+(#1)/19)^(-10)}
+
 \section{Tính hợp lý của \texorpdfstring{\(\boldsymbol{\mu}_0\)}{mu0}}
 \sectionframe{Tính hợp lý của \(\boldsymbol{\mu}_0\)}
 
-\begin{frame}{Tính hợp lý của \texorpdfstring{\(\boldsymbol{\mu}_0\)}{mu0}}
-  \begin{block}{Phạm vi nội dung}
-    Từ kiểm định trung bình một biến, mở rộng sang kiểm định vectơ trung bình tổng thể bằng thống kê Hotelling \(T^2\).
+% ===========================================================================
+% Phan 1: Ly thuyet mot bien
+% ===========================================================================
+\begin{frame}{Nhắc lại: bài toán một biến}
+  \begin{block}{Câu hỏi}
+    Giá trị cụ thể \(\mu_0\) có phải là một giá trị \textbf{hợp lý} cho trung bình tổng thể \(\mu\) hay không?
   \end{block}
+  \vspace{-0.1cm}
+  \[
+    H_0: \mu = \mu_0
+    \qquad\text{so với}\qquad
+    H_1: \mu \ne \mu_0 \;\;\text{\small(đối hai phía)}
+  \]
+  \vspace{-0.35cm}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.47\textwidth}
+    \small
+    \textbf{Giả thiết:} \(X_1,\ldots,X_n\) là mẫu ngẫu nhiên từ một tổng thể \keyterm{chuẩn}.
+
+    \vspace{0.15cm}
+    \textbf{Thống kê kiểm định:}
+    \[
+      t = \frac{\bar{X} - \mu_0}{s/\sqrt{n}} \;\sim\; t_{n-1}
+      \quad\text{khi } H_0 \text{ đúng.}
+    \]
+    \column{0.49\textwidth}
+    \small
+    \textbf{Trong đó:}
+    \[
+      \bar{X} = \frac{1}{n}\sum_{j=1}^{n} X_j,
+      \qquad
+      s^2 = \frac{1}{n-1}\sum_{j=1}^{n}(X_j - \bar{X})^2 .
+    \]
+    \vspace{-0.15cm}
+    \begin{alertblock}{Bác bỏ \(H_0\) khi}
+      \centering
+      \(|t| > t_{n-1}(\alpha/2)\)
+    \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Nhìn \texorpdfstring{\(t^2\)}{t2} như một bình phương khoảng cách}
+  \small
+  Bác bỏ \(H_0\) khi \(|t|\) lớn \(\iff\) bác bỏ \(H_0\) khi \(t^2\) lớn:
+  \begin{equation*}
+    t^2
+    = \frac{(\bar{X}-\mu_0)^2}{s^2/n}
+    = \underbrace{n(\bar{X}-\mu_0)(s^2)^{-1}(\bar{X}-\mu_0)}_{\text{bình phương khoảng cách từ } \bar{X} \text{ đến } \mu_0}
+    \tag{5-1}
+  \end{equation*}
+  \vspace{-0.2cm}
+  \begin{center}
+    \begin{tikzpicture}[x=1.15cm]
+      \draw[-{Stealth[length=2mm]}, hustgray] (-1.6,0) -- (4.6,0);
+      \foreach \k in {-1,...,4} {
+        \draw[hustgray] (\k,0.08) -- (\k,-0.08);
+      }
+      \foreach \k in {0,...,3} {
+        \draw[decorate, decoration={brace, amplitude=3pt, mirror}, hustnavy!70]
+          (\k,-0.15) -- node[below=3pt, font=\scriptsize] {\(s/\sqrt{n}\)} (\k+1,-0.15);
+      }
+      \fill[hustnavy] (0,0) circle (2pt) node[above=3pt, font=\small] {\(\mu_0\)};
+      \fill[hustred] (2.6,0) circle (2.2pt) node[above=3pt, font=\small, text=hustred] {\(\bar{x}\)};
+      \draw[hustred, line width=1.2pt] (0,0) -- (2.6,0);
+    \end{tikzpicture}
+  \end{center}
+  \vspace{-0.15cm}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.45\textwidth}
+    \keyterm{Đơn vị đo} khoảng cách: \(s/\sqrt{n}\), tức độ lệch chuẩn ước lượng của \(\bar{X}\).
+    \column{0.52\textwidth}
+    \begin{alertblock}{Quy tắc bác bỏ ở mức ý nghĩa \(\alpha\)}
+      \vspace{-0.2cm}
+      \begin{equation*}
+        n(\bar{x}-\mu_0)(s^2)^{-1}(\bar{x}-\mu_0) > t^2_{n-1}(\alpha/2)
+        \tag{5-2}
+      \end{equation*}
+    \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Kiểm định và khoảng tin cậy: hai mặt của một vấn đề}
+  \small
+  \vspace{-0.1cm}
+  \[
+    \underbrace{\text{Không bác bỏ } H_0:\mu=\mu_0 \text{ ở mức } \alpha}_{\text{miền chấp nhận}}
+    \iff
+    \left|\frac{\bar{x}-\mu_0}{s/\sqrt{n}}\right| \le t_{n-1}(\alpha/2)
+    \iff
+    \mu_0 \in \bar{x} \pm t_{n-1}(\alpha/2)\frac{s}{\sqrt{n}}
+  \]
+  \vspace{-0.1cm}
+  \begin{equation*}
+    \bar{x} - t_{n-1}(\alpha/2)\frac{s}{\sqrt{n}}
+    \;\le\; \mu_0 \;\le\;
+    \bar{x} + t_{n-1}(\alpha/2)\frac{s}{\sqrt{n}}
+    \tag{5-3}
+  \end{equation*}
+  \vspace{0.1cm}
+  \begin{columns}[c,onlytextwidth]
+    \column{0.54\textwidth}
+    \centering
+    \begin{tikzpicture}[x=0.72cm]
+      \draw[-{Stealth[length=2mm]}, hustgray] (-4.2,0) -- (5.2,0);
+      \fill[hustnavy!12] (-2.6,-0.16) rectangle (2.6,0.16);
+      \draw[hustnavy, line width=1.4pt] (-2.6,0) -- (2.6,0);
+      \draw[hustnavy, line width=1.2pt] (-2.6,-0.2) -- (-2.6,0.2);
+      \draw[hustnavy, line width=1.2pt] (2.6,-0.2) -- (2.6,0.2);
+      \draw[decorate, decoration={brace, amplitude=4pt}, hustnavy]
+        (-2.6,0.3) -- node[above=4pt, font=\scriptsize, text=hustnavy] {khoảng tin cậy \(100(1-\alpha)\%\)} (2.6,0.3);
+      \fill[hustnavy] (0,0) circle (2pt) node[below=4pt, font=\small] {\(\bar{x}\)};
+      \fill[hustteal] (1.5,0) circle (2.4pt);
+      \node[font=\scriptsize, text=hustteal, align=center, below=4pt] at (1.6,0) {\(\mu_0^{(a)}\)\\không bác bỏ};
+      \fill[hustred] (4.1,0) circle (2.4pt);
+      \node[font=\scriptsize, text=hustred, align=center, below=4pt] at (4.1,0) {\(\mu_0^{(b)}\)\\bác bỏ};
+    \end{tikzpicture}
+
+    \column{0.43\textwidth}
+    \begin{block}{Ý nghĩa}
+      Khoảng tin cậy chính là \textbf{tập tất cả các giá trị \(\mu_0\)} không bị bác bỏ bởi kiểm định mức \(\alpha\) của \(H_0:\mu=\mu_0\).
+    \end{block}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Khoảng tin cậy là một khoảng ngẫu nhiên}
+  \begin{columns}[c,onlytextwidth]
+    \column{0.52\textwidth}
+    \small
+    \begin{itemize}\setlength{\itemsep}{5pt}
+      \item \textbf{Trước khi} chọn mẫu, hai đầu mút của (5-3) phụ thuộc vào các biến ngẫu nhiên \(\bar{X}\) và \(s\).
+      \item Xác suất để khoảng này chứa \(\mu\) là \(\mathbf{1-\alpha}\).
+      \item Trong rất nhiều khoảng độc lập như vậy, xấp xỉ \(100(1-\alpha)\%\) sẽ chứa \(\mu\).
+      \item Kết luận: luôn tồn tại \keyterm{một tập} các giá trị hợp lý cho trung bình, không chỉ riêng \(\mu_0\).
+    \end{itemize}
+
+    \column{0.44\textwidth}
+    \centering
+    \begin{tikzpicture}[x=0.95cm, y=0.31cm]
+      \foreach \c/\h/\col [count=\i] in {
+          -0.4/1.1/hustnavy, 0.5/1.0/hustnavy, 0.2/1.2/hustnavy,
+          -0.8/1.15/hustnavy, 1.5/1.05/hustred, 0.9/1.1/hustnavy,
+          -0.3/0.95/hustnavy, 0.6/1.25/hustnavy, -1.0/1.2/hustnavy,
+          0.1/1.0/hustnavy, -1.55/1.1/hustred, 0.4/1.05/hustnavy} {
+        \draw[\col, line width=1.1pt] (\c-\h,-\i) -- (\c+\h,-\i);
+        \fill[\col] (\c,-\i) circle (1.3pt);
+      }
+      \draw[hustgray, dashed, line width=0.8pt] (0,0.2) -- (0,-12.8);
+      \node[font=\small, above] at (0,0.2) {\(\mu\)};
+      % Chu giai
+      \draw[hustnavy, line width=1.1pt] (-2.4,-14) -- (-1.8,-14);
+      \node[font=\scriptsize, anchor=west] at (-1.75,-14) {chứa \(\mu\)};
+      \draw[hustred, line width=1.1pt] (0.3,-14) -- (0.9,-14);
+      \node[font=\scriptsize, anchor=west, text=hustred] at (0.95,-14) {không chứa \(\mu\)};
+    \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+% ===========================================================================
+% Phan 2: Mo rong sang da bien - Hotelling T^2
+% ===========================================================================
+\begin{frame}{Mở rộng sang đa biến: từ \texorpdfstring{\(t^2\)}{t2} đến \texorpdfstring{\(T^2\)}{T2}}
+  \begin{block}{Bài toán}
+    Vectơ \(p\times 1\) \(\boldsymbol{\mu}_0\) có phải là giá trị hợp lý cho trung bình của một phân phối
+    \keyterm{chuẩn đa biến} hay không? Ta lập luận tương tự trường hợp một biến.
+  \end{block}
+  \vspace{0.05cm}
+  \centering
+  \begin{tikzpicture}[
+      card/.style={line width=0.8pt, rounded corners=4pt,
+        minimum width=5.6cm, minimum height=1.25cm, align=center}
+    ]
+    \node[card, draw=hustgray, fill=hustgray!6] (u) {\(t^2 = n(\bar{X}-\mu_0)\,(s^2)^{-1}\,(\bar{X}-\mu_0)\)};
+    \node[card, draw=hustnavy, fill=hustnavy!6, right=1.5cm of u] (m)
+      {\(T^2 = n(\bar{\mathbf{X}}-\boldsymbol{\mu}_0)'\,\mathbf{S}^{-1}\,(\bar{\mathbf{X}}-\boldsymbol{\mu}_0)\)};
+    \draw[-{Stealth[length=3mm]}, line width=1.3pt, hustred] (u) -- (m);
+    \node[font=\scriptsize\bfseries, text=hustgray, above=1pt] at (u.north) {Một biến};
+    \node[font=\scriptsize\bfseries, text=hustnavy, above=1pt] at (m.north) {Đa biến};
+  \end{tikzpicture}
+
+  \vspace{0.3cm}
+  \small
+  \begin{tabular}{@{}l@{\quad}c@{\quad}l@{}}
+    Số vô hướng \(\bar{X}-\mu_0\) & \(\longrightarrow\) & vectơ \(\bar{\mathbf{X}}-\boldsymbol{\mu}_0\) cỡ \(p\times 1\) \\[2pt]
+    Phương sai mẫu \(s^2\) & \(\longrightarrow\) & ma trận hiệp phương sai mẫu \(\mathbf{S}\) cỡ \(p\times p\) \\[2pt]
+    Nghịch đảo \((s^2)^{-1}\) & \(\longrightarrow\) & ma trận nghịch đảo \(\mathbf{S}^{-1}\)
+  \end{tabular}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Thống kê \texorpdfstring{\(T^2\)}{T2} của Hotelling}
+  \vspace{-0.15cm}
+  \begin{equation*}
+    T^2
+    = (\bar{\mathbf{X}}-\boldsymbol{\mu}_0)'
+      \left(\frac{1}{n}\mathbf{S}\right)^{-1}
+      (\bar{\mathbf{X}}-\boldsymbol{\mu}_0)
+    = n(\bar{\mathbf{X}}-\boldsymbol{\mu}_0)'
+      \mathbf{S}^{-1}
+      (\bar{\mathbf{X}}-\boldsymbol{\mu}_0)
+    \tag{5-4}
+  \end{equation*}
+  \vspace{-0.3cm}
+  \small
+  \[
+    \bar{\mathbf{X}} = \frac{1}{n}\sum_{j=1}^{n}\mathbf{X}_j,
+    \qquad
+    \mathbf{S}
+    = \frac{1}{n-1}\sum_{j=1}^{n}
+      (\mathbf{X}_j-\bar{\mathbf{X}})(\mathbf{X}_j-\bar{\mathbf{X}})',
+    \qquad
+    \boldsymbol{\mu}_0 =
+    \begin{bmatrix}
+      \mu_{10} \\ \vdots \\ \mu_{p0}
+    \end{bmatrix}
+  \]
+  \vspace{-0.1cm}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.49\textwidth}
+    \begin{block}{Vì sao là \((1/n)\mathbf{S}\)?}
+      Theo Kết quả 3.1: \(\operatorname{Cov}(\bar{\mathbf{X}})=\boldsymbol{\Sigma}/n\),
+      nên \((1/n)\mathbf{S}\) là \textbf{ma trận hiệp phương sai ước lượng} của \(\bar{\mathbf{X}}\).
+    \end{block}
+    \column{0.47\textwidth}
+    \begin{itemize}\setlength{\itemsep}{3pt}
+      \item Đặt theo tên \keyterm{Harold Hotelling}, người đầu tiên tìm ra phân phối mẫu của thống kê này.
+      \item \(T^2\) quá lớn \(\Rightarrow\) \(\bar{\mathbf{x}}\) ở quá xa \(\boldsymbol{\mu}_0\) \(\Rightarrow\) bác bỏ \(H_0\).
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Phân phối của \texorpdfstring{\(T^2\)}{T2} và quy tắc bác bỏ}
+  \vspace{-0.1cm}
+  \begin{block}{Kết quả}
+    Cho \(\mathbf{X}_1,\ldots,\mathbf{X}_n\) là mẫu ngẫu nhiên từ \(N_p(\boldsymbol{\mu},\boldsymbol{\Sigma})\). Khi đó,
+    \textbf{bất kể} giá trị thực của \(\boldsymbol{\mu}\) và \(\boldsymbol{\Sigma}\):
+    \vspace{-0.2cm}
+    \begin{gather*}
+      T^2 \;\text{có phân phối như}\; \frac{(n-1)p}{n-p}\,F_{p,\,n-p}
+      \tag{5-5}\\
+      \alpha
+      = P\!\left[
+        n(\bar{\mathbf{X}}-\boldsymbol{\mu})'\mathbf{S}^{-1}(\bar{\mathbf{X}}-\boldsymbol{\mu})
+        > \frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)
+      \right]
+      \tag{5-6}
+    \end{gather*}
+    \vspace{-0.35cm}
+
+    {\small \(F_{p,n-p}(\alpha)\): phân vị trên mức \(100\alpha\%\) của \(F_{p,n-p}\) \(\Rightarrow\) chỉ cần bảng \(F\), không cần bảng riêng cho \(T^2\).}
+  \end{block}
+  \vspace{-0.05cm}
+  \begin{alertblock}{Kiểm định \(H_0:\boldsymbol{\mu}=\boldsymbol{\mu}_0\) so với \(H_1:\boldsymbol{\mu}\ne\boldsymbol{\mu}_0\) ở mức \(\alpha\): bác bỏ \(H_0\) nếu}
+    \vspace{-0.2cm}
+    \begin{equation*}
+      T^2
+      = n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'\mathbf{S}^{-1}(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)
+      > \frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)
+      \tag{5-7}
+    \end{equation*}
+  \end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Đối chiếu: một biến và đa biến}
+  \vspace{0.1cm}
+  \centering
+  \small
+  \renewcommand{\arraystretch}{1.55}
+  \begin{tabular}{@{}p{2.7cm}p{4.9cm}p{5.9cm}@{}}
+    \toprule
+    & \textcolor{hustgray}{\textbf{Một biến}} & \textcolor{hustnavy}{\textbf{Đa biến}} \\
+    \midrule
+    Giả thuyết & \(H_0:\mu=\mu_0\) & \(H_0:\boldsymbol{\mu}=\boldsymbol{\mu}_0\) \;(\(p\times 1\)) \\
+    Thống kê & \(t^2 = n(\bar{x}-\mu_0)(s^2)^{-1}(\bar{x}-\mu_0)\) & \(T^2 = n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'\mathbf{S}^{-1}(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)\) \\
+    ``Thước đo'' & \(s^2/n\): phương sai ước lượng của \(\bar{X}\) & \(\mathbf{S}/n\): hiệp phương sai ước lượng của \(\bar{\mathbf{X}}\) \\
+    Phân phối & \(t^2\) với \(t\sim t_{n-1}\) & \(\dfrac{(n-1)p}{n-p}F_{p,n-p}\) \\
+    Bác bỏ \(H_0\) khi & \(t^2 > t^2_{n-1}(\alpha/2)\) & \(T^2 > \dfrac{(n-1)p}{n-p}F_{p,n-p}(\alpha)\) \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{0.25cm}
+  \raggedright
+  \slidenote{Với \(p=1\), hệ số \(\frac{(n-1)p}{n-p}=1\) và \(F_{1,n-1}\) chính là phân phối của \(t^2_{n-1}\), nên \(T^2\) quay về \(t^2\).}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Phân phối Wishart: phiên bản ma trận của \texorpdfstring{\(\chi^2\)}{chi2}}
+  \begin{block}{Định nghĩa}
+    Nếu \(\mathbf{Z}_1,\ldots,\mathbf{Z}_m\) độc lập, \(\mathbf{Z}_j\sim N_p(\mathbf{0},\boldsymbol{\Sigma})\), thì
+    \(
+      \mathbf{W}=\sum_{j=1}^{m}\mathbf{Z}_j\mathbf{Z}_j' \sim W_p(m,\boldsymbol{\Sigma})
+    \)
+    \;--- \(p\): số biến, \(m\): bậc tự do, \(\boldsymbol{\Sigma}\): ma trận hiệp phương sai tổng thể.
+  \end{block}
+  \vspace{0.05cm}
+  \centering
+  \begin{tikzpicture}[
+      card/.style={line width=0.8pt, rounded corners=4pt,
+        text width=5.7cm, minimum height=1.75cm, align=center, font=\small}
+    ]
+    \node[card, draw=hustgray, fill=hustgray!6] (u) {\textcolor{hustgray}{\textbf{Một biến}}\\[3pt]
+      \((n-1)s^2=\sum_{j}(X_j-\bar{X})^2 \sim \sigma^2\chi^2_{n-1}\)};
+    \node[card, draw=hustnavy, fill=hustnavy!6, right=1.3cm of u] (m) {\textcolor{hustnavy}{\textbf{Đa biến}}\\[3pt]
+      \((n-1)\mathbf{S} \sim W_p(n-1,\boldsymbol{\Sigma})\)};
+    \draw[-{Stealth[length=3mm]}, line width=1.3pt, hustred] (u) -- node[above, font=\scriptsize, text=hustred] {\(s^2\to\mathbf{S}\)} (m);
+  \end{tikzpicture}
+
+  \vspace{0.25cm}
+  \raggedright
+  \small
   \begin{itemize}
-    \item Nhắc lại giả thuyết \(H_0: \boldsymbol{\mu}=\boldsymbol{\mu}_0\).
-    \item Diễn giải khoảng cách thống kê quan sát.
-    \item Liên hệ giữa \(T^2\) và phân phối \(F\).
+    \item Khi \(p=1\): \(\sum \mathbf{Z}_j\mathbf{Z}_j'\) trở thành \(\sum Z_j^2\) --- đúng dạng khi bình phương quen thuộc.
+    \item Wishart mô tả sự dao động ngẫu nhiên của \keyterm{ma trận hiệp phương sai mẫu}.
   \end{itemize}
 \end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Cấu trúc của \texorpdfstring{\(T^2\)}{T2}: chuẩn -- Wishart -- chuẩn}
+  \vspace{-0.1cm}
+  \small
+  \[
+    T^2
+    = \bigl(\sqrt{n}(\bar{\mathbf{X}}-\boldsymbol{\mu}_0)\bigr)'
+    \Bigl[\tfrac{1}{n-1}\textstyle\sum_{j=1}^{n}(\mathbf{X}_j-\bar{\mathbf{X}})(\mathbf{X}_j-\bar{\mathbf{X}})'\Bigr]^{-1}
+    \bigl(\sqrt{n}(\bar{\mathbf{X}}-\boldsymbol{\mu}_0)\bigr)
+  \]
+  \vspace{-0.15cm}
+  \begin{equation*}
+    T^2_{p,n-1}
+    = \underbrace{N_p(\mathbf{0},\boldsymbol{\Sigma})'}_{\textcolor{hustnavy}{\text{vectơ chuẩn}}}
+      \Bigl[\underbrace{\tfrac{1}{n-1}W_{p,n-1}(\boldsymbol{\Sigma})}_{\textcolor{hustred}{\text{Wishart / bậc tự do}}}\Bigr]^{-1}
+      \underbrace{N_p(\mathbf{0},\boldsymbol{\Sigma})}_{\textcolor{hustnavy}{\text{vectơ chuẩn}}}
+    \tag{5-8}
+  \end{equation*}
+  \vspace{-0.1cm}
+  \[
+    t^2_{n-1}
+    = \underbrace{\bigl(\sqrt{n}(\bar{X}-\mu_0)\bigr)}_{\textcolor{hustnavy}{\text{chuẩn}}}
+      \;\underbrace{(s^2)^{-1}}_{\textcolor{hustred}{(\chi^2/\text{bậc tự do})^{-1}}}\;
+      \underbrace{\bigl(\sqrt{n}(\bar{X}-\mu_0)\bigr)}_{\textcolor{hustnavy}{\text{chuẩn}}}
+  \]
+  \vspace{-0.2cm}
+  \begin{block}{Từ (5-8) đến (5-5)}
+    Vectơ chuẩn và ma trận Wishart \textbf{độc lập} [xem (4-23)] \(\Rightarrow\) mật độ đồng thời là tích các mật độ biên
+    \(\Rightarrow\) bằng giải tích suy ra phân phối \(\frac{(n-1)p}{n-p}F_{p,n-p}\) của \(T^2\).
+  \end{block}
+\end{frame}
+
+% ===========================================================================
+% Phan 3: Vi du
+% ===========================================================================
+\begin{frame}{Ví dụ 5.1: tính \texorpdfstring{\(T^2\)}{T2} --- trung bình và hiệp phương sai mẫu}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.34\textwidth}
+    \begin{exampleblock}{Đề bài}
+      Mẫu cỡ \(n=3\) từ tổng thể chuẩn hai biến:
+      \[
+        \mathbf{X} =
+        \begin{bmatrix}
+          6 & 9 \\ 10 & 6 \\ 8 & 3
+        \end{bmatrix}
+      \]
+      với \(\boldsymbol{\mu}_0' = [9,\ 5]\). Tính \(T^2\) quan sát và phân phối mẫu của \(T^2\).
+    \end{exampleblock}
+
+    \column{0.63\textwidth}
+    \small
+    \textbf{Bước 1 --- Vectơ trung bình mẫu}
+    \[
+      \bar{\mathbf{x}}
+      = \begin{bmatrix} (6+10+8)/3 \\ (9+6+3)/3 \end{bmatrix}
+      = \begin{bmatrix} 8 \\ 6 \end{bmatrix}
+    \]
+    \textbf{Bước 2 --- Ma trận hiệp phương sai mẫu} \((n-1=2)\)
+    \vspace{-0.1cm}
+    \begin{align*}
+      s_{11} &= \frac{(6-8)^2+(10-8)^2+(8-8)^2}{2} = 4\\
+      s_{12} &= \frac{(6-8)(9-6)+(10-8)(6-6)+(8-8)(3-6)}{2} = -3\\
+      s_{22} &= \frac{(9-6)^2+(6-6)^2+(3-6)^2}{2} = 9
+    \end{align*}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Ví dụ 5.1: tính \texorpdfstring{\(T^2\)}{T2} --- kết quả}
+  \small
+  \textbf{Bước 3 --- Ma trận \(\mathbf{S}\) và nghịch đảo}
+  \[
+    \mathbf{S}=
+    \begin{bmatrix}
+      4 & -3 \\ -3 & 9
+    \end{bmatrix},
+    \qquad
+    \det\mathbf{S} = 36-9 = 27,
+    \qquad
+    \mathbf{S}^{-1}
+    = \frac{1}{27}
+    \begin{bmatrix}
+      9 & 3 \\ 3 & 4
+    \end{bmatrix}
+  \]
+  \textbf{Bước 4 --- Áp dụng (5-4)}
+  \[
+    T^2
+    = 3\,[8-9,\ 6-5]\,
+      \frac{1}{27}
+      \begin{bmatrix} 9 & 3 \\ 3 & 4 \end{bmatrix}
+      \begin{bmatrix} 8-9 \\ 6-5 \end{bmatrix}
+    = 3\,[-1,\ 1]\,\frac{1}{27}
+      \begin{bmatrix} 9 & 3 \\ 3 & 4 \end{bmatrix}
+      \begin{bmatrix} -1 \\ 1 \end{bmatrix}
+    = \boxed{\frac{7}{9}}
+  \]
+  \vspace{-0.1cm}
+  \begin{exampleblock}{Phân phối mẫu của \(T^2\) \textmd{(trước khi lấy mẫu, với \(n=3,\ p=2\))}}
+    \centering
+    \(
+      \dfrac{(n-1)p}{n-p}F_{p,n-p}
+      = \dfrac{(3-1)\,2}{3-2}F_{2,\,3-2}
+      = 4F_{2,1}
+    \)
+  \end{exampleblock}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Ví dụ 5.2: kiểm định với dữ liệu mồ hôi}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.54\textwidth}
+    \centering
+    \footnotesize
+    \renewcommand{\arraystretch}{0.95}
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{@{}rrrr@{}}
+      \toprule
+      \# & \(X_1\) & \(X_2\) & \(X_3\) \\
+      \midrule
+      1  & 3.7 & 48.5 &  9.3 \\
+      2  & 5.7 & 65.1 &  8.0 \\
+      3  & 3.8 & 47.2 & 10.9 \\
+      4  & 3.2 & 53.2 & 12.0 \\
+      5  & 3.1 & 55.5 &  9.7 \\
+      6  & 4.6 & 36.1 &  7.9 \\
+      7  & 2.4 & 24.8 & 14.0 \\
+      8  & 7.2 & 33.1 &  7.6 \\
+      9  & 6.7 & 47.4 &  8.5 \\
+      10 & 5.4 & 54.1 & 11.3 \\
+      \bottomrule
+    \end{tabular}
+    \hspace{0.25cm}
+    \begin{tabular}{@{}rrrr@{}}
+      \toprule
+      \# & \(X_1\) & \(X_2\) & \(X_3\) \\
+      \midrule
+      11 & 3.9 & 36.9 & 12.7 \\
+      12 & 4.5 & 58.8 & 12.3 \\
+      13 & 3.5 & 27.8 &  9.8 \\
+      14 & 4.5 & 40.2 &  8.4 \\
+      15 & 1.5 & 13.5 & 10.1 \\
+      16 & 8.5 & 56.4 &  7.1 \\
+      17 & 4.5 & 71.6 &  8.2 \\
+      18 & 6.5 & 52.8 & 10.9 \\
+      19 & 4.1 & 44.1 & 11.2 \\
+      20 & 5.5 & 40.9 &  9.4 \\
+      \bottomrule
+    \end{tabular}
+
+    \vspace{0.1cm}
+    {\color{hustgray}Bảng 5.1. Dữ liệu mồ hôi (nguồn: Dr.\ Gerald Bargman).}
+
+    \column{0.43\textwidth}
+    \small
+    \(n=20\) phụ nữ khỏe mạnh, \(p=3\) biến:
+    \begin{itemize}\setlength{\itemsep}{1pt}
+      \item \(X_1\): tốc độ tiết mồ hôi
+      \item \(X_2\): hàm lượng natri
+      \item \(X_3\): hàm lượng kali
+    \end{itemize}
+    \vspace{0.1cm}
+    \begin{exampleblock}{Yêu cầu}
+      Kiểm định ở mức \(\alpha = 0.10\):
+      \[
+        H_0: \boldsymbol{\mu}'=[4,\ 50,\ 10]
+      \]
+      \vspace{-0.45cm}
+      \[
+        H_1: \boldsymbol{\mu}'\ne[4,\ 50,\ 10]
+      \]
+    \end{exampleblock}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Ví dụ 5.2: tính thống kê \texorpdfstring{\(T^2\)}{T2}}
+  \small
+  \vspace{-0.1cm}
+  \[
+    \bar{\mathbf{x}} =
+    \begin{bmatrix} 4.640 \\ 45.400 \\ 9.965 \end{bmatrix},
+    \quad
+    \mathbf{S}=
+    \begin{bmatrix}
+      2.879 & 10.010 & -1.810 \\
+      10.010 & 199.788 & -5.640 \\
+      -1.810 & -5.640 & 3.628
+    \end{bmatrix},
+    \quad
+    \mathbf{S}^{-1}=
+    \begin{bmatrix}
+      .586 & -.022 & .258 \\
+      -.022 & .006 & -.002 \\
+      .258 & -.002 & .402
+    \end{bmatrix}
+  \]
+  \vspace{-0.05cm}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.38\textwidth}
+    Đặt độ lệch so với giả thuyết:
+    \[
+      \mathbf{d}
+      = \bar{\mathbf{x}}-\boldsymbol{\mu}_0
+      = \begin{bmatrix} .640 \\ -4.600 \\ -.035 \end{bmatrix}
+    \]
+    \column{0.58\textwidth}
+    Khi đó
+    \[
+      T^2 = 20\,\mathbf{d}'\mathbf{S}^{-1}\mathbf{d}
+      = 20\,[.640,\ -4.600,\ -.035]
+      \begin{bmatrix} .467 \\ -.042 \\ .160 \end{bmatrix}
+    \]
+    \vspace{-0.1cm}
+    \begin{center}
+      \colorbox{hustnavy!8}{\large\(T^2 = 9.74\)}
+    \end{center}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Ví dụ 5.2: so sánh với giá trị tới hạn}
+  \begin{columns}[c,onlytextwidth]
+    \column{0.50\textwidth}
+    \small
+    Giá trị tới hạn với \(n=20,\ p=3,\ \alpha=.10\):
+    \[
+      \frac{(n-1)p}{n-p}F_{p,n-p}(.10)
+      = \frac{19(3)}{17}F_{3,17}(.10)
+    \]
+    \vspace{-0.3cm}
+    \[
+      = 3.353\,(2.44) = 8.18
+    \]
+    \begin{alertblock}{Kết luận}
+      \(T^2 = 9.74 > 8.18\) \(\Rightarrow\) \textbf{bác bỏ \(H_0\)} ở mức ý nghĩa 10\%.
+    \end{alertblock}
+
+    \column{0.47\textwidth}
+    \centering
+    % Ve bang TikZ thuan (khong dung pgfplots): truc x tu 0 den 14, truc y tu 0 den 0.25.
+    \begin{tikzpicture}[x=0.43cm, y=13cm]
+      \fill[hustred!25] (8.18,0)
+        -- plot[domain=8.18:14, samples=60] (\x, {\sweatdensity{\x}})
+        -- (14,0) -- cycle;
+      \draw[hustnavy, line width=1pt]
+        plot[domain=0:14, samples=160] (\x, {\sweatdensity{\x}});
+      \draw[-{Stealth[length=1.8mm]}, hustgray] (0,0) -- (14.6,0)
+        node[right, font=\scriptsize, text=black] {\(T^2\)};
+      \draw[hustgray] (0,0) -- (0,0.25);
+      \foreach \t/\lab in {0/0, 4/4, 8.18/8.18} {
+        \draw[hustgray] (\t,0) -- (\t,-0.008)
+          node[below, font=\scriptsize, text=black] {\lab};
+      }
+      \draw[hustred, dashed, line width=0.8pt] (8.18,0) -- (8.18,0.12);
+      \node[font=\scriptsize, text=hustred, align=center, anchor=south] (rr) at (11.6,0.085)
+        {miền bác bỏ\\diện tích \(0.10\)};
+      \draw[-{Stealth[length=1.6mm]}, hustred, line width=0.6pt] (rr.south) -- (10.2,0.012);
+      \fill[hustred] (9.74,0) circle (2.4pt);
+      \node[font=\scriptsize, text=hustred, anchor=north] at (10.9,-0.008) {\(T^2_{\text{qs}}=9.74\)};
+      \node[font=\scriptsize, text=hustnavy, anchor=west] at (2.2,0.21)
+        {mật độ của \(\frac{57}{17}F_{3,17}\)};
+    \end{tikzpicture}
+  \end{columns}
+  \vspace{0.05cm}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Ví dụ 5.2: diễn giải kết quả}
+  \vspace{0.1cm}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.49\textwidth}
+    \begin{block}{Bác bỏ \(H_0\) nghĩa là gì?}
+      \(H_0\) bị bác bỏ khi \textbf{một hoặc nhiều} trung bình thành phần,
+      hoặc \textbf{một tổ hợp nào đó} của các trung bình, khác quá nhiều so với \([4,\ 50,\ 10]\).
+
+      \vspace{0.15cm}
+      Ở thời điểm này, ta \alert{chưa biết} giá trị giả thuyết nào không được dữ liệu ủng hộ.
+    \end{block}
+
+    \column{0.47\textwidth}
+    \begin{block}{Kiểm tra giả định chuẩn}
+      \begin{itemize}\setlength{\itemsep}{2pt}
+        \item Đồ thị Q-Q của các phân phối biên \(X_1, X_2, X_3\) xấp xỉ đường thẳng.
+        \item Đồ thị phân tán từng cặp có dạng gần elip.
+      \end{itemize}
+      \(\Rightarrow\) Giả định chuẩn đa biến là \textbf{hợp lý} (xem Bài tập 5.4).
+    \end{block}
+  \end{columns}
+  \vspace{0.15cm}
+\end{frame}
+
+% ===========================================================================
+% Phan 4: Tinh bat bien
+% ===========================================================================
+\begin{frame}{Tính bất biến của \texorpdfstring{\(T^2\)}{T2} khi đổi đơn vị đo}
+  \vspace{-0.1cm}
+  \begin{block}{Phát biểu}
+    \(T^2\) \textbf{không thay đổi} dưới các phép biến đổi
+    \vspace{-0.15cm}
+    \begin{equation*}
+      \underset{(p\times1)}{\mathbf{Y}}
+      = \underset{(p\times p)}{\mathbf{C}}\;
+        \underset{(p\times1)}{\mathbf{X}}
+      + \underset{(p\times1)}{\mathbf{d}},
+      \qquad \mathbf{C} \text{ không suy biến.}
+      \tag{5-9}
+    \end{equation*}
+  \end{block}
+  \vspace{-0.05cm}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.47\textwidth}
+    \small
+    \textbf{Ví dụ:} định tâm rồi co giãn,
+    \(X_i \mapsto a_i(X_i-b_i)\) với \(a_i>0\), như đổi nhiệt độ từ \textbf{Fahrenheit} sang \textbf{Celsius}:
+    \[
+      C = \tfrac{5}{9}\,(F - 32)
+      \quad (a = \tfrac{5}{9},\ b = 32).
+    \]
+    Nhân trước tiếp bởi ma trận không suy biến bất kỳ vẫn cho dạng (5-9).
+
+    \column{0.49\textwidth}
+    \small
+    \textbf{Các đại lượng sau biến đổi:}
+    \begin{align*}
+      \bar{\mathbf{y}} &= \mathbf{C}\bar{\mathbf{x}} + \mathbf{d}
+        && \text{(Kết quả 3.6)}\\
+      \mathbf{S}_y &= \mathbf{C}\mathbf{S}\mathbf{C}'
+        && \text{(Kết quả 3.6)}\\
+      \boldsymbol{\mu}_Y &= \mathbf{C}\boldsymbol{\mu}+\mathbf{d}
+        && \text{(2-24), (2-45)}
+    \end{align*}
+    Giá trị giả thuyết tương ứng: \(\boldsymbol{\mu}_{Y,0}=\mathbf{C}\boldsymbol{\mu}_0+\mathbf{d}\).
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Chứng minh tính bất biến}
+  \small
+  \vspace{-0.2cm}
+  \begin{align*}
+    T^2_{\mathbf{y}}
+    &= n(\bar{\mathbf{y}}-\boldsymbol{\mu}_{Y,0})'
+       \mathbf{S}_y^{-1}
+       (\bar{\mathbf{y}}-\boldsymbol{\mu}_{Y,0}) \\
+    &= n\{\mathbf{C}(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)\}'
+       (\mathbf{C}\mathbf{S}\mathbf{C}')^{-1}
+       \{\mathbf{C}(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)\} \\
+    &= n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'
+       \mathbf{C}'\,
+       \textcolor{hustred}{(\mathbf{C}')^{-1}\mathbf{S}^{-1}\mathbf{C}^{-1}}\,
+       \mathbf{C}
+       (\bar{\mathbf{x}}-\boldsymbol{\mu}_0)
+       && \textcolor{hustred}{\text{vì } \mathbf{C} \text{ khả nghịch}}\\
+    &= n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)'
+       \mathbf{S}^{-1}
+       (\bar{\mathbf{x}}-\boldsymbol{\mu}_0)
+     \;=\; T^2_{\mathbf{x}}
+  \end{align*}
+  \vspace{-0.1cm}
+  \begin{alertblock}{Ý nghĩa}
+    Kết luận của kiểm định \(T^2\) \textbf{không phụ thuộc} vào đơn vị đo hay gốc tọa độ được chọn cho các biến.
+  \end{alertblock}
+\end{frame}
+
+
+
+\endgroup

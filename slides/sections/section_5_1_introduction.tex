@@ -1,15 +1,128 @@
 % Pham vi goc: Muc 5.1 - Gioi thieu.
-% File nay chi chia khuc noi dung, chua gan ten thanh vien phu trach.
+% Noi dung bam theo ban dich translation/chapters/ch05_01_introduction.tex.
+
+% Thu vien TikZ cho cac hinh trong muc nay.
+\usetikzlibrary{arrows.meta,positioning}
+
+% Style rieng cua muc nay. Dat trong group nen khong anh huong cac muc khac
+% va khong can sua main.tex.
+\begingroup
+\definecolor{hustnavy}{HTML}{003366}
+\definecolor{hustred}{HTML}{C8102E}
+\definecolor{hustgray}{HTML}{5F6B7A}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamercolor{block title}{bg=hustnavy,fg=white}
+\setbeamercolor{block body}{bg=hustnavy!6,fg=black}
+\setbeamercolor{block title alerted}{bg=hustred,fg=white}
+\setbeamercolor{block body alerted}{bg=hustred!6,fg=black}
+\setbeamercolor{itemize item}{fg=hustred}
+\newcommand{\keyterm}[1]{\textcolor{hustnavy}{\textbf{#1}}}
+\newcommand{\eng}[1]{{\color{hustgray}\textit{(#1)}}}
+\newcommand{\slidenote}[1]{{\footnotesize\color{hustgray}#1\par}}
+
 \section{Giới thiệu}
 \sectionframe{Giới thiệu}
 
-\begin{frame}{Giới thiệu}
-  \begin{block}{Phạm vi nội dung}
-    Trình bày bối cảnh của chương: từ các khái niệm chương 1--4 chuyển sang suy luận thống kê cho vectơ trung bình tổng thể.
+% ---------------------------------------------------------------------------
+\begin{frame}{Từ nền tảng đến suy luận thống kê}
+  \vspace{0.25cm}
+  \centering
+  \begin{tikzpicture}[
+      node distance=1.0cm,
+      stage/.style={draw=hustnavy, line width=0.8pt, rounded corners=4pt,
+        fill=hustnavy!6, align=center, minimum height=1.75cm,
+        text width=3.55cm, font=\small},
+      arr/.style={-{Stealth[length=2.8mm]}, line width=1.1pt, hustred}
+    ]
+    \node[stage] (a) {{\color{hustnavy}\textbf{Chương 1--4}}\\[3pt]
+      Các khái niệm và kết quả nền tảng của phân tích đa biến};
+    \node[stage, right=of a] (b) {{\color{hustnavy}\textbf{Suy luận thống kê}}\\[3pt]
+      Đi từ thông tin của \emph{mẫu} đến kết luận về \emph{tổng thể}};
+    \node[stage, right=of b, draw=hustred, fill=hustred!7] (c) {{\color{hustred}\textbf{Chương 5}}\\[3pt]
+      Suy luận về vectơ trung bình \(\boldsymbol{\mu}\) và các thành phần};
+    \draw[arr] (a) -- (b);
+    \draw[arr] (b) -- (c);
+  \end{tikzpicture}
+
+  \vspace{0.45cm}
+  \raggedright
+  \begin{block}{Suy luận thống kê \textmd{\textit{(inference)}}}
+    Rút ra những kết luận \textbf{có giá trị} về một tổng thể \eng{population}
+    dựa trên thông tin thu được từ một mẫu \eng{sample}.
+    Chương 5 mở đầu cho phần \keyterm{phương pháp luận} của cuốn sách.
   \end{block}
-  \begin{itemize}
-    \item Mục tiêu của suy luận thống kê trong phân tích đa biến.
-    \item Vì sao các biến tương quan cần được phân tích đồng thời.
-    \item Vai trò của khoảng tin cậy đồng thời trong chương này.
-  \end{itemize}
 \end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Nội dung chính của chương}
+  \vspace{0.15cm}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.56\textwidth}
+    \begin{tikzpicture}[
+        stagebox/.style={draw=hustnavy, line width=0.7pt, rounded corners=3pt,
+          fill=hustnavy!6, text width=6.4cm, minimum height=0.72cm,
+          align=left, font=\small, inner xsep=6pt},
+        goal/.style={stagebox, draw=hustred, fill=hustred!7},
+        arr/.style={-{Stealth[length=2.2mm]}, line width=0.9pt, hustnavy!70}
+      ]
+      \node[stagebox] (s1) {\textbf{Kiểm định giả thuyết} \(H_0:\boldsymbol{\mu}=\boldsymbol{\mu}_0\)};
+      \node[stagebox, below=0.38cm of s1] (s2) {\textbf{Miền tin cậy} cho \(\boldsymbol{\mu}\): các giá trị còn hợp lý};
+      \node[goal, below=0.38cm of s2] (s3) {\textbf{Khoảng tin cậy đồng thời} cho các\\ trung bình thành phần \(\mu_1,\ldots,\mu_p\)};
+      \draw[arr] (s1) -- (s2);
+      \draw[arr] (s2) -- (s3);
+      \node[font=\scriptsize\bfseries, text=hustred, anchor=north east]
+        at ([yshift=-1pt]s3.south east) {Mục tiêu cuối cùng};
+    \end{tikzpicture}
+
+    \column{0.40\textwidth}
+    \small
+    \begin{itemize}\setlength{\itemsep}{4pt}
+      \item Mở đầu bằng những thảo luận cơ bản về \keyterm{kiểm định giả thuyết} \eng{tests of hypotheses}.
+      \item Hướng tới một phân tích thống kê \textbf{đầy đủ} cho các trung bình thành phần.
+      \item Công cụ chính: các \keyterm{khoảng tin cậy đồng thời} \eng{simultaneous confidence statements}.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Thông điệp trung tâm của phân tích đa biến}
+  \vspace{0.1cm}
+  \begin{alertblock}{Nguyên lý}
+    \centering
+    \(p\) biến có tương quan với nhau \eng{correlated variables}
+    phải được \textbf{phân tích chung}.
+  \end{alertblock}
+
+  \vspace{0.1cm}
+  \begin{columns}[c,onlytextwidth]
+    \column{0.42\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.82]
+      \draw[-{Stealth[length=2mm]}, hustgray] (-0.3,-0.3) -- (4.1,-0.3) node[below left, font=\scriptsize] {\(\mu_1\)};
+      \draw[-{Stealth[length=2mm]}, hustgray] (-0.3,-0.3) -- (-0.3,3.0) node[below left, font=\scriptsize] {\(\mu_2\)};
+      % Hinh chu nhat: xet rieng tung bien; elip: xet dong thoi.
+      \draw[hustgray, dashed, line width=0.6pt] (0.293,0.168) rectangle (3.507,2.632);
+      \fill[hustnavy!12, draw=hustnavy, line width=0.9pt, rotate around={35:(1.9,1.4)}]
+        (1.9,1.4) ellipse (1.9 and 0.7);
+      \fill[hustnavy] (1.9,1.4) circle (1.4pt);
+      \fill[hustred] (3.26,0.42) circle (2.2pt);
+      \node[font=\scriptsize, text=hustred, anchor=west] at (3.32,0.42) {\(P\)};
+    \end{tikzpicture}
+
+    \column{0.55\textwidth}
+    \small
+    \begin{itemize}\setlength{\itemsep}{3pt}
+      \item[\textcolor{hustgray}{\rule[0.2ex]{0.7em}{0.6pt}}]
+        \textcolor{hustgray}{Hình chữ nhật}: xét \textbf{riêng} từng biến.
+      \item[\textcolor{hustnavy}{\(\bullet\)}]
+        \textcolor{hustnavy}{Elip}: xét \textbf{đồng thời}, tính đến tương quan.
+      \item[\textcolor{hustred}{\(\bullet\)}]
+        Điểm \(P\): hợp lý với từng biến, nhưng \textbf{không} hợp lý khi xét đồng thời.
+    \end{itemize}
+    \vspace{0.1cm}
+    \slidenote{Minh họa trực quan; miền tin cậy dạng elip được làm rõ ở mục 5.4.}
+  \end{columns}
+\end{frame}
+
+\endgroup
