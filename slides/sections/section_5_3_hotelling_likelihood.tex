@@ -1,15 +1,386 @@
-% Pham vi goc: Muc 5.3 - Hotelling T^2 va kiem dinh ty so hop ly.
-% File nay chi chia khuc noi dung, chua gan ten thanh vien phu trach.
-\section{Hotelling \texorpdfstring{\(T^2\)}{T2} và kiểm định tỷ số hợp lý}
-\sectionframe{Hotelling \(T^2\) và kiểm định tỷ số hợp lý}
+% ==============================================================================
+% Mục 5.3: Hotelling's T^2 và kiểm định tỷ số hợp lý
+% Tham chiếu: Johnson & Wichern (trang 216-220)
+% Phụ trách: Hồ Xuân Bắc (MSSV: 20237301)
+% ==============================================================================
 
-\begin{frame}{Hotelling \texorpdfstring{\(T^2\)}{T2} và kiểm định tỷ số hợp lý}
-  \begin{block}{Phạm vi nội dung}
-    Trình bày công thức Hotelling \(T^2\), tiêu chuẩn bác bỏ \(H_0\), và cách nhìn từ kiểm định tỷ số hợp lý.
+\section{Kiểm định Hotelling \texorpdfstring{\(T^2\)}{T2} và kiểm định tỷ số hợp lý}
+\sectionframe{Kiểm định Hotelling \(T^2\) và kiểm định tỷ số hợp lý}
+
+% ------------------------------------------------------------------------------
+% Slide 1: Đặt vấn đề: Phương pháp tỷ số hợp lý
+% ------------------------------------------------------------------------------
+\begin{frame}{Đặt vấn đề: Phương pháp tỷ số hợp lý}
+  \begin{block}{Từ khoảng cách thống kê đến phương pháp tỷ số hợp lý}
+    \begin{itemize}
+      \item Thống kê $T^2$ được xây dựng tương tự với bình phương khoảng cách một chiều $t^2$.
+      \item \textbf{Phương pháp tỷ số hợp lý} (\emph{likelihood ratio method}) là nguyên lý tổng quát để xây dựng các thủ tục kiểm định giả thuyết thống kê.
+      \item Kiểm định thu được gọi là \textbf{kiểm định tỷ số hợp lý} (\emph{Likelihood Ratio Test} -- LRT).
+      \item Thống kê Hotelling $T^2$ có thể suy ra trực tiếp từ phương pháp này: kiểm định LRT của $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$ tương đương với kiểm định $T^2$.
+    \end{itemize}
   \end{block}
-  \begin{itemize}
-    \item Ý nghĩa hình học của khoảng cách Mahalanobis.
-    \item Điều kiện áp dụng trong mẫu từ phân phối chuẩn đa biến.
-    \item Cách đọc kết luận kiểm định trên slide.
-  \end{itemize}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 2: Bài toán kiểm định giả thuyết và ưu điểm của LRT
+% ------------------------------------------------------------------------------
+\begin{frame}{Bài toán kiểm định giả thuyết và ưu điểm của LRT}
+  \begin{exampleblock}{Bài toán kiểm định giả thuyết về vectơ trung bình}
+    Cho mẫu ngẫu nhiên $\mathbf{X}_1, \dots, \mathbf{X}_n$ từ phân phối chuẩn đa biến $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ với $\boldsymbol{\Sigma}$ chưa biết:
+    \[
+      H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0 \quad \text{so với} \quad H_1: \boldsymbol{\mu} \neq \boldsymbol{\mu}_0
+    \]
+  \end{exampleblock}
+
+  \begin{exampleblock}{Ưu điểm của kiểm định tỷ số hợp lý (LRT)}
+    \begin{itemize}
+      \item Có nhiều tính chất tối ưu khi cỡ mẫu đủ lớn (tiệm cận mạnh nhất).
+      \item Đặc biệt thuận tiện và tự nhiên đối với các giả thuyết về tham số của phân phối chuẩn nhiều chiều.
+      \item Đóng vai trò là phương pháp suy luận nền tảng trong phân tích đa biến.
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 3: Cực đại hóa hàm hợp lý: Trường hợp không ràng buộc
+% ------------------------------------------------------------------------------
+\begin{frame}{Cực đại hóa hàm hợp lý: Trường hợp không ràng buộc}
+  \begin{block}{Hàm hợp lý của mẫu chuẩn nhiều chiều (4-16)}
+    Mẫu ngẫu nhiên $\mathbf{X}_1, \dots, \mathbf{X}_n$ từ $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$:
+    \[
+      L(\boldsymbol{\mu}, \boldsymbol{\Sigma}) = \frac{1}{(2\pi)^{np/2}|\boldsymbol{\Sigma}|^{n/2}} \exp\left( -\frac{1}{2} \sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu})\trans \boldsymbol{\Sigma}^{-1} (\mathbf{x}_j - \boldsymbol{\mu}) \right)
+    \]
+  \end{block}
+
+  \begin{exampleblock}{Ước lượng hợp lý cực đại (MLE) không ràng buộc (Kết quả 4.11)}
+    Khi $\boldsymbol{\mu} \in \mathbb{R}^p$ và $\boldsymbol{\Sigma}$ xác định dương biến thiên tự do trên toàn bộ không gian tham số:
+    \[
+      \hat{\boldsymbol{\mu}} = \bar{\mathbf{x}} = \frac{1}{n}\sum_{j=1}^n \mathbf{x}_j, \qquad
+      \hat{\boldsymbol{\Sigma}} = \frac{1}{n}\sum_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})\trans
+    \]
+  \end{exampleblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 4: Giá trị cực đại của hàm hợp lý không ràng buộc
+% ------------------------------------------------------------------------------
+\begin{frame}{Giá trị cực đại của hàm hợp lý không ràng buộc}
+  \begin{alertblock}{Giá trị cực đại không ràng buộc (5-10)}
+    Thay các ước lượng MLE $\hat{\boldsymbol{\mu}} = \bar{\mathbf{x}}$ và $\hat{\boldsymbol{\Sigma}}$ vào hàm hợp lý:
+    \[
+      \max_{\boldsymbol{\mu}, \boldsymbol{\Sigma}} L(\boldsymbol{\mu}, \boldsymbol{\Sigma}) = L(\hat{\boldsymbol{\mu}}, \hat{\boldsymbol{\Sigma}}) = \frac{1}{(2\pi)^{np/2} |\hat{\boldsymbol{\Sigma}}|^{n/2}} \, e^{-np/2} \qquad \text{(5-10)}
+    \]
+  \end{alertblock}
+
+  \begin{block}{Ý nghĩa thống kê}
+    \begin{itemize}
+      \item Cho biết mức độ phù hợp cao nhất giữa dữ liệu và phân phối chuẩn nhiều chiều khi không đặt ràng buộc nào lên tham số.
+      \item Giá trị cực đại tỷ lệ nghịch với $|\hat{\boldsymbol{\Sigma}}|^{n/2}$: phương sai tổng quát $|\hat{\boldsymbol{\Sigma}}|$ càng lớn thì độ phù hợp cực đại càng thấp.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 5: Cực đại hóa hàm hợp lý dưới giả thuyết H0
+% ------------------------------------------------------------------------------
+\begin{frame}{Cực đại hóa hàm hợp lý dưới giả thuyết \texorpdfstring{$H_0$}{H0}}
+  \begin{block}{Hàm hợp lý dưới giả thuyết $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$}
+    Khi vectơ kỳ vọng cố định tại $\boldsymbol{\mu}_0$, hàm hợp lý chỉ còn biến thiên theo $\boldsymbol{\Sigma}$:
+    \[
+      L(\boldsymbol{\mu}_0, \boldsymbol{\Sigma}) = \frac{1}{(2\pi)^{np/2}|\boldsymbol{\Sigma}|^{n/2}} \exp\left( -\frac{1}{2} \sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)\trans \boldsymbol{\Sigma}^{-1} (\mathbf{x}_j - \boldsymbol{\mu}_0) \right)
+    \]
+  \end{block}
+
+  \begin{exampleblock}{Biến đổi số mũ bằng kỹ thuật lấy vết (trace)}
+    Dùng tính chất $\mathbf{a}\trans\mathbf{B}\mathbf{a} = \operatorname{tr}(\mathbf{B}\mathbf{a}\mathbf{a}\trans)$ và tính tuyến tính của vết:
+    \[
+      -\frac{1}{2} \sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)\trans \boldsymbol{\Sigma}^{-1} (\mathbf{x}_j - \boldsymbol{\mu}_0)
+      = -\frac{1}{2} \operatorname{tr}\left[ \boldsymbol{\Sigma}^{-1} \left( \sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)(\mathbf{x}_j - \boldsymbol{\mu}_0)\trans \right) \right]
+    \]
+  \end{exampleblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 6: Bổ đề cực đại hóa theo ma trận hiệp phương sai (Kết quả 4.10)
+% ------------------------------------------------------------------------------
+\begin{frame}{Bổ đề cực đại hóa theo ma trận hiệp phương sai (Kết quả 4.10)}
+  \begin{block}{Kết quả 4.10 (Johnson \& Wichern)}
+    Cho $\mathbf{B}$ là ma trận đối xứng xác định dương cỡ $p \times p$ và $b > 0$. Khi đó với mọi ma trận $\boldsymbol{\Sigma}$ xác định dương cỡ $p \times p$:
+    \[
+      \frac{1}{|\boldsymbol{\Sigma}|^{b}} \, e^{-\frac{1}{2}\operatorname{tr}\left(\boldsymbol{\Sigma}^{-1}\mathbf{B}\right)}
+      \;\le\;
+      \frac{1}{|\mathbf{B}|^{b}} \, (2b)^{pb} \, e^{-bp}
+    \]
+    Dấu bằng xảy ra khi và chỉ khi $\boldsymbol{\Sigma} = \dfrac{1}{2b}\mathbf{B}$.
+  \end{block}
+
+  \begin{exampleblock}{Ý nghĩa áp dụng}
+    Hàm theo $\boldsymbol{\Sigma}$ ở vế trái đạt giá trị cực đại duy nhất tại $\boldsymbol{\Sigma} = \dfrac{1}{2b}\mathbf{B}$, và giá trị cực đại chính là biểu thức ở vế phải.
+  \end{exampleblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 7: Giá trị cực đại của hàm hợp lý dưới H0
+% ------------------------------------------------------------------------------
+\begin{frame}{Giá trị cực đại của hàm hợp lý dưới \texorpdfstring{$H_0$}{H0}}
+  \begin{block}{Áp dụng Kết quả 4.10}
+    Đặt $\mathbf{B} = \sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)(\mathbf{x}_j - \boldsymbol{\mu}_0)\trans = n\hat{\boldsymbol{\Sigma}}_0$ và $b = \dfrac{n}{2}$. Khi đó $L(\boldsymbol{\mu}_0, \boldsymbol{\Sigma})$ có đúng dạng vế trái của Kết quả 4.10.
+  \end{block}
+
+  \begin{alertblock}{Cực đại dưới $H_0$ (5-11)}
+    Cực đại đạt tại $\boldsymbol{\Sigma} = \dfrac{\mathbf{B}}{2b} = \hat{\boldsymbol{\Sigma}}_0$. Thay $2b = n$ và $|\mathbf{B}| = n^p|\hat{\boldsymbol{\Sigma}}_0|$ vào vế phải:
+    \vspace{-4pt}
+    \begin{equation*}
+      \max_{\boldsymbol{\Sigma}} L(\boldsymbol{\mu}_0, \boldsymbol{\Sigma})
+      = \frac{1}{(2\pi)^{np/2}|\hat{\boldsymbol{\Sigma}}_0|^{n/2}} \, e^{-np/2} \qquad \text{(5-11)}
+    \end{equation*}
+    với $\hat{\boldsymbol{\Sigma}}_0 = \frac{1}{n}\sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)(\mathbf{x}_j - \boldsymbol{\mu}_0)\trans$.
+  \end{alertblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 8: Thống kê tỷ số hợp lý và tiêu chuẩn Wilks
+% ------------------------------------------------------------------------------
+\begin{frame}[t]{Thống kê tỷ số hợp lý \texorpdfstring{$\Lambda$}{Lambda} và tiêu chuẩn Wilks}
+  \begin{block}{Thống kê tỷ số hợp lý $\Lambda$ (5-12)}
+    Tỷ số giữa cực đại có ràng buộc ($H_0$) và cực đại không ràng buộc:
+    \vspace{-4pt}
+    \[
+      \Lambda = \frac{\max\limits_{\boldsymbol{\Sigma}} L(\boldsymbol{\mu}_0, \boldsymbol{\Sigma})}{\max\limits_{\boldsymbol{\mu}, \boldsymbol{\Sigma}} L(\boldsymbol{\mu}, \boldsymbol{\Sigma})}
+      = \left( \frac{|\hat{\boldsymbol{\Sigma}}|}{|\hat{\boldsymbol{\Sigma}}_0|} \right)^{n/2} \qquad \text{(5-12)}
+    \]
+    \vspace{-8pt}
+  \end{block}
+
+  \begin{exampleblock}{Tiêu chuẩn Lambda của Wilks và quy tắc kiểm định}
+    \begin{itemize}
+      \item Thống kê tương đương: $\Lambda^{2/n} = |\hat{\boldsymbol{\Sigma}}| \,/\, |\hat{\boldsymbol{\Sigma}}_0|$ (tỷ số hai phương sai tổng quát).
+      \item Bác bỏ $H_0$ nếu $\Lambda < c_\alpha$ (với $c_\alpha$ là phân vị dưới $100\alpha\%$ của $\Lambda$).
+      \item Do $0 < \Lambda \le 1$, giá trị $\Lambda$ càng nhỏ thì $H_0$ càng ít hợp lý.
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 9: Kết quả 5.1: Mối liên hệ giữa LRT và Hotelling T^2
+% ------------------------------------------------------------------------------
+\begin{frame}{Kết quả 5.1: Mối liên hệ giữa LRT và Hotelling \texorpdfstring{$T^2$}{T2}}
+  \begin{block}{Kết quả 5.1 (Johnson \& Wichern)}
+    Cho $\mathbf{X}_1, \dots, \mathbf{X}_n$ là mẫu ngẫu nhiên từ $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$. Khi đó kiểm định dựa trên $T^2$ tương đương với kiểm định tỷ số hợp lý (LRT) của $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$ so với $H_1: \boldsymbol{\mu} \neq \boldsymbol{\mu}_0$, vì:
+    \vspace{-4pt}
+    \[
+      \Lambda^{2/n} = \frac{|\hat{\boldsymbol{\Sigma}}|}{|\hat{\boldsymbol{\Sigma}}_0|} = \left( 1 + \frac{T^2}{n-1} \right)^{-1}
+      \qquad \text{(5-14)}
+    \]
+  \end{block}
+
+  \begin{alertblock}{Miền bác bỏ và tính tương đương}
+    \begin{itemize}
+      \item $\Lambda^{2/n}$ nghịch biến theo $T^2$, nên $\Lambda^{2/n}$ nhỏ tương đương $T^2$ lớn.
+      \item Bác bỏ $H_0$ ở mức ý nghĩa $\alpha$ khi:
+      $T^2 > \dfrac{(n-1)p}{n-p}\, F_{p,\,n-p}(\alpha)$.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 10: Chứng minh Kết quả 5.1: Bổ đề ma trận khối
+% ------------------------------------------------------------------------------
+\begin{frame}[t]{Chứng minh Kết quả 5.1: Bổ đề ma trận khối}
+  \begin{block}{Bổ đề định thức ma trận khối (Bài tập 4.11)}
+    Với ma trận khối $\mathbf{A} = \begin{bmatrix} \mathbf{A}_{11} & \mathbf{A}_{12} \\ \mathbf{A}_{21} & \mathbf{A}_{22} \end{bmatrix}$:
+    \[
+      |\mathbf{A}| = |\mathbf{A}_{22}|\,|\mathbf{A}_{11} - \mathbf{A}_{12}\mathbf{A}_{22}^{-1}\mathbf{A}_{21}| = |\mathbf{A}_{11}|\,|\mathbf{A}_{22} - \mathbf{A}_{21}\mathbf{A}_{11}^{-1}\mathbf{A}_{12}|
+    \]
+  \end{block}
+
+  \begin{exampleblock}{Thiết lập ma trận $\mathbf{A}$ cỡ $(p+1) \times (p+1)$}
+    Xét ma trận khối với $\mathbf{A}_{22} = -1$ (vô hướng, nên $\mathbf{A}_{22}^{-1} = -1$):
+    \[
+      \mathbf{A} =
+      \begin{bmatrix}
+        \sum\limits_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})\trans & \sqrt{n}\,(\bar{\mathbf{x}} - \boldsymbol{\mu}_0) \\[6pt]
+        \sqrt{n}\,(\bar{\mathbf{x}} - \boldsymbol{\mu}_0)\trans & -1
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+        \mathbf{A}_{11} & \mathbf{A}_{12} \\
+        \mathbf{A}_{21} & \mathbf{A}_{22}
+      \end{bmatrix}
+    \]
+  \end{exampleblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 11: Chứng minh Kết quả 5.1: Khai triển hai vế định thức
+% ------------------------------------------------------------------------------
+\begin{frame}[t]{Chứng minh Kết quả 5.1: Khai triển hai vế định thức}
+  \begin{block}{Khai triển định thức $|\mathbf{A}|$ theo hai cách}
+    Áp dụng bổ đề định thức ma trận khối vào ma trận $\mathbf{A}$:
+    \begin{align*}
+      \text{Vế trái: } &(-1)\left|\sum_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})\trans + n(\bar{\mathbf{x}} - \boldsymbol{\mu}_0)(\bar{\mathbf{x}} - \boldsymbol{\mu}_0)\trans\right| \\[6pt]
+      \text{Vế phải: } &\left|\sum_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})\trans\right| \\
+      &\times \left|-1 - n(\bar{\mathbf{x}} - \boldsymbol{\mu}_0)\trans \left[\sum_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})\trans\right]^{-1} (\bar{\mathbf{x}} - \boldsymbol{\mu}_0)\right|
+    \end{align*}
+  \end{block}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 12: Chứng minh Kết quả 5.1: Liên hệ với thống kê T^2
+% ------------------------------------------------------------------------------
+\begin{frame}[t]{Chứng minh Kết quả 5.1: Liên hệ với thống kê \texorpdfstring{$T^2$}{T2}}
+  \begin{block}{Biến đổi đại số sử dụng phân tích tổng bình phương (4-14)}
+    \begin{itemize}
+      \item Vế trái: $\sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)(\mathbf{x}_j - \boldsymbol{\mu}_0)\trans = n\hat{\boldsymbol{\Sigma}}_0$.
+      \item Vế phải: $\sum_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})\trans = n\hat{\boldsymbol{\Sigma}} = (n-1)\mathbf{S}$.
+      \item Thừa số thứ hai: $-1 - n(\bar{\mathbf{x}} - \boldsymbol{\mu}_0)\trans [(n-1)\mathbf{S}]^{-1}(\bar{\mathbf{x}} - \boldsymbol{\mu}_0) = -\left(1 + \dfrac{T^2}{n-1}\right)$.
+    \end{itemize}
+  \end{block}
+
+  \begin{alertblock}{Kết luận: Biểu thức tương đương (5-14)}
+    \[
+      (-1)|n\hat{\boldsymbol{\Sigma}}_0| = |n\hat{\boldsymbol{\Sigma}}| \cdot (-1)\left(1 + \frac{T^2}{n-1}\right)
+      \implies
+      \Lambda^{2/n} = \frac{|\hat{\boldsymbol{\Sigma}}|}{|\hat{\boldsymbol{\Sigma}}_0|} = \left(1 + \frac{T^2}{n-1}\right)^{-1} \hfill \blacksquare
+    \]
+  \end{alertblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 13: Tính T^2 thông qua tỷ số hai định thức
+% ------------------------------------------------------------------------------
+\begin{frame}[t]{Tính \texorpdfstring{$T^2$}{T2} thông qua tỷ số hai định thức}
+  \begin{block}{Công thức tính $T^2$ từ tỷ số định thức (5-15)}
+    Giải hệ thức (5-14) theo $T^2$, ta được:
+    \[
+      T^2 = (n-1)\left(\frac{|\hat{\boldsymbol{\Sigma}}_0|}{|\hat{\boldsymbol{\Sigma}}|} - 1\right) = (n-1)\left(\frac{|n\hat{\boldsymbol{\Sigma}}_0|}{|n\hat{\boldsymbol{\Sigma}}|} - 1\right) \qquad \text{(5-15)}
+    \]
+    với $n\hat{\boldsymbol{\Sigma}}_0 = \sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)(\mathbf{x}_j - \boldsymbol{\mu}_0)\trans$ và $n\hat{\boldsymbol{\Sigma}} = \sum_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})\trans$.
+  \end{block}
+
+  \begin{exampleblock}{Lợi ích trong thực hành tính toán}
+    \begin{itemize}
+      \item \textbf{Tránh tính ma trận nghịch đảo}: Cho phép tính giá trị $T^2$ trực tiếp từ hai định thức mà không cần tìm $\mathbf{S}^{-1}$.
+      \item Rất thuận tiện và ổn định trong tính toán cũng như khi lập trình.
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 14: Vai trò của kiểm định tỷ số hợp lý trong phân tích đa biến
+% ------------------------------------------------------------------------------
+\begin{frame}[t]{Vai trò của kiểm định tỷ số hợp lý trong phân tích đa biến}
+  \begin{block}{Đặc điểm nổi bật của kiểm định tỷ số hợp lý (LRT)}
+    \begin{itemize}
+      \item \textbf{Rất phổ biến trong phân tích đa biến}: Hầu hết các kiểm định đa biến quan trọng (so sánh trung bình, cấu trúc hiệp phương sai, MANOVA...) đều xây dựng trên nguyên lý tỷ số hợp lý.
+      \item \textbf{Tính chất tối ưu mẫu lớn}: Các tính chất tối ưu đối với mẫu lớn được đảm bảo trong những bối cảnh rất tổng quát.
+      \item \textbf{Tương thích với giáo trình}: Rất phù hợp với các bài toán suy luận thống kê chuẩn nhiều chiều được xét xuyên suốt cuốn sách.
+      \item \textbf{Tính nhất quán}: Trong trường hợp một biến ($p=1$), phương pháp tỷ số hợp lý dẫn về các thống kê $t$ và $F$ quen thuộc trong thống kê cổ điển.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 15: Phương pháp tỷ số hợp lý trong trường hợp tổng quát
+% ------------------------------------------------------------------------------
+\begin{frame}[t]{Phương pháp tỷ số hợp lý trong trường hợp tổng quát}
+  \begin{block}{Định nghĩa kiểm định tỷ số hợp lý tổng quát (5-16)}
+    Xét $H_0: \boldsymbol{\theta} \in \boldsymbol{\Theta}_0$ so với $H_1: \boldsymbol{\theta} \notin \boldsymbol{\Theta}_0$, với $\boldsymbol{\Theta}_0 \subset \boldsymbol{\Theta}$. Bác bỏ $H_0$ nếu:
+    \[
+      \Lambda = \frac{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}_0} L(\boldsymbol{\theta})}{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}} L(\boldsymbol{\theta})} < c
+      \qquad \text{(5-16)}
+    \]
+  \end{block}
+
+  \begin{exampleblock}{Nguyên lý thống kê trực quan}
+    \begin{itemize}
+      \item So sánh cực đại có ràng buộc ($H_0$) với cực đại không ràng buộc trên $\boldsymbol{\Theta}$.
+      \item Cực đại trên $\boldsymbol{\Theta}_0$ nhỏ hơn nhiều so với trên $\boldsymbol{\Theta}$ ($\Lambda$ rất bé) cho thấy $H_0$ khó phù hợp với dữ liệu, do đó ta bác bỏ $H_0$.
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 16: Không gian tham số trong mô hình chuẩn nhiều chiều
+% ------------------------------------------------------------------------------
+\begin{frame}[t]{Không gian tham số trong mô hình chuẩn nhiều chiều}
+  \begin{block}{Vectơ tham số trong mô hình $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$}
+    Vectơ tham số $\boldsymbol{\theta}$ gồm các kỳ vọng và các phần tử hiệp phương sai:
+    \[
+      \boldsymbol{\theta}\trans = [\mu_1, \dots, \mu_p,\, \sigma_{11}, \dots, \sigma_{1p},\, \sigma_{22}, \dots, \sigma_{pp}]
+    \]
+  \end{block}
+
+  \begin{exampleblock}{Số chiều tham số và số bậc tự do}
+    \begin{itemize}
+      \item \textbf{Toàn không gian $\boldsymbol{\Theta}$}: $\nu = \dim\boldsymbol{\Theta} = p + \frac{p(p+1)}{2}$ ($p$ trung bình, $\frac{p(p+1)}{2}$ hiệp phương sai).
+      \item \textbf{Ràng buộc ($H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$)}: $\nu_0 = \dim\boldsymbol{\Theta}_0 = \frac{p(p+1)}{2}$ (chỉ còn hiệp phương sai).
+      \item \textbf{Hiệu số chiều (bậc tự do)}: $\nu - \nu_0 = p$.
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 17: Kết quả 5.2: Phân phối mẫu lớn của -2 ln Lambda
+% ------------------------------------------------------------------------------
+\begin{frame}[t]{Kết quả 5.2: Phân phối mẫu lớn của \texorpdfstring{$-2\ln\Lambda$}{-2 ln Lambda}}
+  \begin{block}{Kết quả 5.2 (Phân phối tiệm cận Wilks)}
+    Khi cỡ mẫu $n$ lớn, dưới giả thuyết không $H_0$, đại lượng:
+    \[
+      -2\ln\Lambda = -2\ln\left(\frac{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}_0} L(\boldsymbol{\theta})}{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}} L(\boldsymbol{\theta})}\right) \overset{d}{\approx} \chi^2_{\nu-\nu_0}
+    \]
+    với số bậc tự do là $\nu - \nu_0 = \dim\boldsymbol{\Theta} - \dim\boldsymbol{\Theta}_0$.
+  \end{block}
+
+  \begin{alertblock}{Áp dụng cho kiểm định vectơ trung bình $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$}
+    \begin{itemize}
+      \item Do $\nu - \nu_0 = p$, nên khi $n$ lớn: $-2\ln\Lambda \overset{d}{\approx} \chi^2_p$.
+      \item Quy tắc: Bác bỏ $H_0$ ở mức ý nghĩa $\alpha$ nếu $-2\ln\Lambda > \chi^2_p(\alpha)$.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 18: Lực kiểm định và các tính chất tối ưu của LRT
+% ------------------------------------------------------------------------------
+\begin{frame}[t]{Lực kiểm định và các tính chất tối ưu của LRT}
+  \begin{block}{Lực kiểm định (Power of a test)}
+    Lực kiểm định là hàm theo tham số $\boldsymbol{\theta}$: $\text{Power}(\boldsymbol{\theta}) = \mathrm{P}[\text{bác bỏ } H_0 \mid \boldsymbol{\theta}]$.\\
+    Đo lường khả năng bác bỏ giả thuyết $H_0$ khi $H_0$ thực sự không đúng.
+  \end{block}
+
+  \begin{exampleblock}{Các tính chất tối ưu của kiểm định tỷ số hợp lý}
+    \begin{itemize}
+      \item \textbf{Giả thuyết đơn}: Đạt lực kiểm định cao nhất cùng mức $\alpha$ (Neyman--Pearson).
+      \item \textbf{Một tham số}: Thường là kiểm định mạnh nhất đồng đều (UMP) một phía.
+      \item \textbf{Đa biến tổng quát}: Đạt lực kiểm định (trung bình) cao nhất khi cỡ mẫu $n$ lớn.
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 18: Tổng kết và đối chiếu: Hotelling T^2 và LRT
+% ------------------------------------------------------------------------------
+\begin{frame}[t]{Tổng kết và đối chiếu: Hotelling \texorpdfstring{$T^2$}{T2} và LRT}
+  \centering
+  \footnotesize
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Tiêu chí} & \textbf{Kiểm định Hotelling $T^2$} & \textbf{Kiểm định tỷ số hợp lý (LRT)} \\
+    \midrule
+    \textbf{Thống kê} & $T^2 = n(\bar{\mathbf{x}} - \boldsymbol{\mu}_0)\trans \mathbf{S}^{-1} (\bar{\mathbf{x}} - \boldsymbol{\mu}_0)$ & $\Lambda = (|\hat{\boldsymbol{\Sigma}}| / |\hat{\boldsymbol{\Sigma}}_0|)^{n/2}$ \\
+    \textbf{Mối liên hệ (5-14)} & $T^2 = (n-1)\left(\Lambda^{-2/n} - 1\right)$ & $\Lambda^{2/n} = \left(1 + \frac{T^2}{n-1}\right)^{-1}$ \\
+    \textbf{Miền bác bỏ} & Bác bỏ $H_0$ khi $T^2$ lớn & Bác bỏ $H_0$ khi $\Lambda$ (hoặc $\Lambda^{2/n}$) nhỏ \\
+    \textbf{Phân phối} & Chính xác: $\frac{n-p}{(n-1)p} T^2 \sim F_{p,\,n-p}$ & Xấp xỉ mẫu lớn: $-2\ln\Lambda \approx \chi^2_p$ \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{0.15cm}
+  \begin{alertblock}{Kết luận chung}
+    Kiểm định Hotelling $T^2$ chính là kiểm định tỷ số hợp lý cho mẫu chuẩn nhiều chiều. Khi $n$ lớn, từ khai triển Taylor:
+    \[
+      -2\ln\Lambda = n\ln\left(1 + \frac{T^2}{n-1}\right) \approx T^2 \sim \chi^2_p
+    \]
+  \end{alertblock}
 \end{frame}
