@@ -698,4 +698,195 @@ Các điểm nằm ngoài elip dự báo hoặc nằm trên $\mathrm{UCL}$ cho t
 
     \item Các đại lượng $\overline{\mathbf{x}}$, $\mathbf{S}$ và $\mathbf{S}\inv$ được cho trong Ví dụ~5.3 đối với dữ liệu bức xạ lò vi sóng sau khi biến đổi. Hãy kiểm định giả thuyết không $H_0: \boldsymbol{\mu}\trans = [0{,}55,\; 0{,}60]$ ở mức ý nghĩa $\alpha = 0{,}05$. Kết quả của bạn có nhất quán với elip tin cậy 95\% cho $\boldsymbol{\mu}$ được vẽ trong Hình~5.1 hay không? Hãy giải thích.
 \end{enumerate}
+
+\subsection*{Lời giải hai bài cuối}
+
+\paragraph{Bài 5.4.}
+\begin{enumerate}[label=(\alph*)]
+    \item Theo Ví dụ~5.2, với dữ liệu mồ hôi trong Bảng~5.1, ta có $n=20$, $p=3$,
+    \[
+        \bar{\mathbf{x}} =
+        \begin{bmatrix}
+            4{,}640\\
+            45{,}400\\
+            9{,}965
+        \end{bmatrix},
+        \qquad
+        \mathbf{S} =
+        \begin{bmatrix}
+            2{,}879 & 10{,}010 & -1{,}810\\
+            10{,}010 & 199{,}788 & -5{,}640\\
+            -1{,}810 & -5{,}640 & 3{,}628
+        \end{bmatrix}.
+    \]
+    Các trục của ellipsoid tin cậy được xác định từ các trị riêng và vectơ riêng chuẩn hóa của $\mathbf{S}$. Trước hết, các trị riêng $\lambda$ là nghiệm của phương trình đặc trưng
+    \[
+        \left|\mathbf{S}-\lambda\mathbf{I}\right|=0.
+    \]
+    Thay $\mathbf{S}$ vào, ta được
+    \[
+        \left|
+        \begin{matrix}
+            2{,}879-\lambda & 10{,}010 & -1{,}810\\
+            10{,}010 & 199{,}788-\lambda & -5{,}640\\
+            -1{,}810 & -5{,}640 & 3{,}628-\lambda
+        \end{matrix}
+        \right| = 0.
+    \]
+    Khai triển định thức theo hàng thứ nhất:
+    \[
+    \begin{aligned}
+        0={}&(2{,}879-\lambda)
+        \bigl[(199{,}788-\lambda)(3{,}628-\lambda)-(-5{,}640)(-5{,}640)\bigr]\\
+        &-10{,}010
+        \bigl[10{,}010(3{,}628-\lambda)-(-5{,}640)(-1{,}810)\bigr]\\
+        &-1{,}810
+        \bigl[10{,}010(-5{,}640)-(199{,}788-\lambda)(-1{,}810)\bigr].
+    \end{aligned}
+    \]
+    Rút gọn biểu thức trên cho ta
+    \[
+        -\lambda^3 + 206{,}295\lambda^2
+        - 1175{,}180\lambda + 1181{,}529 = 0.
+    \]
+    Tương đương, sau khi nhân hai vế với $-1$,
+    \[
+        \lambda^3 - 206{,}295\lambda^2
+        + 1175{,}180\lambda - 1181{,}529 = 0,
+    \]
+    nên các trị riêng là
+    \[
+        \lambda_1=200{,}462,\qquad
+        \lambda_2=4{,}533,\qquad
+        \lambda_3=1{,}300.
+    \]
+    Với mỗi $\lambda_i$, vectơ riêng tương ứng được tìm bằng cách giải
+    \[
+        (\mathbf{S}-\lambda_i\mathbf{I})\mathbf{v}_i=\mathbf{0}.
+    \]
+    Đây là một hệ phương trình thuần nhất, nên vectơ riêng chỉ được xác định đến một hằng số nhân khác $0$. Vì vậy, để tìm một đại diện cụ thể cho hướng của vectơ riêng, ta có thể đặt một thành phần thuận tiện bằng $1$, rồi giải các thành phần còn lại theo tỉ lệ. Ở đây ta chọn thành phần được đặt bằng $1$ sao cho các số trong vectơ thu được tương đối gọn; dấu của vectơ riêng cũng không quan trọng vì $\mathbf{v}_i$ và $-\mathbf{v}_i$ cùng xác định một trục. Khi đó các nghiệm tỉ lệ có thể chọn là
+    \[
+    \begin{array}{c|c|c}
+        i & \mathbf{v}_i\trans & \|\mathbf{v}_i\| \\ \hline
+        1 & [\,0{,}0509,\;1,\;-0{,}0291\,] & 1{,}002\\
+        2 & [\,1,\;-0{,}0924,\;-1{,}4245\,] & 1{,}743\\
+        3 & [\,1,\;-0{,}0304,\;0{,}7039\,] & 1{,}223
+    \end{array}
+    \]
+    Chuẩn hóa bằng $\mathbf{e}_i=\mathbf{v}_i/\|\mathbf{v}_i\|$, ta thu được
+    \[
+    \begin{array}{c|c}
+        \lambda_i & \mathbf{e}_i\trans \\ \hline
+        200{,}462 & [\,0{,}051,\;0{,}998,\;-0{,}029\,]\\
+        4{,}533 & [\,0{,}574,\;-0{,}053,\;-0{,}817\,]\\
+        1{,}300 & [\,0{,}817,\;-0{,}025,\;0{,}575\,]
+    \end{array}
+    \]
+    Với ellipsoid tin cậy 90\%, ta dùng $\alpha=0{,}10$. Theo Ví dụ~5.2, $F_{3,17}(0{,}10)\approx 2{,}44$, do đó
+    \[
+        c^2 = \frac{p(n-1)}{n-p}F_{p,n-p}(\alpha)
+        = \frac{3(19)}{17}F_{3,17}(0{,}10)
+        \approx \frac{3(19)}{17}(2{,}44)
+        = 8{,}18.
+    \]
+    Hệ số bán trục chung là
+    \[
+        \sqrt{\frac{p(n-1)}{n(n-p)}F_{p,n-p}(\alpha)}
+        = \sqrt{\frac{8{,}18}{20}}
+        = 0{,}640.
+    \]
+    Do đó các nửa trục của ellipsoid, tính từ tâm $\bar{\mathbf{x}}$, là
+    \[
+        \pm\sqrt{\lambda_1}(0{,}640)\mathbf{e}_1
+        = \pm 9{,}055\,\mathbf{e}_1,
+    \]
+    \[
+        \pm\sqrt{\lambda_2}(0{,}640)\mathbf{e}_2
+        = \pm 1{,}362\,\mathbf{e}_2,
+        \qquad
+        \pm\sqrt{\lambda_3}(0{,}640)\mathbf{e}_3
+        = \pm 0{,}729\,\mathbf{e}_3.
+    \]
+    Vì vậy độ dài đầy đủ của ba trục tương ứng xấp xỉ $18{,}111$, $2{,}723$ và $1{,}459$. Các giá trị có thể sai khác nhẹ do làm tròn dữ kiện trong sách.
+
+    \item Theo Mục~4.6, trang~178--179 của sách gốc, đồ thị Q--Q được dùng để đánh giá trực quan xem phân phối biên của từng biến có gần chuẩn hay không. Ý tưởng là so sánh các phân vị mẫu với các phân vị lý thuyết của phân phối chuẩn. Với mỗi biến $X_k$ ($k=1,2,3$), sách hướng dẫn các bước dựng Q--Q plot như sau.
+
+    Trước hết sắp xếp $n=20$ quan sát của biến đó theo thứ tự tăng dần:
+    \[
+        x_{(1)k}\le x_{(2)k}\le \cdots \le x_{(20)k},
+        \qquad k=1,2,3.
+    \]
+    Với quan sát thứ $j$ sau khi sắp xếp, gán vị trí xác suất
+    \[
+        p_j=\frac{j-\frac{1}{2}}{n}=\frac{j-\frac{1}{2}}{20},
+        \qquad j=1,2,\ldots,20,
+    \]
+    trong đó $p_j$ là mức xác suất đại diện cho vị trí của quan sát xếp hạng thứ $j$ trong mẫu. Cách lấy $j-\frac{1}{2}$ là hiệu chỉnh liên tục, đồng thời tránh hai mức biên $0$ và $1$ vì $\Phi^{-1}(0)=-\infty$ và $\Phi^{-1}(1)=+\infty$.
+
+    Sau đó tính phân vị chuẩn lý thuyết tương ứng
+    \[
+        q_j=\Phi^{-1}(p_j),
+    \]
+    trong đó $\Phi$ là hàm phân phối của chuẩn tắc $N(0,1)$. Đồ thị Q--Q của biến $X_k$ được vẽ bằng các điểm
+    \[
+        (q_j,\;x_{(j)k}),\qquad j=1,2,\ldots,20.
+    \]
+    Trên hình, trục hoành là $q_j$ và trục tung là $x_{(j)k}$. Nếu các điểm gần nằm trên một đường thẳng thì phân phối biên của biến $X_k$ có thể xem là gần chuẩn.
+
+    Trong Hình~5.12, ba đồ thị ở hàng trên là các đồ thị Q--Q biên tương ứng cho tốc độ tiết mồ hôi, natri và kali; mỗi đồ thị đặt $q_j$ trên trục hoành và $x_{(j)k}$ trên trục tung. Ba đồ thị ở hàng dưới là các biểu đồ phân tán cho từng cặp biến, dùng để xem hình dạng đám điểm hai chiều có gần dạng elip hay không. Các đồ thị Q--Q biên bám khá sát đường thẳng tham chiếu. Ba biểu đồ phân tán theo từng cặp không cho thấy dạng phi tuyến rõ rệt hay ngoại lệ quá mạnh; các đám điểm nhìn chung vẫn có thể xem là gần dạng elip. Vì vậy giả thiết chuẩn đa biến đối với dữ liệu mồ hôi là hợp lý ở mức kiểm tra trực quan.
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth]{figures/exercise_5_4_diagnostics.png}
+        \caption*{\textbf{Hình 5.12} Các đồ thị Q--Q biên và biểu đồ phân tán từng cặp cho dữ liệu mồ hôi.}
+    \end{figure}
+\end{enumerate}
+
+\paragraph{Bài 5.5.}
+Sử dụng các đại lượng trong Ví dụ~5.3,
+\[
+    \bar{\mathbf{x}} =
+    \begin{bmatrix}
+        0{,}564\\
+        0{,}603
+    \end{bmatrix},
+    \qquad
+    \mathbf{S}\inv =
+    \begin{bmatrix}
+        203{,}018 & -163{,}391\\
+        -163{,}391 & 200{,}228
+    \end{bmatrix}.
+\]
+Với $\boldsymbol{\mu}_0\trans=[0{,}55,\;0{,}60]$, ta có
+\[
+    \mathbf{d}=\bar{\mathbf{x}}-\boldsymbol{\mu}_0 =
+    \begin{bmatrix}
+        0{,}014\\
+        0{,}003
+    \end{bmatrix}.
+\]
+Thống kê Hotelling là
+\[
+\begin{aligned}
+    T^2
+    &= n\mathbf{d}\trans\mathbf{S}\inv\mathbf{d}\\
+    &= 42[\,0{,}014,\;0{,}003\,]
+    \begin{bmatrix}
+        203{,}018 & -163{,}391\\
+        -163{,}391 & 200{,}228
+    \end{bmatrix}
+    \begin{bmatrix}
+        0{,}014\\
+        0{,}003
+    \end{bmatrix}\\
+    &= 1{,}170.
+\end{aligned}
+\]
+Ở mức ý nghĩa $\alpha=0{,}05$, giá trị tới hạn là
+\[
+    \frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)
+    = \frac{41(2)}{40}F_{2,40}(0{,}05)
+    = 6{,}625.
+\]
+Vì $T^2=1{,}170 < 6{,}625$, ta không bác bỏ $H_0$. Kết quả này nhất quán với elip tin cậy 95\% trong Hình~5.1, vì điểm $\boldsymbol{\mu}_0\trans=[0{,}55,\;0{,}60]$ nằm trong miền tin cậy 95\%; nói cách khác, đây vẫn là một giá trị hợp lý của vectơ trung bình tổng thể.
 % END: Exercises (5.1 -> 5.5) Trần Long Vũ - 20237409

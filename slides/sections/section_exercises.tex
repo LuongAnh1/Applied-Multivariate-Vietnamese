@@ -3,13 +3,286 @@
 \section{Bài tập và ví dụ tính toán}
 \sectionframe{Bài tập và ví dụ tính toán}
 
+% Cac slide Bai 5.1--5.3 cua cac thanh vien khac co the dat truoc moc nay.
+% BEGIN: Bai 5.4--5.5
+
 \begin{frame}{Bài tập và ví dụ tính toán}
-  \begin{block}{Phạm vi nội dung}
-    Gom các bài tập, ví dụ số, bảng dữ liệu hoặc minh họa tính toán được nhóm chọn để trình bày.
+  \small
+  {\large\textbf{Bài 5.4: đề bài trong sách}\par}
+  \vspace{0.15cm}
+  \begin{block}{Đề bài}
+    Sử dụng dữ liệu mồ hôi trong Bảng 5.1 (xem Ví dụ 5.2).
+    \begin{enumerate}
+      \item[(a)] Xác định các trục của ellipsoid tin cậy \(90\%\) cho vectơ trung bình \(\vect{\mu}\) và độ dài của các trục này.
+      \item[(b)] Vẽ biểu đồ Q--Q lần lượt cho các quan sát về tốc độ tiết mồ hôi, hàm lượng natri và hàm lượng kali. Vẽ ba biểu đồ phân tán khả dĩ cho từng cặp quan sát. Giả thiết phân phối chuẩn đa biến có hợp lý trong trường hợp này không? Hãy nhận xét.
+    \end{enumerate}
   \end{block}
-  \begin{itemize}
-    \item Tóm tắt đề bài hoặc dữ liệu cần dùng.
-    \item Trình bày các bước tính chính, tránh dồn quá nhiều biến đổi đại số lên một slide.
-    \item Chốt kết luận bằng ngôn ngữ thống kê và bối cảnh bài toán.
-  \end{itemize}
 \end{frame}
+
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.4: dữ kiện dùng trong lời giải}\par}
+  \vspace{0.1cm}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.52\textwidth}
+    \begin{block}{Dữ liệu từ Ví dụ 5.2}
+      Với \(n=20,\ p=3\),
+      \[
+        \bar{\vect{x}}=
+        \begin{bmatrix}
+          4{,}640\\
+          45{,}400\\
+          9{,}965
+        \end{bmatrix}
+      \]
+      \[
+        \mat{S}=
+        \begin{bmatrix}
+          2{,}879 & 10{,}010 & -1{,}810\\
+          10{,}010 & 199{,}788 & -5{,}640\\
+          -1{,}810 & -5{,}640 & 3{,}628
+        \end{bmatrix}.
+      \]
+    \end{block}
+
+    \column{0.45\textwidth}
+    \begin{block}{Ký hiệu}
+      \begin{itemize}
+        \item \(X_1\): tốc độ tiết mồ hôi.
+        \item \(X_2\): hàm lượng natri.
+        \item \(X_3\): hàm lượng kali.
+        \item Câu (a) dùng trị riêng và vectơ riêng của \(\mat{S}\).
+        \item Câu (b) kiểm tra trực quan qua Q--Q plot và scatter plot.
+      \end{itemize}
+    \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.4(a): trị riêng và hướng trục}\par}
+  \vspace{0.1cm}
+  Trục của ellipsoid đi theo các vectơ riêng chuẩn hóa của \(\mat{S}\). Trị riêng là nghiệm của
+  \[
+    |\mat{S}-\lambda\mat{I}|=0
+    \quad\Longrightarrow\quad
+    \lambda^3-206{,}295\lambda^2+1175{,}180\lambda-1181{,}529=0.
+  \]
+
+  \begin{block}{Cách chọn vectơ riêng}
+    Với mỗi \(\lambda_i\), giải hệ thuần nhất
+    \((\mat{S}-\lambda_i\mat{I})\vect{v}_i=\vect{0}\).
+    Vectơ riêng chỉ xác định đến hằng số nhân khác \(0\), nên có thể đặt một thành phần thuận tiện bằng \(1\), rồi chuẩn hóa
+    \(\vect{e}_i=\vect{v}_i/\|\vect{v}_i\|\).
+  \end{block}
+
+  \vspace{-0.1cm}
+  \begin{center}
+    \scriptsize
+    \begin{tabular}{@{}c c c@{}}
+      \toprule
+      \(\lambda_i\) & \(\vect{v}_i\trans\) có thể chọn & \(\vect{e}_i\trans\) sau chuẩn hóa \\
+      \midrule
+      \(200{,}462\) & \([\,0{,}0509,\ 1,\ -0{,}0291\,]\) &
+      \([\,0{,}051,\ 0{,}998,\ -0{,}029\,]\) \\
+      \(4{,}533\) & \([\,1,\ -0{,}0924,\ -1{,}4245\,]\) &
+      \([\,0{,}574,\ -0{,}053,\ -0{,}817\,]\) \\
+      \(1{,}300\) & \([\,1,\ -0{,}0304,\ 0{,}7039\,]\) &
+      \([\,0{,}817,\ -0{,}025,\ 0{,}575\,]\) \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \footnotesize
+  {\large\textbf{Bài 5.4(a): độ dài các trục ellipsoid}\par}
+  \vspace{-0.02cm}
+  Ellipsoid tin cậy \(90\%\) có các nửa trục
+  \[
+    \pm\sqrt{\lambda_i}
+    \sqrt{\frac{p(n-1)}{n(n-p)}F_{p,n-p}(\alpha)}\,\vect{e}_i,
+    \qquad i=1,2,3.
+  \]
+  Với \(p=3,\ n=20,\ \alpha=0{,}10\) và \(F_{3,17}(0{,}10)\approx2{,}44\),
+  \[
+    \sqrt{\frac{3(19)}{20(17)}F_{3,17}(0{,}10)}
+    \approx 0{,}640.
+  \]
+
+  \begin{center}
+    \scriptsize
+    \begin{tabular}{@{}c c c c@{}}
+      \toprule
+      Trục & \(\lambda_i\) & Nửa trục & Độ dài đầy đủ \\
+      \midrule
+      \(1\) & \(200{,}462\) & \(9{,}055\,\vect{e}_1\) & \(18{,}111\) \\
+      \(2\) & \(4{,}533\)   & \(1{,}362\,\vect{e}_2\) & \(2{,}723\) \\
+      \(3\) & \(1{,}300\)   & \(0{,}729\,\vect{e}_3\) & \(1{,}459\) \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.4(b): cách dựng Q--Q plot}\par}
+  \vspace{0.1cm}
+  Theo Mục 4.6, trang 178--179, Q--Q plot so sánh phân vị mẫu với phân vị lý thuyết của phân phối chuẩn.
+  Với mỗi biến \(X_k\), thực hiện:
+  \begin{enumerate}
+    \item Sắp xếp mẫu: \(x_{(1)k}\le x_{(2)k}\le \cdots \le x_{(20)k}\).
+    \item Gán vị trí xác suất cho quan sát thứ \(j\): \(p_j=(j-\frac{1}{2})/n=(j-\frac{1}{2})/20\).
+    \item Tính phân vị chuẩn lý thuyết: \(q_j=\Phi^{-1}(p_j)\).
+  \end{enumerate}
+  Các điểm được vẽ là \((q_j,\ x_{(j)k})\). Trục hoành là phân vị chuẩn lý thuyết, trục tung là dữ liệu đã sắp xếp.
+
+  \vspace{0.15cm}
+  {\footnotesize\textit{Chú thích:} Chuẩn đa biến là giả thiết về cả vectơ \(X=(X_1,X_2,X_3)^T\). Q--Q plot kiểm tra từng biến biên, còn scatter plot giúp nhìn quan hệ theo từng cặp biến.\par}
+\end{frame}
+
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  \vspace{-0.2cm}
+  \begin{center}
+    \includegraphics[width=0.96\textwidth,height=0.52\textheight,keepaspectratio]{exercise_5_4_qq.png}
+  \end{center}
+  \vspace{-0.15cm}
+  \begin{block}{Nhận xét}
+    Các điểm của ba Q--Q plot nhìn chung bám sát đường thẳng tham chiếu.
+    Không thấy độ cong mạnh hoặc điểm lệch quá xa ở hai đầu phân phối.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  \vspace{-0.2cm}
+  \begin{center}
+    \includegraphics[width=0.96\textwidth,height=0.52\textheight,keepaspectratio]{exercise_5_4_scatter.png}
+  \end{center}
+  \vspace{-0.15cm}
+  \begin{block}{Nhận xét}
+    Các scatter plot không cho thấy dạng phi tuyến rõ rệt hay ngoại lệ quá mạnh.
+    Kết hợp với Q--Q plot, giả thiết chuẩn đa biến là hợp lý ở mức kiểm tra trực quan.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.5: đề bài trong sách}\par}
+  \vspace{0.15cm}
+  \begin{block}{Đề bài}
+    Các đại lượng \(\bar{\vect{x}}\), \(\mat{S}\) và \(\mat{S}\inv\) được cho trong Ví dụ 5.3 đối với dữ liệu bức xạ lò vi sóng sau khi biến đổi. Hãy kiểm định giả thuyết không
+    \[
+      H_0:\vect{\mu}\trans=[0{,}55,\ 0{,}60]
+    \]
+    ở mức ý nghĩa \(\alpha=0{,}05\). Kết quả của bạn có nhất quán với elip tin cậy \(95\%\) cho \(\vect{\mu}\) được vẽ trong Hình 5.1 hay không? Hãy giải thích.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.5: thống kê kiểm định \(T^2\)}\par}
+  \vspace{0.1cm}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.48\textwidth}
+    \begin{block}{Dữ liệu từ Ví dụ 5.3}
+      \[
+        \bar{\vect{x}}=
+        \begin{bmatrix}
+          0{,}564\\
+          0{,}603
+        \end{bmatrix},
+        \qquad
+        \vect{\mu}_0=
+        \begin{bmatrix}
+          0{,}55\\
+          0{,}60
+        \end{bmatrix}
+      \]
+      \[
+        \mat{S}\inv=
+        \begin{bmatrix}
+          203{,}018 & -163{,}391\\
+          -163{,}391 & 200{,}228
+        \end{bmatrix}.
+      \]
+    \end{block}
+
+    \column{0.48\textwidth}
+    \begin{block}{Tính toán}
+      \[
+        \vect{d}=\bar{\vect{x}}-\vect{\mu}_0
+        =
+        \begin{bmatrix}
+          0{,}014\\
+          0{,}003
+        \end{bmatrix}
+      \]
+      \[
+      \begin{aligned}
+        T^2
+        &=n\vect{d}\trans\mat{S}\inv\vect{d}\\
+        &=42[\,0{,}014,\ 0{,}003\,]\mat{S}\inv
+          \begin{bmatrix}0{,}014\\0{,}003\end{bmatrix}\\
+        &=1{,}170.
+      \end{aligned}
+      \]
+    \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.5: minh họa trên Hình 5.1}\par}
+  \vspace{0.05cm}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.58\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \node[anchor=south west,inner sep=0] (fig) at (0,0) {
+        \includegraphics[height=0.64\textheight]{exercise_5_5_fig5_1.png}
+      };
+      \begin{scope}[x={(fig.south east)},y={(fig.north west)}]
+        \filldraw[red!85!black, draw=white, line width=0.7pt] (0.491,0.540) circle (2.5pt);
+        \node[red!85!black, font=\scriptsize\bfseries, anchor=south west] at (0.505,0.555) {\(\vect{\mu}_0\)};
+      \end{scope}
+    \end{tikzpicture}
+
+    \column{0.38\textwidth}
+    \begin{block}{Nhận xét}
+      \footnotesize
+      Điểm đỏ biểu diễn
+      \[
+        \vect{\mu}_0\trans=[0{,}55,\ 0{,}60].
+      \]
+      Điểm này nằm trong elip tin cậy \(95\%\), nên kết luận không bác bỏ \(H_0\) là phù hợp với Hình 5.1.
+    \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.5: quyết định kiểm định}\par}
+  \vspace{0.1cm}
+  Kiểm định
+  \[
+    H_0:\vect{\mu}\trans=[0{,}55,\ 0{,}60]
+    \qquad\text{với}\qquad
+    \alpha=0{,}05.
+  \]
+  Giá trị tới hạn:
+  \[
+    \frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)
+    =
+    \frac{41(2)}{40}F_{2,40}(0{,}05)
+    =6{,}625.
+  \]
+
+  \begin{alertblock}{Kết luận}
+    Vì \(T^2=1{,}170<6{,}625\), ta không bác bỏ \(H_0\).
+    Kết quả nhất quán với elip tin cậy \(95\%\) trong Hình 5.1, vì điểm \([0{,}55,\ 0{,}60]\trans\) nằm trong miền tin cậy.
+  \end{alertblock}
+\end{frame}
+
+% END: Bai 5.4--5.5
