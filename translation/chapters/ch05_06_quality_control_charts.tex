@@ -698,4 +698,109 @@ Các điểm nằm ngoài elip dự báo hoặc nằm trên $\mathrm{UCL}$ cho t
 
     \item Các đại lượng $\overline{\mathbf{x}}$, $\mathbf{S}$ và $\mathbf{S}\inv$ được cho trong Ví dụ~5.3 đối với dữ liệu bức xạ lò vi sóng sau khi biến đổi. Hãy kiểm định giả thuyết không $H_0: \boldsymbol{\mu}\trans = [0{,}55,\; 0{,}60]$ ở mức ý nghĩa $\alpha = 0{,}05$. Kết quả của bạn có nhất quán với elip tin cậy 95\% cho $\boldsymbol{\mu}$ được vẽ trong Hình~5.1 hay không? Hãy giải thích.
 \end{enumerate}
+
+\subsection*{Lời giải hai bài cuối}
+
+\paragraph{Bài 5.4.}
+\begin{enumerate}[label=(\alph*)]
+    \item Với dữ liệu mồ hôi trong Bảng~5.1, ta có $n=20$, $p=3$,
+    \[
+        \bar{\mathbf{x}} =
+        \begin{bmatrix}
+            4{,}640\\
+            45{,}400\\
+            9{,}965
+        \end{bmatrix},
+        \qquad
+        \mathbf{S} =
+        \begin{bmatrix}
+            2{,}879 & 10{,}010 & -1{,}809\\
+            10{,}010 & 199{,}788 & -5{,}640\\
+            -1{,}809 & -5{,}640 & 3{,}628
+        \end{bmatrix}.
+    \]
+    Với ellipsoid tin cậy 90\%, ta dùng $\alpha=0{,}10$. Vì
+    \[
+        c^2 = \frac{p(n-1)}{n-p}F_{p,n-p}(\alpha)
+        = \frac{3(19)}{17}F_{3,17}(0{,}10)
+        = 8{,}173,
+    \]
+    nên hệ số nửa trục là
+    \[
+        \sqrt{\frac{p(n-1)}{n(n-p)}F_{p,n-p}(\alpha)}
+        = 0{,}639.
+    \]
+    Các trị riêng và vectơ riêng chuẩn hóa của $\mathbf{S}$ lần lượt là
+    \[
+    \begin{array}{c|c}
+        \lambda_i & \mathbf{e}_i\trans \\ \hline
+        200{,}462 & [\,0{,}051,\;0{,}998,\;-0{,}029\,]\\
+        4{,}532 & [\,0{,}574,\;-0{,}053,\;-0{,}817\,]\\
+        1{,}301 & [\,0{,}817,\;-0{,}025,\;0{,}575\,]
+    \end{array}
+    \]
+    Do đó các nửa trục của ellipsoid, tính từ tâm $\bar{\mathbf{x}}$, là
+    \[
+        \pm 9{,}051\,\mathbf{e}_1,\qquad
+        \pm 1{,}361\,\mathbf{e}_2,\qquad
+        \pm 0{,}729\,\mathbf{e}_3.
+    \]
+    Vì vậy độ dài đầy đủ của ba trục tương ứng xấp xỉ $18{,}101$, $2{,}722$ và $1{,}458$.
+
+    \item Các đồ thị Q--Q biên trong hình dưới đây bám khá sát đường thẳng tham chiếu. Ba biểu đồ phân tán theo từng cặp không cho thấy dạng phi tuyến rõ rệt hay ngoại lệ quá mạnh; các đám điểm nhìn chung vẫn có thể xem là gần dạng elip. Vì vậy giả thiết chuẩn đa biến đối với dữ liệu mồ hôi là hợp lý ở mức kiểm tra trực quan.
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth]{figures/exercise_5_4_diagnostics.png}
+        \caption*{\textbf{Hình 5.12} Các đồ thị Q--Q biên và biểu đồ phân tán từng cặp cho dữ liệu mồ hôi.}
+    \end{figure}
+\end{enumerate}
+
+\paragraph{Bài 5.5.}
+Sử dụng các đại lượng trong Ví dụ~5.3,
+\[
+    \bar{\mathbf{x}} =
+    \begin{bmatrix}
+        0{,}564\\
+        0{,}603
+    \end{bmatrix},
+    \qquad
+    \mathbf{S}\inv =
+    \begin{bmatrix}
+        203{,}018 & -163{,}391\\
+        -163{,}391 & 200{,}228
+    \end{bmatrix}.
+\]
+Với $\boldsymbol{\mu}_0\trans=[0{,}55,\;0{,}60]$, ta có
+\[
+    \mathbf{d}=\bar{\mathbf{x}}-\boldsymbol{\mu}_0 =
+    \begin{bmatrix}
+        0{,}014\\
+        0{,}003
+    \end{bmatrix}.
+\]
+Thống kê Hotelling là
+\[
+\begin{aligned}
+    T^2
+    &= n\mathbf{d}\trans\mathbf{S}\inv\mathbf{d}\\
+    &= 42[\,0{,}014,\;0{,}003\,]
+    \begin{bmatrix}
+        203{,}018 & -163{,}391\\
+        -163{,}391 & 200{,}228
+    \end{bmatrix}
+    \begin{bmatrix}
+        0{,}014\\
+        0{,}003
+    \end{bmatrix}\\
+    &= 1{,}170.
+\end{aligned}
+\]
+Ở mức ý nghĩa $\alpha=0{,}05$, giá trị tới hạn là
+\[
+    \frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)
+    = \frac{41(2)}{40}F_{2,40}(0{,}05)
+    = 6{,}625.
+\]
+Vì $T^2=1{,}170 < 6{,}625$, ta không bác bỏ $H_0$. Kết quả này nhất quán với elip tin cậy 95\% trong Hình~5.1, vì điểm $\boldsymbol{\mu}_0\trans=[0{,}55,\;0{,}60]$ nằm trong miền tin cậy 95\%; nói cách khác, đây vẫn là một giá trị hợp lý của vectơ trung bình tổng thể.
 % END: Exercises (5.1 -> 5.5) Trần Long Vũ - 20237409
