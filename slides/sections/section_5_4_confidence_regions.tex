@@ -13,6 +13,281 @@
     \item Cách diễn giải miền ellipsoid hoặc khoảng tin cậy Bonferroni.
   \end{itemize}
 \end{frame}
+
+
+\begin{frame}{Khái niệm Miền tin cậy}
+    Để có được phương pháp chính cho việc suy diễn từ một mẫu, ta cần mở rộng khái niệm khoảng tin cậy đơn biến thành một \textbf{miền tin cậy} đa biến. 
+    
+    \begin{itemize}
+        \item Gọi $\theta$ là vectơ các tham số tổng thể chưa biết và $\Theta$ là tập hợp tất cả các giá trị có thể có của $\theta$. 
+        \item Miền tin cậy là một miền các giá trị $\theta$ có khả năng xảy ra. Miền này được xác định bởi dữ liệu, tạm thời ký hiệu là $R(X)$, trong đó $X = [X_1, X_2, \dots, X_n]'$ là ma trận dữ liệu.
+    \end{itemize}
+
+    \begin{block}{Định nghĩa}
+        Miền $R(X)$ được gọi là một \textbf{miền tin cậy $100(1 - \alpha)\%$} nếu, trước khi mẫu được lấy:
+        \[
+            P[R(X) \text{ chứa tham số } \theta \text{ thật}] = 1 - \alpha \quad (5-17)
+        \]
+        Xác suất này được tính dựa trên giá trị $\theta$ thật nhưng chưa biết.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Miền tin cậy cho phân phối chuẩn $p$-chiều}
+    Miền tin cậy cho trung bình $\mu$ của một tổng thể chuẩn $p$-chiều được suy ra từ thống kê $T^2$. Trước khi mẫu được lấy:
+    \[
+        P\left[ n(\bar{X} - \mu)'S^{-1}(\bar{X} - \mu) \le \frac{(n - 1)p}{n - p} F_{p, n-p}(\alpha) \right] = 1 - \alpha
+    \]
+    bất kể giá trị chưa biết của $\mu$ và $\Sigma$ là gì. 
+    
+    \vspace{0.3cm}
+    Nói cách khác, $\bar{X}$ sẽ nằm trong khoảng $[(n - 1)p F_{p, n-p}(\alpha)/(n - p)]^{1/2}$ so với $\mu$, với xác suất $1 - \alpha$, miễn là khoảng cách đó được xác định theo $nS^{-1}$. 
+\end{frame}
+
+\begin{frame}{Phương trình Ellipsoid tin cậy}
+    Với một mẫu cụ thể, $\bar{x}$ và $S$ có thể được tính toán, và bất đẳng thức
+    \[
+        n(\bar{x} - \mu)'S^{-1}(\bar{x} - \mu) \le \frac{(n - 1)p}{n - p} F_{p, n-p}(\alpha)
+    \]
+    sẽ xác định một miền $R(X)$ trong không gian của tất cả các giá trị tham số có thể có. 
+    
+    \vspace{0.3cm}
+    Trong trường hợp này, miền này sẽ là một \textit{ellipsoid} có tâm tại $\bar{x}$.
+    \begin{block}{Miền tin cậy $100(1-\alpha)\%$}
+        Một miền tin cậy $100(1 - \alpha)\%$ cho trung bình của phân phối chuẩn $p$-chiều là ellipsoid được xác định bởi tất cả các $\mu$ sao cho:
+        \[
+            n(\bar{x} - \mu)'S^{-1}(\bar{x} - \mu) \le \frac{(n - 1)p}{n - p} F_{p, n-p}(\alpha) \quad (5-18)
+        \]
+    \end{block}
+\end{frame}
+
+\begin{frame}{Liên hệ với Kiểm định giả thuyết}
+    Trong đó $\bar{x} = \frac{1}{n} \sum_{j=1}^n x_j$ và $S = \frac{1}{n-1} \sum_{j=1}^n (x_j - \bar{x})(x_j - \bar{x})'$.
+    
+    \vspace{0.3cm}
+    \textbf{Đánh giá giá trị $\mu_0$:}
+    Để xác định xem một $\mu_0$ bất kỳ có nằm trong miền tin cậy hay không, ta cần tính \textit{khoảng cách bình phương tổng quát} $n(\bar{x} - \mu_0)'S^{-1}(\bar{x} - \mu_0)$ và so sánh nó với $\frac{p(n - 1)}{n - p} F_{p, n-p}(\alpha)$. 
+    
+    \begin{itemize}
+        \item Nếu khoảng cách này lớn hơn, thì $\mu_0$ không nằm trong miền tin cậy.
+        \item Vì điều này tương tự với việc kiểm định $H_0: \mu = \mu_0$ so với $H_1: \mu \ne \mu_0$ ở mức ý nghĩa $\alpha$, ta thấy rằng miền tin cậy (5-18) bao gồm tất cả các vectơ $\mu_0$ mà kiểm định $T^2$ \textbf{sẽ không bác bỏ} $H_0$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Xác định các trục của Ellipsoid}
+    Với $p \ge 4$, ta không thể vẽ được miền tin cậy chung cho $\mu$. Tuy nhiên, ta có thể tính các trục của ellipsoid tin cậy và độ dài tương đối của chúng. 
+    
+    \vspace{0.3cm}
+    Các trục này được xác định từ các trị riêng $\lambda_i$ và vectơ riêng $e_i$ của $S$. Hướng và độ dài của các trục:
+    \[
+        n(\bar{x} - \mu)'S^{-1}(\bar{x} - \mu) \le c^2 = \frac{p(n - 1)}{n - p} F_{p, n-p}(\alpha)
+    \]
+    được xác định bằng cách di chuyển một khoảng
+    \[
+        \sqrt{\lambda_i} \cdot c / \sqrt{n} = \sqrt{\lambda_i} \cdot \sqrt{p(n - 1) F_{p, n-p}(\alpha) / [n(n - p)]}
+    \]
+    đơn vị dọc theo các vectơ riêng $e_i$.
+\end{frame}
+
+\begin{frame}{Xác định các trục của Ellipsoid}
+    Bắt đầu từ tâm $\bar{x}$, các trục của ellipsoid tin cậy là:
+    \begin{block}{}
+        \[
+            \pm \sqrt{\lambda_i} \cdot \sqrt{\frac{p(n - 1)}{n(n - p)} F_{p, n-p}(\alpha)} \cdot e_i
+        \]
+    \end{block}
+    trong đó $S e_i = \lambda_i e_i, \quad i = 1, 2, \dots, p \quad (5-19)$
+
+    \vspace{0.3cm}
+    Tỷ số giữa các $\lambda_i$ sẽ giúp xác định mức độ kéo dài tương đối dọc theo các cặp trục.
+\end{frame}
+
+\begin{frame}{Dữ liệu bức xạ lò vi sóng (Khi đóng cửa)}
+    \begin{table}[h]
+        \centering
+        \caption{Dữ liệu bức xạ (Khi đóng cửa)}
+        \vspace{-0.2cm}
+        \footnotesize % Giảm cỡ chữ để bảng không bị tràn viền dưới
+        \renewcommand{\arraystretch}{0.85} % Thu gọn khoảng cách các dòng một chút
+        \begin{tabular}{cc@{\hskip 0.8cm}cc@{\hskip 0.8cm}cc}
+        \toprule
+        \textbf{Lò số} & \textbf{Bức xạ} & \textbf{Lò số} & \textbf{Bức xạ} & \textbf{Lò số} & \textbf{Bức xạ} \\
+        \midrule
+        1  & .15 & 16 & .10 & 31 & .10 \\
+        2  & .09 & 17 & .02 & 32 & .20 \\
+        3  & .18 & 18 & .10 & 33 & .11 \\
+        4  & .10 & 19 & .01 & 34 & .30 \\
+        5  & .05 & 20 & .40 & 35 & .02 \\
+        6  & .12 & 21 & .10 & 36 & .20 \\
+        7  & .08 & 22 & .05 & 37 & .20 \\
+        8  & .05 & 23 & .03 & 38 & .30 \\
+        9  & .08 & 24 & .05 & 39 & .30 \\
+        10 & .10 & 25 & .15 & 40 & .40 \\
+        11 & .07 & 26 & .10 & 41 & .30 \\
+        12 & .02 & 27 & .15 & 42 & .05 \\
+        13 & .01 & 28 & .09 &    &     \\
+        14 & .10 & 29 & .08 &    &     \\
+        15 & .10 & 30 & .18 &    &     \\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+    \vspace{-0.3cm}
+\end{frame}
+
+\begin{frame}{Dữ liệu bức xạ lò vi sóng (Khi mở cửa)}
+    \begin{table}[h]
+        \centering
+        \caption{Dữ liệu bức xạ (Khi mở cửa)}
+        \vspace{-0.2cm}
+        \footnotesize
+        \renewcommand{\arraystretch}{0.85}
+        \begin{tabular}{cc@{\hskip 0.8cm}cc@{\hskip 0.8cm}cc}
+        \toprule
+        \textbf{Lò số} & \textbf{Bức xạ} & \textbf{Lò số} & \textbf{Bức xạ} & \textbf{Lò số} & \textbf{Bức xạ} \\
+        \midrule
+        1  & .30 & 16 & .20 & 31 & .10 \\
+        2  & .09 & 17 & .04 & 32 & .10 \\
+        3  & .30 & 18 & .10 & 33 & .10 \\
+        4  & .10 & 19 & .01 & 34 & .30 \\
+        5  & .10 & 20 & .60 & 35 & .12 \\
+        6  & .12 & 21 & .12 & 36 & .25 \\
+        7  & .09 & 22 & .10 & 37 & .20 \\
+        8  & .10 & 23 & .05 & 38 & .40 \\
+        9  & .09 & 24 & .05 & 39 & .33 \\
+        10 & .10 & 25 & .15 & 40 & .32 \\
+        11 & .07 & 26 & .30 & 41 & .12 \\
+        12 & .05 & 27 & .15 & 42 & .12 \\
+        13 & .01 & 28 & .09 &    &     \\
+        14 & .45 & 29 & .09 &    &     \\
+        15 & .12 & 30 & .28 &    &     \\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+    \vspace{-0.3cm}
+
+\end{frame}
+\begin{frame}{Ví dụ 5.3: Xây dựng ellipse tin cậy cho $\mu$}
+    \textbf{Bài toán:} Dữ liệu về bức xạ lò vi sóng đã được giới thiệu. Gọi:
+    \begin{itemize}
+        \item $x_1 = \sqrt[4]{\text{bức xạ đo được khi đóng cửa}}$
+        \item $x_2 = \sqrt[4]{\text{bức xạ đo được khi mở cửa}}$
+    \end{itemize}
+    
+    Với $n = 42$ cặp quan sát đã biến đổi, ta tìm được rằng:
+    \[
+        \bar{x} = \begin{bmatrix} .564 \\ .603 \end{bmatrix}, \quad 
+        S = \begin{bmatrix} .0144 & .0117 \\ .0117 & .0146 \end{bmatrix}
+    \]
+    \[
+        S^{-1} = \begin{bmatrix} 203.018 & -163.391 \\ -163.391 & 200.228 \end{bmatrix}
+    \]
+\end{frame}
+
+\begin{frame}{Ví dụ 5.3: Xây dựng ellipse tin cậy cho $\mu$}
+    Giá trị riêng và vectơ riêng của $S$ là:
+    \begin{align*}
+        \lambda_1 &= .026, & e_1' &= [.704, .710] \\
+        \lambda_2 &= .002, & e_2' &= [-.710, .704]
+    \end{align*}
+    
+    Ellipse tin cậy $95\%$ cho $\mu$ bao gồm tất cả các giá trị $(\mu_1, \mu_2)$ thỏa mãn:
+    \[
+        42 [.564 - \mu_1, .603 - \mu_2] 
+        \begin{bmatrix} 203.018 & -163.391 \\ -163.391 & 200.228 \end{bmatrix}
+        \begin{bmatrix} .564 - \mu_1 \\ .603 - \mu_2 \end{bmatrix} \le \frac{2(41)}{40} F_{2, 40}(.05)
+    \]
+\end{frame}
+
+\begin{frame}{Ví dụ 5.3: Xây dựng ellipse tin cậy cho $\mu$}
+    Hay, vì $F_{2, 40}(.05) = 3.23$, nên phương trình tương đương với:
+    \begin{align*}
+        42(203.018)(.564 - \mu_1)^2 + 42(200.228)(.603 - \mu_2)^2 & \\
+        - 84(163.391)(.564 - \mu_1)(.603 - \mu_2) &\le 6.62
+    \end{align*}
+    
+    \textbf{Kiểm tra tính hợp lý của một điểm:}
+    Để xem liệu $\mu' = [.562, .589]$ có nằm trong miền tin cậy hay không, ta tính:
+    \begin{align*}
+        42(203.018)(.564 - .562)^2 + 42(200.228)(.603 - .589)^2 & \\
+        - 84(163.391)(.564 - .562)(.603 - .589) &= 1.30 \le 6.62
+    \end{align*}
+    
+    Ta kết luận rằng $\mu' = [.562, .589]$ nằm trong miền tin cậy. Tương đương, một kiểm định của $H_0: \mu = [.562, .589]$ sẽ không bị bác bỏ so với $H_1: \mu \ne [.562, .589]$ ở mức $\alpha = .05$.
+\end{frame}
+
+\begin{frame}{Ví dụ 5.3: Tính toán các trục của Ellipsoid}
+    Ellipsoid tin cậy chung (\textit{The joint confidence ellipsoid}) được vẽ trong Hình 5.1. Tâm của ellipsoid là $\bar{x}' = [.564, .603]$, và nửa độ dài của trục lớn và trục nhỏ được cho bởi:
+    
+    \vspace{0.2cm}
+    \textbf{Trục lớn:}
+    \[
+        \sqrt{\lambda_1} \cdot \sqrt{\frac{p(n - 1)}{n(n - p)} F_{p, n-p}(\alpha)} = \sqrt{.026} \cdot \sqrt{\frac{2(41)}{42(40)} (3.23)} = .064
+    \]
+    
+    \textbf{Trục nhỏ:}
+    \[
+        \sqrt{\lambda_2} \cdot \sqrt{\frac{p(n - 1)}{n(n - p)} F_{p, n-p}(\alpha)} = \sqrt{.002} \cdot \sqrt{\frac{2(41)}{42(40)} (3.23)} = .018
+    \]
+    tương ứng. Các trục nằm dọc theo $e_1' = [.704, .710]$ và $e_2' = [-.710, .704]$ khi các vectơ này được vẽ với gốc tại $\bar{x}$. 
+\end{frame}
+
+\begin{frame}{Ví dụ 5.3: Mức độ kéo dài của Ellipse}
+    Một chỉ số cho thấy mức độ kéo dài của ellipse tin cậy chính là tỷ số giữa độ dài trục lớn và trục nhỏ. Tỷ số này là:
+    
+    \[
+        \frac{\sqrt{\lambda_1} \cdot \sqrt{\frac{p(n - 1)}{n(n - p)} F_{p, n-p}(\alpha)}}{\sqrt{\lambda_2} \cdot \sqrt{\frac{p(n - 1)}{n(n - p)} F_{p, n-p}(\alpha)}} = \frac{\sqrt{\lambda_1}}{\sqrt{\lambda_2}} = \frac{.161}{.045} = 3.6
+    \]
+\end{frame}
+
+\begin{frame}{Ellipse tin cậy 95\%}
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[x=30cm, y=30cm, font=\small, thick]
+            % --- Vẽ Trục X ---
+            \draw (0.48, 0.53) -- (0.486, 0.53);
+            \draw[->] (0.494, 0.53) -- (0.64, 0.53) node[right] {1};
+            \foreach \x in {0.50, 0.55, 0.60} {
+                \draw (\x, 0.53) -- (\x, 0.525) node[below] {$\x$};
+            }
+            % Ký hiệu ngắt trục X
+            \draw (0.486, 0.526) -- (0.490, 0.534);
+            \draw (0.490, 0.526) -- (0.494, 0.534);
+            
+            % --- Vẽ Trục Y ---
+            \draw (0.48, 0.53) -- (0.48, 0.536);
+            \draw[->] (0.48, 0.544) -- (0.48, 0.67) node[above] {2};
+            \foreach \y in {0.55, 0.60, 0.65} {
+                \draw (0.48, \y) -- (0.475, \y) node[left] {$\y$};
+            }
+            % Ký hiệu ngắt trục Y
+            \draw (0.476, 0.536) -- (0.484, 0.540);
+            \draw (0.476, 0.540) -- (0.484, 0.544);
+            
+            % --- Vẽ Ellipse và Tâm ---
+            \coordinate (Center) at (0.564, 0.603);
+            
+            % Gióng tọa độ tâm xuống các trục
+            \draw[dashed, thin] (Center) -- (0.564, 0.53) node[below=12pt] {$\bar{x}_1$};
+            \draw[dashed, thin] (Center) -- (0.48, 0.603) node[left=16pt] {$\bar{x}_2$};
+            
+            % Tâm chấm tròn đen
+            \fill (Center) circle (1.5pt);
+            
+            % Ellipse: Xoay arctan(0.710/0.704) = 45.24 độ. 
+            % Bán trục lớn a = 0.064, bán trục nhỏ b = 0.018
+            \draw[rotate around={45.24:(Center)}] (Center) ellipse (0.064 and 0.018);
+            
+            % Đường gạch chéo hiển thị trục lớn, nhỏ cắt nhau
+            \draw[thin, rotate around={45.24:(Center)}] (0.564-0.064, 0.603) -- (0.564+0.064, 0.603);
+            \draw[thin, rotate around={45.24:(Center)}] (0.564, 0.603-0.018) -- (0.564, 0.603+0.018);
+        \end{tikzpicture}
+        \vspace{-0.2cm}
+        \caption{Một ellipse tin cậy 95\% cho $\mu$ dựa trên dữ liệu bức xạ lò vi sóng.}
+    \end{figure}
+    \begin{center}
+        \textit{Độ dài trục lớn gấp 3.6 lần độ dài trục nhỏ.}
+    \end{center}
+\end{frame}
+
 % =====================================================================
 % PHẦN NỘI DUNG: NGUYỄN MINH ĐỨC
 % =====================================================================
@@ -206,4 +481,3 @@
     \item Nếu cần các giá trị hợp lý cho cặp $(\mu_1,\mu_2)$ có tính đến tương quan giữa các biến, dùng \textbf{miền tin cậy} (elip) cho $\boldsymbol{\mu}$.
   \end{itemize}
   \note{Hai ý đầu là câu kết của mục 5.4 (trang 234). Ý thứ ba lấy từ cuối Ví dụ 5.6 (trang 233--234).}
-\end{frame}
