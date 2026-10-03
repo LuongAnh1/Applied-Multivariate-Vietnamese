@@ -17,12 +17,14 @@
 *.toc
 
 # Editor and OS files
+.venv/
 .vscode/
 .idea/
 *.swp
 *.swo
 Thumbs.db
 .DS_Store
+notebooks/.ipynb_checkpoints/
 
 # Generated PDF output
 *.pdf
