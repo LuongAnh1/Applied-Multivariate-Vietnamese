@@ -1,0 +1,19 @@
+\begin{tikzpicture}[font=\footnotesize]
+\draw (0,0)--(6.000,0); \draw (0,0)--(0,3.000);
+\draw (0.000,0)--(0.000,-0.1) node[below,font=\scriptsize]{0};
+\draw (1.765,0)--(1.765,-0.1) node[below,font=\scriptsize]{5};
+\draw (3.529,0)--(3.529,-0.1) node[below,font=\scriptsize]{10};
+\draw (5.294,0)--(5.294,-0.1) node[below,font=\scriptsize]{15};
+\draw (0,0.300)--(-0.1,0.300) node[left,font=\scriptsize]{1500};
+\draw (0,0.900)--(-0.1,0.900) node[left,font=\scriptsize]{2500};
+\draw (0,1.500)--(-0.1,1.500) node[left,font=\scriptsize]{3500};
+\draw (0,2.100)--(-0.1,2.100) node[left,font=\scriptsize]{4500};
+\draw (0,2.700)--(-0.1,2.700) node[left,font=\scriptsize]{5500};
+\node[font=\scriptsize] at (3.000,-0.85) {Số thứ tự quan sát};
+\node[rotate=90,font=\scriptsize] at (-1.25,1.500) {Giá trị riêng};
+\draw[thin] (0.353,1.432) -- (0.706,1.265) -- (1.059,1.002) -- (1.412,1.275) -- (1.765,1.481) -- (2.118,1.272) -- (2.471,1.603) -- (2.824,2.119) -- (3.176,1.607) -- (3.529,1.343) -- (3.882,1.281) -- (4.235,2.530) -- (4.588,1.637) -- (4.941,1.504) -- (5.294,1.694) -- (5.647,1.510);
+\foreach \a/\b in {0.353/1.432,0.706/1.265,1.059/1.002,1.412/1.275,1.765/1.481,2.118/1.272,2.471/1.603,2.824/2.119,3.176/1.607,3.529/1.343,3.882/1.281,4.235/2.530,4.588/1.637,4.941/1.504,5.294/1.694,5.647/1.510} \fill (\a,\b) circle (0.045);
+\draw[red] (0,2.627)--(6.000,2.627) node[right,font=\tiny]{UCL = 5379};
+\draw[teal] (0,1.535)--(6.000,1.535) node[right,font=\tiny]{3558};
+\draw[red] (0,0.442)--(6.000,0.442) node[right,font=\tiny]{LCL = 1737};
+\end{tikzpicture}

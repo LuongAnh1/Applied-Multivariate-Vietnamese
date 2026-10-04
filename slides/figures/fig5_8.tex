@@ -1,0 +1,19 @@
+\begin{tikzpicture}[font=\footnotesize]
+\draw (0,0)--(6.000,0); \draw (0,0)--(0,3.000);
+\draw (0.000,0)--(0.000,-0.1) node[below,font=\scriptsize]{0};
+\draw (1.412,0)--(1.412,-0.1) node[below,font=\scriptsize]{4};
+\draw (2.824,0)--(2.824,-0.1) node[below,font=\scriptsize]{8};
+\draw (4.235,0)--(4.235,-0.1) node[below,font=\scriptsize]{12};
+\draw (5.647,0)--(5.647,-0.1) node[below,font=\scriptsize]{16};
+\draw (0,0.000)--(-0.1,0.000) node[left,font=\scriptsize]{0};
+\draw (0,0.480)--(-0.1,0.480) node[left,font=\scriptsize]{2};
+\draw (0,0.960)--(-0.1,0.960) node[left,font=\scriptsize]{4};
+\draw (0,1.440)--(-0.1,1.440) node[left,font=\scriptsize]{6};
+\draw (0,1.920)--(-0.1,1.920) node[left,font=\scriptsize]{8};
+\draw (0,2.400)--(-0.1,2.400) node[left,font=\scriptsize]{10};
+\draw (0,2.880)--(-0.1,2.880) node[left,font=\scriptsize]{12};
+\node[font=\scriptsize] at (3.000,-0.85) {Giai đoạn};
+\node[rotate=90,font=\scriptsize] at (-1.25,1.500) {$T^2$};
+\foreach \a/\b in {0.353/0.101,0.706/0.214,1.059/0.598,1.412/0.129,1.765/0.073,2.118/0.361,2.471/0.012,2.824/0.719,3.176/0.068,3.529/0.095,3.882/2.573,4.235/1.840,4.588/0.062,4.941/0.229,5.294/0.113,5.647/0.013} \fill (\a,\b) circle (0.045);
+\draw[black,dashed] (0,2.210)--(6.000,2.210) node[right,font=\tiny]{9.21};
+\end{tikzpicture}
