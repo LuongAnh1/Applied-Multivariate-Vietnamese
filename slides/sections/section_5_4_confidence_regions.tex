@@ -1,5 +1,14 @@
 % Pham vi goc: Muc 5.4 - Mien tin cay va so sanh dong thoi.
 % File nay chi chia khuc noi dung, chua gan ten thanh vien phu trach.
+
+% Định nghĩa tạm nếu preamble chưa có
+\ifcsname keyformula\endcsname\else
+  \newenvironment<>{keyformula}[1][]{%
+    \begin{block}#2{#1}%
+  }{%
+    \end{block}%
+  }
+\fi
 \section{Miền tin cậy và so sánh đồng thời}
 \sectionframe{Miền tin cậy và so sánh đồng thời}
 
