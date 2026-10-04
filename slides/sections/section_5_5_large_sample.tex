@@ -24,12 +24,12 @@
     \end{block}
     \column{0.48\textwidth}
     \begin{alertblock}{Cái giá phải trả}
-      Chỉ dùng \((\bar{\vect{x}},\mat{S})\), đây là thống kê đủ khi tổng thể chuẩn.
+      Chỉ dùng \((\bar{\mat{x}},\mat{S})\), đây là thống kê đủ khi tổng thể chuẩn.
       Tổng thể càng xa chuẩn thì thông tin mẫu bị bỏ phí càng nhiều.
     \end{alertblock}
   \end{columns}
   \note{Mở đầu bằng câu hỏi trong khung xanh. Bài tập 5.15--5.17 trong sách minh họa trường hợp
-  phân phối gốc rời rạc. Ý ``cái giá phải trả'': khi tổng thể chuẩn, \((\bar{\vect{x}},\mat{S})\)
+  phân phối gốc rời rạc. Ý ``cái giá phải trả'': khi tổng thể chuẩn, \((\bar{\mat{x}},\mat{S})\)
   chứa toàn bộ thông tin của mẫu; khi không chuẩn, chỉ dùng hai đại lượng này là bỏ qua phần thông tin còn lại.}
 \end{frame}
 
@@ -37,13 +37,13 @@
 \begin{frame}{Ý tưởng chính: vì sao dùng được \texorpdfstring{\(\chi^2\)}{chi-square}?}
   Ba kết quả từ chương 4, \textbf{không cần} giả định chuẩn:
   \begin{enumerate}
-    \item Định lý giới hạn trung tâm: \(\sqrt{n}\,(\bar{\mat{X}}-\vect{\mu})\) xấp xỉ \(N_p(\mathbf{0},\vect{\Sigma})\).
-    \item Luật số lớn: khi \(n\) lớn, \(\mat{S}\) rất gần \(\vect{\Sigma}\).
-    \item Nếu \(\mat{Z}\sim N_p(\mathbf{0},\vect{\Sigma})\) thì \(\mat{Z}\trans\vect{\Sigma}\inv\mat{Z}\sim\chi^2_p\).
+    \item Định lý giới hạn trung tâm: \(\sqrt{n}\,(\bar{\mat{X}}-\vect{\mu})\) có phân phối \emph{xấp xỉ} \(N_p(\mathbf{0},\vect{\Sigma})\).
+    \item Luật số lớn: \(\mat{S}\) hội tụ (theo xác suất) về \(\vect{\Sigma}\), nên khi \(n\) lớn có thể thay \(\vect{\Sigma}\) bằng \(\mat{S}\).
+    \item Nếu \(\mat{Z}\sim N_p(\mathbf{0},\vect{\Sigma})\), \(\vect{\Sigma}\) xác định dương, thì \(\mat{Z}\trans\vect{\Sigma}\inv\mat{Z}\sim\chi^2_p\) (\emph{chính xác}).
   \end{enumerate}
   Ghép lại, khi \(n-p\) lớn ta có (4-28):
-  \(\;n(\bar{\mat{X}}-\vect{\mu})\trans\mat{S}\inv(\bar{\mat{X}}-\vect{\mu})
-    \overset{\text{xấp xỉ}}{\sim} \chi^2_p\), do đó
+  \(\;n(\bar{\mat{X}}-\vect{\mu})\trans\mat{S}\inv(\bar{\mat{X}}-\vect{\mu})\)
+  có phân phối \emph{xấp xỉ} \(\chi^2_p\), do đó
   \begin{equation*}
     \boxed{\;P\Bigl[n(\bar{\mat{X}}-\vect{\mu})\trans\mat{S}\inv(\bar{\mat{X}}-\vect{\mu})
     \le \chi^2_p(\alpha)\Bigr] \doteq 1-\alpha\;}
@@ -53,7 +53,8 @@
     \item \(\chi^2_p(\alpha)\): phân vị trên mức \(100\alpha\%\) của phân phối \(\chi^2\) với \(p\) bậc tự do.
     \item Mọi thủ tục mẫu lớn trong mục này đều suy ra trực tiếp từ (5-31).
   \end{itemize}
-  \note{Đây là slide quan trọng nhất: nói rõ ba bước. Bước 1 thay cho giả định chuẩn, bước 2 cho phép
+  \note{Ký hiệu \(\doteq\) trong (5-31) đọc là ``xấp xỉ bằng'', giống sách gốc.
+  Đây là slide quan trọng nhất: nói rõ ba bước. Bước 1 thay cho giả định chuẩn, bước 2 cho phép
   thay \(\vect{\Sigma}\) chưa biết bằng \(\mat{S}\), bước 3 là tính chất của phân phối chuẩn đã học ở chương 4.
   Liên hệ mục 5.3: ở đó ta đã thấy \(-2\ln\Lambda\) cũng xấp xỉ \(\chi^2_p\) khi \(n\) lớn.
   Câu hỏi có thể gặp: \emph{Vì sao cần \(n-p\) lớn chứ không chỉ \(n\) lớn?} Vì \(\mat{S}\) có \(p(p+1)/2\)
@@ -68,7 +69,7 @@
     \(H_0\colon\vect{\mu}=\vect{\mu}_0\) để chấp nhận \(H_1\colon\vect{\mu}\neq\vect{\mu}_0\)
     ở mức ý nghĩa xấp xỉ \(\alpha\) nếu
     \[
-      n(\bar{\vect{x}}-\vect{\mu}_0)\trans\mat{S}\inv(\bar{\vect{x}}-\vect{\mu}_0) > \chi^2_p(\alpha).
+      n(\bar{\mat{x}}-\vect{\mu}_0)\trans\mat{S}\inv(\bar{\mat{x}}-\vect{\mu}_0) > \chi^2_p(\alpha).
     \]
   \end{block}
   \vspace{0.1cm}
@@ -95,16 +96,16 @@
   \begin{block}{Kết quả 5.5}
     Với cùng giả thiết như trên, nếu \(n-p\) lớn thì
     \[
-      \vect{a}\trans\bar{\mat{X}} \pm \sqrt{\chi^2_p(\alpha)}\sqrt{\frac{\vect{a}\trans\mat{S}\vect{a}}{n}}
+      \mat{a}\trans\bar{\mat{X}} \pm \sqrt{\chi^2_p(\alpha)}\sqrt{\frac{\mat{a}\trans\mat{S}\mat{a}}{n}}
     \]
-    chứa \(\vect{a}\trans\vect{\mu}\) \textbf{đồng thời với mọi} \(\vect{a}\), với xác suất xấp xỉ \(1-\alpha\).
+    chứa \(\mat{a}\trans\vect{\mu}\) \textbf{đồng thời với mọi} \(\mat{a}\), với xác suất xấp xỉ \(1-\alpha\).
   \end{block}
   {\small Đây là bản mẫu lớn của khoảng \(T^2\) (Kết quả 5.3, mục 5.4):
   thay \(\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)\) bằng \(\chi^2_p(\alpha)\).\par}
   \vspace{0.1cm}
   \begin{columns}[T]
     \column{0.44\textwidth}
-    \textbf{Chọn \(\vect{a}=\vect{e}_i\):} các khoảng cho từng thành phần
+    \textbf{Chọn \(\mat{a}=\mat{e}_i\):} các khoảng cho từng thành phần
     \[
       \bar{x}_i \pm \sqrt{\chi^2_p(\alpha)}\sqrt{\frac{s_{ii}}{n}},
       \quad i=1,\dots,p
@@ -120,8 +121,8 @@
   \end{columns}
   \note{Chứng minh trong sách: phần đầu từ Kết quả 5A.1 với \(c^2=\chi^2_p(\alpha)\), các ellipse từ
   Kết quả 5A.2; mức tin cậy chung xấp xỉ \(1-\alpha\) là hệ quả của (5-31).
-  \(\vect{e}_i\) là vectơ có số 1 ở vị trí thứ \(i\), còn lại bằng 0, nên \(\vect{e}_i\trans\vect{\mu}=\mu_i\)
-  và \(\vect{e}_i\trans\mat{S}\vect{e}_i=s_{ii}\).}
+  \(\mat{e}_i\) là vectơ có số 1 ở vị trí thứ \(i\), còn lại bằng 0, nên \(\mat{e}_i\trans\vect{\mu}=\mu_i\)
+  và \(\mat{e}_i\trans\mat{S}\mat{e}_i=s_{ii}\).}
 \end{frame}
 
 % ---------------------------------------------------------------
@@ -265,7 +266,7 @@
       \midrule
       Từng biến       & \(t_{n-1}(\alpha/2)\)  & \(z(\alpha/2)\)  & Từng khoảng riêng lẻ \(1-\alpha\) \\
       Bonferroni      & \(t_{n-1}(\alpha/2p)\) & \(z(\alpha/2p)\) & Cả \(p\) khoảng: ít nhất \(1-\alpha\) \\
-      Bóng ellipsoid  & \(\sqrt{\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)}\) & \(\sqrt{\chi^2_p(\alpha)}\) & Mọi \(\vect{a}\trans\vect{\mu}\): \(1-\alpha\) \\
+      Bóng ellipsoid  & \(\sqrt{\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)}\) & \(\sqrt{\chi^2_p(\alpha)}\) & Mọi \(\mat{a}\trans\vect{\mu}\): \(1-\alpha\) \\
       \bottomrule
     \end{tabular}
   \end{center}
@@ -363,7 +364,7 @@
       & Lý thuyết chuẩn & Mẫu lớn (\(n-p\) lớn) \\
       \midrule
       Giả định & \(N_p(\vect{\mu},\vect{\Sigma})\) & Phân phối bất kỳ, \(\vect{\Sigma}\) xác định dương \\
-      Thống kê & \multicolumn{2}{c}{\(n(\bar{\vect{x}}-\vect{\mu}_0)\trans\mat{S}\inv(\bar{\vect{x}}-\vect{\mu}_0)\)} \\
+      Thống kê & \multicolumn{2}{c}{\(n(\bar{\mat{x}}-\vect{\mu}_0)\trans\mat{S}\inv(\bar{\mat{x}}-\vect{\mu}_0)\)} \\
       Giá trị tới hạn & \(\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)\) & \(\chi^2_p(\alpha)\) \\
       Khoảng từng biến & \(t_{n-1}(\alpha/2)\) & \(z(\alpha/2)\) \\
       Bonferroni & \(t_{n-1}(\alpha/2p)\) & \(z(\alpha/2p)\) \\
