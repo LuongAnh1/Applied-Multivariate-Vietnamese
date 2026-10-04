@@ -4,6 +4,412 @@
 \sectionframe{Bài tập và ví dụ tính toán}
 
 % Cac slide Bai 5.1--5.3 cua cac thanh vien khac co the dat truoc moc nay.
+% BEGIN: Bai 5.1--5.3
+% ============================================================
+% BEGIN: Bai 5.1--5.3
+% ============================================================
+ 
+% ---------- Bai 5.1 ----------
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.1: }\par}
+  \vspace{0.15cm}
+  \begin{block}{Đề bài}
+    Cho ma trận dữ liệu
+    \[
+      \mat{X}=
+      \begin{bmatrix}
+        2 & 12\\
+        8 & 9\\
+        6 & 9\\
+        8 & 10
+      \end{bmatrix}.
+    \]
+    \begin{enumerate}
+      \item[(a)] Tính giá trị của thống kê \(T^2\) để kiểm định \(H_0:\vect{\mu}\trans=[7,\ 11]\).
+      \item[(b)] Xác định phân phối của \(T^2\) trong trường hợp ở câu (a).
+      \item[(c)] Sử dụng kết quả ở câu (a) và (b), hãy kiểm định \(H_0\) ở mức ý nghĩa \(\alpha=0{,}05\). Nêu kết luận.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+ 
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \footnotesize
+  {\large\textbf{Bài 5.1(a): Trung bình mẫu, \(\mat{S}\) và \(\mat{S}\inv\)}\par}
+  \[
+    \bar{\vect{x}}=
+    \begin{bmatrix}\bar{x}_1\\ \bar{x}_2\end{bmatrix}=
+    \begin{bmatrix}\dfrac{2+8+6+8}{4}\\[8pt] \dfrac{12+9+9+10}{4}\end{bmatrix}=
+    \begin{bmatrix}6\\ 10\end{bmatrix}
+  \]
+  và
+  \[
+    s_{11}=\frac{(2-6)^2+(8-6)^2+(6-6)^2+(8-6)^2}{3}=\frac{24}{3}=8,
+  \]
+  \[
+    s_{12}=\frac{(2-6)(12-10)+(8-6)(9-10)+(6-6)(9-10)+(8-6)(10-10)}{3}=\frac{-10}{3},
+  \]
+  \[
+    s_{22}=\frac{(12-10)^2+(9-10)^2+(9-10)^2+(10-10)^2}{3}=\frac{6}{3}=2.
+  \]
+  Do đó,
+  \[
+    \mat{S}=
+    \begin{bmatrix}
+      8 & -\dfrac{10}{3}\\[8pt]
+      -\dfrac{10}{3} & 2
+    \end{bmatrix},
+    \qquad
+    \mat{S}\inv=\frac{9}{44}
+    \begin{bmatrix}
+      2 & \dfrac{10}{3}\\[8pt]
+      \dfrac{10}{3} & 8
+    \end{bmatrix}.
+  \]
+\end{frame}
+ 
+ 
+ 
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.1(a): Giá trị \(T^2\)}\par}
+  \vspace{0.05cm}
+  Đặt \(\vect{d}=\bar{\vect{x}}-\vect{\mu}_0=[\,6-7,\ 10-11\,]\trans=[-1,\ -1]\trans\). Khi đó, với \(n=4\):
+  \[
+  \begin{aligned}
+    T^2 &= 4\,\vect{d}\trans\mat{S}\inv\vect{d}\\
+    &= 4\,[\,-1,\ -1\,]\,\frac{9}{44}
+      \begin{bmatrix}2&\dfrac{10}{3}\\[8pt]\dfrac{10}{3}&8\end{bmatrix}
+      \begin{bmatrix}-1\\-1\end{bmatrix}\\
+    &= 4\,[\,-1,\ -1\,]
+      \begin{bmatrix}-\dfrac{12}{11}\\[8pt]-\dfrac{51}{22}\end{bmatrix}
+      =4\cdot\frac{75}{22}=\frac{150}{11}\approx 13{,}64.
+  \end{aligned}
+  \]
+\end{frame}
+ 
+\begin{frame}{Bài tập và ví dụ tính toán}
+  {\large\textbf{Bài 5.1(b): Phân phối của \(T^2\)}\par}
+  \vspace{-0.05cm}
+  \begin{block}{(b) Phân phối của \(T^2\)}
+    Giả thiết các hàng của \(\mat{X}\) là mẫu ngẫu nhiên từ tổng thể chuẩn hai chiều \(N_2(\vect{\mu},\boldsymbol{\Sigma})\). Trước khi mẫu được chọn, \(T^2\) có phân phối của biến ngẫu nhiên
+    \[
+      \frac{(n-1)p}{n-p}F_{p,n-p}=\frac{(4-1)2}{(4-2)}F_{2,4-2}=3F_{2,2}.
+    \]
+  \end{block}
+\end{frame}
+ \begin{frame}{Bài tập và ví dụ tính toán}
+  {\large\textbf{Bài 5.1(c): Kết luận}\par}
+  \vspace{-0.05cm}
+  \begin{block}{(c) Kiểm định \(H_0:\vect{\mu}\trans=[7,\ 11]\) ở mức \(\alpha=0{,}05\)}
+    So sánh giá trị quan sát \(T^2=13{,}64\) với giá trị tới hạn
+    \[
+      \frac{(n-1)p}{n-p}F_{p,n-p}(0{,}05)=\frac{(4-1)2}{(4-2)}F_{2,2}(0{,}05)=3(19)=57.
+    \]
+    (Với \(F_{2,2}\) có \(P(F_{2,2}>c)=\dfrac{1}{1+c}\); giải \(\dfrac{1}{1+c}=0{,}05\) được \(c=19\).)
+  \end{block}
+ 
+  \vspace{-0.15cm}
+  \begin{alertblock}{Kết luận}
+    Ta thấy \(T^2=13{,}64<57\). Do đó, ta không bác bỏ \(H_0\) ở mức ý nghĩa \(5\%\). Ngưỡng lớn là do \(n=4\) quá nhỏ, mẫu số của \(F\) chỉ có \(n-p=2\) bậc tự do.
+  \end{alertblock}
+\end{frame}
+ 
+% ---------- Bai 5.2 ----------
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.2:}\par}
+  \vspace{0.15cm}
+  \begin{block}{Đề bài}
+    Sử dụng dữ liệu trong Ví dụ 5.1, hãy kiểm tra rằng giá trị \(T^2\) không thay đổi khi mỗi quan sát \(\vect{x}_j\) (\(j=1,2,3\)) được thay bằng \(\mat{C}\vect{x}_j\), với
+    \[
+      \mat{C}=
+      \begin{bmatrix}
+        1 & -1\\
+        1 & 1
+      \end{bmatrix}.
+    \]
+    Các quan sát mới là \(\mat{C}\vect{x}_j=[\,x_{j1}-x_{j2},\ x_{j1}+x_{j2}\,]\trans\).
+  \end{block}
+  \begin{block}{Dữ liệu gốc (Ví dụ 5.1)}
+    \(n=3\), \(\mat{X}=\begin{bmatrix}6&9\\10&6\\8&3\end{bmatrix}\), \(\vect{\mu}_0\trans=[9,\ 5]\),
+    \(\bar{\vect{x}}=\begin{bmatrix}8\\6\end{bmatrix}\),
+    \(\mat{S}=\begin{bmatrix}4&-3\\-3&9\end{bmatrix}\),
+    \(T^2=\dfrac{7}{9}\).
+  \end{block}
+\end{frame}
+ 
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.2: Dữ liệu mới và giả thuyết mới}\par}
+  \vspace{0.1cm}
+  Mỗi quan sát \(\vect{x}_j\) được nhân với \(\mat{C}\) bên trái: \(\vect{y}_j=\mat{C}\vect{x}_j\).
+  \begin{center}
+    \scriptsize
+    \setlength{\tabcolsep}{5pt}
+    \begin{tabular}{@{}c c c c c@{}}
+      \toprule
+      \(j\) & \(x_{j1}\) & \(x_{j2}\) & \(y_{j1}=x_{j1}-x_{j2}\) & \(y_{j2}=x_{j1}+x_{j2}\) \\
+      \midrule
+      \(1\) & \(6\)  & \(9\) & \(6-9=-3\) & \(6+9=15\) \\
+      \(2\) & \(10\) & \(6\) & \(10-6=4\) & \(10+6=16\) \\
+      \(3\) & \(8\)  & \(3\) & \(8-3=5\)  & \(8+3=11\) \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \vspace{-0.1cm}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.45\textwidth}
+    \[
+      \mat{Y}=
+      \begin{bmatrix}
+        -3 & 15\\
+        4 & 16\\
+        5 & 11
+      \end{bmatrix}
+    \]
+    \column{0.52\textwidth}
+    \begin{block}{Giả thuyết cũng đổi theo}
+      \[
+        H_0:\mat{C}\vect{\mu}=\mat{C}\vect{\mu}_0,
+        \quad
+        \mat{C}\vect{\mu}_0=
+        \begin{bmatrix}
+          9-5\\
+          9+5
+        \end{bmatrix}=
+        \begin{bmatrix}
+          4\\
+          14
+        \end{bmatrix}
+      \]
+    \end{block}
+  \end{columns}
+\end{frame}
+ 
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \footnotesize
+  {\large\textbf{Bài 5.2: Trung bình mới, \(\mat{S}_y\) và \(\mat{S}_y\inv\)}\par}
+  \vspace{0.05cm}
+  Từ \(\mat{Y}\) (\(n=3\)), ta có
+  \[
+    \bar{\vect{y}}=
+    \begin{bmatrix}
+      \dfrac{-3+4+5}{3}\\[8pt]
+      \dfrac{15+16+11}{3}
+    \end{bmatrix}=
+    \begin{bmatrix}
+      2\\
+      14
+    \end{bmatrix}=\mat{C}\bar{\vect{x}}
+  \]
+  và
+  \[
+    s_{y,11}=\frac{(-3-2)^2+(4-2)^2+(5-2)^2}{2}=\frac{38}{2}=19,
+  \]
+  \[
+    s_{y,12}=\frac{(-3-2)(15-14)+(4-2)(16-14)+(5-2)(11-14)}{2}=\frac{-10}{2}=-5,
+  \]
+  \[
+    s_{y,22}=\frac{(15-14)^2+(16-14)^2+(11-14)^2}{2}=\frac{14}{2}=7.
+  \]
+  Do đó, với \(\det\mat{S}_y=19\cdot7-(-5)^2=108\),
+  \[
+    \mat{S}_y=
+    \begin{bmatrix}
+      19 & -5\\
+      -5 & 7
+    \end{bmatrix},
+    \qquad
+    \mat{S}_y\inv=\frac{1}{108}
+    \begin{bmatrix}
+      7 & 5\\
+      5 & 19
+    \end{bmatrix}.
+  \]
+\end{frame}
+ 
+ 
+ 
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.2: \(T^2\) của dữ liệu mới}\par}
+  \vspace{0.05cm}
+  Với \(n=3\) và giả thuyết mới \(\mat{C}\vect{\mu}_0=[4,\ 14]\trans\):
+  \[
+  \begin{aligned}
+    T^2_y &= 3\,[\,2-4,\ 14-14\,]\,\frac{1}{108}
+      \begin{bmatrix}7&5\\5&19\end{bmatrix}
+      \begin{bmatrix}2-4\\14-14\end{bmatrix}\\
+    &= 3\,[\,-2,\ 0\,]\,\frac{1}{108}
+      \begin{bmatrix}7&5\\5&19\end{bmatrix}
+      \begin{bmatrix}-2\\0\end{bmatrix}
+      =\frac{3\cdot 4\cdot 7}{108}=\frac{7}{9}.
+  \end{aligned}
+  \]
+ 
+  \begin{alertblock}{Kết luận}
+    \(T^2_y=\dfrac{7}{9}\) bằng đúng \(T^2\) của dữ liệu gốc, nên \(T^2\) không thay đổi. Chú ý \(\vect{d}_y=[-2,\,0]\trans\ne\vect{d}=[-1,\,1]\trans\) và \(\mat{S}_y\ne\mat{S}\), nhưng hai thay đổi này triệt tiêu nhau.
+  \end{alertblock}
+\end{frame}
+ 
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.2: Tổng quát hóa, các đại lượng sau biến đổi}\par}
+  \vspace{0.1cm}
+  Xét phép biến đổi (5-9) trong sách (ở đây ký hiệu vectơ hằng là \(\vect{b}\), để khỏi trùng với \(\vect{d}\)):
+  \[
+    \vect{Y}=\mat{C}\vect{X}+\vect{b},\qquad \mat{C}\text{ không suy biến}.
+  \]
+  Bài 5.2 là trường hợp \(\vect{b}=\vect{0}\). Theo Kết quả 3.6,
+  \[
+    \bar{\vect{y}}=\mat{C}\bar{\vect{x}}+\vect{b},
+    \qquad
+    \mat{S}_y=\frac{1}{n-1}\sum_{j=1}^{n}(\vect{y}_j-\bar{\vect{y}})(\vect{y}_j-\bar{\vect{y}})\trans=\mat{C}\mat{S}\mat{C}\trans.
+  \]
+  Hơn nữa, \(\vect{\mu}_Y=E(\mat{C}\vect{X}+\vect{b})=\mat{C}\vect{\mu}+\vect{b}\), nên giả thuyết mới là
+  \(\vect{\mu}_{Y,0}=\mat{C}\vect{\mu}_0+\vect{b}\).
+ 
+  \begin{block}{Kiểm tra bằng số (\(\vect{b}=\vect{0}\))}
+    \(\bar{\vect{y}}=\mat{C}[8,\ 6]\trans=[2,\ 14]\trans\) và
+    \(\mat{C}\mat{S}\mat{C}\trans=\begin{bmatrix}19&-5\\-5&7\end{bmatrix}=\mat{S}_y\), khớp với phần tính trực tiếp từ \(\mat{Y}\).
+  \end{block}
+\end{frame}
+ 
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.2: Vì sao \(T^2\) không đổi}\par}
+  Vì \(\bar{\vect{y}}-\vect{\mu}_{Y,0}=\mat{C}\bar{\vect{x}}+\vect{b}-\mat{C}\vect{\mu}_0-\vect{b}=\mat{C}(\bar{\vect{x}}-\vect{\mu}_0)\), nên
+  \[
+  \begin{aligned}
+    T^2 &= n(\bar{\vect{y}}-\vect{\mu}_{Y,0})\trans\mat{S}_y\inv(\bar{\vect{y}}-\vect{\mu}_{Y,0})\\
+    &= n\{\mat{C}(\bar{\vect{x}}-\vect{\mu}_0)\}\trans(\mat{C}\mat{S}\mat{C}\trans)\inv\{\mat{C}(\bar{\vect{x}}-\vect{\mu}_0)\}\\
+    &= n(\bar{\vect{x}}-\vect{\mu}_0)\trans\mat{C}\trans(\mat{C}\mat{S}\mat{C}\trans)\inv\mat{C}(\bar{\vect{x}}-\vect{\mu}_0)\\
+    &= n(\bar{\vect{x}}-\vect{\mu}_0)\trans\mat{C}\trans(\mat{C}\trans)\inv\mat{S}\inv\mat{C}\inv\mat{C}(\bar{\vect{x}}-\vect{\mu}_0)\\
+    &= n(\bar{\vect{x}}-\vect{\mu}_0)\trans\mat{S}\inv(\bar{\vect{x}}-\vect{\mu}_0).
+  \end{aligned}
+  \]
+  \begin{block}{Kết luận}
+    Vậy \(T^2\) bất biến khi đổi gốc và đổi đơn vị \(X_i\to a_i(X_i-b_i)\), và khi nhân thêm một ma trận không suy biến bất kỳ.
+  \end{block}
+\end{frame}
+ 
+% ---------- Bai 5.3 ----------
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.3:}\par}
+  \vspace{0.1cm}
+  \begin{block}{Đề bài}
+    \begin{enumerate}
+      \item[(a)] Sử dụng biểu thức (5-15) để tính \(T^2\) cho dữ liệu trong Bài tập 5.1.
+      \item[(b)] Sử dụng dữ liệu trong Bài tập 5.1 để tính tỉ số hợp lý \(\Lambda\) trong (5-13). Đồng thời tính lambda Wilks \(\Lambda^{\frac{2}{n}}\).
+    \end{enumerate}
+  \end{block}
+  \vspace{-0.1cm}
+  \footnotesize
+  \begin{block}{Biểu thức (5-15) và (5-13)}
+    \vspace{-0.2cm}
+    \[
+      T^2=\frac{(n-1)\left|\sum_{j=1}^n(\vect{x}_j-\vect{\mu}_0)(\vect{x}_j-\vect{\mu}_0)\trans\right|}
+      {\left|\sum_{j=1}^n(\vect{x}_j-\bar{\vect{x}})(\vect{x}_j-\bar{\vect{x}})\trans\right|}-(n-1)
+    \]
+    \[
+      \Lambda=\left(\frac{|\hat{\boldsymbol{\Sigma}}|}{|\hat{\boldsymbol{\Sigma}}_0|}\right)^{\frac{n}{2}}
+      =\left(\frac{\left|\sum_{j=1}^n(\vect{x}_j-\bar{\vect{x}})(\vect{x}_j-\bar{\vect{x}})\trans\right|}
+      {\left|\sum_{j=1}^n(\vect{x}_j-\vect{\mu}_0)(\vect{x}_j-\vect{\mu}_0)\trans\right|}\right)^{\frac{n}{2}}<c_\alpha
+    \]
+  \end{block}
+\end{frame}
+ 
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \footnotesize
+  {\large\textbf{Bài 5.3: Ma trận \(\mat{A}\) (độ lệch so với \(\bar{\vect{x}}\))}\par}
+  \vspace{0.05cm}
+  Dùng dữ liệu Bài 5.1 (\(n=4\), \(\bar{\vect{x}}=[6,\ 10]\trans\)). Đặt
+  \(\mat{A}=\sum_{j=1}^n(\vect{x}_j-\bar{\vect{x}})(\vect{x}_j-\bar{\vect{x}})\trans\) (không chia cho \(n\)):
+  \[
+    A_{11}=(2-6)^2+(8-6)^2+(6-6)^2+(8-6)^2=24,
+  \]
+  \[
+    A_{12}=(2-6)(12-10)+(8-6)(9-10)+(6-6)(9-10)+(8-6)(10-10)=-10,
+  \]
+  \[
+    A_{22}=(12-10)^2+(9-10)^2+(9-10)^2+(10-10)^2=6.
+  \]
+  Do đó
+  \[
+    \mat{A}=
+    \begin{bmatrix}
+      24 & -10\\
+      -10 & 6
+    \end{bmatrix}=3\mat{S},
+    \qquad
+    |\mat{A}|=24\cdot 6-(-10)^2=44.
+  \]
+\end{frame}
+ 
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \footnotesize
+  {\large\textbf{Bài 5.3: Ma trận \(\mat{B}\) (độ lệch so với \(\vect{\mu}_0\))}\par}
+  \vspace{0.05cm}
+  Đặt \(\mat{B}=\sum_{j=1}^n(\vect{x}_j-\vect{\mu}_0)(\vect{x}_j-\vect{\mu}_0)\trans\) với \(\vect{\mu}_0=[7,\ 11]\trans\):
+  \[
+    B_{11}=(2-7)^2+(8-7)^2+(6-7)^2+(8-7)^2=25+1+1+1=28,
+  \]
+  \[
+    B_{12}=(2-7)(12-11)+(8-7)(9-11)+(6-7)(9-11)+(8-7)(10-11)=-5-2+2-1=-6,
+  \]
+  \[
+    B_{22}=(12-11)^2+(9-11)^2+(9-11)^2+(10-11)^2=1+4+4+1=10.
+  \]
+  Do đó
+  \[
+    \mat{B}=
+    \begin{bmatrix}
+      28 & -6\\
+      -6 & 10
+    \end{bmatrix},
+    \qquad
+    |\mat{B}|=28\cdot 10-(-6)^2=244.
+  \]
+\end{frame}
+ 
+\begin{frame}{Bài tập và ví dụ tính toán}
+  \small
+  {\large\textbf{Bài 5.3: \(T^2\), tỉ số hợp lý và lambda Wilks}\par}
+  \vspace{0.1cm}
+  Vì \(\hat{\boldsymbol{\Sigma}}=\dfrac{\mat{A}}{n}\) và \(\hat{\boldsymbol{\Sigma}}_0=\dfrac{\mat{B}}{n}\), hệ số \(\dfrac{1}{n}\) triệt tiêu trong tỉ số:
+  \(\dfrac{|\hat{\boldsymbol{\Sigma}}_0|}{|\hat{\boldsymbol{\Sigma}}|}=\dfrac{|\mat{B}|}{|\mat{A}|}=\dfrac{244}{44}=\dfrac{61}{11}\).
+ 
+  \begin{columns}[T,onlytextwidth]
+    \column{0.48\textwidth}
+    \begin{block}{(a) \(T^2\) theo (5-15)}
+      \[
+        T^2=(n-1)\frac{|\mat{B}|}{|\mat{A}|}-(n-1)
+        =3\cdot\frac{61}{11}-3=\frac{150}{11}\approx13{,}64
+      \]
+      Khớp với \(T^2\) ở Bài 5.1.
+    \end{block}
+ 
+    \column{0.48\textwidth}
+    \begin{block}{(b) \(\Lambda\) và lambda Wilks}
+      \[
+        \Lambda^{\frac{2}{n}}=\frac{|\mat{A}|}{|\mat{B}|}=\frac{11}{61}\approx0{,}180
+      \]
+      \[
+        \Lambda=\left(\frac{11}{61}\right)^{\frac{4}{2}}=\frac{121}{3721}\approx0{,}0325
+      \]
+    \end{block}
+  \end{columns}
+ 
+  \begin{alertblock}{Kiểm tra chéo}
+    \(T^2=(n-1)\left(\Lambda^{-\frac{2}{n}}-1\right)=3\left(\dfrac{61}{11}-1\right)=\dfrac{150}{11}\). Vậy \(\Lambda\) nhỏ tương ứng \(T^2\) lớn, và ta bác bỏ \(H_0\) khi \(\Lambda<c_\alpha\).
+  \end{alertblock}
+\end{frame}
+ 
+% ============================================================
+% END: Bai 5.1--5.3
+
 % BEGIN: Bai 5.4--5.5
 
 \begin{frame}{Bài tập và ví dụ tính toán}
