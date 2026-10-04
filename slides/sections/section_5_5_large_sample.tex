@@ -256,37 +256,38 @@
 
 % ---------------------------------------------------------------
 \begin{frame}{Ba loại khoảng tin cậy: lý thuyết chuẩn và mẫu lớn}
-  Mọi khoảng đều có dạng \(\bar{x}_i \pm (\text{hằng số})\sqrt{s_{ii}/n}\);
-  mẫu lớn chỉ thay hằng số \(t, F\) của mục 5.4 bằng \(z, \chi^2\):
+  Mọi khoảng có dạng \(\bar{x}_i \pm (\text{hằng số})\sqrt{s_{ii}/n}\);
+  mẫu lớn chỉ thay hằng số \(t, F\) bằng \(z, \chi^2\):
   \begin{center}
     \small
-    \begin{tabular}{@{}llll@{}}
+    \begin{tabular}{@{}llllc@{}}
       \toprule
-      Loại khoảng & Lý thuyết chuẩn (mục 5.4) & Mẫu lớn (mục 5.5) & Đảm bảo \\
+      Loại khoảng & Lý thuyết chuẩn (mục 5.4) & Mẫu lớn (mục 5.5) & Đảm bảo cho & Độ tin cậy \\
       \midrule
-      Từng biến       & \(t_{n-1}(\alpha/2)\)  & \(z(\alpha/2)\)  & Từng khoảng riêng lẻ \(1-\alpha\) \\
-      Bonferroni      & \(t_{n-1}(\alpha/2p)\) & \(z(\alpha/2p)\) & Cả \(p\) khoảng: ít nhất \(1-\alpha\) \\
-      Bóng ellipsoid  & \(\sqrt{\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)}\) & \(\sqrt{\chi^2_p(\alpha)}\) & Mọi \(\mat{a}\trans\vect{\mu}\): \(1-\alpha\) \\
+      Từng biến       & \(t_{n-1}(\alpha/2)\)  & \(z(\alpha/2)\)  & Từng khoảng riêng lẻ & \(1-\alpha\) \\
+      Bonferroni      & \(t_{n-1}(\alpha/2p)\) & \(z(\alpha/2p)\) & Cả \(p\) khoảng cùng lúc & \(\ge 1-\alpha\) \\
+      Bóng ellipsoid  & \(\sqrt{\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)}\) & \(\sqrt{\chi^2_p(\alpha)}\) & Mọi \(\mat{a}\trans\vect{\mu}\) cùng lúc & \(1-\alpha\) \\
       \bottomrule
     \end{tabular}
   \end{center}
   {\scriptsize Bóng ellipsoid = hình chiếu của ellipsoid tin cậy lên các trục (khoảng \(T^2\), Hình 5.2).
   Cột mẫu lớn: các mức đảm bảo chỉ đạt xấp xỉ.\par}
   \vspace{0.1cm}
-  \textbf{Minh họa với \(X_1\) (giai điệu), \(95\%\), dữ liệu Ví dụ 5.7:}\\[2pt]
+  \textbf{Minh họa với \(X_1\) (giai điệu), \(95\%\), dữ liệu Ví dụ 5.7:}\par
+  \vspace{2pt}
   \centering
   \begin{tikzpicture}[x=0.95cm,y=0.36cm,font=\scriptsize]
-    \draw[->, black!60] (25.5,0) -- (30.9,0);
+    \draw[->, black!60] (25.6,0) -- (30.8,0);
     \foreach \t in {26,27,28,29,30} {
       \draw[black!60] (\t,0) -- (\t,-0.15) node[below] {\t};
     }
     \draw[dashed, black!40] (28.1,0) -- (28.1,3.5);
     \foreach \y/\lo/\hi/\lab in {
-        3/26.95/29.25/{Từng biến: \(z(0{,}025)=1{,}96\)},
-        2/26.52/29.68/{Bonferroni: \(z(0{,}025/7)=2{,}69\)},
-        1/25.90/30.30/{Bóng ellipsoid: \(\sqrt{\chi^2_7(0{,}05)}=3{,}75\)}} {
+        3/26.95/29.25/{Từng biến \(z(0{,}025)=1{,}96\)},
+        2/26.52/29.68/{Bonferroni \(z(0{,}025/7)=2{,}69\)},
+        1/25.90/30.30/{Bóng ellipsoid \(\sqrt{\chi^2_7(0{,}05)}=3{,}75\)}} {
+      \node[anchor=east] at (25.5,\y) {\lab};
       \draw[hustprimary, line width=2pt] (\lo,\y) -- (\hi,\y);
-      \node[anchor=west] at (30.45,\y) {\lab};
     }
   \end{tikzpicture}
   \note{Bảng này nối mục 5.4 với mục 5.5: ba loại khoảng giữ nguyên, chỉ đổi hằng số.
