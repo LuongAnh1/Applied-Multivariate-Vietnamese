@@ -128,12 +128,12 @@
 % ---------------------------------------------------------------
 \begin{frame}{Thế nào là ``mẫu lớn''?}
   \begin{itemize}
-    \item Không có câu trả lời dứt khoát. Với 1--2 biến, \(n\approx 30\)--\(50\) thường được coi là lớn.
-    \item Số biến \(p\) càng tăng thì cần \(n\) càng lớn. Sách chỉ yêu cầu \textbf{\(n-p\) phải lớn}, nhưng thực tế phức tạp hơn.
+    \item Không có tiêu chuẩn chung. Với 1--2 biến, cỡ mẫu \(n\approx 30\)--\(50\) thường được xem là lớn.
+    \item Khi số biến \(p\) tăng, cỡ mẫu cần thiết cũng tăng; điều kiện thường nêu là \textbf{\(n-p\) lớn}.
   \end{itemize}
   \vspace{0.05cm}
-  \begin{exampleblock}{Cùng \(n-p=48\) nhưng khác hẳn nhau (\(\alpha=0{,}05\))}
-    \centering
+  \begin{exampleblock}{Thực tế phức tạp hơn: cùng \(n-p=48\) nhưng kết quả rất khác (\(\alpha=0{,}05\))}
+    \centering\small
     \begin{tabular}{@{}lccc@{}}
       \toprule
       & Ngưỡng chính xác & Ngưỡng \(\chi^2_p(\alpha)\) & Mức sai lầm thực tế nếu dùng \(\chi^2\)\({}^{*}\) \\
@@ -141,12 +141,13 @@
       \(p=2,\ n=50\)   & 6{,}51   & 5{,}99  & \(\approx 6\%\) \\
       \(p=52,\ n=100\) & 172{,}05 & 69{,}83 & \(\approx 93\%\) \\
       \bottomrule
-    \end{tabular}\\[2pt]
-    {\scriptsize \({}^{*}\)Khi dữ liệu thật sự chuẩn và mức danh nghĩa là \(5\%\).\par}
+    \end{tabular}\\[1pt]
+    {\scriptsize \({}^{*}\)Khi dữ liệu có phân phối chuẩn và mức danh nghĩa là \(5\%\).\par}
   \end{exampleblock}
-  \begin{alertblock}{Thực hành tốt}
-    Vẫn kiểm tra dữ liệu như với lý thuyết chuẩn (biểu đồ \(Q\)--\(Q\), điểm ngoại lai, phép biến đổi).
-    Sai lệch \emph{cực đoan} khỏi tính chuẩn có thể làm mức sai lầm thực tế khác xa \(\alpha\).
+  \vspace{-0.1cm}
+  \begin{alertblock}{Lưu ý khi áp dụng}
+    Vẫn cần kiểm tra dữ liệu như với lý thuyết chuẩn (biểu đồ \(Q\)--\(Q\), điểm ngoại lai, phép biến đổi).
+    Sai lệch \emph{nghiêm trọng} khỏi phân phối chuẩn có thể làm mức sai lầm thực tế khác đáng kể so với \(\alpha\).
   \end{alertblock}
   \note{Cột cuối do nhóm tự tính: nếu dữ liệu chuẩn mà ta vẫn dùng ngưỡng \(\chi^2\), xác suất bác bỏ sai
   \(H_0\) là \(P\bigl[\tfrac{(n-1)p}{n-p}F_{p,n-p} > \chi^2_p(0{,}05)\bigr]\). Với \(p=52\), \(n=100\) ngưỡng
@@ -199,11 +200,11 @@
 \begin{frame}{Ví dụ 5.7: so sánh với hồ sơ chuẩn của học sinh Mỹ}
   Giả thuyết dựa trên dữ liệu học sinh Mỹ:
   \(\vect{\mu}_0\trans=[31,\ 27,\ 34,\ 31,\ 23,\ 22,\ 22]\).
-  \vspace{0.1cm}
   \begin{columns}[T]
     \column{0.50\textwidth}
     \begin{center}
       \small
+      \renewcommand{\arraystretch}{0.92}
       \begin{tabular}{@{}lccc@{}}
         \toprule
         & Khoảng \(90\%\) & \(\mu_{0i}\) & \\
@@ -220,7 +221,7 @@
     \end{center}
     \column{0.47\textwidth}
     \centering
-    \begin{tikzpicture}[x=0.28cm,y=0.42cm,font=\scriptsize]
+    \begin{tikzpicture}[x=0.28cm,y=0.29cm,font=\scriptsize]
       \draw[->] (19,0.3) -- (38.5,0.3);
       \foreach \t in {20,25,30,35} {
         \draw (\t,0.3) -- (\t,0.15) node[below] {\t};
@@ -241,13 +242,13 @@
     \end{tikzpicture}\\[0.1cm]
     {\scriptsize \textcolor{hustprimary}{\rule[0.5ex]{0.5cm}{1.6pt}} khoảng \(90\%\)
     \quad \textcolor{red}{\(\bullet\)} \(\mu_{0i}\) nằm ngoài}
-    \begin{alertblock}{Kết luận}
-      \small\justifying
-      \textbf{Giai điệu}, \textbf{nhịp độ} và \textbf{nhịp} của \(\vect{\mu}_0\)
-      không hợp lý cho học sinh Phần Lan.
-      Vì các khoảng đúng \emph{đồng thời}, kết luận chung có độ tin cậy xấp xỉ \(90\%\).
-    \end{alertblock}
   \end{columns}
+  \vspace{0.05cm}
+  \begin{alertblock}{Kết luận}
+    Các thành phần \textbf{giai điệu}, \textbf{nhịp độ} và \textbf{nhịp} của \(\vect{\mu}_0\)
+    không phải là giá trị hợp lý đối với học sinh Phần Lan. Do các khoảng đúng \emph{đồng thời},
+    kết luận chung có độ tin cậy xấp xỉ \(90\%\).
+  \end{alertblock}
   \note{\(\mu_{03}=34\) nằm sát mép dưới \(34{,}05\): bị loại nhưng chỉ vừa đủ. Vì các khoảng này là
   hình chiếu của miền tin cậy, có thành phần nằm ngoài nghĩa là \(\vect{\mu}_0\) nằm ngoài miền tin cậy
   \(90\%\), nên kiểm định của Kết quả 5.4 cũng bác bỏ \(H_0\colon\vect{\mu}=\vect{\mu}_0\) ở mức xấp xỉ \(10\%\).
@@ -270,13 +271,12 @@
       \bottomrule
     \end{tabular}
   \end{center}
-  {\scriptsize Bóng ellipsoid = hình chiếu của ellipsoid tin cậy lên các trục (khoảng \(T^2\), Hình 5.2).
-  Cột mẫu lớn: các mức đảm bảo chỉ đạt xấp xỉ.\par}
+  \vspace{-0.15cm}
+  {\scriptsize Bóng ellipsoid: hình chiếu của ellipsoid tin cậy lên các trục (Hình 5.2). Ở cột mẫu lớn, độ tin cậy chỉ đạt xấp xỉ.\par}
   \vspace{0.1cm}
   \textbf{Minh họa với \(X_1\) (giai điệu), \(95\%\), dữ liệu Ví dụ 5.7:}\par
-  \vspace{2pt}
   \centering
-  \begin{tikzpicture}[x=0.95cm,y=0.36cm,font=\scriptsize]
+  \begin{tikzpicture}[x=0.95cm,y=0.32cm,font=\scriptsize]
     \draw[->, black!60] (25.6,0) -- (30.8,0);
     \foreach \t in {26,27,28,29,30} {
       \draw[black!60] (\t,0) -- (\t,-0.15) node[below] {\t};
@@ -350,9 +350,9 @@
     \item Hằng số \(t, F\) lớn hơn nên khoảng \textbf{rộng hơn}, tức \textbf{thận trọng hơn}.
     \item Với \(n=96\), chênh lệch so với Bảng 5.6 chỉ ở hàng phần mười hoặc phần trăm.
   \end{itemize}
-  {\scriptsize Bảng 5.7 đầy đủ cho cả 7 biến: xem bản dịch mục 5.5. \(F_{7,89}(0{,}05)=2{,}11\).\par}
   \note{Chính xác hơn: \(z(\alpha/2)\) là giới hạn của \(t_{n-1}(\alpha/2)\), còn \(\chi^2_p(\alpha)\) là giới hạn
-  của \(\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)\). Hằng số \(3{,}97\) là \(\sqrt{95\cdot 7\cdot 2{,}11/89}\).
+  của \(\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)\). Hằng số \(3{,}97\) là \(\sqrt{95\cdot 7\cdot 2{,}11/89}\) với
+  \(F_{7,89}(0{,}05)=2{,}11\). Bảng 5.7 đầy đủ cho cả 7 biến có trong bản dịch mục 5.5.
   Chỉ so sánh dòng \(\mu_1\) để người nghe dễ theo dõi; các biến khác cho cùng kết luận.}
 \end{frame}
 
@@ -360,6 +360,8 @@
 \begin{frame}{Tóm tắt mục 5.5}
   \begin{center}
     \small
+    \renewcommand{\arraystretch}{1.2}
+    \setlength{\tabcolsep}{12pt}
     \begin{tabular}{@{}lll@{}}
       \toprule
       & Lý thuyết chuẩn & Mẫu lớn (\(n-p\) lớn) \\
@@ -375,8 +377,8 @@
   \end{center}
   \vspace{0.1cm}
   \begin{itemize}
-    \item Hai cách cho kết luận gần như nhau khi \(n\) lớn so với \(p\).
-    \item ``Lớn'' phụ thuộc vào \(n-p\) \emph{và} vào \(p\). Vẫn phải kiểm tra ngoại lai và sai lệch cực đoan.
-    \item Muốn thận trọng: dù \(n\) lớn vẫn có thể giữ \(t, F\), khoảng chỉ rộng hơn một chút.
+    \item Hai cách tiếp cận cho kết luận gần như nhau khi \(n\) lớn so với \(p\).
+    \item Thế nào là ``lớn'' phụ thuộc vào cả \(n-p\) và \(p\); vẫn cần kiểm tra điểm ngoại lai.
+    \item Để thận trọng, có thể giữ phân vị \(t, F\) khi \(n\) lớn; khoảng chỉ rộng hơn không đáng kể.
   \end{itemize}
 \end{frame}
