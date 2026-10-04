@@ -1,15 +1,421 @@
-% Pham vi goc: Muc 5.6 - Bieu do kiem soat chat luong da bien.
-% File nay chi chia khuc noi dung, chua gan ten thanh vien phu trach.
+% Muc 5.6 - Bieu do kiem soat chat luong da bien (hinh trong figures/)
 \section{Biểu đồ kiểm soát chất lượng đa biến}
+\setcounter{equation}{0}\renewcommand{\theequation}{5.6.\arabic{equation}}
 \sectionframe{Biểu đồ kiểm soát chất lượng đa biến}
 
-\begin{frame}{Biểu đồ kiểm soát chất lượng đa biến}
-  \begin{block}{Phạm vi nội dung}
-    Kết nối Hotelling \(T^2\) với bài toán giám sát quá trình khi nhiều đặc trưng chất lượng được theo dõi đồng thời.
-  \end{block}
+\begin{frame}{Mục đích của biểu đồ kiểm soát}
   \begin{itemize}
-    \item Ý tưởng phát hiện quan sát bất thường bằng \(T^2\).
-    \item Cách xác định giới hạn kiểm soát.
-    \item Diễn giải hình và bảng số liệu nếu đưa vào slide.
+    \item Quy trình \textbf{ổn định}: biến động chỉ do \textbf{nguyên nhân phổ biến} (\textit{common causes}), không có nguyên nhân nào chi phối.
+    \item Biểu đồ kiểm soát nhận diện \textbf{nguyên nhân đặc biệt} (\textit{special causes}) từ bên ngoài quy trình thông thường.
+    \item Nguyên nhân đặc biệt thường cần khắc phục kịp thời, nhưng cũng có thể gợi ý cải tiến quy trình.
+    \item Biểu đồ gồm dữ liệu vẽ theo thời gian và các đường ngang gọi là \textbf{giới hạn kiểm soát}.
   \end{itemize}
 \end{frame}
+
+\begin{frame}{Biểu đồ \(\bar{X}\) (đơn biến)}
+  \begin{block}{Cách xây dựng}
+    \begin{enumerate}
+      \item Vẽ các quan sát riêng lẻ hoặc trung bình mẫu theo thời gian.
+      \item Vẽ đường trung tâm \(\bar{\bar{x}}\): trung bình của mọi quan sát.
+      \item Vẽ các giới hạn kiểm soát:
+    \end{enumerate}
+    \begin{align*}
+      \mathrm{UCL}&=\bar{\bar{x}}+3(\text{độ lệch chuẩn})\\
+      \mathrm{LCL}&=\bar{\bar{x}}-3(\text{độ lệch chuẩn})
+    \end{align*}
+  \end{block}
+  \small Quan sát đơn lẻ: độ lệch chuẩn mẫu. Trung bình nhóm con cỡ \(m\): độ lệch chuẩn mẫu chia \(\sqrt{m}\). Mức \(\pm3\) độ lệch chuẩn làm xác suất báo động giả rất nhỏ (giả định dữ liệu chuẩn).
+\end{frame}
+
+\begin{frame}{Ví dụ 5.8: dữ liệu giờ làm thêm (Bảng 5.8)}
+  Sở Cảnh sát Madison, Wisconsin: năm loại giờ làm thêm, mỗi quan sát là tổng của 12 kỳ trả lương (khoảng nửa năm).
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+    \centering\scriptsize
+    \begin{tabular}{rrrrr}
+      \toprule
+      \(x_1\) & \(x_2\) & \(x_3\) & \(x_4\) & \(x_5\) \\
+      \midrule
+      3387 & 2200 & 1181 & 14861 & 236 \\
+      3109 & 875 & 3532 & 11367 & 310 \\
+      2670 & 957 & 2502 & 13329 & 1182 \\
+      3125 & 1758 & 4510 & 12328 & 1208 \\
+      3469 & 868 & 3032 & 12847 & 1385 \\
+      3120 & 398 & 2130 & 13979 & 1053 \\
+      3671 & 1603 & 1982 & 13528 & 1046 \\
+      4531 & 523 & 4675 & 12699 & 1100 \\
+      \bottomrule
+    \end{tabular}
+    \column{0.48\textwidth}
+    \centering\scriptsize
+    \begin{tabular}{rrrrr}
+      \toprule
+      \(x_1\) & \(x_2\) & \(x_3\) & \(x_4\) & \(x_5\) \\
+      \midrule
+      3678 & 2034 & 2354 & 13534 & 1349 \\
+      3238 & 1136 & 4606 & 11609 & 1150 \\
+      3135 & 5326 & 3044 & 14189 & 1216 \\
+      5217 & 1658 & 3340 & 15052 & 660 \\
+      3728 & 1945 & 2111 & 12236 & 299 \\
+      3506 & 344 & 1291 & 15482 & 206 \\
+      3824 & 807 & 1365 & 14900 & 239 \\
+      3516 & 1223 & 1175 & 15078 & 161 \\
+      \bottomrule
+    \end{tabular}
+  \end{columns}
+  {\scriptsize \(x_1\) giờ ra tòa, \(x_2\) sự kiện đặc biệt, \(x_3\) trực lưu lại, \(x_4\) giờ COA (nghỉ bù), \(x_5\) giờ họp.}
+\end{frame}
+
+\begin{frame}{Ví dụ 5.8: biểu đồ \(\bar{X}\) cho giờ ra tòa}
+  \begin{columns}[T]
+    \column{0.40\textwidth}
+    \small
+    \(\bar{x}_1=\bar{\bar{x}}_1=3558\), \(\sqrt{s_{11}}=607\)
+    \begin{equation*}
+      \mathrm{UCL}=3558+3(607)=5379
+    \end{equation*}
+    \begin{equation*}
+      \mathrm{LCL}=3558-3(607)=1737
+    \end{equation*}
+    \begin{block}{Kết luận}
+      Số giờ ổn định: biến động do nguyên nhân phổ biến, không có dấu hiệu nguyên nhân đặc biệt.
+    \end{block}
+    \column{0.58\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{\input{figures/fig5_5.tex}}
+
+    {\scriptsize Hình 5.5. Biểu đồ \(\bar{X}\) với \(x_1\)}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Vì sao cần phương pháp đa biến?}
+  \begin{itemize}
+    \item Với nhiều đặc tính quan trọng, cần phương pháp đa biến để giám sát tính ổn định.
+    \item Tính đến \textbf{tương quan} giữa các đặc tính và kiểm soát được xác suất \textbf{tổng thể} báo động sai.
+    \item Tương quan cao khiến việc đánh giá tỷ lệ sai số tổng thể của nhiều biểu đồ đơn biến trở nên bất khả thi.
+  \end{itemize}
+  \begin{block}{Hai loại biểu đồ phổ biến}
+    (i) Biểu đồ dạng elip; \quad (ii) Biểu đồ \(T^2\).
+  \end{block}
+  Hai tình huống cần xử lý khác nhau: \textbf{theo dõi tính ổn định} của một mẫu cho trước, và \textbf{thiết lập vùng kiểm soát} cho quan sát tương lai.
+\end{frame}
+
+\begin{frame}{Theo dõi mẫu các quan sát đa biến riêng lẻ}
+  Giả định \(\vect{X}_1,\dots,\vect{X}_n\) độc lập, cùng phân phối \(N_p(\vect{\mu},\vect{\Sigma})\). Theo Kết quả 4.8:
+  \begin{align*}
+    E(\vect{X}_j-\bar{\vect{X}})&=\vect{0}\\
+    \operatorname{Cov}(\vect{X}_j-\bar{\vect{X}})&=\frac{n-1}{n}\,\vect{\Sigma}
+  \end{align*}
+  \begin{itemize}
+    \item Mỗi \(\vect{X}_j-\bar{\vect{X}}\) có phân phối chuẩn, nhưng \textbf{không độc lập} với \(\mat{S}\).
+    \item Để lập giới hạn kiểm soát, \textbf{xấp xỉ} \((\vect{X}_j-\bar{\vect{X}})\trans\mat{S}\inv(\vect{X}_j-\bar{\vect{X}})\) có phân phối chi bình phương.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Biểu đồ dạng elip}
+  \begin{itemize}
+    \item Trực quan nhất, nhưng \textbf{chỉ dùng cho hai biến}: vẽ cặp \((x_{j1},x_{j2})\) của đơn vị thứ \(j\).
+  \end{itemize}
+  \begin{block}{Elip chất lượng 95\%}
+    Gồm mọi \(\vect{x}\) thỏa
+    \begin{equation}
+      (\vect{x}-\bar{\vect{x}})\trans\mat{S}\inv(\vect{x}-\bar{\vect{x}})\le \chi^2_2(.05)
+      \tag{5-32}
+    \end{equation}
+  \end{block}
+  Điểm nằm ngoài elip là tín hiệu có thể có nguyên nhân đặc biệt.
+\end{frame}
+
+\begin{frame}{Ví dụ 5.9: elip 99\% cho giờ làm thêm}
+  \begin{columns}[T]
+    \column{0.57\textwidth}
+    Cặp \((x_1,x_2)\) = (giờ ra tòa, giờ sự kiện đặc biệt):
+    {\small
+    \begin{equation*}
+      \bar{\vect{x}}=\begin{bmatrix}3558\\1478\end{bmatrix},\;
+      \mat{S}=\begin{bmatrix}367{,}884.7 & -72{,}093.8\\ -72{,}093.8 & 1{,}399{,}053.1\end{bmatrix}
+    \end{equation*}}
+    Với \(p=2\), \(\chi^2_2(.01)=9.21\); elip gồm mọi \(\vect{x}\) thỏa
+    \begin{equation*}
+      (\vect{x}-\bar{\vect{x}})\trans\mat{S}\inv(\vect{x}-\bar{\vect{x}})\le 9.21
+    \end{equation*}
+    Một điểm \textbf{nằm ngoài} elip: giai đoạn 11.
+    \column{0.40\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{\input{figures/fig5_6.tex}}
+
+    {\scriptsize Hình 5.6. Elip kiểm soát 99\%}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ví dụ 5.9: tìm nguyên nhân đặc biệt}
+  \begin{columns}[T]
+    \column{0.45\textwidth}
+    \small
+    Có điểm ngoài vùng kiểm soát nên dựng biểu đồ \(\bar{X}\) riêng (\(x_1\): Hình 5.5; \(x_2\): Hình 5.7).
+    \begin{itemize}
+      \item \(x_2\): \(\mathrm{UCL}=5027\), \(\bar{\bar{x}}_2=1478\), \(\mathrm{LCL}=-2071\). LCL âm với dữ liệu không âm thì đặt \(\mathrm{LCL}=0\) (nét đứt).
+      \item Một điểm vượt UCL: lúc đó Hoa Kỳ ném bom một thủ đô nước ngoài, sinh viên Madison biểu tình; phần lớn giờ đặc biệt dùng trong 4 tuần ấy.
+    \end{itemize}
+    \column{0.52\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{\input{figures/fig5_7.tex}}
+
+    {\scriptsize Hình 5.7. Biểu đồ \(\bar{X}\) với \(x_2\)}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Biểu đồ \(T^2\)}
+  \begin{itemize}
+    \item Áp dụng cho \textbf{nhiều đặc tính}, không giới hạn ở hai biến.
+    \item Các điểm vẽ \textbf{theo thứ tự thời gian}, giúp thấy rõ quy luật và xu hướng.
+  \end{itemize}
+  \begin{block}{Thống kê cho điểm thứ \(j\)}
+    \begin{equation}
+      T_j^2=(\vect{x}_j-\bar{\vect{x}})\trans\mat{S}\inv(\vect{x}_j-\bar{\vect{x}})
+      \tag{5-33}
+    \end{equation}
+  \end{block}
+  \begin{itemize}
+    \item LCL \(=0\); \(\mathrm{UCL}=\chi^2_p(.05)\), đôi khi \(\chi^2_p(.01)\). \textbf{Không có đường trung tâm.}
+    \item \(T_j^2\) chính là \(d_j^2\) dùng kiểm định tính chuẩn ở Mục 4.6.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Ví dụ 5.10: biểu đồ \(T^2\) cho giờ làm thêm}
+  \begin{columns}[T]
+    \column{0.42\textwidth}
+    Dữ liệu Ví dụ 5.8, hai biến: \(X_1\) giờ tố tụng tại tòa, \(X_2\) giờ xử lý sự kiện bất thường; \(\alpha=.01\).
+    \begin{itemize}
+      \item Giai đoạn 11 nằm ngoài tầm kiểm soát.
+      \item Khảo sát sâu hơn (như Ví dụ 5.9) cho thấy nguyên nhân là số giờ sự kiện bất thường lớn trong giai đoạn đó.
+    \end{itemize}
+    \column{0.55\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{\input{figures/fig5_8.tex}}
+
+    {\scriptsize Hình 5.8. Biểu đồ \(T^2\), \(\alpha=.01\)}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Khi \(T^2\) báo hiệu: biến nào gây ra?}
+  Khi biểu đồ \(T^2\) báo đơn vị \(j\) ngoài tầm kiểm soát, cần xác định biến nguyên nhân. Thường dùng miền hiệu chỉnh \textbf{Bonferroni}:
+  \begin{block}{Biến thứ \(k\) ngoài tầm kiểm soát nếu \(x_{jk}\) không thuộc}
+    \begin{equation*}
+      \Bigl(\bar{x}_k-t_{n-1}\bigl(\tfrac{.005}{p}\bigr)\sqrt{s_{kk}},\;\;
+      \bar{x}_k+t_{n-1}\bigl(\tfrac{.005}{p}\bigr)\sqrt{s_{kk}}\Bigr)
+    \end{equation*}
+  \end{block}
+  trong đó \(p\) là tổng số biến được đo.
+\end{frame}
+
+\begin{frame}{Ví dụ 5.11: kiểm soát robot hàn}
+  Hàn vòng chạc đầu trục vào ống trục ô tô. Bốn biến đo mỗi 5 giây, \(n=40\) (Bảng 5.9):
+  \(X_1\) điện áp (V), \(X_2\) dòng điện (A), \(X_3\) tốc độ cấp dây (in/min), \(X_4\) lưu lượng khí trơ (cfm).
+
+  \smallskip
+  {\tiny\setlength{\tabcolsep}{2.5pt}
+  \begin{columns}[T]
+    \column{0.235\textwidth}
+    \centering
+    \begin{tabular}{rrrrr}
+    \toprule
+    TH & \(X_1\) & \(X_2\) & \(X_3\) & \(X_4\) \\
+    \midrule
+1 & 23.0 & 276 & 289.6 & 51.0 \\
+2 & 22.0 & 281 & 289.0 & 51.7 \\
+3 & 22.8 & 270 & 288.2 & 51.3 \\
+4 & 22.1 & 278 & 288.0 & 52.3 \\
+5 & 22.5 & 275 & 288.0 & 53.0 \\
+6 & 22.2 & 273 & 288.0 & 51.0 \\
+7 & 22.0 & 275 & 290.0 & 53.0 \\
+8 & 22.1 & 268 & 289.0 & 54.0 \\
+9 & 22.5 & 277 & 289.0 & 52.0 \\
+10 & 22.5 & 278 & 289.0 & 52.0 \\
+    \bottomrule
+    \end{tabular}
+    \column{0.235\textwidth}
+    \centering
+    \begin{tabular}{rrrrr}
+    \toprule
+    TH & \(X_1\) & \(X_2\) & \(X_3\) & \(X_4\) \\
+    \midrule
+11 & 22.3 & 269 & 287.0 & 54.0 \\
+12 & 21.8 & 274 & 287.6 & 52.0 \\
+13 & 22.3 & 270 & 288.4 & 51.0 \\
+14 & 22.2 & 273 & 290.2 & 51.3 \\
+15 & 22.1 & 274 & 286.0 & 51.0 \\
+16 & 22.1 & 277 & 287.0 & 52.0 \\
+17 & 21.8 & 277 & 287.0 & 51.0 \\
+18 & 22.6 & 276 & 290.0 & 51.0 \\
+19 & 22.3 & 278 & 287.0 & 51.7 \\
+20 & 23.0 & 266 & 289.1 & 51.0 \\
+    \bottomrule
+    \end{tabular}
+    \column{0.235\textwidth}
+    \centering
+    \begin{tabular}{rrrrr}
+    \toprule
+    TH & \(X_1\) & \(X_2\) & \(X_3\) & \(X_4\) \\
+    \midrule
+21 & 22.9 & 271 & 288.3 & 51.0 \\
+22 & 21.3 & 274 & 289.0 & 52.0 \\
+23 & 21.8 & 280 & 290.0 & 52.0 \\
+24 & 22.0 & 268 & 288.3 & 51.0 \\
+25 & 22.8 & 269 & 288.7 & 52.0 \\
+26 & 22.0 & 264 & 290.0 & 51.0 \\
+27 & 22.5 & 273 & 288.6 & 52.0 \\
+28 & 22.2 & 269 & 288.2 & 52.0 \\
+29 & 22.6 & 273 & 286.0 & 52.0 \\
+30 & 21.7 & 283 & 290.0 & 52.7 \\
+    \bottomrule
+    \end{tabular}
+    \column{0.235\textwidth}
+    \centering
+    \begin{tabular}{rrrrr}
+    \toprule
+    TH & \(X_1\) & \(X_2\) & \(X_3\) & \(X_4\) \\
+    \midrule
+31 & 21.9 & 273 & 288.7 & 55.3 \\
+32 & 22.3 & 264 & 287.0 & 52.0 \\
+33 & 22.2 & 263 & 288.0 & 52.0 \\
+34 & 22.3 & 266 & 288.6 & 51.7 \\
+35 & 22.0 & 263 & 288.0 & 51.7 \\
+36 & 22.8 & 272 & 289.0 & 52.3 \\
+37 & 22.0 & 277 & 287.7 & 53.3 \\
+38 & 22.7 & 272 & 289.0 & 52.0 \\
+39 & 22.6 & 274 & 287.2 & 52.7 \\
+40 & 22.7 & 270 & 290.0 & 51.0 \\
+    \bottomrule
+    \end{tabular}
+  \end{columns}}
+
+  \smallskip
+  {\footnotesize Giả định chuẩn hợp lý; \textbf{lấy \(\ln\)} của lưu lượng khí; các quan sát liên tiếp không tự tương quan đáng kể.}
+\end{frame}
+
+\begin{frame}{Ví dụ 5.11: biểu đồ \(T^2\) cho dữ liệu hàn}
+  \begin{columns}[T]
+    \column{0.36\textwidth}
+    \small
+    Biểu đồ \(T^2\) cho bốn biến (\(p=4\)):
+    \begin{itemize}
+      \item Nét liền: giới hạn 99\% (\(\chi^2_4(.01)=13.28\)).
+      \item Nét đứt: giới hạn 95\% (\(\chi^2_4(.05)=9.49\)).
+      \item Ở mức 99\%: không điểm nào ngoài tầm kiểm soát.
+      \item Trường hợp 31 vượt giới hạn 95\%.
+    \end{itemize}
+    \column{0.62\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{\input{figures/fig5_9.tex}}
+
+    {\scriptsize Hình 5.9. Biểu đồ \(T^2\) cho dữ liệu hàn}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Ví dụ 5.11: \(T^2\) chưa đủ}
+  \begin{columns}[T]
+    \column{0.40\textwidth}
+    \small
+    \begin{itemize}
+      \item \(T^2\): không điểm nào ngoài giới hạn 99\%; trường hợp 31 vượt 95\%.
+      \item Elip 99\%: trường hợp 31 ngoài do lưu lượng khí lớn bất thường.
+      \item Biểu đồ \(\bar{X}\): điểm đó ngoài 3 Sigma; lưu lượng được đặt lại ở trường hợp 32.
+    \end{itemize}
+    \column{0.30\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{\input{figures/fig5_10.tex}}
+
+    {\scriptsize Hình 5.10}
+    \column{0.30\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{\input{figures/fig5_11.tex}}
+
+    {\scriptsize Hình 5.11}
+  \end{columns}
+  \small \textbf{Bài học:} sự dịch chuyển của một biến bị che khuất khi gộp vào một giá trị \(T^2\) duy nhất.
+\end{frame}
+
+\begin{frame}{Miền kiểm soát cho quan sát tương lai}
+  \begin{block}{Kết quả 5.6: miền dự báo cho quan sát tương lai \(\vect{x}\)}
+    \small
+    \(\vect{X}_1,\dots,\vect{X}_n\) độc lập \(N_p(\vect{\mu},\vect{\Sigma})\), \(\vect{X}\) là quan sát tương lai. Khi đó
+    \begin{equation*}
+      T^2=\frac{n}{n+1}(\vect{X}-\bar{\vect{X}})\trans\mat{S}\inv(\vect{X}-\bar{\vect{X}})
+      \sim\frac{(n-1)p}{n-p}F_{p,n-p}
+    \end{equation*}
+    và ellipsoid dự báo \(100(1-\alpha)\%\) gồm mọi \(\vect{x}\) thỏa
+    \begin{equation*}
+      (\vect{x}-\bar{\vect{x}})\trans\mat{S}\inv(\vect{x}-\bar{\vect{x}})\le\frac{n^2-1}{n(n-p)}\,pF_{p,n-p}(\alpha)
+    \end{equation*}
+  \end{block}
+  \footnotesize Cốt lõi: \(\operatorname{Cov}(\vect{X}-\bar{\vect{X}})=\frac{n+1}{n}\vect{\Sigma}\). Các quan sát \(\vect{x}_1,\dots,\vect{x}_n\) dùng để lập miền phải thu khi quy trình ổn định.
+\end{frame}
+
+\begin{frame}{Elip kiểm soát cho quan sát tương lai}
+  \begin{columns}[T]
+    \column{0.60\textwidth}
+    Với \(p=2\), elip dự báo 95\%:
+    {\small\begin{equation*}
+      (\vect{x}-\bar{\vect{x}})\trans\mat{S}\inv(\vect{x}-\bar{\vect{x}})\le\frac{(n^2-1)\,2}{n(n-2)}F_{2,n-2}(.05)
+      \tag{5-34}
+    \end{equation*}}
+    \textbf{Ví dụ 5.12.} Bỏ giai đoạn 11 (ngoài kiểm soát) rồi tính lại: 15 quan sát ổn định, mọi điểm đều trong elip. Quan sát tương lai trong elip là ổn định; ngoài elip có thể do nguyên nhân đặc biệt.
+    \column{0.37\textwidth}
+    \centering
+    \resizebox{\linewidth}{!}{\input{figures/fig5_12.tex}}
+
+    {\scriptsize Hình 5.12. Elip kiểm soát 95\%}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Biểu đồ \(T^2\) cho quan sát tương lai}
+  Với mỗi quan sát mới \(\vect{x}\), vẽ theo thời gian (LCL \(=0\)):
+  \begin{align*}
+    T^2&=\frac{n}{n+1}(\vect{x}-\bar{\vect{x}})\trans\mat{S}\inv(\vect{x}-\bar{\vect{x}})\\
+    \mathrm{UCL}&=\frac{(n-1)p}{n-p}F_{p,n-p}(.05)
+  \end{align*}
+  Điểm trên UCL cho thấy có thể có biến động do nguyên nhân đặc biệt; cần kiểm tra quá trình để quyết định có hành động khắc phục ngay hay không.
+\end{frame}
+
+\begin{frame}{Biểu đồ dựa trên trung bình mẫu con}
+  Mỗi lần lấy \(m>1\) đơn vị; có \(n\) mẫu con, trung bình \(\bar{\vect{X}}_j\), ma trận \(\mat{S}_j\), trung bình chung \(\bar{\bar{\vect{X}}}\).
+  \begin{align*}
+    \operatorname{Cov}(\bar{\vect{X}}_j-\bar{\bar{\vect{X}}})&=\frac{n-1}{nm}\vect{\Sigma}\\
+    \mat{S}&=\frac1n(\mat{S}_1+\cdots+\mat{S}_n)
+  \end{align*}
+  \((nm-n)\mat{S}\) có phân phối Wishart, độc lập với \(\bar{\bar{\vect{X}}}\). Khi đó:
+  \begin{equation*}
+    \frac{nm}{n-1}(\bar{\vect{X}}_j-\bar{\bar{\vect{X}}})\trans\mat{S}\inv(\bar{\vect{X}}_j-\bar{\bar{\vect{X}}})
+    \sim\frac{(nm-n)p}{nm-n-p+1}F_{p,\,nm-n-p+1}
+    \tag{5-35}
+  \end{equation*}
+\end{frame}
+
+\begin{frame}{Trung bình mẫu con: elip và \(T^2\)}
+  Elip kiểm soát với \(p=2\) (vế phải thường xấp xỉ \(\chi^2_2(.05)/m\)):
+  \begin{equation}
+    (\bar{\vect{x}}_j-\bar{\bar{\vect{x}}})\trans\mat{S}\inv(\bar{\vect{x}}_j-\bar{\bar{\vect{x}}})\le\frac{(n-1)(m-1)\,2}{m(nm-n-1)}F_{2,nm-n-1}(.05)
+    \tag{5-36}
+  \end{equation}
+  Biểu đồ \(T^2\), \(j=1,\dots,n\) (UCL xấp xỉ \(\chi^2_p(.05)\) khi \(n\) lớn):
+  \begin{align*}
+    T_j^2&=m(\bar{\vect{X}}_j-\bar{\bar{\vect{X}}})\trans\mat{S}\inv(\bar{\vect{X}}_j-\bar{\bar{\vect{X}}})\\
+    \mathrm{UCL}&=\frac{(n-1)(m-1)p}{nm-n-p+1}F_{p,\,nm-n-p+1}(.05)
+  \end{align*}
+\end{frame}
+
+\begin{frame}{Miền kiểm soát cho trung bình mẫu con tương lai}
+  \small \(\operatorname{Cov}(\bar{\vect{X}}-\bar{\bar{\vect{X}}})=\frac{n+1}{nm}\vect{\Sigma}\), nên \(\frac{nm}{n+1}(\bar{\vect{X}}-\bar{\bar{\vect{X}}})\trans\mat{S}\inv(\bar{\vect{X}}-\bar{\bar{\vect{X}}})\) có cùng phân phối \(F\) như (5-35). Elip dự báo với \(p=2\):
+  \begin{equation*}
+    (\vect{x}-\bar{\bar{\vect{x}}})\trans\mat{S}\inv(\vect{x}-\bar{\bar{\vect{x}}})\le\frac{(n+1)(m-1)\,2}{m(nm-n-1)}F_{2,nm-n-1}(.05)
+    \tag{5-37}
+  \end{equation*}
+  Biểu đồ \(T^2\):
+  \begin{align*}
+    T^2&=m(\bar{\vect{X}}-\bar{\bar{\vect{X}}})\trans\mat{S}\inv(\bar{\vect{X}}-\bar{\bar{\vect{X}}})\\
+    \mathrm{UCL}&=\frac{(n+1)(m-1)p}{nm-n-p+1}F_{p,\,nm-n-p+1}(.05)
+  \end{align*}
+  Điểm ngoài elip hoặc trên UCL: quá trình đã đổi khác (tốt hoặc xấu), cần tìm nguyên nhân.
+\end{frame}
+\renewcommand{\theequation}{\arabic{equation}}

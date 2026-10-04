@@ -59,6 +59,25 @@
   \useThinBar%
 }
 
+\newcommand{\sectionframeplain}[1]{%
+  {%
+    \setbeamertemplate{background}{%
+      \includegraphics[width=\paperwidth,height=\paperheight]{\hustbg{section}}%
+    }%
+    \begin{frame}[plain,c]
+      \centering
+      \vfill
+      \begin{minipage}{0.86\paperwidth}
+        \centering
+        {\Huge\bfseries\color{white}#1\par}
+      \end{minipage}
+      \vfill
+    \end{frame}%
+  }%
+  \useStyleHustFull%
+  \useThinBar%
+}
+
 \title[Suy luận về vectơ trung bình]{Suy luận về vectơ trung bình}
 \subtitle{Chapter 5 - Applied Multivariate Statistical Analysis}
 \author{Nhóm thuyết trình}
