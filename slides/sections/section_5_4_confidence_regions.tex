@@ -299,6 +299,118 @@
 % BEGIN Vũ Công Hiệp
 
 % ----------------------------------------------------------------------------
+
+\begin{frame}{Nhu cầu đánh giá đồng thời các trung bình}
+\begin{itemize}
+  \item Miền $n(\bar{\mathbf x}-\boldsymbol\mu)'\mathbf S^{-1}(\bar{\mathbf x}-\boldsymbol\mu)\le c^2$
+        cho thông tin \textbf{đồng thời, chính xác} về các giá trị hợp lý của
+        $\boldsymbol\mu$.
+  \item Nhưng khi báo cáo, ta thường vẫn muốn các \textbf{phát biểu riêng lẻ}
+        về từng trung bình thành phần.
+  \item Quan điểm: mọi phát biểu riêng lẻ đó cần \textbf{đúng đồng thời} với
+        một xác suất được chỉ định cao $\Rightarrow$ đó là \textbf{khoảng tin
+        cậy đồng thời} (\emph{simultaneous confidence intervals}).
+\end{itemize}
+\vspace{0.5em}
+Ta bắt đầu từ các phát biểu tin cậy liên quan mật thiết đến miền tin cậy dựa
+trên thống kê $T^2$.
+\end{frame}
+ 
+% ----------------------------------------------------------------------------
+\begin{frame}{Phân phối của tổ hợp tuyến tính $Z=\mathbf a'\mathbf X$}
+Cho $\mathbf X\sim N_p(\boldsymbol\mu,\boldsymbol\Sigma)$ và $\mathbf a$ cố định.
+Đặt
+\[
+Z=a_1X_1+a_2X_2+\cdots+a_pX_p=\mathbf a'\mathbf X.
+\]
+ 
+Từ (2-43):
+\[
+\mu_Z=E(Z)=\mathbf a'\boldsymbol\mu,
+\qquad
+\sigma_Z^2=\operatorname{Var}(Z)=\mathbf a'\boldsymbol\Sigma\mathbf a.
+\]
+ 
+Theo Kết quả 4.2: $Z\sim N(\mathbf a'\boldsymbol\mu,\ \mathbf a'\boldsymbol\Sigma\mathbf a)$.
+\end{frame}
+ 
+% ----------------------------------------------------------------------------
+\begin{frame}{Thống kê mẫu cho biến $Z$}
+Với mẫu ngẫu nhiên $\mathbf X_1,\ldots,\mathbf X_n$ từ $N_p(\boldsymbol\mu,\boldsymbol\Sigma)$,
+lấy tổ hợp tuyến tính cho mỗi quan sát:
+\[
+Z_j=a_1X_{j1}+a_2X_{j2}+\cdots+a_pX_{jp}=\mathbf a'\mathbf X_j,\qquad j=1,\ldots,n.
+\]
+ 
+Theo (3-36), trung bình và phương sai mẫu của $z_1,\ldots,z_n$ là
+\[
+\bar z=\mathbf a'\bar{\mathbf x},
+\qquad
+s_Z^2=\mathbf a'\mathbf S\mathbf a,
+\]
+với $\bar{\mathbf x}$, $\mathbf S$ là vector trung bình mẫu và ma trận hiệp
+phương sai mẫu của $\mathbf X_j$.
+ 
+\vspace{0.5em}
+$\Rightarrow$ Có thể xây dựng khoảng tin cậy đồng thời bằng cách xét khoảng
+tin cậy cho $\mathbf a'\boldsymbol\mu$ với nhiều lựa chọn khác nhau của $\mathbf a$.
+\end{frame}
+ 
+% ----------------------------------------------------------------------------
+\begin{frame}{Khoảng tin cậy $t$-Student cho một tổ hợp $\mathbf{a}'\boldsymbol{\mu}$ cố định}
+Với $\mathbf a$ cố định và $\sigma_Z^2$ chưa biết, dùng tỷ số $t$ Student:
+\[
+t=\frac{\bar z-\mu_Z}{s_Z/\sqrt n}=\frac{\sqrt n(\mathbf a'\bar{\mathbf x}-\mathbf a'\boldsymbol\mu)}{\sqrt{\mathbf a'\mathbf S\mathbf a}}
+\tag{5-20}
+\]
+ 
+dẫn đến khoảng tin cậy $100(1-\alpha)\%$ cho $\mu_Z=\mathbf a'\boldsymbol\mu$:
+ 
+\[
+\mathbf a'\bar{\mathbf x}-t_{n-1}(\alpha/2)\sqrt{\frac{\mathbf a'\mathbf S\mathbf a}{n}}
+\;\le\; \mathbf a'\boldsymbol\mu \;\le\;
+\mathbf a'\bar{\mathbf x}+t_{n-1}(\alpha/2)\sqrt{\frac{\mathbf a'\mathbf S\mathbf a}{n}}
+\tag{5-21}
+\]
+ 
+trong đó $t_{n-1}(\alpha/2)$ là bách phân vị trên $100(\alpha/2)\%$ của phân
+phối $t$ với $n-1$ bậc tự do.
+\end{frame}
+ 
+% ----------------------------------------------------------------------------
+\begin{frame}{Áp dụng khoảng tin cậy cho từng trung bình thành phần}
+\begin{itemize}
+  \item Chọn $\mathbf a'=[1,0,\ldots,0]$: $\mathbf a'\boldsymbol\mu=\mu_1$,
+        $\mathbf a'\mathbf S\mathbf a=s_{11}$ $\Rightarrow$ (5-21) trở thành
+        khoảng tin cậy thông thường cho \emph{một} trung bình chuẩn.
+  \item Đổi $\mathbf a$, ta lập được nhiều phát biểu tin cậy về các thành
+        phần của $\boldsymbol\mu$ — \textbf{mỗi phát biểu riêng lẻ} có hệ số
+        tin cậy $1-\alpha$.
+\end{itemize}
+ 
+\vspace{0.5em}
+\begin{block}{Nhưng}
+Hệ số tin cậy gắn với \textbf{tất cả} các phát biểu đó \textbf{xét cùng nhau}
+thì \textbf{không phải} là $1-\alpha$.
+\end{block}
+\end{frame}
+ 
+% ----------------------------------------------------------------------------
+\begin{frame}{Độ tin cậy chung và sự đánh đổi độ rộng khoảng tin cậy}
+\begin{itemize}
+  \item Về trực giác, muốn có một \textbf{``hệ số tin cậy chung''} $1-\alpha$
+        cho các khoảng tin cậy sinh ra bởi \textbf{mọi} lựa chọn của $\mathbf a$
+        — đây chính là sự đảm bảo về xác suất cho việc \emph{bất kỳ} phát
+        biểu nào sai.
+  \item \textbf{Cái giá phải trả:} các khoảng tin cậy đồng thời sẽ
+        \textbf{rộng hơn (kém chính xác hơn)} so với khoảng (5-21) ứng với
+        \emph{một} lựa chọn cụ thể của $\mathbf a$.
+\end{itemize}
+ 
+\vspace{0.5em}
+$\Rightarrow$ Cần một hằng số lớn hơn $t^2_{n-1}(\alpha/2)$ áp dụng cho mọi
+$\mathbf a$ cùng lúc — dẫn tới Kết quả 5.3 (khung tiếp theo).
+\end{frame}
 \begin{frame}{Từ So Sánh Đơn Lẻ Đến Đánh Giá Đồng Thời Cho Mọi Vectơ $a$}
 Với dữ liệu $\mathbf x_1,\ldots,\mathbf x_n$ và một $\mathbf a$ cụ thể, khoảng tin cậy
 $t$ trong (5-21) chính là tập các giá trị $\mathbf a'\boldsymbol\mu$ thoả
