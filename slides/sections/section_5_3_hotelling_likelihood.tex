@@ -13,9 +13,14 @@
 \begin{frame}{Đặt vấn đề: Phương pháp tỷ số hợp lý}
   \begin{block}{Từ khoảng cách thống kê đến phương pháp tỷ số hợp lý}
     \begin{itemize}
+      \setlength{\itemsep}{10pt}
+      
       \item Thống kê $T^2$ được xây dựng tương tự với bình phương khoảng cách một chiều $t^2$.
+      
       \item \textbf{Phương pháp tỷ số hợp lý} (\emph{likelihood ratio method}) là nguyên lý tổng quát để xây dựng các thủ tục kiểm định giả thuyết thống kê.
+      
       \item Kiểm định thu được gọi là \textbf{kiểm định tỷ số hợp lý} (\emph{Likelihood Ratio Test} -- LRT).
+      
       \item Thống kê Hotelling $T^2$ có thể suy ra trực tiếp từ phương pháp này: kiểm định LRT của $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$ tương đương với kiểm định $T^2$.
     \end{itemize}
   \end{block}
@@ -34,9 +39,9 @@
 
   \begin{exampleblock}{Ưu điểm của kiểm định tỷ số hợp lý (LRT)}
     \begin{itemize}
-      \item Có nhiều tính chất tối ưu khi cỡ mẫu đủ lớn (tiệm cận mạnh nhất).
-      \item Đặc biệt thuận tiện và tự nhiên đối với các giả thuyết về tham số của phân phối chuẩn nhiều chiều.
-      \item Đóng vai trò là phương pháp suy luận nền tảng trong phân tích đa biến.
+      \item Có nhiều tính chất tối ưu khi cỡ mẫu đủ lớn.
+      \item Đặc biệt thuận tiện cho giả thuyết về tham số của phân phối chuẩn nhiều chiều.
+      \item Rất phổ biến trong phân tích đa biến.
     \end{itemize}
   \end{exampleblock}
 \end{frame}
@@ -65,7 +70,7 @@
 % Slide 4: Giá trị cực đại của hàm hợp lý không ràng buộc
 % ------------------------------------------------------------------------------
 \begin{frame}{Giá trị cực đại của hàm hợp lý không ràng buộc}
-  \begin{alertblock}{Giá trị cực đại không ràng buộc (5-10)}
+  \begin{alertblock}{Giá trị cực đại không ràng buộc (4.18)}
     Thay các ước lượng MLE $\hat{\boldsymbol{\mu}} = \bar{\mathbf{x}}$ và $\hat{\boldsymbol{\Sigma}}$ vào hàm hợp lý:
     \[
       \max_{\boldsymbol{\mu}, \boldsymbol{\Sigma}} L(\boldsymbol{\mu}, \boldsymbol{\Sigma}) = L(\hat{\boldsymbol{\mu}}, \hat{\boldsymbol{\Sigma}}) = \frac{1}{(2\pi)^{np/2} |\hat{\boldsymbol{\Sigma}}|^{n/2}} \, e^{-np/2} \qquad \text{(5-10)}
@@ -103,8 +108,8 @@
 % ------------------------------------------------------------------------------
 % Slide 6: Bổ đề cực đại hóa theo ma trận hiệp phương sai (Kết quả 4.10)
 % ------------------------------------------------------------------------------
-\begin{frame}{Bổ đề cực đại hóa theo ma trận hiệp phương sai (Kết quả 4.10)}
-  \begin{block}{Kết quả 4.10 (Johnson \& Wichern)}
+\begin{frame}{Bổ đề cực đại hóa theo ma trận hiệp phương sai}
+  \begin{block}{Kết quả 4.10}
     Cho $\mathbf{B}$ là ma trận đối xứng xác định dương cỡ $p \times p$ và $b > 0$. Khi đó với mọi ma trận $\boldsymbol{\Sigma}$ xác định dương cỡ $p \times p$:
     \[
       \frac{1}{|\boldsymbol{\Sigma}|^{b}} \, e^{-\frac{1}{2}\operatorname{tr}\left(\boldsymbol{\Sigma}^{-1}\mathbf{B}\right)}
@@ -127,7 +132,7 @@
     Đặt $\mathbf{B} = \sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)(\mathbf{x}_j - \boldsymbol{\mu}_0)\trans = n\hat{\boldsymbol{\Sigma}}_0$ và $b = \dfrac{n}{2}$. Khi đó $L(\boldsymbol{\mu}_0, \boldsymbol{\Sigma})$ có đúng dạng vế trái của Kết quả 4.10.
   \end{block}
 
-  \begin{alertblock}{Cực đại dưới $H_0$ (5-11)}
+  \begin{alertblock}{Cực đại dưới $H_0$}
     Cực đại đạt tại $\boldsymbol{\Sigma} = \dfrac{\mathbf{B}}{2b} = \hat{\boldsymbol{\Sigma}}_0$. Thay $2b = n$ và $|\mathbf{B}| = n^p|\hat{\boldsymbol{\Sigma}}_0|$ vào vế phải:
     \vspace{-4pt}
     \begin{equation*}
@@ -142,7 +147,7 @@
 % Slide 8: Thống kê tỷ số hợp lý và tiêu chuẩn Wilks
 % ------------------------------------------------------------------------------
 \begin{frame}[t]{Thống kê tỷ số hợp lý \texorpdfstring{$\Lambda$}{Lambda} và tiêu chuẩn Wilks}
-  \begin{block}{Thống kê tỷ số hợp lý $\Lambda$ (5-12)}
+  \begin{block}{Thống kê tỷ số hợp lý $\Lambda$}
     Tỷ số giữa cực đại có ràng buộc ($H_0$) và cực đại không ràng buộc:
     \vspace{-4pt}
     \[
@@ -165,7 +170,7 @@
 % Slide 9: Kết quả 5.1: Mối liên hệ giữa LRT và Hotelling T^2
 % ------------------------------------------------------------------------------
 \begin{frame}{Kết quả 5.1: Mối liên hệ giữa LRT và Hotelling \texorpdfstring{$T^2$}{T2}}
-  \begin{block}{Kết quả 5.1 (Johnson \& Wichern)}
+  \begin{block}{Kết quả 5.1}
     Cho $\mathbf{X}_1, \dots, \mathbf{X}_n$ là mẫu ngẫu nhiên từ $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$. Khi đó kiểm định dựa trên $T^2$ tương đương với kiểm định tỷ số hợp lý (LRT) của $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$ so với $H_1: \boldsymbol{\mu} \neq \boldsymbol{\mu}_0$, vì:
     \vspace{-4pt}
     \[
@@ -228,29 +233,52 @@
 % ------------------------------------------------------------------------------
 % Slide 12: Chứng minh Kết quả 5.1: Liên hệ với thống kê T^2
 % ------------------------------------------------------------------------------
+% Slide 1: Phân tích tổng bình phương
 \begin{frame}[t]{Chứng minh Kết quả 5.1: Liên hệ với thống kê \texorpdfstring{$T^2$}{T2}}
-  \begin{block}{Biến đổi đại số sử dụng phân tích tổng bình phương (4-14)}
-    \begin{itemize}
-      \item Vế trái: $\sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)(\mathbf{x}_j - \boldsymbol{\mu}_0)\trans = n\hat{\boldsymbol{\Sigma}}_0$.
-      \item Vế phải: $\sum_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})\trans = n\hat{\boldsymbol{\Sigma}} = (n-1)\mathbf{S}$.
-      \item Thừa số thứ hai: $-1 - n(\bar{\mathbf{x}} - \boldsymbol{\mu}_0)\trans [(n-1)\mathbf{S}]^{-1}(\bar{\mathbf{x}} - \boldsymbol{\mu}_0) = -\left(1 + \dfrac{T^2}{n-1}\right)$.
-    \end{itemize}
-  \end{block}
-
-  \begin{alertblock}{Kết luận: Biểu thức tương đương (5-14)}
-    \[
-      (-1)|n\hat{\boldsymbol{\Sigma}}_0| = |n\hat{\boldsymbol{\Sigma}}| \cdot (-1)\left(1 + \frac{T^2}{n-1}\right)
-      \implies
-      \Lambda^{2/n} = \frac{|\hat{\boldsymbol{\Sigma}}|}{|\hat{\boldsymbol{\Sigma}}_0|} = \left(1 + \frac{T^2}{n-1}\right)^{-1} \hfill \blacksquare
-    \]
-  \end{alertblock}
+  \textbf{\color{blue!80!black}Phân tích tổng bình phương theo (4-14):}
+  \begin{itemize}
+    \item Thêm và bớt $\bar{\mathbf{x}}$ vào tổng bình phương sai lệch:
+    \begin{align*}
+      \sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)(\mathbf{x}_j - \boldsymbol{\mu}_0)\trans 
+      &= \sum_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}} + \bar{\mathbf{x}} - \boldsymbol{\mu}_0)(\mathbf{x}_j - \bar{\mathbf{x}} + \bar{\mathbf{x}} - \boldsymbol{\mu}_0)\trans \\[6pt]
+      &= \sum_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})\trans + n(\bar{\mathbf{x}} - \boldsymbol{\mu}_0)(\bar{\mathbf{x}} - \boldsymbol{\mu}_0)\trans
+    \end{align*}
+  \end{itemize}
+  \textbf{\color{blue!80!black}Biến đổi:}
+  \[
+  \left|
+  -1-n(\bar{\mathbf{x}}-\boldsymbol{\mu}_0)^\top
+  [(n-1)\mathbf{S}]^{-1}
+  (\bar{\mathbf{x}}-\boldsymbol{\mu}_0)
+  \right|
+  =
+  (- 1)\left(1+\frac{T^2}{n-1}\right)
+  \]
 \end{frame}
 
+% Slide 2: Biến đổi định thức vế phải và kết luận
+\begin{frame}[t]{Chứng minh Kết quả 5.1: Liên hệ với thống kê \texorpdfstring{$T^2$}{T2}}
+  \begin{itemize}
+    \item Nên đẳng thức định thức trên có thể viết lại thành:
+    \[
+      (-1)\left| \sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)(\mathbf{x}_j - \boldsymbol{\mu}_0)\trans \right| 
+      = \left| \sum_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})\trans \right| (-1)\left( 1 + \frac{T^2}{n-1} \right)
+    \]
+    \item Hay:
+    \[
+      |n\hat{\boldsymbol{\Sigma}}_0| = |n\hat{\boldsymbol{\Sigma}}| \left( 1 + \frac{T^2}{n-1} \right)
+    \]
+    \item Do đó:
+    \[
+      \Lambda^{2/n} = \frac{|\hat{\boldsymbol{\Sigma}}|}{|\hat{\boldsymbol{\Sigma}}_0|} = \left( 1 + \frac{T^2}{n-1} \right)^{-1} \hfill \blacksquare
+    \]
+  \end{itemize}
+\end{frame}
 % ------------------------------------------------------------------------------
 % Slide 13: Tính T^2 thông qua tỷ số hai định thức
 % ------------------------------------------------------------------------------
 \begin{frame}[t]{Tính \texorpdfstring{$T^2$}{T2} thông qua tỷ số hai định thức}
-  \begin{block}{Công thức tính $T^2$ từ tỷ số định thức (5-15)}
+  \begin{block}{Công thức tính $T^2$ từ tỷ số định thức}
     Giải hệ thức (5-14) theo $T^2$, ta được:
     \[
       T^2 = (n-1)\left(\frac{|\hat{\boldsymbol{\Sigma}}_0|}{|\hat{\boldsymbol{\Sigma}}|} - 1\right) = (n-1)\left(\frac{|n\hat{\boldsymbol{\Sigma}}_0|}{|n\hat{\boldsymbol{\Sigma}}|} - 1\right) \qquad \text{(5-15)}
@@ -284,7 +312,7 @@
 % Slide 15: Phương pháp tỷ số hợp lý trong trường hợp tổng quát
 % ------------------------------------------------------------------------------
 \begin{frame}[t]{Phương pháp tỷ số hợp lý trong trường hợp tổng quát}
-  \begin{block}{Định nghĩa kiểm định tỷ số hợp lý tổng quát (5-16)}
+  \begin{block}{Định nghĩa kiểm định tỷ số hợp lý tổng quát}
     Xét $H_0: \boldsymbol{\theta} \in \boldsymbol{\Theta}_0$ so với $H_1: \boldsymbol{\theta} \notin \boldsymbol{\Theta}_0$, với $\boldsymbol{\Theta}_0 \subset \boldsymbol{\Theta}$. Bác bỏ $H_0$ nếu:
     \[
       \Lambda = \frac{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}_0} L(\boldsymbol{\theta})}{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}} L(\boldsymbol{\theta})} < c
@@ -324,7 +352,7 @@
 % Slide 17: Kết quả 5.2: Phân phối mẫu lớn của -2 ln Lambda
 % ------------------------------------------------------------------------------
 \begin{frame}[t]{Kết quả 5.2: Phân phối mẫu lớn của \texorpdfstring{$-2\ln\Lambda$}{-2 ln Lambda}}
-  \begin{block}{Kết quả 5.2 (Phân phối tiệm cận Wilks)}
+  \begin{block}{Kết quả 5.2}
     Khi cỡ mẫu $n$ lớn, dưới giả thuyết không $H_0$, đại lượng:
     \[
       -2\ln\Lambda = -2\ln\left(\frac{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}_0} L(\boldsymbol{\theta})}{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}} L(\boldsymbol{\theta})}\right) \overset{d}{\approx} \chi^2_{\nu-\nu_0}
