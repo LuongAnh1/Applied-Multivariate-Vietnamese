@@ -346,21 +346,22 @@
 \end{frame}
 
 % ------------------------------------------------------------------------------
-% Slide 15: Phương pháp tỷ số hợp lý trong trường hợp tổng quát
+% Slide 15: Phương pháp tỷ số hợp lý tổng quát: tham số và không gian tham số
 % ------------------------------------------------------------------------------
-\begin{frame}[t]{Phương pháp tỷ số hợp lý trong trường hợp tổng quát}
-  \begin{block}{Định nghĩa kiểm định tỷ số hợp lý tổng quát}
-    Xét $H_0: \boldsymbol{\theta} \in \boldsymbol{\Theta}_0$ so với $H_1: \boldsymbol{\theta} \notin \boldsymbol{\Theta}_0$, với $\boldsymbol{\Theta}_0 \subset \boldsymbol{\Theta}$. Bác bỏ $H_0$ nếu:
-    \[
-      \Lambda = \frac{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}_0} L(\boldsymbol{\theta})}{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}} L(\boldsymbol{\theta})} < c
-      \qquad \text{(5-16)}
-    \]
+\begin{frame}[t]{Phương pháp tỷ số hợp lý tổng quát}
+  \begin{block}{Tham số và hàm hợp lý}
+    \begin{itemize}
+      \setlength{\itemsep}{6pt}
+      \item $\boldsymbol{\theta}$: vectơ gồm tất cả các tham số chưa biết của tổng thể.
+      \item $L(\boldsymbol{\theta})$: hàm hợp lý, thu được bằng cách tính hàm mật độ đồng thời của $\mathbf{X}_1, \dots, \mathbf{X}_n$ tại các giá trị quan sát $\mathbf{x}_1, \dots, \mathbf{x}_n$.
+    \end{itemize}
   \end{block}
 
-  \begin{exampleblock}{Nguyên lý thống kê trực quan}
+  \begin{exampleblock}{Không gian tham số}
     \begin{itemize}
-      \item So sánh cực đại có ràng buộc ($H_0$) với cực đại không ràng buộc trên $\boldsymbol{\Theta}$.
-      \item Cực đại trên $\boldsymbol{\Theta}_0$ nhỏ hơn nhiều so với trên $\boldsymbol{\Theta}$ ($\Lambda$ rất bé) cho thấy $H_0$ khó phù hợp với dữ liệu, do đó ta bác bỏ $H_0$.
+      \setlength{\itemsep}{6pt}
+      \item $\boldsymbol{\Theta}$: tập tham số, chứa mọi giá trị mà $\boldsymbol{\theta}$ có thể nhận.
+      \item $\boldsymbol{\Theta}_0 \subset \boldsymbol{\Theta}$: dưới giả thuyết $H_0: \boldsymbol{\theta} \in \boldsymbol{\Theta}_0$, $\boldsymbol{\theta}$ bị giới hạn nằm trong tập con $\boldsymbol{\Theta}_0$.
     \end{itemize}
   \end{exampleblock}
 \end{frame}
@@ -369,18 +370,44 @@
 % Slide 16: Không gian tham số trong mô hình chuẩn nhiều chiều
 % ------------------------------------------------------------------------------
 \begin{frame}[t]{Không gian tham số trong mô hình chuẩn nhiều chiều}
-  \begin{block}{Vectơ tham số trong mô hình $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$}
-    Vectơ tham số $\boldsymbol{\theta}$ gồm các kỳ vọng và các phần tử hiệp phương sai:
+  \begin{block}{Vectơ tham số của $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$}
     \[
-      \boldsymbol{\theta}\trans = [\mu_1, \dots, \mu_p,\, \sigma_{11}, \dots, \sigma_{1p},\, \sigma_{22}, \dots, \sigma_{pp}]
+      \boldsymbol{\theta}\trans = [\mu_1, \dots, \mu_p,\, \sigma_{11}, \dots, \sigma_{1p},\, \sigma_{22}, \dots, \sigma_{2p},\, \dots,\, \sigma_{p-1,p},\, \sigma_{pp}]
     \]
   \end{block}
 
-  \begin{exampleblock}{Số chiều tham số và số bậc tự do}
+  \begin{exampleblock}{Kiểm định $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$ với $\boldsymbol{\Sigma}$ chưa biết}
     \begin{itemize}
-      \item \textbf{Toàn không gian $\boldsymbol{\Theta}$}: $\nu = \dim\boldsymbol{\Theta} = p + \frac{p(p+1)}{2}$ ($p$ trung bình, $\frac{p(p+1)}{2}$ hiệp phương sai).
-      \item \textbf{Ràng buộc ($H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$)}: $\nu_0 = \dim\boldsymbol{\Theta}_0 = \frac{p(p+1)}{2}$ (chỉ còn hiệp phương sai).
-      \item \textbf{Hiệu số chiều (bậc tự do)}: $\nu - \nu_0 = p$.
+      \setlength{\itemsep}{6pt}
+      \item $\boldsymbol{\Theta}$: $-\infty < \mu_i < \infty$ ($i = 1, \dots, p$), kết hợp với không gian $p(p+1)/2$ chiều của các phương sai và hiệp phương sai sao cho $\boldsymbol{\Sigma}$ xác định dương
+      \[
+        \Rightarrow \nu = \dim\boldsymbol{\Theta} = p + \tfrac{p(p+1)}{2}.
+      \]
+      \item $\boldsymbol{\Theta}_0 = \{\mu_1 = \mu_{10}, \dots, \mu_p = \mu_{p0};\ \boldsymbol{\Sigma} \text{ xác định dương}\}$
+      \[
+        \Rightarrow \nu_0 = \dim\boldsymbol{\Theta}_0 = 0 + \tfrac{p(p+1)}{2} = \tfrac{p(p+1)}{2}.
+      \]
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% Slide 16: Kiểm định tỷ số hợp lý tổng quát
+% ------------------------------------------------------------------------------
+\begin{frame}[t]{Kiểm định tỷ số hợp lý tổng quát}
+  \begin{block}{Định nghĩa}
+    Kiểm định tỷ số hợp lý của $H_0: \boldsymbol{\theta} \in \boldsymbol{\Theta}_0$ so với $H_1: \boldsymbol{\theta} \notin \boldsymbol{\Theta}_0$ bác bỏ $H_0$ nếu
+    \[
+      \Lambda = \frac{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}_0} L(\boldsymbol{\theta})}{\max\limits_{\boldsymbol{\theta} \in \boldsymbol{\Theta}} L(\boldsymbol{\theta})} < c
+      \qquad \text{(5-16)}
+    \]
+    trong đó $c$ là một hằng số được chọn thích hợp.
+  \end{block}
+
+  \begin{exampleblock}{Ý nghĩa trực giác}
+    \begin{itemize}
+      \item Bác bỏ $H_0$ nếu giá trị cực đại của $L(\boldsymbol{\theta})$ khi $\boldsymbol{\theta}$ biến thiên trong $\boldsymbol{\Theta}_0$ nhỏ hơn nhiều so với giá trị cực đại khi $\boldsymbol{\theta}$ biến thiên trên mọi giá trị trong $\boldsymbol{\Theta}$.
+      \item Khi đó $\boldsymbol{\Theta}_0$ không chứa các giá trị chấp nhận được của $\boldsymbol{\theta}$.
     \end{itemize}
   \end{exampleblock}
 \end{frame}
