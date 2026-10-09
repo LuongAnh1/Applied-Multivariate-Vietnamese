@@ -838,7 +838,7 @@ $\Rightarrow$ Động lực cho cách tiếp cận thứ hai: \textbf{phương p
 % =====================================================================
 
 % Mục 5.4 - Phần 3: Phương pháp so sánh bội Bonferroni và phần kết
-\begin{frame}{Động cơ: khi chỉ quan tâm các trung bình thành phần}
+\begin{frame}{Đặt vấn đề}
   \begin{itemize}
     \item Khoảng $T^2$ quá rộng nếu chỉ áp dụng cho riêng $p$ trung bình thành phần.
     \item Xét Hình 5.2: nếu $\mu_1$ nằm trong khoảng $T^2$ của nó và $\mu_2$ nằm trong khoảng $T^2$ của nó thì $(\mu_1,\mu_2)$ nằm trong hình chữ nhật tạo bởi hai khoảng này.
@@ -999,7 +999,7 @@ $\Rightarrow$ Động lực cho cách tiếp cận thứ hai: \textbf{phương p
           \item Kiểm soát tỷ lệ sai số tổng thể $\alpha_1+\cdots+\alpha_m$, \textbf{bất kể cấu trúc tương quan}.
           \item Linh hoạt chia $\alpha_i$: nhóm phát biểu quan trọng dùng $\alpha_i$ khác với nhóm ít quan trọng.
           \item Với $m$ nhỏ, khoảng \textbf{ngắn hơn (chính xác hơn)} khoảng $T^2$ (Bảng 5.4).
-          \item Dễ áp dụng, chỉ cần giá trị $t$.
+          \item Dễ áp dụng.
         \end{itemize}
       \end{block}
     \end{column}
@@ -1010,7 +1010,7 @@ $\Rightarrow$ Động lực cho cách tiếp cận thứ hai: \textbf{phương p
           \item Chú ý đến một \textbf{số nhỏ} $m$ phát biểu tin cậy.
           \item Các phát biểu được \textbf{chỉ định trước khi thu thập dữ liệu}.
           \item Nếu muốn chọn $\mathbf{a}$ sau khi xem dữ liệu (dò quét dữ liệu), khoảng $T^2$ là lý tưởng vì $1-\alpha$ không đổi với mọi $\mathbf{a}$.
-          \item Cho khoảng từng thành phần; để xét cặp $(\mu_i,\mu_k)$ có tính đến tương quan thì dùng elip tin cậy.
+          \item Bonferroni cho khoảng từng thành phần với độ tin cậy chung ≥ 1−α bất kể cấu trúc tương quan; để xét cặp $(\mu_i,\mu_k)$ có tính đến tương quan thì dùng elip tin cậy.
         \end{itemize}
       \end{block}
     \end{column}
@@ -1021,8 +1021,9 @@ $\Rightarrow$ Động lực cho cách tiếp cận thứ hai: \textbf{phương p
 % ---------------------------------------------------------------------
 \begin{frame}{Kết luận }
   \begin{itemize}
-    \item Phương pháp Bonferroni cho khoảng \textbf{ngắn hơn} khi $m=p$ (Bảng 5.4).
+    \item Phương pháp Bonferroni cho khoảng \textbf{ngắn hơn} khi $m=p$.
     \item Vì \textbf{dễ áp dụng} và cho các khoảng tin cậy \textbf{tương đối ngắn} cần thiết cho suy diễn thống kê, ta thường áp dụng các \textbf{khoảng $t$ đồng thời dựa trên phương pháp Bonferroni}.
+    \item Nếu muốn chọn $\mathbf{a}$ sau khi xem dữ liệu (dò quét dữ liệu), khoảng $T^2$ là lý tưởng vì $1-\alpha$ không đổi với mọi $\mathbf{a}$.
     \item Nếu cần các giá trị hợp lý cho cặp $(\mu_1,\mu_2)$ có tính đến tương quan giữa các biến, dùng \textbf{miền tin cậy} (elip) cho $\boldsymbol{\mu}$.
   \end{itemize}
   \note{Hai ý đầu là câu kết của mục 5.4 (trang 234). Ý thứ ba lấy từ cuối Ví dụ 5.6 (trang 233--234).}
