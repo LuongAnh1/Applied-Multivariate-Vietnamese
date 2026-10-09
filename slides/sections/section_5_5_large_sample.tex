@@ -390,9 +390,10 @@
 
 % ---------------------------------------------------------------
 \begin{frame}{Tóm tắt mục 5.5}
+  \vspace{-0.15cm}
   \begin{center}
     \small
-    \renewcommand{\arraystretch}{1.2}
+    \renewcommand{\arraystretch}{1.05}
     \setlength{\tabcolsep}{14pt}
     \begin{tabular}{@{}lcc@{}}
       \toprule
@@ -403,11 +404,12 @@
       Giá trị tới hạn & \(\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)\) & \(\chi^2_p(\alpha)\) \\
       Khoảng từng biến & \(t_{n-1}(\alpha/2)\) & \(z(\alpha/2)\) \\
       Bonferroni & \(t_{n-1}(\alpha/2p)\) & \(z(\alpha/2p)\) \\
+      Bóng ellipsoid & \(\sqrt{\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)}\) & \(\sqrt{\chi^2_p(\alpha)}\) \\
       Mức ý nghĩa kiểm định & Đúng bằng \(\alpha\) & Xấp xỉ \(\alpha\) \\
       \bottomrule
     \end{tabular}
   \end{center}
-  \vspace{0.05cm}
+  \vspace{-0.2cm}
   \begin{itemize}
     \item Hai cách tiếp cận cho kết luận gần như nhau khi \(n\) lớn so với \(p\).
     \item Thế nào là ``lớn'' phụ thuộc vào cả \(n-p\) và \(p\); vẫn cần kiểm tra điểm ngoại lai.
