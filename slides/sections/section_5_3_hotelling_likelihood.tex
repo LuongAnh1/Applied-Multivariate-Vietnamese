@@ -10,40 +10,67 @@
 % ------------------------------------------------------------------------------
 % Slide 1: Đặt vấn đề: Phương pháp tỷ số hợp lý
 % ------------------------------------------------------------------------------
-\begin{frame}{Đặt vấn đề: Phương pháp tỷ số hợp lý}
-  \begin{block}{Từ khoảng cách thống kê đến phương pháp tỷ số hợp lý}
+
+\begin{frame}{Đặt vấn đề}
+
+  \begin{block}{Mối liên hệ}
+
     \begin{itemize}
-      \setlength{\itemsep}{10pt}
-      
-      \item Thống kê $T^2$ được xây dựng tương tự với bình phương khoảng cách một chiều $t^2$.
-      
-      \item \textbf{Phương pháp tỷ số hợp lý} (\emph{likelihood ratio method}) là nguyên lý tổng quát để xây dựng các thủ tục kiểm định giả thuyết thống kê.
-      
-      \item Kiểm định thu được gọi là \textbf{kiểm định tỷ số hợp lý} (\emph{Likelihood Ratio Test} -- LRT).
-      
-      \item Thống kê Hotelling $T^2$ có thể suy ra trực tiếp từ phương pháp này: kiểm định LRT của $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$ tương đương với kiểm định $T^2$.
+      \setlength{\itemsep}{8pt}
+
+      \item Thống kê $T^2$ được xây dựng tương tự bình phương khoảng cách một chiều $t^2$.
+
+      \item Phương pháp tỷ số hợp lý (\emph{likelihood ratio method}) là nguyên lý tổng quát để xây dựng thủ tục kiểm định giả thuyết thống kê. Kiểm định thu được gọi là kiểm định tỷ số hợp lý (\emph{likelihood ratio test} -- LRT).
+
+      \item \textbf{Mục tiêu:} Chứng minh kiểm định LRT cho
+      $H_0:\boldsymbol{\mu}=\boldsymbol{\mu}_0$ so với
+      $H_1:\boldsymbol{\mu}\neq\boldsymbol{\mu}_0$
+      tương đương với kiểm định Hotelling $T^2$.
+
+      \item \textbf{Quy trình:}
+      (1) Cực đại hóa hàm hợp lý không ràng buộc
+      $\rightarrow$ (2) Cực đại hóa dưới $H_0$
+      $\rightarrow$ (3) Lập tỷ số hợp lý $\Lambda$
+      $\rightarrow$ (4) Liên hệ với $T^2$
+      $\rightarrow$ (5) Mở rộng cho trường hợp tổng quát.
+
     \end{itemize}
+
   \end{block}
+
 \end{frame}
 
-% ------------------------------------------------------------------------------
-% Slide 2: Bài toán kiểm định giả thuyết và ưu điểm của LRT
-% ------------------------------------------------------------------------------
-\begin{frame}{Bài toán kiểm định giả thuyết và ưu điểm của LRT}
-  \begin{exampleblock}{Bài toán kiểm định giả thuyết về vectơ trung bình}
-    Cho mẫu ngẫu nhiên $\mathbf{X}_1, \dots, \mathbf{X}_n$ từ phân phối chuẩn đa biến $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ với $\boldsymbol{\Sigma}$ chưa biết:
-    \[
-      H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0 \quad \text{so với} \quad H_1: \boldsymbol{\mu} \neq \boldsymbol{\mu}_0
-    \]
-  \end{exampleblock}
 
-  \begin{exampleblock}{Ưu điểm của kiểm định tỷ số hợp lý (LRT)}
-    \begin{itemize}
-      \item Có nhiều tính chất tối ưu khi cỡ mẫu đủ lớn.
-      \item Đặc biệt thuận tiện cho giả thuyết về tham số của phân phối chuẩn nhiều chiều.
-      \item Rất phổ biến trong phân tích đa biến.
-    \end{itemize}
+% ------------------------------------------------------------------------------
+% Slide 2: Bài toán kiểm định giả thuyết về vectơ trung bình
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Bài toán kiểm định giả thuyết về vectơ trung bình}
+
+  \begin{exampleblock}{Bài toán kiểm định giả thuyết về vectơ trung bình}
+
+    Cho mẫu ngẫu nhiên $\mathbf{X}_1,\dots,\mathbf{X}_n$ từ phân phối chuẩn đa biến
+    $N_p(\boldsymbol{\mu},\boldsymbol{\Sigma})$, với
+    $\boldsymbol{\Sigma}$ chưa biết. Xét bài toán kiểm định:
+
+    \[
+      H_0:\boldsymbol{\mu}=\boldsymbol{\mu}_0
+      \quad \text{so với} \quad
+      H_1:\boldsymbol{\mu}\neq\boldsymbol{\mu}_0.
+    \]
+
   \end{exampleblock}
+  \begin{block}{Ý tưởng của phương pháp tỷ số hợp lý}
+    \begin{itemize}{}
+
+      \item So sánh giá trị lớn nhất của hàm hợp lý khi có ràng buộc $H_0$
+      với giá trị lớn nhất khi không có ràng buộc.
+
+      \item Vì $\boldsymbol{\Sigma}$ chưa biết, cả hai lần cực đại hóa đều phải
+      được thực hiện theo $\boldsymbol{\Sigma}$.
+
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 % ------------------------------------------------------------------------------
@@ -70,11 +97,20 @@
 % Slide 4: Giá trị cực đại của hàm hợp lý không ràng buộc
 % ------------------------------------------------------------------------------
 \begin{frame}{Giá trị cực đại của hàm hợp lý không ràng buộc}
-  \begin{alertblock}{Giá trị cực đại không ràng buộc (4.18)}
-    Thay các ước lượng MLE $\hat{\boldsymbol{\mu}} = \bar{\mathbf{x}}$ và $\hat{\boldsymbol{\Sigma}}$ vào hàm hợp lý:
+
+  \begin{alertblock}{Giá trị cực đại của hàm hợp lý chuẩn nhiều chiều (4.18):}
+
     \[
-      \max_{\boldsymbol{\mu}, \boldsymbol{\Sigma}} L(\boldsymbol{\mu}, \boldsymbol{\Sigma}) = L(\hat{\boldsymbol{\mu}}, \hat{\boldsymbol{\Sigma}}) = \frac{1}{(2\pi)^{np/2} |\hat{\boldsymbol{\Sigma}}|^{n/2}} \, e^{-np/2} \qquad \text{(5-10)}
+      \max_{\boldsymbol{\mu}, \boldsymbol{\Sigma}}
+      L(\boldsymbol{\mu}, \boldsymbol{\Sigma})
+      =
+      L(\hat{\boldsymbol{\mu}}, \hat{\boldsymbol{\Sigma}})
+      =
+      \frac{1}{(2\pi)^{np/2} |\hat{\boldsymbol{\Sigma}}|^{n/2}}
+      \, e^{-np/2}
+      \qquad \text{(5-10)}
     \]
+
   \end{alertblock}
 
   \begin{block}{Ý nghĩa thống kê}
@@ -146,7 +182,7 @@
 % ------------------------------------------------------------------------------
 % Slide 8: Thống kê tỷ số hợp lý và tiêu chuẩn Wilks
 % ------------------------------------------------------------------------------
-\begin{frame}[t]{Thống kê tỷ số hợp lý \texorpdfstring{$\Lambda$}{Lambda} và tiêu chuẩn Wilks}
+\begin{frame}[t]{Thống kê tỷ số hợp lý và Wilks’ lambda}
   \begin{block}{Thống kê tỷ số hợp lý $\Lambda$}
     Tỷ số giữa cực đại có ràng buộc ($H_0$) và cực đại không ràng buộc:
     \vspace{-4pt}
@@ -159,9 +195,9 @@
 
   \begin{exampleblock}{Tiêu chuẩn Lambda của Wilks và quy tắc kiểm định}
     \begin{itemize}
-      \item Thống kê tương đương: $\Lambda^{2/n} = |\hat{\boldsymbol{\Sigma}}| \,/\, |\hat{\boldsymbol{\Sigma}}_0|$ (tỷ số hai phương sai tổng quát).
+      \item $\Lambda^{2/n} = |\hat{\boldsymbol{\Sigma}}| \,/\, |\hat{\boldsymbol{\Sigma}}_0|$ (tỷ số hai phương sai tổng quát) được gọi là tiêu chuẩn Lambda của Wilks.
       \item Bác bỏ $H_0$ nếu $\Lambda < c_\alpha$ (với $c_\alpha$ là phân vị dưới $100\alpha\%$ của $\Lambda$).
-      \item Do $0 < \Lambda \le 1$, giá trị $\Lambda$ càng nhỏ thì $H_0$ càng ít hợp lý.
+      \item $\Lambda$ quá nhỏ thì $H_0$ khó có khả năng đúng.
     \end{itemize}
   \end{exampleblock}
 \end{frame}
@@ -283,13 +319,13 @@
     \[
       T^2 = (n-1)\left(\frac{|\hat{\boldsymbol{\Sigma}}_0|}{|\hat{\boldsymbol{\Sigma}}|} - 1\right) = (n-1)\left(\frac{|n\hat{\boldsymbol{\Sigma}}_0|}{|n\hat{\boldsymbol{\Sigma}}|} - 1\right) \qquad \text{(5-15)}
     \]
-    với $n\hat{\boldsymbol{\Sigma}}_0 = \sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)(\mathbf{x}_j - \boldsymbol{\mu}_0)\trans$ và $n\hat{\boldsymbol{\Sigma}} = \sum_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})\trans$.
+    với $n\hat{\boldsymbol{\Sigma}}_0 = \sum_{j=1}^n (\mathbf{x}_j - \boldsymbol{\mu}_0)(\mathbf{x}_j - \boldsymbol{\mu}_0)\trans$ 
+    và $n\hat{\boldsymbol{\Sigma}} = \sum_{j=1}^n (\mathbf{x}_j - \bar{\mathbf{x}})(\mathbf{x}_j - \bar{\mathbf{x}})\trans$.
   \end{block}
 
   \begin{exampleblock}{Lợi ích trong thực hành tính toán}
     \begin{itemize}
       \item \textbf{Tránh tính ma trận nghịch đảo}: Cho phép tính giá trị $T^2$ trực tiếp từ hai định thức mà không cần tìm $\mathbf{S}^{-1}$.
-      \item Rất thuận tiện và ổn định trong tính toán cũng như khi lập trình.
     \end{itemize}
   \end{exampleblock}
 \end{frame}
@@ -298,12 +334,13 @@
 % Slide 14: Vai trò của kiểm định tỷ số hợp lý trong phân tích đa biến
 % ------------------------------------------------------------------------------
 \begin{frame}[t]{Vai trò của kiểm định tỷ số hợp lý trong phân tích đa biến}
-  \begin{block}{Đặc điểm nổi bật của kiểm định tỷ số hợp lý (LRT)}
+  \begin{block}{}
     \begin{itemize}
-      \item \textbf{Rất phổ biến trong phân tích đa biến}: Hầu hết các kiểm định đa biến quan trọng (so sánh trung bình, cấu trúc hiệp phương sai, MANOVA...) đều xây dựng trên nguyên lý tỷ số hợp lý.
-      \item \textbf{Tính chất tối ưu mẫu lớn}: Các tính chất tối ưu đối với mẫu lớn được đảm bảo trong những bối cảnh rất tổng quát.
-      \item \textbf{Tương thích với giáo trình}: Rất phù hợp với các bài toán suy luận thống kê chuẩn nhiều chiều được xét xuyên suốt cuốn sách.
-      \item \textbf{Tính nhất quán}: Trong trường hợp một biến ($p=1$), phương pháp tỷ số hợp lý dẫn về các thống kê $t$ và $F$ quen thuộc trong thống kê cổ điển.
+      \setlength{\itemsep}{8pt}
+      \item Phổ biến trong phân tích đa biến
+      \item Tính chất tối ưu mẫu lớn: Các tính chất tối ưu đối với mẫu lớn được đảm bảo trong những bối cảnh rất tổng quát.
+      \item Phù hợp với các bài toán kiểm định trên tổng thể chuẩn nhiều chiều được xét trong giáo trình.
+      \item Các phương pháp tỷ số hợp lý cho ra những thống kê kiểm định rút gọn về các thống kê F và t quen thuộc trong trường hợp một biến.
     \end{itemize}
   \end{block}
 \end{frame}
@@ -359,13 +396,6 @@
     \]
     với số bậc tự do là $\nu - \nu_0 = \dim\boldsymbol{\Theta} - \dim\boldsymbol{\Theta}_0$.
   \end{block}
-
-  \begin{alertblock}{Áp dụng cho kiểm định vectơ trung bình $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$}
-    \begin{itemize}
-      \item Do $\nu - \nu_0 = p$, nên khi $n$ lớn: $-2\ln\Lambda \overset{d}{\approx} \chi^2_p$.
-      \item Quy tắc: Bác bỏ $H_0$ ở mức ý nghĩa $\alpha$ nếu $-2\ln\Lambda > \chi^2_p(\alpha)$.
-    \end{itemize}
-  \end{alertblock}
 \end{frame}
 
 % ------------------------------------------------------------------------------
@@ -379,9 +409,9 @@
 
   \begin{exampleblock}{Các tính chất tối ưu của kiểm định tỷ số hợp lý}
     \begin{itemize}
-      \item \textbf{Giả thuyết đơn}: Đạt lực kiểm định cao nhất cùng mức $\alpha$ (Neyman--Pearson).
-      \item \textbf{Một tham số}: Thường là kiểm định mạnh nhất đồng đều (UMP) một phía.
-      \item \textbf{Đa biến tổng quát}: Đạt lực kiểm định (trung bình) cao nhất khi cỡ mẫu $n$ lớn.
+      \item \textbf{Giả thuyết đơn}: Khi cả $H_0:\boldsymbol\theta=\boldsymbol\theta_0$ và $H_1:\boldsymbol\theta=\boldsymbol\theta_1$ đều là giả thuyết đơn (trường hợp hiếm gặp), LRT có lực kiểm định cao nhất trong số các kiểm định có cùng mức ý nghĩa $\alpha$.
+
+      \item \textbf{Một tham số}: Trong nhiều trường hợp, LRT là kiểm định mạnh nhất đồng đều (UMP) đối với các đối thuyết nằm về một phía của $H_0:\theta=\theta_0$. Ở các trường hợp khác, tính chất này đúng xấp xỉ khi mẫu lớn.
     \end{itemize}
   \end{exampleblock}
 \end{frame}
@@ -389,26 +419,23 @@
 % ------------------------------------------------------------------------------
 % Slide 18: Tổng kết và đối chiếu: Hotelling T^2 và LRT
 % ------------------------------------------------------------------------------
-\begin{frame}[t]{Tổng kết và đối chiếu: Hotelling \texorpdfstring{$T^2$}{T2} và LRT}
+\begin{frame}[t]{Tổng kết}
   \centering
   \footnotesize
-  \renewcommand{\arraystretch}{1.2}
+  \renewcommand{\arraystretch}{1.9}
   \begin{tabular}{lcc}
     \toprule
     \textbf{Tiêu chí} & \textbf{Kiểm định Hotelling $T^2$} & \textbf{Kiểm định tỷ số hợp lý (LRT)} \\
     \midrule
     \textbf{Thống kê} & $T^2 = n(\bar{\mathbf{x}} - \boldsymbol{\mu}_0)\trans \mathbf{S}^{-1} (\bar{\mathbf{x}} - \boldsymbol{\mu}_0)$ & $\Lambda = (|\hat{\boldsymbol{\Sigma}}| / |\hat{\boldsymbol{\Sigma}}_0|)^{n/2}$ \\
-    \textbf{Mối liên hệ (5-14)} & $T^2 = (n-1)\left(\Lambda^{-2/n} - 1\right)$ & $\Lambda^{2/n} = \left(1 + \frac{T^2}{n-1}\right)^{-1}$ \\
+    \textbf{Mối liên hệ} & $T^2 = (n-1)\left(\Lambda^{-2/n} - 1\right)$ & $\Lambda^{2/n} = \left(1 + \frac{T^2}{n-1}\right)^{-1}$ \\
     \textbf{Miền bác bỏ} & Bác bỏ $H_0$ khi $T^2$ lớn & Bác bỏ $H_0$ khi $\Lambda$ (hoặc $\Lambda^{2/n}$) nhỏ \\
-    \textbf{Phân phối} & Chính xác: $\frac{n-p}{(n-1)p} T^2 \sim F_{p,\,n-p}$ & Xấp xỉ mẫu lớn: $-2\ln\Lambda \approx \chi^2_p$ \\
+    \textbf{Phân phối} & Chính xác (dưới $H_0$): $\frac{n-p}{(n-1)p} T^2 \sim F_{p,\,n-p}$ & Xấp xỉ mẫu lớn (dưới $H_0$): $-2\ln\Lambda \approx \chi^2_p$ \\
     \bottomrule
   \end{tabular}
-
-  \vspace{0.15cm}
   \begin{alertblock}{Kết luận chung}
-    Kiểm định Hotelling $T^2$ chính là kiểm định tỷ số hợp lý cho mẫu chuẩn nhiều chiều. Khi $n$ lớn, từ khai triển Taylor:
-    \[
-      -2\ln\Lambda = n\ln\left(1 + \frac{T^2}{n-1}\right) \approx T^2 \sim \chi^2_p
-    \]
+    Với mẫu chuẩn nhiều chiều và $\boldsymbol\Sigma$ chưa biết, kiểm định Hotelling $T^2$ tương đương với kiểm định tỷ số hợp lý của
+    $H_0:\boldsymbol\mu=\boldsymbol\mu_0$ so với
+    $H_1:\boldsymbol\mu\neq\boldsymbol\mu_0$.
   \end{alertblock}
 \end{frame}
