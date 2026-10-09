@@ -2,6 +2,25 @@
 % Phu trach: Pham Minh Hieu (MSSV: 20237331).
 % Noi dung bam theo ban dich translation/chapters/ch05_05_large_sample_inferences.tex.
 % Cac \note{} la ghi chu cho nguoi thuyet trinh, khong hien tren slide.
+
+% Style rieng cua muc nay (giong muc 5.1, 5.2). Dat trong group nen khong anh
+% huong cac muc khac va khong can sua main.tex.
+\begingroup
+\definecolor{hustnavy}{HTML}{003366}
+\definecolor{hustred}{HTML}{C8102E}
+\definecolor{hustgray}{HTML}{5F6B7A}
+\definecolor{hustteal}{HTML}{1B7F79}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamercolor{block title}{bg=hustnavy,fg=white}
+\setbeamercolor{block body}{bg=hustnavy!6,fg=black}
+\setbeamercolor{block title alerted}{bg=hustred,fg=white}
+\setbeamercolor{block body alerted}{bg=hustred!6,fg=black}
+\setbeamercolor{block title example}{bg=hustteal,fg=white}
+\setbeamercolor{block body example}{bg=hustteal!7,fg=black}
+\setbeamercolor{itemize item}{fg=hustred}
+\setbeamercolor{enumerate item}{fg=hustnavy}
+
 \section{Suy luận mẫu lớn về vectơ trung bình tổng thể}
 \sectionframe{Suy luận mẫu lớn về vectơ trung bình tổng thể}
 
@@ -19,17 +38,17 @@
   \vspace{0.15cm}
   \begin{columns}[T]
     \column{0.48\textwidth}
-    \begin{block}{Ưu điểm}
+    \begin{exampleblock}{Ưu điểm}
       Cỡ mẫu lớn bù lại cho những sai lệch nghiêm trọng khỏi tính chuẩn.
-    \end{block}
+    \end{exampleblock}
     \column{0.48\textwidth}
-    \begin{alertblock}{Cái giá phải trả}
+    \begin{alertblock}{Nhược điểm}
       Chỉ dùng \((\bar{\mat{x}},\mat{S})\), đây là thống kê đủ khi tổng thể chuẩn.
       Tổng thể càng xa chuẩn thì thông tin mẫu bị bỏ phí càng nhiều.
     \end{alertblock}
   \end{columns}
   \note{Mở đầu bằng câu hỏi trong khung xanh. Bài tập 5.15--5.17 trong sách minh họa trường hợp
-  phân phối gốc rời rạc. Ý ``cái giá phải trả'': khi tổng thể chuẩn, \((\bar{\mat{x}},\mat{S})\)
+  phân phối gốc rời rạc. Ý ``nhược điểm'': khi tổng thể chuẩn, \((\bar{\mat{x}},\mat{S})\)
   chứa toàn bộ thông tin của mẫu; khi không chuẩn, chỉ dùng hai đại lượng này là bỏ qua phần thông tin còn lại.}
 \end{frame}
 
@@ -93,6 +112,7 @@
 
 % ---------------------------------------------------------------
 \begin{frame}{Kết quả 5.5: khoảng tin cậy đồng thời mẫu lớn}
+  \setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}
   \begin{block}{Kết quả 5.5}
     Với cùng giả thiết như trên, nếu \(n-p\) lớn thì
     \[
@@ -100,24 +120,28 @@
     \]
     chứa \(\mat{a}\trans\vect{\mu}\) \textbf{đồng thời với mọi} \(\mat{a}\), với xác suất xấp xỉ \(1-\alpha\).
   \end{block}
-  {\small Đây là bản mẫu lớn của khoảng \(T^2\) (Kết quả 5.3, mục 5.4):
+  {\small\color{hustgray} Đây là bản mẫu lớn của khoảng \(T^2\) (Kết quả 5.3, mục 5.4):
   thay \(\frac{(n-1)p}{n-p}F_{p,n-p}(\alpha)\) bằng \(\chi^2_p(\alpha)\).\par}
   \vspace{0.1cm}
-  \begin{columns}[T]
-    \column{0.44\textwidth}
-    \textbf{Chọn \(\mat{a}=\mat{e}_i\):} các khoảng cho từng thành phần
-    \[
-      \bar{x}_i \pm \sqrt{\chi^2_p(\alpha)}\sqrt{\frac{s_{ii}}{n}},
-      \quad i=1,\dots,p
-    \]
-    \column{0.54\textwidth}
-    \textbf{Với mọi cặp \((\mu_i,\mu_k)\):} ellipse tin cậy
-    \[
-      n\begin{bmatrix}\bar{x}_i-\mu_i\\ \bar{x}_k-\mu_k\end{bmatrix}\trans
-      \begin{bmatrix} s_{ii} & s_{ik}\\ s_{ik} & s_{kk}\end{bmatrix}\inv
-      \begin{bmatrix}\bar{x}_i-\mu_i\\ \bar{x}_k-\mu_k\end{bmatrix}
-      \le \chi^2_p(\alpha)
-    \]
+  \begin{columns}[T,onlytextwidth]
+    \column{0.47\textwidth}
+    \begin{exampleblock}{}\small
+      \textbf{Chọn \(\mat{a}=\mat{e}_i\):} các khoảng cho từng thành phần
+      \[
+        \bar{x}_i \pm \sqrt{\chi^2_p(\alpha)}\sqrt{\frac{s_{ii}}{n}},
+        \quad i=1,\dots,p
+      \]
+    \end{exampleblock}
+    \column{0.51\textwidth}
+    \begin{exampleblock}{}\small
+      \textbf{Với mọi cặp \((\mu_i,\mu_k)\):} ellipse tin cậy
+      \[
+        n\begin{bmatrix}\bar{x}_i-\mu_i\\ \bar{x}_k-\mu_k\end{bmatrix}\trans
+        \begin{bmatrix} s_{ii} & s_{ik}\\ s_{ik} & s_{kk}\end{bmatrix}\inv
+        \begin{bmatrix}\bar{x}_i-\mu_i\\ \bar{x}_k-\mu_k\end{bmatrix}
+        \le \chi^2_p(\alpha)
+      \]
+    \end{exampleblock}
   \end{columns}
   \note{Chứng minh trong sách: phần đầu từ Kết quả 5A.1 với \(c^2=\chi^2_p(\alpha)\), các ellipse từ
   Kết quả 5A.2; mức tin cậy chung xấp xỉ \(1-\alpha\) là hệ quả của (5-31).
@@ -131,23 +155,22 @@
     \item Không có tiêu chuẩn chung. Với 1--2 biến, cỡ mẫu \(n\approx 30\)--\(50\) thường được xem là lớn.
     \item Khi số biến \(p\) tăng, cỡ mẫu cần thiết cũng tăng; điều kiện thường nêu là \textbf{\(n-p\) lớn}.
   \end{itemize}
-  \vspace{0.05cm}
   \begin{exampleblock}{Thực tế phức tạp hơn: cùng \(n-p=48\) nhưng kết quả rất khác (\(\alpha=0{,}05\))}
     \centering
-    \scriptsize
-    \setlength{\tabcolsep}{3pt}
-    \begin{tabular}{@{}lccp{0.27\textwidth}@{}}
+    \footnotesize
+    \setlength{\tabcolsep}{8pt}
+    \begin{tabular}{@{}lccc@{}}
       \toprule
       & Ngưỡng chính xác & Ngưỡng \(\chi^2_p(\alpha)\) & Mức sai lầm thực tế nếu dùng \(\chi^2\)\({}^{*}\) \\
       \midrule
       \(p=2,\ n=50\)   & 6{,}51   & 5{,}99  & \(\approx 6\%\) \\
-      \(p=52,\ n=100\) & 172{,}05 & 69{,}83 & \(\approx 93\%\) \\
+      \(p=52,\ n=100\) & 172{,}05 & 69{,}83 & \textcolor{hustred}{\(\approx 93\%\)} \\
       \bottomrule
-    \end{tabular}\\[1pt]
-    {\scriptsize \({}^{*}\)Khi dữ liệu có phân phối chuẩn và mức danh nghĩa là \(5\%\).\par}
+    \end{tabular}\par\vspace{1pt}
+    {\scriptsize\color{hustgray} \({}^{*}\)Khi dữ liệu có phân phối chuẩn và mức danh nghĩa là \(5\%\).\par}
   \end{exampleblock}
-  \vspace{-0.1cm}
   \begin{alertblock}{Lưu ý khi áp dụng}
+    \small
     Vẫn cần kiểm tra dữ liệu như với lý thuyết chuẩn (biểu đồ \(Q\)--\(Q\), điểm ngoại lai, phép biến đổi).
     Sai lệch \emph{nghiêm trọng} khỏi phân phối chuẩn có thể làm mức sai lầm thực tế khác đáng kể so với \(\alpha\).
   \end{alertblock}
@@ -202,11 +225,11 @@
 \begin{frame}{Ví dụ 5.7: so sánh với hồ sơ chuẩn của học sinh Mỹ}
   Giả thuyết dựa trên dữ liệu học sinh Mỹ:
   \(\vect{\mu}_0\trans=[31,\ 27,\ 34,\ 31,\ 23,\ 22,\ 22]\).
-  \begin{columns}[T]
-    \column{0.50\textwidth}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.40\textwidth}
     \begin{center}
       \small
-      \renewcommand{\arraystretch}{0.92}
+      \renewcommand{\arraystretch}{1.05}
       \begin{tabular}{@{}lccc@{}}
         \toprule
         & Khoảng \(90\%\) & \(\mu_{0i}\) & \\
@@ -221,9 +244,9 @@
         \bottomrule
       \end{tabular}
     \end{center}
-    \column{0.47\textwidth}
+    \column{0.57\textwidth}
     \centering
-    \begin{tikzpicture}[x=0.28cm,y=0.29cm,font=\scriptsize]
+    \begin{tikzpicture}[x=0.36cm,y=0.25cm,font=\scriptsize]
       \draw[->] (19,0.3) -- (38.5,0.3);
       \foreach \t in {20,25,30,35} {
         \draw (\t,0.3) -- (\t,0.15) node[below] {\t};
@@ -243,14 +266,15 @@
       }
     \end{tikzpicture}\\[0.1cm]
     {\scriptsize \textcolor{hustprimary}{\rule[0.5ex]{0.5cm}{1.6pt}} khoảng \(90\%\)
-    \quad \textcolor{red}{\(\bullet\)} \(\mu_{0i}\) nằm ngoài}
-  \end{columns}
-  \vspace{0.05cm}
-  \begin{alertblock}{Kết luận}
+    \quad \textcolor{red}{\(\bullet\)} \(\mu_{0i}\) nằm ngoài\par}
+    \vspace{0.15cm}
+    \begin{alertblock}{Kết luận}
+    \small\justifying
     Các thành phần \textbf{giai điệu}, \textbf{nhịp độ} và \textbf{nhịp} của \(\vect{\mu}_0\)
     không phải là giá trị hợp lý đối với học sinh Phần Lan. Do các khoảng đúng \emph{đồng thời},
     kết luận chung có độ tin cậy xấp xỉ \(90\%\).
-  \end{alertblock}
+    \end{alertblock}
+  \end{columns}
   \note{\(\mu_{03}=34\) nằm sát mép dưới \(34{,}05\): bị loại nhưng chỉ vừa đủ. Vì các khoảng này là
   hình chiếu của miền tin cậy, có thành phần nằm ngoài nghĩa là \(\vect{\mu}_0\) nằm ngoài miền tin cậy
   \(90\%\), nên kiểm định của Kết quả 5.4 cũng bác bỏ \(H_0\colon\vect{\mu}=\vect{\mu}_0\) ở mức xấp xỉ \(10\%\).
@@ -263,6 +287,7 @@
   mẫu lớn chỉ thay hằng số \(t, F\) bằng \(z, \chi^2\):
   \begin{center}
     \small
+    \setlength{\tabcolsep}{4pt}
     \begin{tabular}{@{}llllc@{}}
       \toprule
       Loại khoảng & Lý thuyết chuẩn (mục 5.4) & Mẫu lớn (mục 5.5) & Đảm bảo cho & Độ tin cậy \\
@@ -273,25 +298,30 @@
       \bottomrule
     \end{tabular}
   \end{center}
-  \vspace{-0.15cm}
-  {\scriptsize Bóng ellipsoid: hình chiếu của ellipsoid tin cậy lên các trục (Hình 5.2). Ở cột mẫu lớn, độ tin cậy chỉ đạt xấp xỉ.\par}
-  \vspace{0.1cm}
-  \textbf{Minh họa với \(X_1\) (giai điệu), \(95\%\), dữ liệu Ví dụ 5.7:}\par
-  \centering
-  \begin{tikzpicture}[x=0.95cm,y=0.32cm,font=\scriptsize]
-    \draw[->, black!60] (25.6,0) -- (30.8,0);
-    \foreach \t in {26,27,28,29,30} {
-      \draw[black!60] (\t,0) -- (\t,-0.15) node[below] {\t};
-    }
-    \draw[dashed, black!40] (28.1,0) -- (28.1,3.5);
-    \foreach \y/\lo/\hi/\lab in {
-        3/26.95/29.25/{Từng biến \(z(0{,}025)=1{,}96\)},
-        2/26.52/29.68/{Bonferroni \(z(0{,}025/7)=2{,}69\)},
-        1/25.90/30.30/{Bóng ellipsoid \(\sqrt{\chi^2_7(0{,}05)}=3{,}75\)}} {
-      \node[anchor=east] at (25.5,\y) {\lab};
-      \draw[hustprimary, line width=2pt] (\lo,\y) -- (\hi,\y);
-    }
-  \end{tikzpicture}
+  \vspace{-0.1cm}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.33\textwidth}
+    \vspace{0.1cm}
+    {\footnotesize\color{hustgray} Bóng ellipsoid: hình chiếu của ellipsoid tin cậy lên các trục (Hình 5.2). Ở cột mẫu lớn, độ tin cậy chỉ đạt xấp xỉ.\par}
+    \column{0.64\textwidth}
+    \begin{exampleblock}{Minh họa với \(X_1\) (giai điệu), \(95\%\), dữ liệu Ví dụ 5.7}
+      \centering
+      \begin{tikzpicture}[x=0.74cm,y=0.36cm,font=\footnotesize]
+        \draw[->, black!60] (25.6,0) -- (30.8,0);
+        \foreach \t in {26,27,28,29,30} {
+          \draw[black!60] (\t,0) -- (\t,-0.15) node[below] {\t};
+        }
+        \draw[dashed, black!40] (28.1,0) -- (28.1,3.5);
+        \foreach \y/\lo/\hi/\lab in {
+            3/26.95/29.25/{Từng biến \(z(0{,}025)=1{,}96\)},
+            2/26.52/29.68/{Bonferroni \(z(0{,}025/7)=2{,}69\)},
+            1/25.90/30.30/{Bóng ellipsoid \(\sqrt{\chi^2_7(0{,}05)}=3{,}75\)}} {
+          \node[anchor=east] at (25.5,\y) {\lab};
+          \draw[hustprimary, line width=2pt] (\lo,\y) -- (\hi,\y);
+        }
+      \end{tikzpicture}
+    \end{exampleblock}
+  \end{columns}
   \note{Bảng này nối mục 5.4 với mục 5.5: ba loại khoảng giữ nguyên, chỉ đổi hằng số.
   Khoảng từng biến không đảm bảo độ tin cậy chung cho cả \(p\) phát biểu. Bonferroni hẹp hơn
   bóng ellipsoid khi chỉ quan tâm một số ít phát biểu định trước. Bóng ellipsoid đúng đồng thời cho
@@ -363,10 +393,10 @@
   \begin{center}
     \small
     \renewcommand{\arraystretch}{1.2}
-    \setlength{\tabcolsep}{12pt}
-    \begin{tabular}{@{}lll@{}}
+    \setlength{\tabcolsep}{14pt}
+    \begin{tabular}{@{}lcc@{}}
       \toprule
-      & Lý thuyết chuẩn & Mẫu lớn (\(n-p\) lớn) \\
+      & \textcolor{hustnavy}{\textbf{Lý thuyết chuẩn}} & \textcolor{hustteal}{\textbf{Mẫu lớn (\(n-p\) lớn)}} \\
       \midrule
       Giả định & \(N_p(\vect{\mu},\vect{\Sigma})\) & Phân phối bất kỳ, \(\vect{\Sigma}\) xác định dương \\
       Thống kê & \multicolumn{2}{c}{\(n(\bar{\mat{x}}-\vect{\mu}_0)\trans\mat{S}\inv(\bar{\mat{x}}-\vect{\mu}_0)\)} \\
@@ -377,10 +407,12 @@
       \bottomrule
     \end{tabular}
   \end{center}
-  \vspace{0.1cm}
+  \vspace{0.05cm}
   \begin{itemize}
     \item Hai cách tiếp cận cho kết luận gần như nhau khi \(n\) lớn so với \(p\).
     \item Thế nào là ``lớn'' phụ thuộc vào cả \(n-p\) và \(p\); vẫn cần kiểm tra điểm ngoại lai.
     \item Để thận trọng, có thể giữ phân vị \(t, F\) khi \(n\) lớn; khoảng chỉ rộng hơn không đáng kể.
   \end{itemize}
 \end{frame}
+
+\endgroup
