@@ -3,18 +3,8 @@
 \section*{Bài tập và ví dụ tính toán}
 \sectionframeplain{\hypertarget{exercises-start}{Bài tập và ví dụ tính toán}}
 
-% Cac slide Bai 5.1--5.3 cua cac thanh vien khac co the dat truoc moc nay.
-% BEGIN: Bai 5.1--5.3
-% ============================================================
-% BEGIN: Bai 5.1--5.3
-% ============================================================
- 
 % ---------- Bai 5.1 ----------
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.1: }\par}
-  \vspace{0.15cm}
-  \begin{block}{Đề bài}
+\begin{frame}{Bài 5.1: Đề bài}
     Cho ma trận dữ liệu
     \[
       \mat{X}=
@@ -28,33 +18,28 @@
     \begin{enumerate}
       \item[(a)] Tính giá trị của thống kê \(T^2\) để kiểm định \(H_0:\vect{\mu}\trans=[7,\ 11]\).
       \item[(b)] Xác định phân phối của \(T^2\) trong trường hợp ở câu (a).
-      \item[(c)] Sử dụng kết quả ở câu (a) và (b), hãy kiểm định \(H_0\) ở mức ý nghĩa \(\alpha=0{,}05\). Nêu kết luận.
+      \item[(c)] Sử dụng kết quả ở câu (a) và (b), hãy kiểm định \(H_0\) ở mức ý nghĩa \(\alpha=0{,}05\). Từ đó nêu kết luận.
     \end{enumerate}
-  \end{block}
 \end{frame}
  
-\begin{frame}{Bài tập và ví dụ tính toán}
+\begin{frame}[t]{Bài 5.1(a): \(\bar{\vect{x}}\) và \(\mat{S}\inv\)}
   \footnotesize
-  {\large\textbf{Bài 5.1(a): Trung bình mẫu, \(\mat{S}\) và \(\mat{S}\inv\)}\par}
-  \[
-    \bar{\vect{x}}=
+    \vspace{-20pt}
+  \begin{flalign*}
+    &\bar{\vect{x}}=
     \begin{bmatrix}\bar{x}_1\\ \bar{x}_2\end{bmatrix}=
     \begin{bmatrix}\dfrac{2+8+6+8}{4}\\[8pt] \dfrac{12+9+9+10}{4}\end{bmatrix}=
     \begin{bmatrix}6\\ 10\end{bmatrix}
-  \]
-  và
-  \[
-    s_{11}=\frac{(2-6)^2+(8-6)^2+(6-6)^2+(8-6)^2}{3}=8,
-  \]
-  \[
-    s_{12}=\frac{(2-6)(12-10)+(8-6)(9-10)+(6-6)(9-10)+(8-6)(10-10)}{3}=\frac{-10}{3},
-  \]
-  \[
-    s_{22}=\frac{(12-10)^2+(9-10)^2+(9-10)^2+(10-10)^2}{3}=2.
-  \]
-  Do đó,
-  \[
-    \mat{S}=
+  \end{flalign*}
+
+  \begin{flalign*}
+    & s_{11}=\frac{(2-6)^2+(8-6)^2+(6-6)^2+(8-6)^2}{3}=8,\\[4pt]
+    & s_{12}=\frac{(2-6)(12-10)+(8-6)(9-10)+(6-6)(9-10)+(8-6)(10-10)}{3}=\frac{-10}{3},\\[4pt]
+    & s_{22}=\frac{(12-10)^2+(9-10)^2+(9-10)^2+(10-10)^2}{3}=2.
+  \end{flalign*}
+
+  \begin{flalign*}
+    &\mat{S}=
     \begin{bmatrix}
       8 & -\dfrac{10}{3}\\[8pt]
       -\dfrac{10}{3} & 2
@@ -65,15 +50,12 @@
       2 & \dfrac{10}{3}\\[8pt]
       \dfrac{10}{3} & 8
     \end{bmatrix}.
-  \]
+  \end{flalign*}
 \end{frame}
  
  
  
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.1(a): Giá trị \(T^2\)}\par}
-  \vspace{0.05cm}
+\begin{frame}{Bài 5.1(a): \(T^2\)}
   Đặt \(\vect{d}=\bar{\vect{x}}-\vect{\mu}_0=[\,6-7,\ 10-11\,]\trans=[-1,\ -1]\trans\). Khi đó, với \(n=4\):
   \[
   \begin{aligned}
@@ -88,10 +70,9 @@
   \]
 \end{frame}
  
-\begin{frame}{Bài tập và ví dụ tính toán}
-   \small
-  {\large\textbf{Bài 5.1(b), (c): Phân phối của \(T^2\) và kết luận}\par}
-  \vspace{-0.05cm}
+\begin{frame}{Bài 5.1(b), (c): Phân phối của \(T^2\) và kết luận}
+   \footnotesize
+  \vspace{-0.1cm}
   \begin{block}{(b) Phân phối của \(T^2\)}
     Giả thiết các hàng của \(\mat{X}\) là mẫu ngẫu nhiên từ tổng thể chuẩn hai chiều \(N_2(\vect{\mu},\boldsymbol{\Sigma})\). Trước khi mẫu được chọn, \(T^2\) có phân phối của biến ngẫu nhiên
     \[
@@ -102,18 +83,19 @@
   \begin{block}{(c) Kiểm định \(H_0:\vect{\mu}\trans=[7,\ 11]\) ở mức \(\alpha=0{,}05\)}
     So sánh giá trị quan sát \(T^2=13{,}64\) với giá trị tới hạn
     \[
-      \frac{(n-1)p}{n-p}F_{p,n-p}(0{,}05)=\frac{(4-1)2}{(4-2)}F_{2,2}(0{,}05)=3.19=57.
+      \frac{(n-1)p}{n-p}F_{p,n-p}(0{,}05)=\frac{(4-1)2}{(4-2)}F_{2,2}(0{,}05)=3\cdot 19=57.
     \]
   \end{block}
+
+  \begin{alertblock}{Kết luận}
+  Vì \(T^2=13{,}64<57\), ta không bác bỏ \(H_0\) ở mức \(\alpha=0{,}05\).
+\end{alertblock}
  
 \end{frame}
  
 % ---------- Bai 5.2 ----------
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.2:}\par}
+\begin{frame}{Bài 5.2: Đề bài}
   \vspace{0.1cm}
-  \begin{block}{Đề bài}
     Sử dụng dữ liệu trong Ví dụ 5.1, hãy kiểm tra rằng giá trị \(T^2\) không thay đổi khi mỗi quan sát \(\vect{x}_j\) (\(j=1,2,3\)) được thay bằng \(\mat{C}\vect{x}_j\), với
     \[
       \mat{C}=
@@ -137,12 +119,9 @@
         (6+9) & (10+6) & (8+3)
       \end{bmatrix}\trans.
     \]
-  \end{block}
 \end{frame}
  
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.2: Dữ liệu mới và giả thuyết mới}\par}
+\begin{frame}{Bài 5.2: Dữ liệu mới và giả thuyết mới}
   \vspace{0.1cm}
   \begin{block}{Dữ liệu mới}
     \[
@@ -154,7 +133,7 @@
       \end{bmatrix}
     \]
   \end{block}
-    \begin{block}{Giả thuyết cũng đổi theo}
+    \begin{block}{Giả thuyết mới}
       \[
         H_0:\mat{C}\vect{\mu}=\mat{C}\vect{\mu}_0,
         \quad
@@ -166,18 +145,18 @@
         \begin{bmatrix}
           4\\
           14
-        \end{bmatrix}
+        \end{bmatrix}.
       \]
     \end{block}
 \end{frame}
  
-\begin{frame}{Bài tập và ví dụ tính toán}
+\begin{frame}{Bài 5.2: \(\bar{\vect{y}}\) và \(\mat{S}_y\inv\)}
   \footnotesize
-  {\large\textbf{Bài 5.2: Trung bình mới, \(\mat{S}_y\) và \(\mat{S}_y\inv\)}\par}
-  \vspace{0.05cm}
+  \vspace{-0.1cm}
+  
   Từ \(\mat{Y}\) (\(n=3\)), ta có
-  \[
-    \bar{\vect{y}}=
+  \begin{flalign*}
+    &\bar{\vect{y}}=
     \begin{bmatrix}
       \dfrac{-3+4+5}{3}\\[8pt]
       \dfrac{15+16+11}{3}
@@ -186,20 +165,15 @@
       2\\
       14
     \end{bmatrix}=\mat{C}\bar{\vect{x}}
-  \]
-  và
-  \[
-    s_{y,11}=\frac{(-3-2)^2+(4-2)^2+(5-2)^2}{2}=19,
-  \]
-  \[
-    s_{y,12}=\frac{(-3-2)(15-14)+(4-2)(16-14)+(5-2)(11-14)}{2}=-5,
-  \]
-  \[
-    s_{y,22}=\frac{(15-14)^2+(16-14)^2+(11-14)^2}{2}=7.
-  \]
-  Do đó, với \(\det\mat{S}_y=19\cdot7-(-5)^2=108\),
-  \[
-    \mat{S}_y=
+  \end{flalign*}
+  \begin{flalign*}
+    &s_{y,11}=\frac{(-3-2)^2+(4-2)^2+(5-2)^2}{2}=19, \\[4pt]
+    &s_{y,12}=\frac{(-3-2)(15-14)+(4-2)(16-14)+(5-2)(11-14)}{2}=-5, \\[4pt]
+    &s_{y,22}=\frac{(15-14)^2+(16-14)^2+(11-14)^2}{2}=7.
+  \end{flalign*}
+
+\begin{flalign*}
+    &\mat{S}_y=
     \begin{bmatrix}
       19 & -5\\
       -5 & 7
@@ -210,14 +184,11 @@
       7 & 5\\
       5 & 19
     \end{bmatrix}.
-  \]
+  \end{flalign*}
 \end{frame}
  
  
- 
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.2: \(T^2\) của dữ liệu mới}\par}
+\begin{frame}{Bài 5.2: \(T^2\)}
   \vspace{0.05cm}
   Với \(n=3\) và giả thuyết mới \(\mat{C}\vect{\mu}_0=[4,\ 14]\trans\):
   \[
@@ -227,163 +198,137 @@
       \begin{bmatrix}2-4\\14-14\end{bmatrix}\\
     &= 3\,[\,-2,\ 0\,]\,\frac{1}{108}
       \begin{bmatrix}7&5\\5&19\end{bmatrix}
-      \begin{bmatrix}-2\\0\end{bmatrix}
-      =\frac{3\cdot 4\cdot 7}{108}=\frac{7}{9}.
+      \begin{bmatrix}-2\\0\end{bmatrix}\\
+      &=\frac{3\cdot 4\cdot 7}{108} =\frac{7}{9}.
   \end{aligned}
   \]
  
   \begin{alertblock}{Kết luận}
+    \vspace{0.1cm}
     \(T^2_y=\dfrac{7}{9}\) bằng đúng \(T^2\) của dữ liệu gốc, nên \(T^2\) không thay đổi. 
   \end{alertblock}
 \end{frame}
  
 % ---------- Bai 5.3 ----------
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.3:}\par}
-  \vspace{0.1cm}
-  \begin{block}{Đề bài}
+\begin{frame}{Bài 5.3: Đề bài}
+  \vspace{0.5cm}
     \begin{enumerate}
       \item[(a)] Sử dụng biểu thức (5-15) để tính \(T^2\) cho dữ liệu trong Bài tập 5.1.
       \item[(b)] Sử dụng dữ liệu trong Bài tập 5.1 để tính tỉ số hợp lý \(\Lambda\) trong (5-13). Đồng thời tính lambda Wilks \(\Lambda^{\frac{2}{n}}\).
     \end{enumerate}
-  \end{block}
   \vspace{-0.1cm}
   \footnotesize
   \begin{block}{Biểu thức (5-15) và (5-13)}
     \vspace{-0.2cm}
-    \[
+    \begin{equation*}
       T^2=\frac{(n-1)\left|\sum_{j=1}^n(\vect{x}_j-\vect{\mu}_0)(\vect{x}_j-\vect{\mu}_0)\trans\right|}
       {\left|\sum_{j=1}^n(\vect{x}_j-\bar{\vect{x}})(\vect{x}_j-\bar{\vect{x}})\trans\right|}-(n-1)
-    \]
-    \[
+    \tag{5-15}
+    \end{equation*}
+    \begin{equation*}
       \Lambda=\left(\frac{|\hat{\boldsymbol{\Sigma}}|}{|\hat{\boldsymbol{\Sigma}}_0|}\right)^{\frac{n}{2}}
       =\left(\frac{\left|\sum_{j=1}^n(\vect{x}_j-\bar{\vect{x}})(\vect{x}_j-\bar{\vect{x}})\trans\right|}
-      {\left|\sum_{j=1}^n(\vect{x}_j-\vect{\mu}_0)(\vect{x}_j-\vect{\mu}_0)\trans\right|}\right)^{\frac{n}{2}}<c_\alpha
-    \]
+      {\left|\sum_{j=1}^n(\vect{x}_j-\vect{\mu}_0)(\vect{x}_j-\vect{\mu}_0)\trans\right|}\right)^{\frac{n}{2}}
+    \tag{5-13}
+    \end{equation*}
   \end{block}
 \end{frame}
  
-\begin{frame}{Bài tập và ví dụ tính toán}
-  {\large\textbf{Bài 5.3: Ma trận \(\mat{A}\) (độ lệch so với \(\bar{\vect{x}}\))}\par}
-  \vspace{0.05cm}
+\begin{frame}{Bài 5.3: Ma trận \(\mat{A}\) (độ lệch so với \(\bar{\vect{x}}\))}
+  \vspace{0.3cm}
   Dùng dữ liệu Bài 5.1 (\(n=4\), \(\bar{\vect{x}}=[6,\ 10]\trans\)). \\
   Đặt
   \(\mat{A}=\sum_{j=1}^n(\vect{x}_j-\bar{\vect{x}})(\vect{x}_j-\bar{\vect{x}})\trans\) 
-  \[
-    A_{11}=(2-6)^2+(8-6)^2+(6-6)^2+(8-6)^2=24,
-  \]
-  \[
-    A_{12}=(2-6)(12-10)+(8-6)(9-10)+(6-6)(9-10)+(8-6)(10-10)=-10,
-  \]
-  \[
-    A_{22}=(12-10)^2+(9-10)^2+(9-10)^2+(10-10)^2=6.
-  \]
+  \begin{flalign*}
+    &A_{11}=(2-6)^2+(8-6)^2+(6-6)^2+(8-6)^2=24,\\
+    &A_{12}=(2-6)(12-10)+(8-6)(9-10)+(6-6)(9-10)+(8-6)(10-10)=-10,\\
+    &A_{22}=(12-10)^2+(9-10)^2+(9-10)^2+(10-10)^2=6.
+  \end{flalign*}
   Do đó
-  \[
-  \begin{aligned}
+  \begin{flalign*}
     &\mat{A}=
     \begin{bmatrix}
       24 & -10\\
       -10 & 6
     \end{bmatrix}=3\mat{S},\\
     &|\mat{A}|=24\cdot 6-(-10)^2=44.
-    \end{aligned}
-  \]
+    \end{flalign*}
 \end{frame}
  
-\begin{frame}{Bài tập và ví dụ tính toán}
-  {\large\textbf{Bài 5.3: Ma trận \(\mat{B}\) (độ lệch so với \(\vect{\mu}_0\))}\par}
-  \vspace{0.05cm}
-  Đặt \(\mat{B}=\sum_{j=1}^n(\vect{x}_j-\vect{\mu}_0)(\vect{x}_j-\vect{\mu}_0)\trans\) với \(\vect{\mu}_0=[7,\ 11]\trans\):
-  \[
-    B_{11}=(2-7)^2+(8-7)^2+(6-7)^2+(8-7)^2=28,
-  \]
-  \[
-    B_{12}=(2-7)(12-11)+(8-7)(9-11)+(6-7)(9-11)+(8-7)(10-11)=-6,
-  \]
-  \[
-    B_{22}=(12-11)^2+(9-11)^2+(9-11)^2+(10-11)^2=10.
-  \]
+
+
+\begin{frame}{Bài 5.3: Ma trận \(\mat{B}\) (độ lệch so với \(\vect{\mu}_0\))}
+  \vspace{0.6cm}
+  Ta có
+  \begin{flalign*}
+    &B_{11}=(2-7)^2+(8-7)^2+(6-7)^2+(8-7)^2=28,\\
+    &B_{12}=(2-7)(12-11)+(8-7)(9-11)+(6-7)(9-11)+(8-7)(10-11)=-6,\\
+    &B_{22}=(12-11)^2+(9-11)^2+(9-11)^2+(10-11)^2=10.
+  \end{flalign*}
   Do đó
-  \[
-  \begin{aligned}
+  \begin{flalign*}
     &\mat{B}=
     \begin{bmatrix}
       28 & -6\\
       -6 & 10
     \end{bmatrix},\\
     &|\mat{B}|=28\cdot 10-(-6)^2=244.
-    \end{aligned}
-  \]
+    \end{flalign*}
 \end{frame}
  
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.3: \(T^2\), tỉ số hợp lý và lambda Wilks}\par}
-  \vspace{0.1cm}
+\begin{frame}{Bài 5.3: \(T^2\), tỉ số hợp lý và lambda Wilks}
   Vì \(\hat{\boldsymbol{\Sigma}}=\dfrac{\mat{A}}{n}\) và \(\hat{\boldsymbol{\Sigma}}_0=\dfrac{\mat{B}}{n}\), hệ số \(\dfrac{1}{n}\) triệt tiêu trong tỉ số:
   \(\dfrac{|\hat{\boldsymbol{\Sigma}}_0|}{|\hat{\boldsymbol{\Sigma}}|}=\dfrac{|\mat{B}|}{|\mat{A}|}=\dfrac{244}{44}=\dfrac{61}{11}\).
  
     \begin{block}{(a) \(T^2\) theo (5-15)}
       \[
         T^2=(n-1)\frac{|\mat{B}|}{|\mat{A}|}-(n-1)
-        =3\cdot\frac{61}{11}-3=\frac{150}{11}\approx13{,}64
+        =3\cdot\frac{61}{11}-3=\frac{150}{11}\approx13{,}64.
       \]
     \end{block}
-    \vspace{-0.1cm}
+    \vspace{-0.2cm}
     \begin{block}{(b) \(\Lambda\) và lambda Wilks}
       \[
-        \Lambda^{\frac{2}{n}}=\frac{|\mat{A}|}{|\mat{B}|}=\frac{11}{61}\approx0{,}180
-      \]
-      \[
-        \Lambda=\left(\frac{11}{61}\right)^{\frac{4}{2}}=\frac{121}{3721}\approx0{,}0325
+      \begin{aligned}
+        &\Lambda^{\frac{2}{n}}=\frac{|\mat{A}|}{|\mat{B}|}=\frac{11}{61}\approx0{,}180\\
+        &\Lambda=\left(\frac{11}{61}\right)^{\frac{4}{2}}=\frac{121}{3721}\approx0{,}0325.
+      \end{aligned}
       \]
     \end{block}
   \end{frame}
- 
-% ============================================================
-% END: Bai 5.1--5.3
 
-% BEGIN: Bai 5.4--5.5
 
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.4: đề bài trong sách}\par}
-  \vspace{0.15cm}
-  \begin{block}{Đề bài}
+\begin{frame}{Bài 5.4: Đề bài}
+  \vspace{1.7cm}
     Sử dụng dữ liệu mồ hôi trong Bảng 5.1 (xem Ví dụ 5.2).
     \begin{enumerate}
       \item[(a)] Xác định các trục của ellipsoid tin cậy \(90\%\) cho vectơ trung bình \(\vect{\mu}\) và độ dài của các trục này.
-      \item[(b)] Vẽ biểu đồ Q--Q lần lượt cho các quan sát về tốc độ tiết mồ hôi, hàm lượng natri và hàm lượng kali. Vẽ ba biểu đồ phân tán khả dĩ cho từng cặp quan sát. Giả thiết phân phối chuẩn đa biến có hợp lý trong trường hợp này không? Hãy nhận xét.
+      \item[(b)] Vẽ biểu đồ Q--Q lần lượt cho các quan sát về tốc độ tiết mồ hôi, hàm lượng Na và hàm lượng K. Vẽ ba biểu đồ phân tán khả dĩ cho từng cặp quan sát. Giả thiết phân phối chuẩn đa biến có hợp lý trong trường hợp này không? Hãy nhận xét.
     \end{enumerate}
-  \end{block}
 \end{frame}
 
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.4: dữ kiện dùng trong lời giải}\par}
-  \vspace{0.1cm}
+\begin{frame}{Bài 5.4: Dữ kiện dùng trong lời giải}
+  \vspace{0.2cm}
   \begin{columns}[T,onlytextwidth]
     \column{0.52\textwidth}
     \begin{block}{Dữ liệu từ Ví dụ 5.2}
       Với \(n=20,\ p=3\),
-      \[
-        \bar{\vect{x}}=
+      \begin{flalign*}
+        &\bar{\vect{x}}=
         \begin{bmatrix}
           4{,}640\\
           45{,}400\\
           9{,}965
         \end{bmatrix}
-      \]
-      \[
+      \end{flalign*}
+      \begin{flalign*}
         \mat{S}=
         \begin{bmatrix}
           2{,}879 & 10{,}010 & -1{,}810\\
           10{,}010 & 199{,}788 & -5{,}640\\
           -1{,}810 & -5{,}640 & 3{,}628
         \end{bmatrix}.
-      \]
+      \end{flalign*}
     \end{block}
 
     \column{0.45\textwidth}
@@ -399,16 +344,14 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.4(a): trị riêng và hướng trục}\par}
-  \vspace{0.1cm}
+\begin{frame}{Bài 5.4: Trị riêng và hướng trục}
+  \vspace{0.2cm}
   Trục của ellipsoid đi theo các vectơ riêng chuẩn hóa của \(\mat{S}\). Trị riêng là nghiệm của
-  \[
+  \begin{flalign*}
     |\mat{S}-\lambda\mat{I}|=0
     \quad\Longrightarrow\quad
     \lambda^3-206{,}295\lambda^2+1175{,}180\lambda-1181{,}529=0.
-  \]
+  \end{flalign*}
 
   \begin{block}{Cách chọn vectơ riêng}
     Với mỗi \(\lambda_i\), giải hệ thuần nhất
@@ -435,21 +378,19 @@
   \end{center}
 \end{frame}
 
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \footnotesize
-  {\large\textbf{Bài 5.4(a): độ dài các trục ellipsoid}\par}
-  \vspace{-0.02cm}
+\begin{frame}{Bài 5.4(a): Độ dài các trục ellipsoid}
+  \vspace{-0.1cm}
   Ellipsoid tin cậy \(90\%\) có các nửa trục
-  \[
+  \begin{flalign*}
     \pm\sqrt{\lambda_i}
     \sqrt{\frac{p(n-1)}{n(n-p)}F_{p,n-p}(\alpha)}\,\vect{e}_i,
     \qquad i=1,2,3.
-  \]
+  \end{flalign*}
   Với \(p=3,\ n=20,\ \alpha=0{,}10\) và \(F_{3,17}(0{,}10)\approx2{,}44\),
-  \[
+  \begin{flalign*}
     \sqrt{\frac{3(19)}{20(17)}F_{3,17}(0{,}10)}
     \approx 0{,}640.
-  \]
+  \end{flalign*}
 
   \begin{center}
     \scriptsize
@@ -465,10 +406,8 @@
   \end{center}
 \end{frame}
 
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.4(b): cách dựng Q--Q plot}\par}
-  \vspace{0.1cm}
+\begin{frame}{Bài 5.4(b): Cách dựng Q--Q plot}
+  \vspace{0.8cm}
   Theo Mục 4.6, trang 178--179, Q--Q plot so sánh phân vị mẫu với phân vị lý thuyết của phân phối chuẩn.
   Với mỗi biến \(X_k\), thực hiện:
   \begin{enumerate}
@@ -482,8 +421,7 @@
   {\footnotesize\textit{Chú thích:} Chuẩn đa biến là giả thiết về cả vectơ \(X=(X_1,X_2,X_3)^T\). Q--Q plot kiểm tra từng biến biên, còn scatter plot giúp nhìn quan hệ theo từng cặp biến.\par}
 \end{frame}
 
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
+\begin{frame}{Bài 5.4: Nhận xét}
   \vspace{-0.2cm}
   \begin{center}
     \includegraphics[width=0.96\textwidth,height=0.52\textheight,keepaspectratio]{exercise_5_4_qq.png}
@@ -495,8 +433,7 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
+\begin{frame}{Bài 5.4: Nhận xét}
   \vspace{-0.2cm}
   \begin{center}
     \includegraphics[width=0.96\textwidth,height=0.52\textheight,keepaspectratio]{exercise_5_4_scatter.png}
@@ -508,75 +445,64 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.5: đề bài trong sách}\par}
-  \vspace{0.15cm}
-  \begin{block}{Đề bài}
+\begin{frame}{Bài 5.5: Đề bài}
+  \vspace{1.5cm}
     Các đại lượng \(\bar{\vect{x}}\), \(\mat{S}\) và \(\mat{S}\inv\) được cho trong Ví dụ 5.3 đối với dữ liệu bức xạ lò vi sóng sau khi biến đổi. Hãy kiểm định giả thuyết không
     \[
       H_0:\vect{\mu}\trans=[0{,}55,\ 0{,}60]
     \]
     ở mức ý nghĩa \(\alpha=0{,}05\). Kết quả của bạn có nhất quán với elip tin cậy \(95\%\) cho \(\vect{\mu}\) được vẽ trong Hình 5.1 hay không? Hãy giải thích.
-  \end{block}
 \end{frame}
 
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.5: thống kê kiểm định \(T^2\)}\par}
-  \vspace{0.1cm}
+\begin{frame}{Bài 5.5: Thống kê kiểm định \(T^2\)}
+  \vspace{0.25cm}
   \begin{columns}[T,onlytextwidth]
     \column{0.48\textwidth}
     \begin{block}{Dữ liệu từ Ví dụ 5.3}
       \[
-        \bar{\vect{x}}=
+      \begin{aligned}
+        &\bar{\vect{x}}&&=
         \begin{bmatrix}
           0{,}564\\
           0{,}603
-        \end{bmatrix},
+        \end{bmatrix},\\[6pt]
         \qquad
-        \vect{\mu}_0=
+        &\vect{\mu}_0&&=
         \begin{bmatrix}
           0{,}55\\
           0{,}60
-        \end{bmatrix}
-      \]
-      \[
-        \mat{S}\inv=
+        \end{bmatrix}, \\[6pt]
+        &\mat{S}\inv&&=
         \begin{bmatrix}
           203{,}018 & -163{,}391\\
           -163{,}391 & 200{,}228
         \end{bmatrix}.
+      \end{aligned}
       \]
     \end{block}
 
     \column{0.48\textwidth}
     \begin{block}{Tính toán}
       \[
-        \vect{d}=\bar{\vect{x}}-\vect{\mu}_0
-        =
+      \begin{aligned}
+        &\vect{d}&&=\bar{\vect{x}}-\vect{\mu}_0\\
+        &&&=
         \begin{bmatrix}
           0{,}014\\
           0{,}003
-        \end{bmatrix}
-      \]
-      \[
-      \begin{aligned}
-        T^2
-        &=n\vect{d}\trans\mat{S}\inv\vect{d}\\
-        &=42[\,0{,}014,\ 0{,}003\,]\mat{S}\inv
+        \end{bmatrix},\\[6pt]
+        &T^2&&=n\vect{d}\trans\mat{S}\inv\vect{d}\\
+          &&&=42[\,0{,}014,\ 0{,}003\,]\mat{S}\inv
           \begin{bmatrix}0{,}014\\0{,}003\end{bmatrix}\\
-        &=1{,}170.
+          &&&=1{,}170.
       \end{aligned}
       \]
     \end{block}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.5: minh họa trên Hình 5.1}\par}
-  \vspace{0.05cm}
+\begin{frame}{Bài 5.5: Minh họa trên Hình 5.1}
+  \vspace{0.3cm}
   \begin{columns}[T,onlytextwidth]
     \column{0.58\textwidth}
     \centering
@@ -602,10 +528,8 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Bài tập và ví dụ tính toán}
-  \small
-  {\large\textbf{Bài 5.5: quyết định kiểm định}\par}
-  \vspace{0.1cm}
+\begin{frame}{Quyết định kiểm định}
+  \vspace{0.6cm}
   Kiểm định
   \[
     H_0:\vect{\mu}\trans=[0{,}55,\ 0{,}60]
@@ -625,5 +549,3 @@
     Kết quả nhất quán với elip tin cậy \(95\%\) trong Hình 5.1, vì điểm \([0{,}55,\ 0{,}60]\trans\) nằm trong miền tin cậy.
   \end{alertblock}
 \end{frame}
-
-% END: Bai 5.4--5.5
