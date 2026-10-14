@@ -35,7 +35,7 @@
     \begin{block}{Định nghĩa}
         Miền $R(X)$ được gọi là một \textbf{miền tin cậy $100(1 - \alpha)\%$} nếu, trước khi mẫu được lấy:
         \[
-            P[R(X) \text{ chứa tham số } \theta] = 1 - \alpha \quad (5-17)
+            P[R(X) \text{ chứa tham số } \theta] = 1 - \alpha \tag{5-17}
         \]
         Xác suất này được tính dựa trên giá trị $\theta$ nhưng chưa biết.
     \end{block}
@@ -44,7 +44,7 @@
 \begin{frame}{Miền tin cậy cho phân phối chuẩn $p$-chiều}
     Miền tin cậy cho trung bình $\mu$ của một tổng thể chuẩn $p$-chiều được suy ra từ thống kê $T^2$. Trước khi mẫu được lấy:
     \[
-        P\left[ n(\bar{X} - \mu)'S^{-1}(\bar{X} - \mu) \le \frac{(n - 1)p}{n - p} F_{p, n-p}(\alpha) \right] = 1 - \alpha
+        P\left[ n(\bar{X} - \mu)'S^{-1}(\bar{X} - \mu) \le \frac{(n - 1)p}{n - p} F_{p, n-p}(\alpha) \right] = 1 - \alpha \tag{$*1$}
     \]
     bất kể giá trị chưa biết của $\mu$ và $\Sigma$ là gì. 
     
@@ -64,7 +64,7 @@
     \begin{block}{Miền tin cậy $100(1-\alpha)\%$}
         Một miền tin cậy $100(1 - \alpha)\%$ cho trung bình của phân phối chuẩn $p$-chiều là ellipsoid được xác định bởi tất cả các $\mu$ sao cho:
         \[
-            n(\bar{x} - \mu)'S^{-1}(\bar{x} - \mu) \le \frac{(n - 1)p}{n - p} F_{p, n-p}(\alpha) \quad (5-18)
+            n(\bar{x} - \mu)'S^{-1}(\bar{x} - \mu) \le \frac{(n - 1)p}{n - p} F_{p, n-p}(\alpha) \tag{5-18}
         \]
     \end{block}
 \end{frame}
@@ -88,7 +88,7 @@
     \vspace{0.3cm}
     Các trục này được xác định từ các trị riêng $\lambda_i$ và vectơ riêng chuẩn hóa $e_i$ của $S$. Hướng và độ dài của các trục:
     \[
-        n(\bar{x} - \mu)'S^{-1}(\bar{x} - \mu) \le c^2 = \frac{p(n - 1)}{n - p} F_{p, n-p}(\alpha)
+        n(\bar{x} - \mu)'S^{-1}(\bar{x} - \mu) \le c^2 = \frac{p(n - 1)}{n - p} F_{p, n-p}(\alpha) \tag{$*2$}
     \]
     được xác định bằng cách di chuyển một khoảng
     \[
@@ -101,10 +101,10 @@
     Bắt đầu từ tâm $\bar{x}$, các trục của ellipsoid tin cậy là:
     \begin{block}{}
         \[
-            \pm \sqrt{\lambda_i} \cdot \sqrt{\frac{p(n - 1)}{n(n - p)} F_{p, n-p}(\alpha)} \cdot e_i
+            \pm \sqrt{\lambda_i} \cdot \sqrt{\frac{p(n - 1)}{n(n - p)} F_{p, n-p}(\alpha)} \cdot e_i \tag{5-19}
         \]
     \end{block}
-    trong đó $S e_i = \lambda_i e_i, \quad i = 1, 2, \dots, p \quad (5-19)$
+    trong đó $S e_i = \lambda_i e_i, \quad i = 1, 2, \dots, p$.
 
     \vspace{0.3cm}
     Tỷ số giữa các $\lambda_i$ sẽ giúp xác định mức độ kéo dài tương đối dọc theo các cặp trục.
@@ -340,6 +340,7 @@ Từ (2-43):
 \mu_Z=E(Z)=\mathbf a'\boldsymbol\mu,
 \qquad
 \sigma_Z^2=\operatorname{Var}(Z)=\mathbf a'\boldsymbol\Sigma\mathbf a.
+\tag{$*3$}
 \]
  
 Theo Kết quả 4.2: $Z\sim N(\mathbf a'\boldsymbol\mu,\ \mathbf a'\boldsymbol\Sigma\mathbf a)$.
@@ -358,6 +359,7 @@ Theo (3-36), trung bình và phương sai mẫu của $z_1,\ldots,z_n$ là
 \bar z=\mathbf a'\bar{\mathbf x},
 \qquad
 s_Z^2=\mathbf a'\mathbf S\mathbf a,
+\tag{$*4$}
 \]
 với $\bar{\mathbf x}$, $\mathbf S$ là vector trung bình mẫu và ma trận hiệp
 phương sai mẫu của $\mathbf X_j$.
@@ -407,44 +409,29 @@ thì \textbf{không phải} là $1-\alpha$.
 \end{frame}
  
 % ----------------------------------------------------------------------------
-\begin{frame}{Độ tin cậy chung và sự đánh đổi độ rộng khoảng tin cậy}
+\begin{frame}{Từ khoảng tin cậy đơn lẻ đến độ tin cậy chung cho mọi $\mathbf a$}
 \begin{itemize}
-  \item Về trực giác, muốn có một \textbf{``hệ số tin cậy chung''} $1-\alpha$
-        cho các khoảng tin cậy sinh ra bởi \textbf{mọi} lựa chọn của $\mathbf a$
-        — đây chính là sự đảm bảo về xác suất cho việc \emph{bất kỳ} phát
-        biểu nào sai.
-  \item \textbf{Cái giá phải trả:} các khoảng tin cậy đồng thời sẽ
-        \textbf{rộng hơn (kém chính xác hơn)} so với khoảng (5-21) ứng với
-        \emph{một} lựa chọn cụ thể của $\mathbf a$.
-\end{itemize}
- 
-\vspace{0.5em}
-$\Rightarrow$ Cần một hằng số lớn hơn $t^2_{n-1}(\alpha/2)$ áp dụng cho mọi
-$\mathbf a$ cùng lúc — dẫn tới Kết quả 5.3 (khung tiếp theo).
-\end{frame}
-\begin{frame}{Từ So Sánh Đơn Lẻ Đến Đánh Giá Đồng Thời Cho Mọi Vectơ $a$}
-Với dữ liệu $\mathbf x_1,\ldots,\mathbf x_n$ và một $\mathbf a$ cụ thể, khoảng tin cậy
-$t$ trong (5-21) chính là tập các giá trị $\mathbf a'\boldsymbol\mu$ thoả
-
+  \item Muốn có một \textbf{``hệ số tin cậy chung''} $1-\alpha$ cho các khoảng
+        sinh ra bởi \textbf{mọi} lựa chọn của $\mathbf a$, tức là bảo đảm, với
+        một xác suất định trước, rằng \emph{không} phát biểu nào sai.
+        \textbf{Cái giá phải trả:} các khoảng sẽ \textbf{rộng hơn (kém chính
+        xác hơn)} khoảng (5-21) ứng với \emph{một} $\mathbf a$ cụ thể.
+  \item Với dữ liệu $\mathbf x_1,\ldots,\mathbf x_n$ và một $\mathbf a$ cụ thể,
+        khoảng (5-21) chính là tập các giá trị $\mathbf a'\boldsymbol\mu$ thoả
 \[
 t^2=\frac{n\bigl(\mathbf a'\bar{\mathbf x}-\mathbf a'\boldsymbol\mu\bigr)^2}{\mathbf a'\mathbf S\mathbf a}
 \;\le\; t^2_{n-1}(\alpha/2)
 \tag{5-22}
 \]
-
-\begin{itemize}
-  \item Muốn phát biểu \textbf{đồng thời} cho \emph{nhiều} lựa chọn $\mathbf a$,
-        hằng số $t^2_{n-1}(\alpha/2)$ phải được thay bằng một hằng số lớn hơn, $c^2$.
-  \item Xét các $\mathbf a$ sao cho $t^2\le c^2$: điều này tự nhiên dẫn tới việc
-        tìm
-\[
-\max_{\mathbf a}\, t^2=\max_{\mathbf a}\frac{n\bigl[\mathbf a'(\bar{\mathbf x}-\boldsymbol\mu)\bigr]^2}{\mathbf a'\mathbf S\mathbf a}.
-\]
+  \item Để phát biểu \textbf{đồng thời} cho mọi $\mathbf a$, hằng số
+        $t^2_{n-1}(\alpha/2)$ phải được thay bằng một hằng số lớn hơn $c^2$.
+        Xét các $\mathbf a$ sao cho $t^2\le c^2$, ta tự nhiên dẫn tới việc tìm
+        $\displaystyle\max_{\mathbf a} t^2$.
 \end{itemize}
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\begin{frame}{Ứng Dụng Bổ Đề Cực Đại Hóa Thiết Lập Thống Kê $T^2$}
+\begin{frame}{Bổ đề cực đại hoá dẫn tới thống kê $T^2$}
 Áp dụng bổ đề cực đại hoá (2-50) với $\mathbf x=\mathbf a$, $\mathbf d=(\bar{\mathbf x}-\boldsymbol\mu)$, $\mathbf B=\mathbf S$:
 
 \begin{keyformula}[Liên hệ với thống kê Hotelling $T^2$]
@@ -466,7 +453,7 @@ t^2=\frac{n\bigl(\mathbf a'\bar{\mathbf x}-\mathbf a'\boldsymbol\mu\bigr)^2}{\ma
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\begin{frame}{Thiết Lập Khoảng Tin Cậy Đồng Thời}
+\begin{frame}{Kết quả 5.3: khoảng tin cậy đồng thời}
 \textbf{Kết quả 5.3.} Cho $\mathbf X_1,\mathbf X_2,\ldots,\mathbf X_n$ là một mẫu
 ngẫu nhiên từ tổng thể $N_p(\boldsymbol\mu,\boldsymbol\Sigma)$ với $\boldsymbol\Sigma$
 xác định dương. Khi đó, \textbf{đồng thời với mọi $\mathbf a$}, khoảng
@@ -475,17 +462,11 @@ xác định dương. Khi đó, \textbf{đồng thời với mọi $\mathbf a$},
 {\small
 \[
 \left( \mathbf{a}'\bar{\mathbf{X}} - \sqrt{\frac{p(n-1)}{n-p}F_{p,n-p}(\alpha)} \sqrt{\frac{\mathbf{a}'\mathbf{S}\mathbf{a}}{n}} \; , \; \mathbf{a}'\bar{\mathbf{X}} + \sqrt{\frac{p(n-1)}{n-p}F_{p,n-p}(\alpha)} \sqrt{\frac{\mathbf{a}'\mathbf{S}\mathbf{a}}{n}} \right)
+\tag{$*5$}
 \]}
 \end{keyformula}
 
 sẽ chứa $\mathbf a'\boldsymbol\mu$ với xác suất $1-\alpha$.
-
-\vspace{0.5em}
-\begin{itemize}
-  \item Khác với (5-22): hằng số $t^2_{n-1}(\alpha/2)$ được thay bằng
-        $c^2=\dfrac{p(n-1)}{n-p}F_{p,n-p}(\alpha)$ để giữ đúng xác suất
-        \textbf{cho mọi $\mathbf a$ cùng lúc}.
-\end{itemize}
 \end{frame}
 
 % ----------------------------------------------------------------------------
@@ -501,13 +482,14 @@ kéo theo, \textbf{với mọi $\mathbf a$},
 \mathbf a'\bar{\mathbf x}+c\sqrt{\frac{\mathbf a'\mathbf S\mathbf a}{n}}.
 \]
 
+Chọn $c^2$ như trong ($*2$); theo ($*1$):
 \[
 c^2=\frac{p(n-1)}{n-p}F_{p,n-p}(\alpha),
 \qquad
 P\!\left(T^2\le c^2\right)=1-\alpha.
 \]
 
-Do đó, các khoảng trên đồng thời chứa $\mathbf a'\boldsymbol\mu$ với mọi
+Do đó, các khoảng ($*5$) đồng thời chứa $\mathbf a'\boldsymbol\mu$ với mọi
 $\mathbf a$, với xác suất $1-\alpha$.
 
 \end{frame}
@@ -536,12 +518,12 @@ Lần lượt chọn $\mathbf a'=[1,0,\ldots,0],\ [0,1,\ldots,0],\ \ldots,\ [0,\
 \end{equation*}}
 \end{keyformula}
 
-đều đồng thời có độ tin cậy đạt ít nhất $1-\alpha$.
+đều đồng thời đúng với hệ số tin cậy $1-\alpha$.
 \end{frame}
 
 % ----------------------------------------------------------------------------
 % ----------------------------------------------------------------------------
-\begin{frame}{Mở Rộng: Khoảng Tin Cậy Đồng Thời Cho Hiệu Hai Trung Bình}
+\begin{frame}{Mở rộng: khoảng tin cậy đồng thời cho hiệu hai trung bình}
   \textbf{Khoảng tin cậy cho hiệu $\mu_i - \mu_k$:}
   
   Chọn $\mathbf{a} = [0, \dots, 1, \dots, -1, \dots, 0]'$ sao cho $a_i = 1$, $a_k = -1$ và các thành phần khác bằng $0$. Khi đó:
@@ -560,13 +542,13 @@ Lần lượt chọn $\mathbf a'=[1,0,\ldots,0],\ [0,1,\ldots,0],\ \ldots,\ [0,\
   với hằng số tới hạn $c = \sqrt{\frac{p(n-1)}{n-p} F_{p,n-p}(\alpha)}$.
 
   \begin{itemize}
-    \item Đây là trường hợp riêng của khoảng đồng thời $T^2$ cho tổ hợp $\mathbf{a}'\boldsymbol{\mu}$.
-    \item Độ tin cậy chung $1-\alpha$ luôn được bảo đảm mà không cần hiệu chỉnh Bonferroni.
+    \item Đây là trường hợp riêng của khoảng đồng thời $T^2$ ($*5$) cho tổ hợp $\mathbf{a}'\boldsymbol{\mu}$.
+    \item \textbf{Dò quét dữ liệu}: vì $1-\alpha$ không đổi với mọi $\mathbf{a}$, có thể chọn các tổ hợp $\mathbf{a}'\boldsymbol{\mu}$ đáng xem xét \emph{sau khi} khảo sát dữ liệu.
   \end{itemize}
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\begin{frame}{Mở Rộng: Elip Tin Cậy Cho Cặp Trung Bình}
+\begin{frame}{Mở rộng: elip tin cậy cho cặp trung bình}
   \begin{block}{Elip tin cậy cho cặp $(\mu_i, \mu_k)$ (Phụ lục 5A)}
     Tập hợp các giá trị $(\mu_i, \mu_k)$ thỏa mãn bất đẳng thức:
     \begin{equation*}
@@ -588,27 +570,26 @@ Lần lượt chọn $\mathbf a'=[1,0,\ldots,0],\ [0,1,\ldots,0],\ \ldots,\ [0,\
   \end{block}
 
   \begin{itemize}
-    \item \textbf{Khảo sát linh hoạt:} Do độ tin cậy $1-\alpha$ giữ nguyên với mọi $\mathbf{a}$, ta có thể lập khoảng $T^2$ cho bất kỳ tổ hợp tuyến tính nào sau khi quan sát dữ liệu.
-    \item \textbf{Ý nghĩa hình học:} Miền elip mô tả đồng thời miền khả dĩ của $(\mu_i, \mu_k)$, tích hợp cả biến động biên ($s_{ii}, s_{kk}$) lẫn tương quan mẫu ($s_{ik}$).
+    \item Có thể thêm các phát biểu (5-26) mà \textbf{vẫn duy trì hệ số tin cậy $1-\alpha$ cho toàn bộ tập phát biểu} (khoảng $T^2$, hiệu, elip).
+    \item \textbf{Ý nghĩa hình học:} Miền elip mô tả đồng thời miền khả dĩ của $(\mu_i, \mu_k)$, tích hợp cả biến động biên (phương sai mẫu $s_{ii}, s_{kk}$) lẫn hiệp phương sai mẫu ($s_{ik}$).
   \end{itemize}
 \end{frame}
 % ----------------------------------------------------------------------------
 \begin{frame}{Khoảng $T^2$ là hình chiếu của ellipsoid tin cậy}
-Các khoảng $T^2$ đồng thời cho từng thành phần chính là hình chiếu, của ellipsoid tin cậy lên các trục thành phần.
+Các khoảng $T^2$ đồng thời cho từng thành phần chính là các \emph{bóng}, hay
+các \emph{hình chiếu}, của ellipsoid tin cậy lên các trục thành phần.
 
 \vspace{0.5em}
-\textbf{Ví dụ 5.4} (số liệu bức xạ vi ba, $n=42,\,p=2$, $F_{2,40}(.05)=3{,}23$):
+\textbf{Ví dụ 5.4} (số liệu bức xạ vi ba, $n=42$, $p=2$, $F_{2,40}(0{,}05)=3{,}23$).
+Áp dụng (5-24):
 
-\vspace{0.3em}
 {\small
-\[
-\bar x_1\pm\sqrt{\tfrac{2(41)}{40}(3{,}23)}\sqrt{\tfrac{.0144}{42}}
-\;\Rightarrow\; (.516,\ .612)
-\]
-\[
-\bar x_2\pm\sqrt{\tfrac{2(41)}{40}(3{,}23)}\sqrt{\tfrac{.0146}{42}}
-\;\Rightarrow\; (.555,\ .651)
-\]}
+\begin{align*}
+0{,}564 - \sqrt{\tfrac{2(41)}{40}(3{,}23)}\sqrt{\tfrac{0{,}0144}{42}} \le \mu_1 \le 0{,}564 + \sqrt{\tfrac{2(41)}{40}(3{,}23)}\sqrt{\tfrac{0{,}0144}{42}}
+&\;\Rightarrow\; 0{,}516\le \mu_1\le 0{,}612\\[1ex]
+0{,}603 - \sqrt{\tfrac{2(41)}{40}(3{,}23)}\sqrt{\tfrac{0{,}0146}{42}} \le \mu_2 \le 0{,}603 + \sqrt{\tfrac{2(41)}{40}(3{,}23)}\sqrt{\tfrac{0{,}0146}{42}}
+&\;\Rightarrow\; 0{,}555\le \mu_2\le 0{,}651
+\end{align*}}
 
 \vspace{0.3em}
 Hai khoảng này khớp với các khoảng $T^2$ trong Hình 5.2 (khung tiếp theo),
@@ -633,9 +614,9 @@ như các bóng của elip tin cậy trên các trục — số liệu bức x�
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\begin{frame}{Ví dụ 5.5: Dữ Liệu Điểm Thi \& Thiết Lập Hệ Số Tới Hạn}
+\begin{frame}{Ví dụ 5.5: dữ liệu điểm thi và hệ số tới hạn}
 Điểm số của $n=87$ sinh viên, trong 3 bài kiểm tra ứng với 3 biến: $X_1=$ khoa học xã hội \& lịch sử, $X_2=$ ngôn ngữ,
-$X_3=$ khoa học.Ta có các số liệu sau:
+$X_3=$ khoa học. Ta có các số liệu sau:
 
 \[
 \bar{\mathbf x}=\begin{bmatrix}526{,}29\\54{,}69\\25{,}13\end{bmatrix},
@@ -646,8 +627,7 @@ $X_3=$ khoa học.Ta có các số liệu sau:
 222{,}03 & 23{,}39 & 23{,}11
 \end{bmatrix}
 \]
-Xét các khoảng tin cậy đồng thời $95\%$ cho $\mu_1, \mu_2, \mu_3$
-Ta có:
+Xét các khoảng tin cậy đồng thời $95\%$ cho $\mu_1, \mu_2, \mu_3$. Ta có:
 \[
 \frac{p(n-1)}{n-p}F_{p,n-p}(\alpha)=\frac{3(86)}{84}F_{3,84}(.05)=\frac{3(86)}{84}(2{,}7)=8{,}29
 \]
@@ -659,19 +639,37 @@ Ta có:
 
 \begin{align*}
 526{,}29 - \sqrt{8{,}29}\sqrt{\tfrac{5808{,}06}{87}} \le \mu_1 \le 526{,}29 + \sqrt{8{,}29}\sqrt{\tfrac{5808{,}06}{87}}
-&\;\Rightarrow\; 503{,}06\le \mu_1\le 550{,}12\\[1ex]
+&\;\Rightarrow\; 503{,}06\le \mu_1\le 550{,}12\\[0.3ex]
 54{,}69 - \sqrt{8{,}29}\sqrt{\tfrac{126{,}05}{87}} \le \mu_2 \le 54{,}69 + \sqrt{8{,}29}\sqrt{\tfrac{126{,}05}{87}}
-&\;\Rightarrow\; 51{,}22\le \mu_2\le 58{,}16\\[1ex]
+&\;\Rightarrow\; 51{,}22\le \mu_2\le 58{,}16\\[0.3ex]
 25{,}13 - \sqrt{8{,}29}\sqrt{\tfrac{23{,}11}{87}} \le \mu_3 \le 25{,}13 + \sqrt{8{,}29}\sqrt{\tfrac{23{,}11}{87}}
 &\;\Rightarrow\; 23{,}65\le \mu_3\le 26{,}61
 \end{align*}
 
 \begin{itemize}
-  \item Dữ liệu không sai lệch nghiêm trọng khỏi tính chuẩn (trừ khả năng
-        ngoại lệ ở điểm ngôn ngữ); $n$ đủ lớn để biện minh phương pháp (Mục 5.5).
-  \item Ba khoảng trên có thể \textbf{rộng hơn mức cần thiết}, vì với cùng
-        $1-\alpha$ ta có thể hỏi trực tiếp về các \emph{hiệu}.
+  \item Giả thiết chuẩn của dữ liệu được kiểm tra ở khung tiếp theo.
+  \item \textbf{Rộng hơn khoảng đơn biến} (cả ba phải cùng đúng 95\%), và có
+        thể \textbf{rộng hơn mức cần thiết}: cùng $1-\alpha$ còn cho phát biểu về các \emph{hiệu}.
 \end{itemize}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\begin{frame}{Ví dụ 5.5: kiểm tra giả thiết chuẩn bằng đồ thị Q--Q}
+\centering
+\includegraphics[width=\textwidth,height=0.4\textheight,keepaspectratio]{figure_5_5_qq.png}
+
+\raggedright\small
+\begin{itemize}
+  \item \textbf{$X_1$:} bám sát đường thẳng trên toàn miền, kể cả hai cực trị 348 và 733
+        $\Rightarrow$ \textbf{xấp xỉ chuẩn}.
+  \item \textbf{$X_2$:} phần giữa khớp nhưng \textbf{lệch ở hai đầu}: điểm thấp nhất 25--28
+        (kỳ vọng 26--33) và cao nhất 72--75 (kỳ vọng 76--83) đều thấp hơn
+        $\Rightarrow$ \textbf{có thể có ngoại lệ}.
+  \item \textbf{$X_3$:} bám sát đường thẳng $\Rightarrow$ \textbf{xấp xỉ chuẩn}.
+  \item \textbf{Kết luận:} không có sai lệch nghiêm trọng; $n=87$ đủ lớn nên
+        phương pháp vẫn dùng được (Mục 5.5).
+\end{itemize}
+\note{Trục tung là điểm thực tế đã sắp xếp, trục hoành là giá trị ``lẽ ra phải có'' nếu dữ liệu chuẩn. Đồ thị vẽ từ 87 quan sát của Bảng 5.2 (bản dịch). Cách dựng (Mục 4.6): với mỗi biến, sắp xếp mẫu $x_{(1)}\le\cdots\le x_{(87)}$, gán $p_j=(j-\frac12)/87$, tính $q_{(j)}=\Phi^{-1}(p_j)$ rồi vẽ các điểm $(q_{(j)},x_{(j)})$. Đường đỏ là $\bar x+s\,q$: nơi các điểm sẽ nằm nếu dữ liệu đúng là chuẩn. Điểm thi là số nguyên nên các điểm xếp thành ``bậc thang'' --- đó không phải dấu hiệu bất thường. Ở $X_2$, các điểm thấp nhất (25--28) thấp hơn đường, các điểm cao nhất (72--75) cũng thấp hơn đường: hai đuôi lệch khỏi phân phối chuẩn. Hệ số tương quan của đồ thị Q--Q: $r_Q\approx0{,}995$ ($X_1$), $0{,}986$ ($X_2$), $0{,}995$ ($X_3$); $X_2$ thấp nhất.}
 \end{frame}
 
 % ----------------------------------------------------------------------------
@@ -722,9 +720,10 @@ khoảng $T^2$ đồng thời (hình chiếu) — dữ liệu bài kiểm tra đ
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\begin{frame}{Phương pháp so sánh riêng lẻ từng biến}
-Bỏ qua cấu trúc hiệp phương sai, chỉ dùng $\mathbf a'=[0,\ldots,a_i,\ldots,0]$
-với $a_i=1$ (gợi ý bởi (5-21)):
+\begin{frame}{So sánh khoảng đồng thời với khoảng từng thành phần một}
+\textbf{Cách tiếp cận thay thế:} xét từng thành phần $\mu_i$ một,
+bỏ qua cấu trúc hiệp phương sai, chỉ dùng
+$\mathbf a'=[0,\ldots,a_i,\ldots,0]$ với $a_i=1$ trong (5-21):
 
 {\footnotesize
 \begin{equation*}
@@ -755,6 +754,7 @@ Khi đó các biến độc lập $\Rightarrow$ áp dụng quy tắc nhân xác 
 \[
 P[\text{tất cả khoảng $t$ trong (5-27) đều chứa }\mu_i]
 =(1-\alpha)(1-\alpha)\cdots(1-\alpha)=(1-\alpha)^p
+\tag{$*6$}
 \]
 
 \begin{block}{Ví dụ số}
@@ -786,6 +786,9 @@ t_{14}(.025)=2{,}145
 % ----------------------------------------------------------------------------
 \begin{frame}{So sánh hệ số tới hạn giữa khoảng $t$ và khoảng $T^2$}
 \centering
+{\small\textbf{Bảng 5.3} Hệ số nhân của $\sqrt{s_{ii}/n}$ cho khoảng $t$ từng biến
+một và khoảng $T^2$ đồng thời ($1-\alpha=0{,}95$)\par}
+\vspace{0.4em}
 \begin{tabular}{c c c c}
 \toprule
 $n$ & $t_{n-1}(0{,}025)$ & \multicolumn{2}{c}{$\sqrt{\dfrac{(n-1)p}{n-p}F_{p,n-p}(0{,}05)}$} \\
@@ -806,30 +809,19 @@ khi $p$ tăng (với $n$ cố định) và \textbf{giảm} khi $n$ tăng (với 
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\begin{frame}{Đánh giá phương pháp $T^2$ \& động lực cho phương pháp Bonferroni}
+\begin{frame}{Đánh giá khoảng $t$ từng biến và khoảng $T^2$}
 \begin{itemize}
-  \item Mức tin cậy của \textbf{tập} khoảng $T^2$ luôn là $0{,}95$ (với $n,p$
-        cố định); còn mức tin cậy \textbf{tổng thể} của tập khoảng $t$ riêng
-        lẻ có thể nhỏ hơn $0{,}95$ rất nhiều $\Rightarrow$ hai bên không cùng
-        ``mặt bằng''.
-  \item Khoảng $t$ riêng lẻ vẫn là thông tin tốt nhất cho \emph{một} trung
-        bình, nếu đó là suy luận duy nhất; một số nhà nghiên cứu chỉ tính
-        chúng khi kiểm định $T^2$ đã bác bỏ $H_0$.
+  \item So sánh ở Bảng 5.3 \textbf{không hoàn toàn công bằng}: mức tin cậy của
+        \textbf{tập} khoảng $T^2$ luôn là $0{,}95$ (với $n,p$ cố định), còn mức
+        tin cậy \textbf{tổng thể} của tập khoảng $t$ riêng lẻ có thể nhỏ hơn
+        $0{,}95$ rất nhiều.
+  \item Khoảng $t$ từng biến \textbf{quá ngắn} để duy trì mức tin cậy tổng thể
+        cho các phát biểu về, chẳng hạn, cả $p$ trung bình.
+  \item Tuy vậy, khoảng $t$ vẫn là thông tin tốt nhất về \emph{một} trung bình
+        nếu đó là suy luận duy nhất. Nếu chúng chỉ được tính khi kiểm định $T^2$
+        đã bác bỏ $H_0$, một số nhà nghiên cứu cho rằng chúng có thể phản ánh
+        thông tin về các trung bình \textbf{chính xác hơn} khoảng $T^2$.
 \end{itemize}
-
-\vspace{0.5em}
-\textbf{Ngược lại,} nếu \emph{chỉ} quan tâm $p$ trung bình thành phần, khoảng
-$T^2$ lại \textbf{quá rộng}:
-\begin{itemize}
-  \item Nếu $\mu_1,\mu_2$ nằm trong khoảng $T^2$ của chúng thì $(\mu_1,\mu_2)$
-        nằm trong hình chữ nhật tạo bởi hai khoảng đó — hình chữ nhật này
-        \textbf{chứa elip tin cậy và còn hơn thế}.
-  \item Elip (nhỏ hơn hình chữ nhật) đã có xác suất đúng $0{,}95$ phủ
-        $\boldsymbol\mu$ $\Rightarrow$ xác suất phủ $(\mu_1,\mu_2)$ của hình
-        chữ nhật \textbf{lớn hơn} $0{,}95$: độ tin cậy ``thừa'' không cần thiết.
-\end{itemize}
-
-$\Rightarrow$ Động lực cho cách tiếp cận thứ hai: \textbf{phương pháp Bonferroni}.
 \end{frame}
 
 % END
@@ -838,11 +830,11 @@ $\Rightarrow$ Động lực cho cách tiếp cận thứ hai: \textbf{phương p
 % =====================================================================
 
 % Mục 5.4 - Phần 3: Phương pháp so sánh bội Bonferroni và phần kết
-\begin{frame}{Đặt vấn đề}
+\begin{frame}{Phương pháp so sánh bội Bonferroni: đặt vấn đề}
   \begin{itemize}
-    \item Khoảng $T^2$ quá rộng nếu chỉ áp dụng cho riêng $p$ trung bình thành phần.
+    \item Ngược lại, khoảng $T^2$ \textbf{quá rộng} nếu chỉ áp dụng cho riêng $p$ trung bình thành phần.
     \item Xét Hình 5.2: nếu $\mu_1$ nằm trong khoảng $T^2$ của nó và $\mu_2$ nằm trong khoảng $T^2$ của nó thì $(\mu_1,\mu_2)$ nằm trong hình chữ nhật tạo bởi hai khoảng này.
-    \item Hình chữ nhật này \textbf{chứa elip tin cậy và còn hơn thế nữa}: xác suất phủ đồng thời $\mu_1,\mu_2$ lớn hơn $0{,}95$.
+    \item Hình chữ nhật này \textbf{chứa elip tin cậy và còn hơn thế nữa}; elip đã có xác suất phủ $0{,}95$, nên xác suất phủ đồng thời $\mu_1,\mu_2$ của hình chữ nhật lớn hơn $0{,}95$.
     \item Thông thường, ta chỉ quan tâm một \textbf{số nhỏ} $m$ phát biểu tin cậy $\Rightarrow$ có thể xây dựng khoảng đồng thời \textbf{ngắn hơn (chính xác hơn)} khoảng $T^2$.
     \item Cách làm này gọi là \textbf{phương pháp Bonferroni}, vì xuất phát từ một bất đẳng thức xác suất cùng tên.
   \end{itemize}
@@ -890,11 +882,13 @@ $\Rightarrow$ Động lực cho cách tiếp cận thứ hai: \textbf{phương p
     \item Không có thông tin về tầm quan trọng tương đối của các thành phần $\mu_i$ $\Rightarrow$ xét các khoảng $t$ riêng lẻ với $\alpha_i = \alpha/m$:
     \[
       \bar{x}_i \pm t_{n-1}\!\left(\frac{\alpha_i}{2}\right)\sqrt{\frac{s_{ii}}{n}}, \quad i=1,\ldots,m
+      \tag{$*7$}
     \]
     \item Vì $P\!\left[\bar{X}_i \pm t_{n-1}\!\left(\frac{\alpha}{2m}\right)\sqrt{\frac{S_{ii}}{n}} \text{ chứa } \mu_i\right] = 1-\frac{\alpha}{m}$, từ (5-28):
     \[
       P\!\left[\bar{X}_i \pm t_{n-1}\!\left(\tfrac{\alpha}{2m}\right)\sqrt{\tfrac{S_{ii}}{n}} \text{ chứa } \mu_i,\ \forall i\right]
       \ge 1 - \underbrace{\left(\tfrac{\alpha}{m}+\tfrac{\alpha}{m}+\cdots+\tfrac{\alpha}{m}\right)}_{m \text{ số hạng}} = 1-\alpha
+      \tag{$*8$}
     \]
   \end{itemize}
   \note{Câu hỏi có thể gặp: \emph{Vì sao là $t_{n-1}(\alpha/2m)$?} Khoảng $t$ hai phía có mức ý nghĩa $\alpha_i=\alpha/m$ dùng điểm phần trăm trên $100(\alpha_i/2)$ của phân phối $t$ với $n-1$ bậc tự do, tức $t_{n-1}\!\left(\frac{\alpha}{2m}\right)$ (cách định nghĩa $t_{n-1}(\alpha/2)$ ở trang 224). \emph{Vì sao chọn $\alpha_i=\alpha/m$?} Vì không biết thành phần nào quan trọng hơn, và $m$ số hạng $\alpha/m$ cộng lại đúng bằng $\alpha$.}
@@ -990,463 +984,13 @@ $\Rightarrow$ Động lực cho cách tiếp cận thứ hai: \textbf{phương p
 \end{frame}
  
 % ---------------------------------------------------------------------
-\begin{frame}{Khi nào dùng Bonferroni?}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Ưu điểm}
-        \small
-        \begin{itemize}
-          \item Kiểm soát tỷ lệ sai số tổng thể $\alpha_1+\cdots+\alpha_m$, \textbf{bất kể cấu trúc tương quan}.
-          \item Linh hoạt chia $\alpha_i$: nhóm phát biểu quan trọng dùng $\alpha_i$ khác với nhóm ít quan trọng.
-          \item Với $m$ nhỏ, khoảng \textbf{ngắn hơn (chính xác hơn)} khoảng $T^2$ (Bảng 5.4).
-          \item Dễ áp dụng.
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Phạm vi áp dụng}
-        \small
-        \begin{itemize}
-          \item Chú ý đến một \textbf{số nhỏ} $m$ phát biểu tin cậy.
-          \item Các phát biểu được \textbf{chỉ định trước khi thu thập dữ liệu}.
-          \item Nếu muốn chọn $\mathbf{a}$ sau khi xem dữ liệu (dò quét dữ liệu), khoảng $T^2$ là lý tưởng vì $1-\alpha$ không đổi với mọi $\mathbf{a}$.
-          \item Bonferroni cho khoảng từng thành phần với độ tin cậy chung ≥ 1−α bất kể cấu trúc tương quan; để xét cặp $(\mu_i,\mu_k)$ có tính đến tương quan thì dùng elip tin cậy.
-        \end{itemize}
-      \end{block}
-    \end{column}
-  \end{columns}
-  \note{Mọi ý trên đều có trong sách: ưu điểm ở trang 232 (bất đẳng thức 5-28 và hai nhận xét sau nó) và trang 234 (Bảng 5.4); phạm vi áp dụng ở trang 232 (``small number'', ``prior to the collection of data''), trang 226 (dò quét dữ liệu, elip 5-26) và trang 234 (miền tin cậy tính đến tương quan).}
-\end{frame}
- 
-% ---------------------------------------------------------------------
-\begin{frame}{Kết luận }
+\begin{frame}{Kết luận: chọn phương pháp nào?}
+  \small
   \begin{itemize}
-    \item Phương pháp Bonferroni cho khoảng \textbf{ngắn hơn} khi $m=p$.
-    \item Vì \textbf{dễ áp dụng} và cho các khoảng tin cậy \textbf{tương đối ngắn} cần thiết cho suy diễn thống kê, ta thường áp dụng các \textbf{khoảng $t$ đồng thời dựa trên phương pháp Bonferroni}.
-    \item Nếu muốn chọn $\mathbf{a}$ sau khi xem dữ liệu (dò quét dữ liệu), khoảng $T^2$ là lý tưởng vì $1-\alpha$ không đổi với mọi $\mathbf{a}$.
-    \item Nếu cần các giá trị hợp lý cho cặp $(\mu_1,\mu_2)$ có tính đến tương quan giữa các biến, dùng \textbf{miền tin cậy} (elip) cho $\boldsymbol{\mu}$.
+    \item \textbf{Bonferroni} (5-29): khi chỉ quan tâm một \textbf{số nhỏ} $m$ phát biểu được \textbf{chỉ định trước khi thu thập dữ liệu}. Khoảng \textbf{ngắn hơn} khoảng $T^2$ (Bảng 5.4) và \textbf{dễ áp dụng}, nên thường được dùng nhất.
+    \item \textbf{Khoảng $T^2$} ($*5$), (5-24): khi muốn chọn $\mathbf{a}$ \emph{sau khi} xem dữ liệu (dò quét dữ liệu), vì $1-\alpha$ không đổi với mọi $\mathbf{a}$.
+    \item \textbf{Miền tin cậy (elip)} (5-18), (5-26): khi cần các giá trị hợp lý cho cặp $(\mu_i,\mu_k)$ \textbf{có tính đến tương quan} giữa các biến.
+    \item \textbf{Khoảng $t$ riêng lẻ} (5-27): chỉ phù hợp khi đó là suy luận duy nhất; với $p$ phát biểu, độ tin cậy chung có thể giảm mạnh (biến độc lập: $(1-\alpha)^p$, xem ($*6$)).
   \end{itemize}
-  \note{Hai ý đầu là câu kết của mục 5.4 (trang 234). Ý thứ ba lấy từ cuối Ví dụ 5.6 (trang 233--234).}
+  \note{Ý về Bonferroni là câu kết của mục 5.4 (trang 232--234: số nhỏ phát biểu, chỉ định trước khi thu thập dữ liệu, Bảng 5.4). Ý về khoảng $T^2$ và elip lấy từ trang 226 (dò quét dữ liệu, elip 5-26) và cuối Ví dụ 5.6 (trang 233--234). Lưu ý $(1-\alpha)^p$ chỉ đúng khi các biến độc lập.}
 \end{frame}
-
-\iffalse
-% Duplicate block kept out of the compiled deck. The same content already appears
-% before the Bonferroni subsection, which matches the order in the translation.
-% BEGIN Vũ Công Hiệp
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Từ So Sánh Đơn Lẻ Đến Đánh Giá Đồng Thời Cho Mọi Vectơ $a$}
-Với dữ liệu $\mathbf x_1,\ldots,\mathbf x_n$ và một $\mathbf a$ cụ thể, khoảng tin cậy
-$t$ trong (5-21) chính là tập các giá trị $\mathbf a'\boldsymbol\mu$ thoả
-
-\[
-t^2=\frac{n\bigl(\mathbf a'\bar{\mathbf x}-\mathbf a'\boldsymbol\mu\bigr)^2}{\mathbf a'\mathbf S\mathbf a}
-\;\le\; t^2_{n-1}(\alpha/2)
-\tag{5-22}
-\]
-
-\begin{itemize}
-  \item Muốn phát biểu \textbf{đồng thời} cho \emph{nhiều} lựa chọn $\mathbf a$,
-        hằng số $t^2_{n-1}(\alpha/2)$ phải được thay bằng một hằng số lớn hơn, $c^2$.
-  \item Xét các $\mathbf a$ sao cho $t^2\le c^2$: điều này tự nhiên dẫn tới việc
-        tìm
-\[
-\max_{\mathbf a}\, t^2=\max_{\mathbf a}\frac{n\bigl[\mathbf a'(\bar{\mathbf x}-\boldsymbol\mu)\bigr]^2}{\mathbf a'\mathbf S\mathbf a}.
-\]
-\end{itemize}
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Ứng Dụng Bổ Đề Cực Đại Hóa Thiết Lập Thống Kê $T^2$}
-Áp dụng bổ đề cực đại hoá (2-50) với $\mathbf x=\mathbf a$, $\mathbf d=(\bar{\mathbf x}-\boldsymbol\mu)$, $\mathbf B=\mathbf S$:
-
-\begin{keyformula}[Liên hệ với thống kê Hotelling $T^2$]
-{\small
-\[
-\max_{\mathbf a}\frac{n\bigl[\mathbf a'(\bar{\mathbf x}-\boldsymbol\mu)\bigr]^2}{\mathbf a'\mathbf S\mathbf a}
-= n\Bigl[\max_{\mathbf a}\frac{\bigl[\mathbf a'(\bar{\mathbf x}-\boldsymbol\mu)\bigr]^2}{\mathbf a'\mathbf S\mathbf a}\Bigr]
-= n(\bar{\mathbf x}-\boldsymbol\mu)'\mathbf S^{-1}(\bar{\mathbf x}-\boldsymbol\mu)
-= T^2
-\tag{5-23}
-\]
-}
-\end{keyformula}
-
-\begin{itemize}
-  \item Giá trị cực đại đạt được khi $\mathbf a$ \textbf{tỉ lệ với} $\mathbf S^{-1}(\bar{\mathbf x}-\boldsymbol\mu)$.
-  \item Đây chính là thống kê Hotelling $T^2$ đã biết — không phải một đại lượng mới.
-\end{itemize}
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Thiết Lập Khoảng Tin Cậy Đồng Thời}
-\textbf{Kết quả 5.3.} Cho $\mathbf X_1,\mathbf X_2,\ldots,\mathbf X_n$ là một mẫu
-ngẫu nhiên từ tổng thể $N_p(\boldsymbol\mu,\boldsymbol\Sigma)$ với $\boldsymbol\Sigma$
-xác định dương. Khi đó, \textbf{đồng thời với mọi $\mathbf a$}, khoảng
-
-\begin{keyformula}[Khoảng tin cậy đồng thời]
-{\small
-\[
-\left( \mathbf{a}'\bar{\mathbf{X}} - \sqrt{\frac{p(n-1)}{n-p}F_{p,n-p}(\alpha)} \sqrt{\frac{\mathbf{a}'\mathbf{S}\mathbf{a}}{n}} \; , \; \mathbf{a}'\bar{\mathbf{X}} + \sqrt{\frac{p(n-1)}{n-p}F_{p,n-p}(\alpha)} \sqrt{\frac{\mathbf{a}'\mathbf{S}\mathbf{a}}{n}} \right)
-\]}
-\end{keyformula}
-
-sẽ chứa $\mathbf a'\boldsymbol\mu$ với xác suất $1-\alpha$.
-
-\vspace{0.5em}
-\begin{itemize}
-  \item Khác với (5-22): hằng số $t^2_{n-1}(\alpha/2)$ được thay bằng
-        $c^2=\dfrac{p(n-1)}{n-p}F_{p,n-p}(\alpha)$ để giữ đúng xác suất
-        \textbf{cho mọi $\mathbf a$ cùng lúc}.
-\end{itemize}
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Chứng minh Kết quả 5.3}
-Từ (5-23): $T^2=n(\bar{\mathbf x}-\boldsymbol\mu)'\mathbf S^{-1}(\bar{\mathbf x}-\boldsymbol\mu)\le c^2$
-kéo theo, \textbf{với mọi $\mathbf a$},
-
-\[
-\frac{n(\mathbf a'\bar{\mathbf x}-\mathbf a'\boldsymbol\mu)^2}{\mathbf a'\mathbf S\mathbf a}\le c^2
-\quad\Longleftrightarrow\quad
-\mathbf a'\bar{\mathbf x}-c\sqrt{\frac{\mathbf a'\mathbf S\mathbf a}{n}}
-\le \mathbf a'\boldsymbol\mu \le
-\mathbf a'\bar{\mathbf x}+c\sqrt{\frac{\mathbf a'\mathbf S\mathbf a}{n}}.
-\]
-
-\[
-c^2=\frac{p(n-1)}{n-p}F_{p,n-p}(\alpha),
-\qquad
-P\!\left(T^2\le c^2\right)=1-\alpha.
-\]
-
-Do đó, các khoảng trên đồng thời chứa $\mathbf a'\boldsymbol\mu$ với mọi
-$\mathbf a$, với xác suất $1-\alpha$.
-
-\end{frame}
-
-\subsection{Các khoảng \texorpdfstring{$T^2$}{T²} đồng thời và ý nghĩa hình học}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Các khoảng $T^2$ cho từng thành phần $\mu_i$}
-Gọi các khoảng đồng thời của Kết quả 5.3 là \textbf{các khoảng $T^2$}, vì xác
-suất phủ được xác định bởi phân phối của $T^2$.
-
-Lần lượt chọn $\mathbf a'=[1,0,\ldots,0],\ [0,1,\ldots,0],\ \ldots,\ [0,\ldots,0,1]$:
-
-\begin{keyformula}[Khoảng cho từng thành phần]
-{\footnotesize
-\begin{equation*}
-\tag{5-24}
-\begin{aligned}
-\bar x_1-\sqrt{\tfrac{p(n-1)}{n-p}F_{p,n-p}(\alpha)}\sqrt{\tfrac{s_{11}}{n}}
-&\le \mu_1\le
-\bar x_1+\sqrt{\tfrac{p(n-1)}{n-p}F_{p,n-p}(\alpha)}\sqrt{\tfrac{s_{11}}{n}}\\
-&\ \vdots\\
-\bar x_p-\sqrt{\tfrac{p(n-1)}{n-p}F_{p,n-p}(\alpha)}\sqrt{\tfrac{s_{pp}}{n}}
-&\le \mu_p\le
-\bar x_p+\sqrt{\tfrac{p(n-1)}{n-p}F_{p,n-p}(\alpha)}\sqrt{\tfrac{s_{pp}}{n}}
-\end{aligned}
-\end{equation*}}
-\end{keyformula}
-
-đều đồng thời có độ tin cậy đạt ít nhất $1-\alpha$.
-\end{frame}
-
-% ----------------------------------------------------------------------------
-% ----------------------------------------------------------------------------
-\begin{frame}{Mở Rộng: Khoảng Tin Cậy Đồng Thời Cho Hiệu Hai Trung Bình}
-  \textbf{Khoảng tin cậy cho hiệu $\mu_i - \mu_k$:}
-  
-  Chọn $\mathbf{a} = [0, \dots, 1, \dots, -1, \dots, 0]'$ sao cho $a_i = 1$, $a_k = -1$ và các thành phần khác bằng $0$. Khi đó:
-  \[
-    \mathbf{a}'\mathbf{S}\mathbf{a} = s_{ii} - 2s_{ik} + s_{kk}
-  \]
-  
-  \vspace{-0.5em}
-  Hệ số tin cậy $1-\alpha$ được bảo đảm không đổi theo công thức:
-  \begin{equation*}
-    (\bar{x}_i - \bar{x}_k) - c \sqrt{\frac{s_{ii} - 2s_{ik} + s_{kk}}{n}}
-    \le \mu_i - \mu_k \le
-    (\bar{x}_i - \bar{x}_k) + c \sqrt{\frac{s_{ii} - 2s_{ik} + s_{kk}}{n}}
-    \tag{5-25}
-  \end{equation*}
-  với hằng số tới hạn $c = \sqrt{\frac{p(n-1)}{n-p} F_{p,n-p}(\alpha)}$.
-
-  \begin{itemize}
-    \item Đây là trường hợp riêng của khoảng đồng thời $T^2$ cho tổ hợp $\mathbf{a}'\boldsymbol{\mu}$.
-    \item Độ tin cậy chung $1-\alpha$ luôn được bảo đảm mà không cần hiệu chỉnh Bonferroni.
-  \end{itemize}
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Mở Rộng: Elip Tin Cậy Cho Cặp Trung Bình}
-  \begin{block}{Elip tin cậy cho cặp $(\mu_i, \mu_k)$ (Phụ lục 5A)}
-    Tập hợp các giá trị $(\mu_i, \mu_k)$ thỏa mãn bất đẳng thức:
-    \begin{equation*}
-      n
-      \begin{bmatrix}
-        \bar{x}_i - \mu_i \\
-        \bar{x}_k - \mu_k
-      \end{bmatrix}'
-      \begin{bmatrix}
-        s_{ii} & s_{ik} \\
-        s_{ik} & s_{kk}
-      \end{bmatrix}^{-1}
-      \begin{bmatrix}
-        \bar{x}_i - \mu_i \\
-        \bar{x}_k - \mu_k
-      \end{bmatrix}
-      \le \frac{p(n-1)}{n-p} F_{p,n-p}(\alpha) \tag{5-26}
-    \end{equation*}
-  \end{block}
-
-  \begin{itemize}
-    \item \textbf{Khảo sát linh hoạt:} Do độ tin cậy $1-\alpha$ giữ nguyên với mọi $\mathbf{a}$, ta có thể lập khoảng $T^2$ cho bất kỳ tổ hợp tuyến tính nào sau khi quan sát dữ liệu.
-    \item \textbf{Ý nghĩa hình học:} Miền elip mô tả đồng thời miền khả dĩ của $(\mu_i, \mu_k)$, tích hợp cả biến động biên ($s_{ii}, s_{kk}$) lẫn tương quan mẫu ($s_{ik}$).
-  \end{itemize}
-\end{frame}
-% ----------------------------------------------------------------------------
-\begin{frame}{Khoảng $T^2$ là hình chiếu của ellipsoid tin cậy}
-Các khoảng $T^2$ đồng thời cho từng thành phần chính là hình chiếu, của ellipsoid tin cậy lên các trục thành phần.
-
-\vspace{0.5em}
-\textbf{Ví dụ 5.4} (số liệu bức xạ vi ba, $n=42,\,p=2$, $F_{2,40}(.05)=3{,}23$):
-
-\vspace{0.3em}
-{\small
-\[
-\bar x_1\pm\sqrt{\tfrac{2(41)}{40}(3{,}23)}\sqrt{\tfrac{.0144}{42}}
-\;\Rightarrow\; (.516,\ .612)
-\]
-\[
-\bar x_2\pm\sqrt{\tfrac{2(41)}{40}(3{,}23)}\sqrt{\tfrac{.0146}{42}}
-\;\Rightarrow\; (.555,\ .651)
-\]}
-
-\vspace{0.3em}
-Hai khoảng này khớp với các khoảng $T^2$ trong Hình 5.2 (khung tiếp theo),
-chính là hình chiếu của elip tin cậy 95\% (Ví dụ 5.3) lên hai trục $\mu_1,\mu_2$.
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}[t]{Ví dụ 5.4}
-\centering
-\IfFileExists{figures/figure_5_2.png}{%
-  \includegraphics[width=0.95\textwidth,height=0.74\textheight,keepaspectratio]{figures/figure_5_2.png}%
-}{%
-  \fbox{\parbox[c][0.4\textheight][c]{0.62\textwidth}{\centering
-    Chưa có ảnh Hình 5.2.\\[0.5em]
-    {\footnotesize\texttt{figures/figure\_5\_2.png}}}}
-}
-
-\vspace{0.15em}
-{\footnotesize Hình 5.2 — Khoảng $T^2$ đồng thời cho các trung bình thành phần
-như các bóng của elip tin cậy trên các trục — số liệu bức xạ vi ba.\par}
-
-\end{frame}
-
-\subsection{Ví dụ 5.5 — dữ liệu bài kiểm tra đại học (CLEP)}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Ví dụ 5.5: Dữ Liệu Điểm Thi \& Thiết Lập Hệ Số Tới Hạn}
-Điểm số của $n=87$ sinh viên, trong 3 bài kiểm tra ứng với 3 biến: $X_1=$ khoa học xã hội \& lịch sử, $X_2=$ ngôn ngữ,
-$X_3=$ khoa học.Ta có các số liệu sau:
-
-\[
-\bar{\mathbf x}=\begin{bmatrix}526{,}29\\54{,}69\\25{,}13\end{bmatrix},
-\qquad
-\mathbf S=\begin{bmatrix}
-5808{,}06 & 597{,}84 & 222{,}03\\
-597{,}84 & 126{,}05 & 23{,}39\\
-222{,}03 & 23{,}39 & 23{,}11
-\end{bmatrix}
-\]
-Xét các khoảng tin cậy đồng thời $95\%$ cho $\mu_1, \mu_2, \mu_3$
-Ta có:
-\[
-\frac{p(n-1)}{n-p}F_{p,n-p}(\alpha)=\frac{3(86)}{84}F_{3,84}(.05)=\frac{3(86)}{84}(2{,}7)=8{,}29
-\]
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Ví dụ 5.5: các khoảng $T^2$ đồng thời cho $\mu_1,\mu_2,\mu_3$}
-Áp dụng (5-24) với $c^2=8{,}29$:
-
-\begin{align*}
-526{,}29 - \sqrt{8{,}29}\sqrt{\tfrac{5808{,}06}{87}} \le \mu_1 \le 526{,}29 + \sqrt{8{,}29}\sqrt{\tfrac{5808{,}06}{87}}
-&\;\Rightarrow\; 503{,}06\le \mu_1\le 550{,}12\\[1ex]
-54{,}69 - \sqrt{8{,}29}\sqrt{\tfrac{126{,}05}{87}} \le \mu_2 \le 54{,}69 + \sqrt{8{,}29}\sqrt{\tfrac{126{,}05}{87}}
-&\;\Rightarrow\; 51{,}22\le \mu_2\le 58{,}16\\[1ex]
-25{,}13 - \sqrt{8{,}29}\sqrt{\tfrac{23{,}11}{87}} \le \mu_3 \le 25{,}13 + \sqrt{8{,}29}\sqrt{\tfrac{23{,}11}{87}}
-&\;\Rightarrow\; 23{,}65\le \mu_3\le 26{,}61
-\end{align*}
-
-\begin{itemize}
-  \item Dữ liệu không sai lệch nghiêm trọng khỏi tính chuẩn (trừ khả năng
-        ngoại lệ ở điểm ngôn ngữ); $n$ đủ lớn để biện minh phương pháp (Mục 5.5).
-  \item Ba khoảng trên có thể \textbf{rộng hơn mức cần thiết}, vì với cùng
-        $1-\alpha$ ta có thể hỏi trực tiếp về các \emph{hiệu}.
-\end{itemize}
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Ví dụ 5.5: Ước lượng chênh lệch $\mu_2 - \mu_3$ \& Elip cho cặp biến}
-\textbf{Khoảng cho $\mu_2-\mu_3$}, theo (5-25) với $\mathbf a'=[0,1,-1]$:
-
-\[
-d_{23}=\sqrt{8{,}29}
-\sqrt{\frac{126{,}05+23{,}11-2(23{,}39)}{87}}
-=3{,}12.
-\]
-\[
-29{,}56-d_{23}\le \mu_2-\mu_3\le 29{,}56+d_{23}
-\quad\Rightarrow\quad
-26{,}44\le \mu_2-\mu_3\le 32{,}68.
-\]
-
-\vspace{0.3em}
-\textbf{Elip tin cậy cho $(\mu_2,\mu_3)$}, theo (5-26):
-
-{\small
-\[
-0{,}849(54{,}69-\mu_2)^2+4{,}633(25{,}13-\mu_3)^2
-\]
-\[
--\,2(0{,}859)(54{,}69-\mu_2)(25{,}13-\mu_3)\;\le\; 8{,}29
-\]}
-
-Elip này — cùng hai elip cho $(\mu_1,\mu_2)$ và $(\mu_1,\mu_3)$ — được vẽ trong
-Hình 5.3.
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}[t]{Ví dụ 5.5}
-\centering
-\IfFileExists{figures/figure_5_3.png}{%
-  \includegraphics[width=0.95\textwidth,height=0.74\textheight,keepaspectratio]{figures/figure_5_3.png}%
-}{%
-  \fbox{\parbox[c][0.4\textheight][c]{0.78\textwidth}{\centering
-    Chưa có ảnh Hình 5.3.\\[0.5em]
-    {\footnotesize\texttt{figures/figure\_5\_3.png}}}}
-}
-
-\vspace{0.15em}
-{\footnotesize Hình 5.3 — Elip tin cậy 95\% cho từng cặp trung bình và các
-khoảng $T^2$ đồng thời (hình chiếu) — dữ liệu bài kiểm tra đại học.\par}
-
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Phương pháp so sánh riêng lẻ từng biến}
-Bỏ qua cấu trúc hiệp phương sai, chỉ dùng $\mathbf a'=[0,\ldots,a_i,\ldots,0]$
-với $a_i=1$ (gợi ý bởi (5-21)):
-
-{\footnotesize
-\begin{equation*}
-\tag{5-27}
-\begin{aligned}
-\bar x_1-t_{n-1}(\alpha/2)\sqrt{\tfrac{s_{11}}{n}}&\le \mu_1\le
-\bar x_1+t_{n-1}(\alpha/2)\sqrt{\tfrac{s_{11}}{n}}\\
-&\ \vdots\\
-\bar x_p-t_{n-1}(\alpha/2)\sqrt{\tfrac{s_{pp}}{n}}&\le \mu_p\le
-\bar x_p+t_{n-1}(\alpha/2)\sqrt{\tfrac{s_{pp}}{n}}
-\end{aligned}
-\end{equation*}}
-
-\begin{itemize}
-  \item Trước khi lấy mẫu, khoảng thứ $i$ có xác suất $1-\alpha$ phủ $\mu_i$.
-  \item Nhưng xác suất để \textbf{tất cả} các khoảng cùng chứa các $\mu_i$
-        tương ứng \textbf{không phải là} $1-\alpha$ nói chung.
-\end{itemize}
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Hiện tượng sụt giảm độ tin cậy tổng thể khi các biến độc lập}
-Xét trường hợp đặc biệt: phân phối chuẩn đồng thời và
-\[
-\boldsymbol\Sigma=\operatorname{diag}(\sigma_{11},\sigma_{22},\ldots,\sigma_{pp}).
-\]
-Khi đó các biến độc lập $\Rightarrow$ áp dụng quy tắc nhân xác suất:
-\[
-P[\text{tất cả khoảng $t$ trong (5-27) đều chứa }\mu_i]
-=(1-\alpha)(1-\alpha)\cdots(1-\alpha)=(1-\alpha)^p
-\]
-
-\begin{block}{Ví dụ số}
-$1-\alpha=0{,}95,\ p=6$ $\Rightarrow$ $(0{,}95)^6\approx 0{,}74$.
-\end{block}
-
-Dù mỗi khoảng ``tin cậy 95\%'', khẳng định \textbf{chung} cho cả 6 biến chỉ còn
-đúng khoảng 74\%.
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Sự gia tăng độ rộng của khoảng tin cậy đồng thời $T^2$}
-Để giữ xác suất $1-\alpha$ cho \textbf{tất cả} phát biểu cùng lúc, khoảng cho
-từng thành phần phải rộng hơn khoảng $t$ riêng lẻ — mức độ phụ thuộc $p$, $n$,
-$1-\alpha$.
-
-\begin{block}{Ví dụ với: $1-\alpha=0{,}95,\ n=15,\ p=4$}
-\[
-\sqrt{\frac{4(14)}{11}(3{,}36)}=4{,}14
-\qquad\text{so với}\qquad
-t_{14}(.025)=2{,}145
-\]
-\[
-100\left(\frac{4{,}14-2{,}145}{2{,}145}\right)\approx 93\%\ \text{rộng hơn}
-\]
-\end{block}
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{So sánh hệ số tới hạn giữa khoảng $t$ và khoảng $T^2$}
-\centering
-\begin{tabular}{c c c c}
-\toprule
-$n$ & $t_{n-1}(0{,}025)$ & \multicolumn{2}{c}{$\sqrt{\dfrac{(n-1)p}{n-p}F_{p,n-p}(0{,}05)}$} \\
-\cmidrule(lr){3-4}
- & & $p=4$ & $p=10$ \\
-\midrule
-15 & 2,145 & 4,14 & 11,52 \\
-25 & 2,064 & 3,60 & 6,39 \\
-50 & 2,010 & 3,31 & 5,05 \\
-100 & 1,970 & 3,19 & 4,61 \\
-$\infty$ & 1,960 & 3,08 & 4,28 \\
-\bottomrule
-\end{tabular}
-
-\vspace{0.5em}
-\footnotesize Độ rộng tương đối của khoảng $T^2$ so với khoảng $t$ \textbf{tăng}
-khi $p$ tăng (với $n$ cố định) và \textbf{giảm} khi $n$ tăng (với $p$ cố định).
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}{Đánh giá phương pháp $T^2$ \& động lực cho phương pháp Bonferroni}
-\begin{itemize}
-  \item Mức tin cậy của \textbf{tập} khoảng $T^2$ luôn là $0{,}95$ (với $n,p$
-        cố định); còn mức tin cậy \textbf{tổng thể} của tập khoảng $t$ riêng
-        lẻ có thể nhỏ hơn $0{,}95$ rất nhiều $\Rightarrow$ hai bên không cùng
-        ``mặt bằng''.
-  \item Khoảng $t$ riêng lẻ vẫn là thông tin tốt nhất cho \emph{một} trung
-        bình, nếu đó là suy luận duy nhất; một số nhà nghiên cứu chỉ tính
-        chúng khi kiểm định $T^2$ đã bác bỏ $H_0$.
-\end{itemize}
-
-\vspace{0.5em}
-\textbf{Ngược lại,} nếu \emph{chỉ} quan tâm $p$ trung bình thành phần, khoảng
-$T^2$ lại \textbf{quá rộng}:
-\begin{itemize}
-  \item Nếu $\mu_1,\mu_2$ nằm trong khoảng $T^2$ của chúng thì $(\mu_1,\mu_2)$
-        nằm trong hình chữ nhật tạo bởi hai khoảng đó — hình chữ nhật này
-        \textbf{chứa elip tin cậy và còn hơn thế}.
-  \item Elip (nhỏ hơn hình chữ nhật) đã có xác suất đúng $0{,}95$ phủ
-        $\boldsymbol\mu$ $\Rightarrow$ xác suất phủ $(\mu_1,\mu_2)$ của hình
-        chữ nhật \textbf{lớn hơn} $0{,}95$: độ tin cậy ``thừa'' không cần thiết.
-\end{itemize}
-
-$\Rightarrow$ Động lực cho cách tiếp cận thứ hai: \textbf{phương pháp Bonferroni}.
-\end{frame}
-
-% END
-\fi
