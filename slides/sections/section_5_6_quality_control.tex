@@ -336,6 +336,14 @@
   \small \textbf{Bài học:} sự dịch chuyển của một biến bị che khuất khi gộp vào một giá trị \(T^2\) duy nhất.
 \end{frame}
 
+\begin{frame}{Kiểm soát các quan sát trong tương lai}
+  \begin{itemize}
+    \item \textbf{Mục tiêu:} dùng dữ liệu \(\vect{x}_1,\dots,\vect{x}_n\) thu thập khi quy trình ổn định để thiết lập miền kiểm soát cho một hoặc nhiều quan sát \(\vect{x}\) trong tương lai.
+    \item Miền mà quan sát tương lai được kỳ vọng sẽ nằm trong đó gọi là \textbf{miền dự báo} (miền tiên đoán).
+    \item Nếu quy trình ổn định, ta coi các quan sát là độc lập và có phân phối \(N_p(\vect{\mu},\vect{\Sigma})\).
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Miền kiểm soát cho quan sát tương lai}
   \begin{block}{Kết quả 5.6: miền dự báo cho quan sát tương lai \(\vect{x}\)}
     \small
@@ -343,13 +351,55 @@
     \begin{equation*}
       T^2=\frac{n}{n+1}(\vect{X}-\bar{\vect{X}})\trans\mat{S}\inv(\vect{X}-\bar{\vect{X}})
       \sim\frac{(n-1)p}{n-p}F_{p,n-p}
+      \tag{5.6.1}
     \end{equation*}
     và ellipsoid dự báo \(100(1-\alpha)\%\) gồm mọi \(\vect{x}\) thỏa
     \begin{equation*}
       (\vect{x}-\bar{\vect{x}})\trans\mat{S}\inv(\vect{x}-\bar{\vect{x}})\le\frac{n^2-1}{n(n-p)}\,pF_{p,n-p}(\alpha)
+      \tag{5.6.2}
     \end{equation*}
   \end{block}
-  \footnotesize Cốt lõi: \(\operatorname{Cov}(\vect{X}-\bar{\vect{X}})=\frac{n+1}{n}\vect{\Sigma}\). Các quan sát \(\vect{x}_1,\dots,\vect{x}_n\) dùng để lập miền phải thu khi quy trình ổn định.
+\end{frame}
+
+\begin{frame}{Chứng minh Kết quả 5.6}
+  \begin{itemize}
+    \item \(\vect{X}-\bar{\vect{X}}\) có kỳ vọng \(\vect{0}\). Vì \(\vect{X}\) là quan sát tương lai nên \(\vect{X}\) và \(\bar{\vect{X}}\) độc lập, do đó
+      \begin{align*}
+        \operatorname{Cov}(\vect{X}-\bar{\vect{X}})&=\operatorname{Cov}(\vect{X})+\operatorname{Cov}(\bar{\vect{X}})\\
+        &=\vect{\Sigma}+\frac1n\vect{\Sigma}=\frac{n+1}{n}\vect{\Sigma}. \tag{5.6.3}
+      \end{align*}
+    \item Theo Kết quả 4.8,
+      \begin{equation*}
+        \sqrt{\frac{n}{n+1}}\,(\vect{X}-\bar{\vect{X}})\sim N_p(\vect{0},\vect{\Sigma}).
+      \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Chứng minh Kết quả 5.6}
+  \begin{itemize}
+    \item Biểu thức
+      \begin{equation*}
+        \sqrt{\frac{n}{n+1}}(\vect{X}-\bar{\vect{X}})\trans\,\mat{S}\inv\sqrt{\frac{n}{n+1}}(\vect{X}-\bar{\vect{X}})
+      \end{equation*}
+      kết hợp một vectơ chuẩn \(N_p(\vect{0},\vect{\Sigma})\) với ma trận Wishart độc lập \(W_{p,n-1}(\vect{\Sigma})\) theo dạng
+      \begin{equation*}
+        (\text{vectơ chuẩn})\trans\left(\frac{\text{ma trận Wishart}}{\text{bậc tự do}}\right)^{-1}(\text{vectơ chuẩn}),
+      \end{equation*}
+      nên có phân phối \(F\) nhân hệ số tỉ lệ theo (5-8): \(\dfrac{(n-1)p}{n-p}F_{p,n-p}\).
+    \item Hằng số của ellipsoid suy ra từ (5-6).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Ý nghĩa của miền dự báo}
+  \begin{itemize}
+    \item Miền dự báo cho một quan sát tương lai \(\vect{x}\) là một \textbf{ellipsoid}: tâm tại vectơ trung bình mẫu ban đầu \(\bar{\vect{x}}\), các trục xác định bởi các vectơ riêng của \(\mat{S}\).
+    \item Vì
+      \begin{equation*}
+        P\left[(\vect{X}-\bar{\vect{X}})\trans\mat{S}\inv(\vect{X}-\bar{\vect{X}})\le\frac{n^2-1}{n(n-p)}\,pF_{p,n-p}(\alpha)\right]=1-\alpha
+      \end{equation*}
+      nên trước khi có quan sát mới, xác suất \(\vect{X}\) rơi vào ellipsoid dự báo là \(1-\alpha\).
+    \item Các quan sát hiện có phải \alert{ổn định} mới dùng được để thiết lập miền kiểm soát cho các quan sát tương lai.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Elip kiểm soát cho quan sát tương lai}
@@ -372,8 +422,8 @@
 \begin{frame}{Biểu đồ \(T^2\) cho quan sát tương lai}
   Với mỗi quan sát mới \(\vect{x}\), vẽ theo thời gian (LCL \(=0\)):
   \begin{align*}
-    T^2&=\frac{n}{n+1}(\vect{x}-\bar{\vect{x}})\trans\mat{S}\inv(\vect{x}-\bar{\vect{x}})\\
-    \mathrm{UCL}&=\frac{(n-1)p}{n-p}F_{p,n-p}(.05)
+    T^2&=\frac{n}{n+1}(\vect{x}-\bar{\vect{x}})\trans\mat{S}\inv(\vect{x}-\bar{\vect{x}})\tag{5.6.4}\\
+    \mathrm{UCL}&=\frac{(n-1)p}{n-p}F_{p,n-p}(.05)\tag{5.6.5}
   \end{align*}
   Điểm trên UCL cho thấy có thể có biến động do nguyên nhân đặc biệt; cần kiểm tra quá trình để quyết định có hành động khắc phục ngay hay không.
 \end{frame}
@@ -381,7 +431,7 @@
 \begin{frame}{Biểu đồ dựa trên trung bình mẫu con}
   Mỗi lần lấy \(m>1\) đơn vị; có \(n\) mẫu con, trung bình \(\bar{\vect{X}}_j\), ma trận \(\mat{S}_j\), trung bình chung \(\bar{\bar{\vect{X}}}\).
   \begin{align*}
-    \operatorname{Cov}(\bar{\vect{X}}_j-\bar{\bar{\vect{X}}})&=\frac{n-1}{nm}\vect{\Sigma}\\
+    \operatorname{Cov}(\bar{\vect{X}}_j-\bar{\bar{\vect{X}}})&=\frac{n-1}{nm}\vect{\Sigma}\tag{5.6.6}\\
     \mat{S}&=\frac1n(\mat{S}_1+\cdots+\mat{S}_n)
   \end{align*}
   \((nm-n)\mat{S}\) có phân phối Wishart, độc lập với \(\bar{\bar{\vect{X}}}\). Khi đó:
@@ -400,8 +450,8 @@
   \end{equation}
   Biểu đồ \(T^2\), \(j=1,\dots,n\) (UCL xấp xỉ \(\chi^2_p(.05)\) khi \(n\) lớn):
   \begin{align*}
-    T_j^2&=m(\bar{\vect{X}}_j-\bar{\bar{\vect{X}}})\trans\mat{S}\inv(\bar{\vect{X}}_j-\bar{\bar{\vect{X}}})\\
-    \mathrm{UCL}&=\frac{(n-1)(m-1)p}{nm-n-p+1}F_{p,\,nm-n-p+1}(.05)
+    T_j^2&=m(\bar{\vect{X}}_j-\bar{\bar{\vect{X}}})\trans\mat{S}\inv(\bar{\vect{X}}_j-\bar{\bar{\vect{X}}})\tag{5.6.7}\\
+    \mathrm{UCL}&=\frac{(n-1)(m-1)p}{nm-n-p+1}F_{p,\,nm-n-p+1}(.05)\tag{5.6.8}
   \end{align*}
 \end{frame}
 
@@ -413,9 +463,9 @@
   \end{equation*}
   Biểu đồ \(T^2\):
   \begin{align*}
-    T^2&=m(\bar{\vect{X}}-\bar{\bar{\vect{X}}})\trans\mat{S}\inv(\bar{\vect{X}}-\bar{\bar{\vect{X}}})\\
-    \mathrm{UCL}&=\frac{(n+1)(m-1)p}{nm-n-p+1}F_{p,\,nm-n-p+1}(.05)
+    T^2&=m(\bar{\vect{X}}-\bar{\bar{\vect{X}}})\trans\mat{S}\inv(\bar{\vect{X}}-\bar{\bar{\vect{X}}})\tag{5.6.9}\\
+    \mathrm{UCL}&=\frac{(n+1)(m-1)p}{nm-n-p+1}F_{p,\,nm-n-p+1}(.05)\tag{5.6.10}
   \end{align*}
-  Điểm ngoài elip hoặc trên UCL: quá trình đã đổi khác (tốt hoặc xấu), cần tìm nguyên nhân.
+  
 \end{frame}
 \renewcommand{\theequation}{\arabic{equation}}
